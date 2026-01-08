@@ -22,6 +22,9 @@ namespace FootballPitchManagement
 
         }
 
-    
+        private void btnTongQuan_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

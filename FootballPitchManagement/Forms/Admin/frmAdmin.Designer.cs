@@ -68,7 +68,7 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(242, 96);
+            this.panel1.Size = new System.Drawing.Size(242, 81);
             this.panel1.TabIndex = 0;
             // 
             // pictureBox1
@@ -121,7 +121,7 @@
             this.panel2.Controls.Add(this.label3);
             this.panel2.Location = new System.Drawing.Point(0, 87);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(242, 666);
+            this.panel2.Size = new System.Drawing.Size(242, 651);
             this.panel2.TabIndex = 1;
             // 
             // label5
@@ -264,6 +264,7 @@
             this.btnTongQuan.Text = "Tổng Quan";
             this.btnTongQuan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnTongQuan.UseVisualStyleBackColor = true;
+            this.btnTongQuan.Click += new System.EventHandler(this.btnTongQuan_Click);
             // 
             // label3
             // 
@@ -285,7 +286,7 @@
             this.pnlMainAd.Controls.Add(this.pnlHead);
             this.pnlMainAd.Location = new System.Drawing.Point(240, 0);
             this.pnlMainAd.Name = "pnlMainAd";
-            this.pnlMainAd.Size = new System.Drawing.Size(1021, 753);
+            this.pnlMainAd.Size = new System.Drawing.Size(1021, 738);
             this.pnlMainAd.TabIndex = 2;
             // 
             // pnlBody
@@ -296,7 +297,7 @@
             this.pnlBody.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.pnlBody.Location = new System.Drawing.Point(0, 66);
             this.pnlBody.Name = "pnlBody";
-            this.pnlBody.Size = new System.Drawing.Size(1021, 688);
+            this.pnlBody.Size = new System.Drawing.Size(1021, 673);
             this.pnlBody.TabIndex = 1;
             // 
             // pnlHead
@@ -348,7 +349,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1261, 753);
+            this.ClientSize = new System.Drawing.Size(1261, 738);
             this.Controls.Add(this.pnlMainAd);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);

@@ -266,7 +266,7 @@
             this.label1.Size = new System.Drawing.Size(56, 22);
             this.label1.TabIndex = 4;
             this.label1.Text = "Sân 5";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+
             // 
             // panel9
             // 
@@ -573,7 +573,6 @@
             this.button2.TabIndex = 1;
             this.button2.Text = "11h00-12h30";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // panel1
             // 
