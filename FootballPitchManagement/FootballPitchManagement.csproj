@@ -93,6 +93,12 @@
     <Compile Include="Forms\Auth\QuenMatKhau.Designer.cs">
       <DependentUpon>QuenMatKhau.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Customer\ucSanBong.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Customer\ucSanBong.Designer.cs">
+      <DependentUpon>ucSanBong.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Forms\Admin\frmAdmin.resx">
       <DependentUpon>frmAdmin.cs</DependentUpon>
     </EmbeddedResource>
@@ -125,6 +131,10 @@
     <EmbeddedResource Include="Forms\Auth\QuenMatKhau.resx">
       <DependentUpon>QuenMatKhau.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Customer\ucSanBong.resx">
+      <DependentUpon>ucSanBong.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="App.config" />
     <None Include="App.config.example" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -135,9 +145,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Lovepik_com-400166909-football-field.jpg" />
