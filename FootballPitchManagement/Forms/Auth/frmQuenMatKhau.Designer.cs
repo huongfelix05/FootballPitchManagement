@@ -1,6 +1,6 @@
 ﻿namespace FootballPitchManagement
 {
-    partial class QuenMatKhau
+    partial class frmQuenMatKhau
     {
         /// <summary>
         /// Required designer variable.
@@ -43,7 +43,9 @@
             this.txtOTP = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.btnLayMa = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.panelDoiMK.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -51,7 +53,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(123)))), ((int)(((byte)(255)))));
-            this.label1.Location = new System.Drawing.Point(238, 76);
+            this.label1.Location = new System.Drawing.Point(115, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(335, 54);
             this.label1.TabIndex = 0;
@@ -60,7 +62,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(167, 171);
+            this.label2.Location = new System.Drawing.Point(44, 104);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(159, 20);
             this.label2.TabIndex = 1;
@@ -68,11 +70,10 @@
             // 
             // txtEmailTenDN
             // 
-            this.txtEmailTenDN.Location = new System.Drawing.Point(332, 168);
+            this.txtEmailTenDN.Location = new System.Drawing.Point(209, 101);
             this.txtEmailTenDN.Name = "txtEmailTenDN";
             this.txtEmailTenDN.Size = new System.Drawing.Size(315, 26);
             this.txtEmailTenDN.TabIndex = 2;
-         
             // 
             // btnXacNhan
             // 
@@ -80,7 +81,7 @@
             this.btnXacNhan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(167)))), ((int)(((byte)(69)))));
             this.btnXacNhan.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnXacNhan.ForeColor = System.Drawing.Color.White;
-            this.btnXacNhan.Location = new System.Drawing.Point(550, 509);
+            this.btnXacNhan.Location = new System.Drawing.Point(427, 442);
             this.btnXacNhan.Name = "btnXacNhan";
             this.btnXacNhan.Size = new System.Drawing.Size(97, 30);
             this.btnXacNhan.TabIndex = 3;
@@ -95,11 +96,10 @@
             this.panelDoiMK.Controls.Add(this.txtMatKhauMoi);
             this.panelDoiMK.Controls.Add(this.label5);
             this.panelDoiMK.Controls.Add(this.label4);
-            this.panelDoiMK.Location = new System.Drawing.Point(171, 291);
+            this.panelDoiMK.Location = new System.Drawing.Point(48, 224);
             this.panelDoiMK.Name = "panelDoiMK";
             this.panelDoiMK.Size = new System.Drawing.Size(476, 212);
             this.panelDoiMK.TabIndex = 4;
-          
             // 
             // btnLuuMatKhau
             // 
@@ -150,17 +150,15 @@
             this.label4.Size = new System.Drawing.Size(138, 20);
             this.label4.TabIndex = 0;
             this.label4.Text = "Đặt mật khẩu mới:";
-         
             // 
             // lblKetQua
             // 
             this.lblKetQua.AutoSize = true;
-            this.lblKetQua.Location = new System.Drawing.Point(167, 256);
+            this.lblKetQua.Location = new System.Drawing.Point(44, 189);
             this.lblKetQua.Name = "lblKetQua";
             this.lblKetQua.Size = new System.Drawing.Size(72, 20);
             this.lblKetQua.TabIndex = 5;
             this.lblKetQua.Text = "Kết quả!!";
-          
             // 
             // btnThoat
             // 
@@ -168,7 +166,7 @@
             this.btnThoat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
             this.btnThoat.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnThoat.ForeColor = System.Drawing.Color.White;
-            this.btnThoat.Location = new System.Drawing.Point(171, 509);
+            this.btnThoat.Location = new System.Drawing.Point(48, 442);
             this.btnThoat.Name = "btnThoat";
             this.btnThoat.Size = new System.Drawing.Size(97, 30);
             this.btnThoat.TabIndex = 6;
@@ -178,15 +176,15 @@
             // 
             // txtOTP
             // 
-            this.txtOTP.Location = new System.Drawing.Point(281, 215);
+            this.txtOTP.Location = new System.Drawing.Point(158, 148);
             this.txtOTP.Name = "txtOTP";
-            this.txtOTP.Size = new System.Drawing.Size(246, 26);
+            this.txtOTP.Size = new System.Drawing.Size(197, 26);
             this.txtOTP.TabIndex = 7;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(167, 218);
+            this.label3.Location = new System.Drawing.Point(44, 151);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(108, 20);
             this.label3.TabIndex = 8;
@@ -195,37 +193,47 @@
             // btnLayMa
             // 
             this.btnLayMa.AutoSize = true;
-            this.btnLayMa.Location = new System.Drawing.Point(533, 213);
+            this.btnLayMa.Location = new System.Drawing.Point(361, 146);
             this.btnLayMa.Name = "btnLayMa";
-            this.btnLayMa.Size = new System.Drawing.Size(114, 30);
+            this.btnLayMa.Size = new System.Drawing.Size(163, 30);
             this.btnLayMa.TabIndex = 9;
             this.btnLayMa.Text = "Lấy mã";
             this.btnLayMa.UseVisualStyleBackColor = true;
             this.btnLayMa.Click += new System.EventHandler(this.btnLayMa_Click);
             // 
-            // QuenMatKhau
+            // panel1
+            // 
+            this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panel1.Controls.Add(this.btnXacNhan);
+            this.panel1.Controls.Add(this.btnLayMa);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.txtEmailTenDN);
+            this.panel1.Controls.Add(this.txtOTP);
+            this.panel1.Controls.Add(this.lblKetQua);
+            this.panel1.Controls.Add(this.btnThoat);
+            this.panel1.Controls.Add(this.panelDoiMK);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Location = new System.Drawing.Point(133, 59);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(572, 495);
+            this.panel1.TabIndex = 10;
+            // 
+            // frmQuenMatKhau
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::FootballPitchManagement.Properties.Resources.z7323897720284_a54d07854b792a7723b12d3787f07cb2;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(831, 596);
-            this.Controls.Add(this.btnLayMa);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.txtOTP);
-            this.Controls.Add(this.btnThoat);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.btnXacNhan);
-            this.Controls.Add(this.panelDoiMK);
-            this.Controls.Add(this.lblKetQua);
-            this.Controls.Add(this.txtEmailTenDN);
-            this.Controls.Add(this.label2);
-            this.Name = "QuenMatKhau";
+            this.ClientSize = new System.Drawing.Size(915, 658);
+            this.Controls.Add(this.panel1);
+            this.Name = "frmQuenMatKhau";
             this.Text = "QuenMatKhau";
-          
             this.panelDoiMK.ResumeLayout(false);
             this.panelDoiMK.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -246,5 +254,6 @@
         private System.Windows.Forms.TextBox txtOTP;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnLayMa;
+        private System.Windows.Forms.Panel panel1;
     }
 }
