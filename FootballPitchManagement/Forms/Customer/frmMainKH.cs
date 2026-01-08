@@ -60,7 +60,7 @@ namespace FootballPitchManagement
         private void btnBooking_Click(object sender, EventArgs e)
         {
 
-            OpenChildForm(new frmLichdatsan());
+           // OpenChildForm(new frmLichdatsan());
         }
 
         private void btnHome_Click(object sender, EventArgs e)
@@ -81,18 +81,18 @@ namespace FootballPitchManagement
         private void btnDatSan1_Click(object sender, EventArgs e)
         {
             
-            OpenChildForm(new frmLichdatsan());
+            //OpenChildForm(new frmLichdatsan());
         }
 
         private void btnDatSan2_Click(object sender, EventArgs e)
         {
            
-            OpenChildForm(new frmLichdatsan());
+            //OpenChildForm(new frmLichdatsan());
         }
 
         private void btnDatSan3_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new frmLichdatsan());
+           // OpenChildForm(new frmLichdatsan());
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)

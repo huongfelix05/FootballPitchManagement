@@ -80,14 +80,14 @@ namespace FootballPitchManagement
                                 // Mở form tương ứng với loại tài khoản
                                 if (maLoaiTK == 1) // Admin
                                 {
-                                    // frmAdmin frm = new frmAdmin();
-                                    // frm.ShowDialog();
+                                    frmAdmin frm = new frmAdmin();
+                                    frm.ShowDialog();
                                 }
                                 else // Khách hàng
                                 {
-                                    // frmMainKH frm = new frmMainKH();
-                                    // frm.TenKhachHang = tenKhachHang;
-                                    // frm.ShowDialog();
+                                    frmMainKH frm = new frmMainKH();
+                                    frm.TenKhachHang = tenKhachHang;
+                                    frm.ShowDialog();
                                 }
                                 
                                 this.Close();
@@ -162,7 +162,7 @@ namespace FootballPitchManagement
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            QuenMatKhau qmk = new QuenMatKhau();
+            frmQuenMatKhau qmk = new frmQuenMatKhau();
             this.Hide();
             qmk.ShowDialog();
             this.Show();
