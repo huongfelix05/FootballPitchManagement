@@ -100,6 +100,7 @@
             this.panelDoiMK.Name = "panelDoiMK";
             this.panelDoiMK.Size = new System.Drawing.Size(476, 212);
             this.panelDoiMK.TabIndex = 4;
+            this.panelDoiMK.Visible = false;
             // 
             // btnLuuMatKhau
             // 
