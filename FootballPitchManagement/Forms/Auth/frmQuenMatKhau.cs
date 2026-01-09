@@ -35,64 +35,7 @@ namespace FootballPitchManagement
 
 
 
-        private void btnLuuMatKhau_Click(object sender, EventArgs e)
-        {
-            string mkMoi = txtMatKhauMoi.Text;
-            string nhapLai = txtNhapLaiMK.Text;
-
-            if (mkMoi.Length < 3)
-            {
-                MessageBox.Show("Mật khẩu mới phải từ 3 ký tự trở lên!");
-                return;
-            }
-
-            if (mkMoi != nhapLai)
-            {
-                MessageBox.Show("Mật khẩu nhập lại không khớp!");
-                return;
-            }
-
-            try
-            {
-                if (sqlCon == null) sqlCon = DatabaseConnection.GetConnection();
-                if (sqlCon.State == ConnectionState.Closed) sqlCon.Open();
-
-                // Câu lệnh UPDATE thông minh: Tìm người dùng theo Tên ĐN hoặc Email (dựa vào biến userDaLayMa đã lưu)
-                string updateQuery = @"UPDATE TaiKhoan 
-                                           SET MatKhau = @mk 
-                                           FROM TaiKhoan T
-                                           JOIN KhachHang K ON T.MaKH = K.MaKH
-                                           WHERE T.TenDangNhap = @user OR K.Email = @user";
-
-                SqlCommand cmd = new SqlCommand(updateQuery, sqlCon);
-                cmd.Parameters.AddWithValue("@mk", mkMoi);
-                cmd.Parameters.AddWithValue("@user", userDaLayMa); // Dùng biến toàn cục cho an toàn
-
-                int kq = cmd.ExecuteNonQuery();
-
-                if (kq > 0)
-                {
-                    MessageBox.Show("Đổi mật khẩu thành công! Vui lòng đăng nhập lại.");
-                    this.Hide(); // Ẩn form quên mật khẩu đi
-
-                    frmLogin login = new frmLogin(); // Tạo mới form đăng nhập
-                    login.Show(); // Hiện form đăng nhập lên
-                }
-                else
-                {
-                    MessageBox.Show("Lỗi: Không tìm thấy tài khoản để cập nhật!");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi cập nhật: " + ex.Message);
-            }
-            finally
-            {
-                if (sqlCon != null && sqlCon.State != ConnectionState.Closed)
-                    sqlCon.Close();
-            }
-        }
+       
         private void txtMatKhauMoi_TextChanged(object sender, EventArgs e)
         {
 
@@ -104,6 +47,98 @@ namespace FootballPitchManagement
         }
 
         private void txtSoDienThoai_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void GuiEmailThat(string toEmail, string otpCode)
+        {
+            try
+            {
+                // --- CẤU HÌNH GMAIL CỦA NÍ ---
+                string fromEmail = "huynhphuthinh205@gmail.com"; // Email của ní
+
+                // MẬT KHẨU ỨNG DỤNG 16 KÝ TỰ (Lấy từ Google, KHÔNG PHẢI pass đăng nhập)
+                string password = "rqqa mndl cpee owlz";
+                // -----------------------------------------------------------
+
+                MailMessage message = new MailMessage();
+                message.From = new MailAddress(fromEmail, "Hệ thống Quản Lý Sân Bóng");
+                message.To.Add(toEmail);
+                message.Subject = "Mã xác thực OTP - Đặt lại mật khẩu";
+                message.Body = $"Chào bạn,\n\nMã OTP của bạn là: {otpCode}\n\nVui lòng không chia sẻ mã này cho ai.";
+                message.IsBodyHtml = false;
+
+                SmtpClient smtp = new SmtpClient("smtp.gmail.com");
+                smtp.Port = 587;
+                smtp.EnableSsl = true;
+                smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = new NetworkCredential(fromEmail, password);
+
+                smtp.Send(message);
+            }
+            catch (Exception ex)
+            {
+                // Ném lỗi ra để hàm gọi nó xử lý
+                throw new Exception("Lỗi SMTP Gmail: " + ex.Message);
+            }
+        }
+
+        private void txtOTP_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtEmailTenDN_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void TimerDemNguoc_Tick(object sender, EventArgs e)
+        {
+            thoiGianConLai--; // Giảm 1 giây
+            btnLayMa.Text = $"Gửi lại ({thoiGianConLai}s)"; // Đổi chữ nút
+
+            if (thoiGianConLai <= 0)
+            {
+                timerDemNguoc.Stop();    // Dừng đồng hồ
+                btnLayMa.Enabled = true; // Cho bấm lại
+                btnLayMa.Text = "Lấy mã"; // Trả về chữ cũ
+                thoiGianConLai = 60;     // Reset về 60s
+            }
+        }
+
+        private void lblKetQua_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        
+
+        private void frmQuenMatKhau_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnThoat_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Bạn muốn hủy và quay lại đăng nhập?",
+                                                  "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                this.Hide();
+                frmLogin Login = new frmLogin();
+                Login.ShowDialog();
+                this.Close();
+            }
+        }
+
+        private void txtEmailTenDN_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtOTP_TextChanged_1(object sender, EventArgs e)
         {
 
         }
@@ -181,39 +216,6 @@ namespace FootballPitchManagement
                     sqlCon.Close();
             }
         }
-        private void GuiEmailThat(string toEmail, string otpCode)
-        {
-            try
-            {
-                // --- CẤU HÌNH GMAIL CỦA NÍ ---
-                string fromEmail = "huynhphuthinh205@gmail.com"; // Email của ní
-
-                // MẬT KHẨU ỨNG DỤNG 16 KÝ TỰ (Lấy từ Google, KHÔNG PHẢI pass đăng nhập)
-                string password = "rqqa mndl cpee owlz";
-                // -----------------------------------------------------------
-
-                MailMessage message = new MailMessage();
-                message.From = new MailAddress(fromEmail, "Hệ thống Quản Lý Sân Bóng");
-                message.To.Add(toEmail);
-                message.Subject = "Mã xác thực OTP - Đặt lại mật khẩu";
-                message.Body = $"Chào bạn,\n\nMã OTP của bạn là: {otpCode}\n\nVui lòng không chia sẻ mã này cho ai.";
-                message.IsBodyHtml = false;
-
-                SmtpClient smtp = new SmtpClient("smtp.gmail.com");
-                smtp.Port = 587;
-                smtp.EnableSsl = true;
-                smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-                smtp.UseDefaultCredentials = false;
-                smtp.Credentials = new NetworkCredential(fromEmail, password);
-
-                smtp.Send(message);
-            }
-            catch (Exception ex)
-            {
-                // Ném lỗi ra để hàm gọi nó xử lý
-                throw new Exception("Lỗi SMTP Gmail: " + ex.Message);
-            }
-        }
 
         private void btnXacNhan_Click(object sender, EventArgs e)
         {
@@ -259,44 +261,62 @@ namespace FootballPitchManagement
             }
         }
 
-        private void txtOTP_TextChanged(object sender, EventArgs e)
+        private void btnLuuMatKhau_Click(object sender, EventArgs e)
         {
+            string mkMoi = txtMatKhauMoi.Text;
+            string nhapLai = txtNhapLaiMK.Text;
 
-        }
-
-        private void txtEmailTenDN_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-        private void TimerDemNguoc_Tick(object sender, EventArgs e)
-        {
-            thoiGianConLai--; // Giảm 1 giây
-            btnLayMa.Text = $"Gửi lại ({thoiGianConLai}s)"; // Đổi chữ nút
-
-            if (thoiGianConLai <= 0)
+            if (mkMoi.Length < 3)
             {
-                timerDemNguoc.Stop();    // Dừng đồng hồ
-                btnLayMa.Enabled = true; // Cho bấm lại
-                btnLayMa.Text = "Lấy mã"; // Trả về chữ cũ
-                thoiGianConLai = 60;     // Reset về 60s
+                MessageBox.Show("Mật khẩu mới phải từ 3 ký tự trở lên!");
+                return;
             }
-        }
 
-        private void lblKetQua_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnThoat_Click(object sender, EventArgs e)
-        {
-            DialogResult result = MessageBox.Show("Bạn muốn hủy và quay lại đăng nhập?",
-                                                  "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result == DialogResult.Yes)
+            if (mkMoi != nhapLai)
             {
-                this.Hide();
-                frmLogin Login = new frmLogin();
-                Login.ShowDialog();
-                this.Close();
+                MessageBox.Show("Mật khẩu nhập lại không khớp!");
+                return;
+            }
+
+            try
+            {
+                if (sqlCon == null) sqlCon = DatabaseConnection.GetConnection();
+                if (sqlCon.State == ConnectionState.Closed) sqlCon.Open();
+
+                // Câu lệnh UPDATE thông minh: Tìm người dùng theo Tên ĐN hoặc Email (dựa vào biến userDaLayMa đã lưu)
+                string updateQuery = @"UPDATE TaiKhoan 
+                                           SET MatKhau = @mk 
+                                           FROM TaiKhoan T
+                                           JOIN KhachHang K ON T.MaKH = K.MaKH
+                                           WHERE T.TenDangNhap = @user OR K.Email = @user";
+
+                SqlCommand cmd = new SqlCommand(updateQuery, sqlCon);
+                cmd.Parameters.AddWithValue("@mk", mkMoi);
+                cmd.Parameters.AddWithValue("@user", userDaLayMa); // Dùng biến toàn cục cho an toàn
+
+                int kq = cmd.ExecuteNonQuery();
+
+                if (kq > 0)
+                {
+                    MessageBox.Show("Đổi mật khẩu thành công! Vui lòng đăng nhập lại.");
+                    this.Hide(); // Ẩn form quên mật khẩu đi
+
+                    frmLogin login = new frmLogin(); // Tạo mới form đăng nhập
+                    login.Show(); // Hiện form đăng nhập lên
+                }
+                else
+                {
+                    MessageBox.Show("Lỗi: Không tìm thấy tài khoản để cập nhật!");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi cập nhật: " + ex.Message);
+            }
+            finally
+            {
+                if (sqlCon != null && sqlCon.State != ConnectionState.Closed)
+                    sqlCon.Close();
             }
         }
     }
