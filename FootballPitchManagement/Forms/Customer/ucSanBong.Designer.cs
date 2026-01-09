@@ -50,7 +50,7 @@
             this.lblGiaTien.AutoSize = true;
             this.lblGiaTien.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lblGiaTien.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGiaTien.Location = new System.Drawing.Point(0, 118);
+            this.lblGiaTien.Location = new System.Drawing.Point(0, 129);
             this.lblGiaTien.Name = "lblGiaTien";
             this.lblGiaTien.Size = new System.Drawing.Size(63, 16);
             this.lblGiaTien.TabIndex = 6;
@@ -62,7 +62,7 @@
             this.lblTrangThai.AutoSize = true;
             this.lblTrangThai.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lblTrangThai.ForeColor = System.Drawing.Color.Green;
-            this.lblTrangThai.Location = new System.Drawing.Point(0, 134);
+            this.lblTrangThai.Location = new System.Drawing.Point(0, 145);
             this.lblTrangThai.Name = "lblTrangThai";
             this.lblTrangThai.Size = new System.Drawing.Size(43, 16);
             this.lblTrangThai.TabIndex = 5;
@@ -90,6 +90,7 @@
             this.Controls.Add(this.lblTrangThai);
             this.Controls.Add(this.lblTenSan);
             this.Name = "ucSanBong";
+            this.Size = new System.Drawing.Size(181, 161);
             ((System.ComponentModel.ISupportInitialize)(this.picIcon)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

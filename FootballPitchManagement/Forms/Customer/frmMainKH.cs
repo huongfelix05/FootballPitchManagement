@@ -60,7 +60,7 @@ namespace FootballPitchManagement
         private void btnBooking_Click(object sender, EventArgs e)
         {
 
-           // OpenChildForm(new frmLichdatsan());
+           OpenChildForm(new frmLichdatsan());
         }
 
         private void btnHome_Click(object sender, EventArgs e)
