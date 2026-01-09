@@ -103,20 +103,6 @@ namespace FootballPitchManagement
 
         }
 
-        private void btnThoat_Click(object sender, EventArgs e)
-        {
-
-            DialogResult result = MessageBox.Show("Bạn muốn hủy và quay lại đăng nhập?",
-                                                  "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result == DialogResult.Yes)
-            {
-                this.Hide();
-                frmLogin Login = new frmLogin();
-                Login.ShowDialog();
-                this.Close();
-            }
-        }
-
         private void txtSoDienThoai_TextChanged(object sender, EventArgs e)
         {
 
@@ -167,6 +153,7 @@ namespace FootballPitchManagement
                         MessageBox.Show($"Mã OTP đã được gửi đến email: {emailNguoiDung}", "Thành công");
                         lblKetQua.Text = "Đã gửi mã. Hãy kiểm tra Email!";
                         lblKetQua.ForeColor = Color.Blue;
+                        lblKetQua.Visible = true;
                         btnLayMa.Enabled = false; // Khóa nút không cho bấm nữa
                         thoiGianConLai = 60;      // Đặt lại 60s
                         timerDemNguoc.Start();    // Bắt đầu chạy đồng hồ
@@ -252,6 +239,7 @@ namespace FootballPitchManagement
             {
                 lblKetQua.Text = "Xác minh thành công!";
                 lblKetQua.ForeColor = Color.Green;
+                lblKetQua.Visible = true;
 
                 // Hiện khung đổi mật khẩu
                 panelDoiMK.Visible = true;
@@ -291,6 +279,24 @@ namespace FootballPitchManagement
                 btnLayMa.Enabled = true; // Cho bấm lại
                 btnLayMa.Text = "Lấy mã"; // Trả về chữ cũ
                 thoiGianConLai = 60;     // Reset về 60s
+            }
+        }
+
+        private void lblKetQua_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnThoat_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Bạn muốn hủy và quay lại đăng nhập?",
+                                                  "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                this.Hide();
+                frmLogin Login = new frmLogin();
+                Login.ShowDialog();
+                this.Close();
             }
         }
     }

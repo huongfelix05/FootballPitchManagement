@@ -363,6 +363,16 @@ namespace FootballPitchManagement.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap png_red_round_close_x_icon_31631915146jpppmdzihs {
+            get {
+                object obj = ResourceManager.GetObject("png-red-round-close-x-icon-31631915146jpppmdzihs", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap snow_9996_256 {
             get {
                 object obj = ResourceManager.GetObject("snow-9996_256", resourceCulture);

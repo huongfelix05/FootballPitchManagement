@@ -39,11 +39,11 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.lblKetQua = new System.Windows.Forms.Label();
-            this.btnThoat = new System.Windows.Forms.Button();
             this.txtOTP = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.btnLayMa = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnThoat = new Guna.UI2.WinForms.Guna2CircleButton();
             this.panelDoiMK.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -81,7 +81,7 @@
             this.btnXacNhan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(167)))), ((int)(((byte)(69)))));
             this.btnXacNhan.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnXacNhan.ForeColor = System.Drawing.Color.White;
-            this.btnXacNhan.Location = new System.Drawing.Point(427, 442);
+            this.btnXacNhan.Location = new System.Drawing.Point(427, 210);
             this.btnXacNhan.Name = "btnXacNhan";
             this.btnXacNhan.Size = new System.Drawing.Size(97, 30);
             this.btnXacNhan.TabIndex = 3;
@@ -96,7 +96,7 @@
             this.panelDoiMK.Controls.Add(this.txtMatKhauMoi);
             this.panelDoiMK.Controls.Add(this.label5);
             this.panelDoiMK.Controls.Add(this.label4);
-            this.panelDoiMK.Location = new System.Drawing.Point(48, 224);
+            this.panelDoiMK.Location = new System.Drawing.Point(48, 246);
             this.panelDoiMK.Name = "panelDoiMK";
             this.panelDoiMK.Size = new System.Drawing.Size(476, 212);
             this.panelDoiMK.TabIndex = 4;
@@ -159,20 +159,8 @@
             this.lblKetQua.Size = new System.Drawing.Size(72, 20);
             this.lblKetQua.TabIndex = 5;
             this.lblKetQua.Text = "Kết quả!!";
-            // 
-            // btnThoat
-            // 
-            this.btnThoat.AutoSize = true;
-            this.btnThoat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
-            this.btnThoat.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnThoat.ForeColor = System.Drawing.Color.White;
-            this.btnThoat.Location = new System.Drawing.Point(48, 442);
-            this.btnThoat.Name = "btnThoat";
-            this.btnThoat.Size = new System.Drawing.Size(97, 30);
-            this.btnThoat.TabIndex = 6;
-            this.btnThoat.Text = "Thoát";
-            this.btnThoat.UseVisualStyleBackColor = false;
-            this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
+            this.lblKetQua.Visible = false;
+            this.lblKetQua.Click += new System.EventHandler(this.lblKetQua_Click);
             // 
             // txtOTP
             // 
@@ -204,6 +192,7 @@
             // panel1
             // 
             this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panel1.Controls.Add(this.btnThoat);
             this.panel1.Controls.Add(this.btnXacNhan);
             this.panel1.Controls.Add(this.btnLayMa);
             this.panel1.Controls.Add(this.label2);
@@ -211,13 +200,30 @@
             this.panel1.Controls.Add(this.txtEmailTenDN);
             this.panel1.Controls.Add(this.txtOTP);
             this.panel1.Controls.Add(this.lblKetQua);
-            this.panel1.Controls.Add(this.btnThoat);
             this.panel1.Controls.Add(this.panelDoiMK);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(133, 59);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(572, 495);
             this.panel1.TabIndex = 10;
+            // 
+            // btnThoat
+            // 
+            this.btnThoat.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnThoat.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnThoat.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnThoat.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnThoat.FillColor = System.Drawing.Color.White;
+            this.btnThoat.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnThoat.ForeColor = System.Drawing.Color.White;
+            this.btnThoat.Image = global::FootballPitchManagement.Properties.Resources.png_red_round_close_x_icon_31631915146jpppmdzihs;
+            this.btnThoat.ImageSize = new System.Drawing.Size(40, 40);
+            this.btnThoat.Location = new System.Drawing.Point(12, 9);
+            this.btnThoat.Name = "btnThoat";
+            this.btnThoat.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            this.btnThoat.Size = new System.Drawing.Size(55, 54);
+            this.btnThoat.TabIndex = 10;
+            this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
             // 
             // frmQuenMatKhau
             // 
@@ -250,10 +256,10 @@
         private System.Windows.Forms.TextBox txtNhapLaiMK;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lblKetQua;
-        private System.Windows.Forms.Button btnThoat;
         private System.Windows.Forms.TextBox txtOTP;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnLayMa;
         private System.Windows.Forms.Panel panel1;
+        private Guna.UI2.WinForms.Guna2CircleButton btnThoat;
     }
 }

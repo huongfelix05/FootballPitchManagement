@@ -18,8 +18,8 @@ namespace FootballPitchManagement
             Application.SetCompatibleTextRenderingDefault(false);
             // Application.Run(new QuenMatKhau());
             //Application.Run(new frmMainKH());
-            //Application.Run(new frmLogin());
-            Application.Run(new frmAdmin());
+            Application.Run(new frmLogin());
+            //Application.Run(new frmAdmin());
            //Application.Run(new frmLichdatsan());
         }
     }
