@@ -1,6 +1,6 @@
 ﻿namespace FootballPitchManagement
 {
-    partial class LichDatSan
+    partial class frmLichdatsan
     {
         /// <summary>
         /// Required designer variable.
