@@ -37,10 +37,10 @@
             // 
             // picIcon
             // 
-            this.picIcon.Image = global::FootballPitchManagement.Properties.Resources.ảnh_sân_5_người;
+            this.picIcon.Image = global::FootballPitchManagement.Properties.Resources.pngtree_soccer_ball_lying_on_vibrant_green_grass_field_image_16734728;
             this.picIcon.Location = new System.Drawing.Point(0, 31);
             this.picIcon.Name = "picIcon";
-            this.picIcon.Size = new System.Drawing.Size(147, 82);
+            this.picIcon.Size = new System.Drawing.Size(181, 82);
             this.picIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picIcon.TabIndex = 7;
             this.picIcon.TabStop = false;
@@ -50,21 +50,23 @@
             this.lblGiaTien.AutoSize = true;
             this.lblGiaTien.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lblGiaTien.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGiaTien.Location = new System.Drawing.Point(0, 129);
+            this.lblGiaTien.Location = new System.Drawing.Point(0, 125);
             this.lblGiaTien.Name = "lblGiaTien";
             this.lblGiaTien.Size = new System.Drawing.Size(63, 16);
             this.lblGiaTien.TabIndex = 6;
             this.lblGiaTien.Text = "300.000 đ";
             this.lblGiaTien.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblGiaTien.Click += new System.EventHandler(this.lblGiaTien_Click);
             // 
             // lblTrangThai
             // 
             this.lblTrangThai.AutoSize = true;
             this.lblTrangThai.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lblTrangThai.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTrangThai.ForeColor = System.Drawing.Color.Green;
-            this.lblTrangThai.Location = new System.Drawing.Point(0, 145);
+            this.lblTrangThai.Location = new System.Drawing.Point(0, 141);
             this.lblTrangThai.Name = "lblTrangThai";
-            this.lblTrangThai.Size = new System.Drawing.Size(43, 16);
+            this.lblTrangThai.Size = new System.Drawing.Size(52, 20);
             this.lblTrangThai.TabIndex = 5;
             this.lblTrangThai.Text = "Trống";
             this.lblTrangThai.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -89,6 +91,7 @@
             this.Controls.Add(this.lblGiaTien);
             this.Controls.Add(this.lblTrangThai);
             this.Controls.Add(this.lblTenSan);
+            this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Name = "ucSanBong";
             this.Size = new System.Drawing.Size(181, 161);
             ((System.ComponentModel.ISupportInitialize)(this.picIcon)).EndInit();

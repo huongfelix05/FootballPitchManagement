@@ -22,8 +22,6 @@ namespace FootballPitchManagement
             this.components = new System.ComponentModel.Container();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
-            this.txtHoChieu = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label9 = new System.Windows.Forms.Label();
             this.cmdgioitinh = new System.Windows.Forms.ComboBox();
@@ -56,8 +54,6 @@ namespace FootballPitchManagement
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.txtHoChieu);
-            this.panel1.Controls.Add(this.label10);
             this.panel1.Controls.Add(this.dateTimePicker1);
             this.panel1.Controls.Add(this.label9);
             this.panel1.Controls.Add(this.cmdgioitinh);
@@ -78,29 +74,11 @@ namespace FootballPitchManagement
             this.panel1.Controls.Add(this.txtTenDangNhap);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(27, 40);
+            this.panel1.Location = new System.Drawing.Point(30, 57);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(614, 531);
+            this.panel1.Size = new System.Drawing.Size(600, 478);
             this.panel1.TabIndex = 0;
-            // 
-            // txtHoChieu
-            // 
-            this.txtHoChieu.Location = new System.Drawing.Point(326, 229);
-            this.txtHoChieu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtHoChieu.Name = "txtHoChieu";
-            this.txtHoChieu.Size = new System.Drawing.Size(236, 22);
-            this.txtHoChieu.TabIndex = 21;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold);
-            this.label10.Location = new System.Drawing.Point(322, 204);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(91, 23);
-            this.label10.TabIndex = 20;
-            this.label10.Text = "Hộ chiếu:";
             // 
             // dateTimePicker1
             // 
@@ -144,7 +122,7 @@ namespace FootballPitchManagement
             // 
             this.chkShowPass.AutoSize = true;
             this.chkShowPass.Font = new System.Drawing.Font("Times New Roman", 10F);
-            this.chkShowPass.Location = new System.Drawing.Point(326, 340);
+            this.chkShowPass.Location = new System.Drawing.Point(326, 291);
             this.chkShowPass.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chkShowPass.Name = "chkShowPass";
             this.chkShowPass.Size = new System.Drawing.Size(128, 23);
@@ -158,7 +136,7 @@ namespace FootballPitchManagement
             this.button1.BackColor = System.Drawing.Color.Lime;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold);
-            this.button1.Location = new System.Drawing.Point(242, 445);
+            this.button1.Location = new System.Drawing.Point(326, 357);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(145, 40);
@@ -171,7 +149,7 @@ namespace FootballPitchManagement
             // 
             this.chkAgree.AutoSize = true;
             this.chkAgree.Font = new System.Drawing.Font("Times New Roman", 10F);
-            this.chkAgree.Location = new System.Drawing.Point(326, 367);
+            this.chkAgree.Location = new System.Drawing.Point(326, 318);
             this.chkAgree.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chkAgree.Name = "chkAgree";
             this.chkAgree.Size = new System.Drawing.Size(189, 23);
@@ -194,7 +172,7 @@ namespace FootballPitchManagement
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold);
-            this.label6.Location = new System.Drawing.Point(322, 267);
+            this.label6.Location = new System.Drawing.Point(322, 204);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(65, 23);
             this.label6.TabIndex = 6;
@@ -202,7 +180,7 @@ namespace FootballPitchManagement
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(326, 292);
+            this.textBox5.Location = new System.Drawing.Point(326, 229);
             this.textBox5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(236, 22);
@@ -372,8 +350,6 @@ namespace FootballPitchManagement
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox cmdgioitinh;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox txtHoChieu;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Button button3;
     }

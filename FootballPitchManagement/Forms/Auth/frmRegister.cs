@@ -14,7 +14,7 @@ namespace FootballPitchManagement
 {
     public partial class frmRegister : Form
     {
-        private string conn = @"Data Source=LAPTOP-BV9HL7MV;Initial Catalog=QuanLychuoiDatSan;Integrated Security=True;TrustServerCertificate=True;";
+        private string conn = @"Data Source=MSI;Initial Catalog=QuanLychuoiDatSan;Integrated Security=True;TrustServerCertificate=True;";
         private enum ErrorDisplayStyle { Tooltip, MessageBox, InlineLabel, RedBackground }
         private ErrorDisplayStyle pwdErrorStyle = ErrorDisplayStyle.InlineLabel;
         private Label lblPasswordError;
@@ -25,7 +25,7 @@ namespace FootballPitchManagement
         public frmRegister()
         {
             InitializeComponent();
-           // button1.Enabled = false; // KHÓA nút Đăng ký ban đầu không cho đăng kí khi chưa nhập thông tin
+            // button1.Enabled = false; // KHÓA nút Đăng ký ban đầu không cho đăng kí khi chưa nhập thông tin
 
             if (this.errorProvider1 == null)
             {
@@ -219,10 +219,10 @@ namespace FootballPitchManagement
             catch { return false; }
         }
 
-        
 
-private void button1_Click(object sender, EventArgs e)
-    {
+
+        private void button1_Click(object sender, EventArgs e)
+        {
             if (!ValidateRegisterForm())
                 return;
 
@@ -252,92 +252,86 @@ private void button1_Click(object sender, EventArgs e)
             }
 
             if (txtPassword1.Text != txtPassword.Text)
-                {
-                 MessageBox.Show("Mật khẩu xác nhận không khớp");
-                  return;
-                }
-
-             if (cmdgioitinh.SelectedIndex == -1)
-                {
-                  MessageBox.Show("Vui lòng chọn giới tính");
-                 return;
-                 }
-
-               if (txtHoChieu.Text.Length != 12)
-                 {
-                MessageBox.Show("Hộ chiếu phải đúng 12 chữ số");
-                return;
-                 }
-
-       
-
-
-        using (SqlConnection connn = new SqlConnection(conn))
-        {
-            connn.Open();
-            SqlTransaction tran = connn.BeginTransaction();
-
-            try
             {
-                // 1. Insert KHÁCH HÀNG
-                string sqlKH = @"
+                MessageBox.Show("Mật khẩu xác nhận không khớp");
+                return;
+            }
+
+            if (cmdgioitinh.SelectedIndex == -1)
+            {
+                MessageBox.Show("Vui lòng chọn giới tính");
+                return;
+            }
+
+
+
+            using (SqlConnection connn = new SqlConnection(conn))
+            {
+                connn.Open();
+                SqlTransaction tran = connn.BeginTransaction();
+
+                try
+                {
+                    // 1. Insert KHÁCH HÀNG,    CMND_CCCD, @CMND
+                    string sqlKH = @"
             INSERT INTO KhachHang
-            (HoTen, DienThoai, Email, GioiTinh, NgaySinh, DiaChi, CMND_CCCD)
+            (HoTen, DienThoai, Email, GioiTinh, NgaySinh, DiaChi)
             VALUES
-            (@HoTen, @SDT, @Email, @GioiTinh, @NgaySinh, @DiaChi, @CMND);
+            (@HoTen, @SDT, @Email, @GioiTinh, @NgaySinh, @DiaChi);
             SELECT SCOPE_IDENTITY();";
 
-                SqlCommand cmdKH = new SqlCommand(sqlKH, connn, tran);
-                cmdKH.Parameters.AddWithValue("@HoTen", txtTenDangNhap.Text);
-                cmdKH.Parameters.AddWithValue("@SDT", textBox4.Text);
-                cmdKH.Parameters.AddWithValue("@Email", textBox5.Text);
-                cmdKH.Parameters.AddWithValue("@GioiTinh", cmdgioitinh.Text);
-                cmdKH.Parameters.AddWithValue("@NgaySinh", dateTimePicker1.Value.Date);
-                cmdKH.Parameters.AddWithValue("@DiaChi", textBox3.Text);
-                cmdKH.Parameters.AddWithValue("@CMND", txtHoChieu.Text);
+                    SqlCommand cmdKH = new SqlCommand(sqlKH, connn, tran);
+                    cmdKH.Parameters.AddWithValue("@HoTen", txtTenDangNhap.Text.Trim());
+                    cmdKH.Parameters.AddWithValue("@SDT", textBox4.Text);
+                    cmdKH.Parameters.AddWithValue("@Email", textBox5.Text);
+                    cmdKH.Parameters.AddWithValue("@GioiTinh", cmdgioitinh.Text);
+                    cmdKH.Parameters.AddWithValue("@NgaySinh", dateTimePicker1.Value.Date);
+                    cmdKH.Parameters.AddWithValue("@DiaChi", textBox3.Text);
 
-                int maKH = Convert.ToInt32(cmdKH.ExecuteScalar());
 
-                // 2. Insert TÀI KHOẢN
-                string sqlTK = @"
+                    int maKH = Convert.ToInt32(cmdKH.ExecuteScalar());
+
+                    // 2. Insert TÀI KHOẢN
+                    string sqlTK = @"
             INSERT INTO TaiKhoan (TenDangNhap, MatKhau, MaKH, MaLoaiTK)
-            VALUES (@User, @Pass, @MaKH, 4)";
+            VALUES (@User, @Pass, @MaKH, @MaLoaiTK)";
 
-                SqlCommand cmdTK = new SqlCommand(sqlTK, connn, tran);
-                cmdTK.Parameters.AddWithValue("@User", txtTenDangNhap.Text);
-                cmdTK.Parameters.AddWithValue("@Pass", txtPassword1.Text); // nên hash
-                cmdTK.Parameters.AddWithValue("@MaKH", maKH);
-                cmdTK.ExecuteNonQuery();
+                    SqlCommand cmdTK = new SqlCommand(sqlTK, connn, tran);
+                    cmdTK.Parameters.AddWithValue("@User", txtTenDangNhap.Text);
+                    cmdTK.Parameters.AddWithValue("@Pass", txtPassword1.Text); // nên hash
+                    cmdTK.Parameters.AddWithValue("@MaKH", maKH);
+                    cmdTK.Parameters.AddWithValue("@MaLoaiTK", 3);
+                    cmdTK.ExecuteNonQuery();
 
-                // 3. Log đăng ký
-                string sqlLog = @"INSERT INTO LogDangKy (MaKH, TrangThai)
+                    // 3. Log đăng ký
+                    string sqlLog = @"INSERT INTO LogDangKy (MaKH, TrangThai)
                               VALUES (@MaKH, N'THANH_CONG')";
 
-                SqlCommand cmdLog = new SqlCommand(sqlLog, connn, tran);
-                cmdLog.Parameters.AddWithValue("@MaKH", maKH);
-                cmdLog.ExecuteNonQuery();
+                    SqlCommand cmdLog = new SqlCommand(sqlLog, connn, tran);
+                    cmdLog.Parameters.AddWithValue("@MaKH", maKH);
+                    cmdLog.ExecuteNonQuery();
 
-                tran.Commit();
+                    tran.Commit();
 
-                MessageBox.Show("Đăng ký thành công!");
+                    MessageBox.Show("Đăng ký thành công!");
 
-                // Chuyển về form Login
-                frmLogin f = new frmLogin();
+                    // Chuyển về form Login
+                    frmLogin f = new frmLogin();
                     f.Show();
-                    this.Hide() ;
-            }
-            catch (Exception ex)
-            {
-                tran.Rollback();
-                MessageBox.Show("Lỗi đăng ký: " + ex.Message);
+                    this.Hide();
+                }
+                catch (Exception ex)
+                {
+                    tran.Rollback();
+                    MessageBox.Show("Lỗi đăng ký: " + ex.Message);
+                }
             }
         }
-    }
 
 
 
-    // Không gọi ValidatePasswords trên TextChanged nữa
-    private void txtPassword_TextChanged(object sender, EventArgs e) { /* no-op */ }
+        // Không gọi ValidatePasswords trên TextChanged nữa
+        private void txtPassword_TextChanged(object sender, EventArgs e) { /* no-op */ }
         private void txtPassword1_TextChanged(object sender, EventArgs e) { /* no-op */ }
 
         // Chỉ kiểm tra khi rời ô (người dùng nhập xong) -> force = true
@@ -394,9 +388,9 @@ private void button1_Click(object sender, EventArgs e)
                 if (textBox5 != null) textBox5.BackColor = SystemColors.Window;
                 if (errorProvider1 != null) errorProvider1.SetError(textBox5, string.Empty);
 
-                
+
             }
-      }
+        }
 
         private void textBox4_Leave(object sender, EventArgs e)
         {
@@ -443,27 +437,6 @@ private void button1_Click(object sender, EventArgs e)
             }
         }
 
-        //private void button2_Click(object sender, EventArgs e)
-        //{
-        //    // nút mũi tên trên cùng bên phải để thoát khỏi form đăng ký
-        //    var result = MessageBox.Show("Bạn có muốn thoát mà không đăng ký?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-        //    if (result == DialogResult.Yes)
-        //    {
-        //        this.Close();
-        //    }
-        //}
-
-        //private void btnnutthoat_Click(object sender, EventArgs e)
-        //{
-
-        //    // nút mũi tên trên cùng bên phải để thoát khỏi form đăng ký
-        //    var result = MessageBox.Show("Bạn có muốn thoát mà không đăng ký?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-        //    if (result == DialogResult.Yes)
-        //    {
-        //        this.Close();
-        //    }
-
-        //}
 
         private void ValidatePasswords(bool force = false)
         {
@@ -560,7 +533,7 @@ private void button1_Click(object sender, EventArgs e)
         }
         private bool ValidateRegisterForm()
         {
-            
+
 
             // 1. Username
             if (string.IsNullOrWhiteSpace(txtTenDangNhap.Text))
@@ -623,7 +596,7 @@ private void button1_Click(object sender, EventArgs e)
                 cmdgioitinh.Focus();
                 return false;
             }
-            
+
             // 7. Ngày sinh (bắt buộc & không được lớn hơn hiện tại)
             if (dateTimePicker1.Value.Date >= DateTime.Now.Date)
             {
@@ -636,26 +609,6 @@ private void button1_Click(object sender, EventArgs e)
             }
 
 
-            // 8. Hộ chiếu / CCCD (bắt buộc, đúng 12 số)
-            if (string.IsNullOrWhiteSpace(txtHoChieu.Text))
-            {
-                MessageBox.Show("Vui lòng nhập số hộ chiếu / CCCD!",
-                    "Lỗi",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
-                txtHoChieu.Focus();
-                return false;
-            }
-
-            if (txtHoChieu.Text.Length != 12 || !txtHoChieu.Text.All(char.IsDigit))
-            {
-                MessageBox.Show("Hộ chiếu / CCCD phải gồm đúng 12 chữ số!",
-                    "Lỗi",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
-                txtHoChieu.Focus();
-                return false;
-            }
 
             // 9. Email
             if (!IsValidEmail(textBox5.Text.Trim()))
@@ -697,7 +650,7 @@ private void button1_Click(object sender, EventArgs e)
                     cmd.Parameters.AddWithValue("@username", username);
                     cmd.Parameters.AddWithValue("@email", email);
                     cmd.Parameters.AddWithValue("@phone", phone);
-                    
+
 
                     connSql.Open();
                     return (int)cmd.ExecuteScalar() > 0;
@@ -705,68 +658,6 @@ private void button1_Click(object sender, EventArgs e)
             }
         }
 
-        //private bool RegisterCustomer()
-        //{
-        //    using (SqlConnection connSql = new SqlConnection(conn))
-        //    {
-        //        connSql.Open();
-        //        SqlTransaction tran = connSql.BeginTransaction();
-
-        //        try
-        //        {
-        //            // 1. INSERT KhachHang
-        //            string sqlKH = @"
-        //    INSERT INTO KhachHang (HoTen, DienThoai, Email, DiaChi)
-        //    OUTPUT INSERTED.MaKH
-        //    VALUES (@hoten, @phone, @email, @address)";
-
-        //            SqlCommand cmdKH = new SqlCommand(sqlKH, connSql, tran);
-        //            cmdKH.Parameters.AddWithValue("@hoten", textBox1.Text.Trim()); // HoTen
-        //            cmdKH.Parameters.AddWithValue("@phone", textBox4.Text.Trim());
-        //            cmdKH.Parameters.AddWithValue("@email", textBox5.Text.Trim());
-        //            cmdKH.Parameters.AddWithValue("@address", textBox3.Text.Trim());
-
-        //            int maKH = (int)cmdKH.ExecuteScalar(); // LẤY MaKH
-
-        //            // 2. INSERT TaiKhoan
-        //            string sqlTK = @"
-        //    INSERT INTO TaiKhoan (TenDangNhap, MatKhau, MaKH, MaLoaiTK)
-        //    VALUES (@username, @password, @makh, @maloaitk)";
-
-        //            SqlCommand cmdTK = new SqlCommand(sqlTK, connSql, tran);
-        //            cmdTK.Parameters.AddWithValue("@username", textBox1.Text.Trim());
-        //            cmdTK.Parameters.AddWithValue("@password", txtPassword.Text.Trim()); // sau này hash
-        //            cmdTK.Parameters.AddWithValue("@makh", maKH);
-        //            cmdTK.Parameters.AddWithValue("@maloaitk", 4); // KHÁCH HÀNG
-
-        //            cmdTK.ExecuteNonQuery();
-
-        //            // 3. COMMIT
-        //            tran.Commit();
-        //            return true;
-        //        }
-        //        catch
-        //        {
-        //            tran.Rollback();
-        //            return false;
-        //        }
-        //    }
-        //}
-
-
-        private void txtHoChieu_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
-                e.Handled = true;
-            if (txtHoChieu.Text.Length != 12)
-            {
-                MessageBox.Show("Hộ chiếu phải gồm đúng 12 chữ số", "Lỗi",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtHoChieu.Focus();
-                return;
-            }
-
-        }
 
 
         // nút thoát
@@ -778,6 +669,11 @@ private void button1_Click(object sender, EventArgs e)
             {
                 this.Close();
             }
+        }
+
+        private void txtHoChieu_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

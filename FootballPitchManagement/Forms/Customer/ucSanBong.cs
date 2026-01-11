@@ -93,5 +93,10 @@ namespace FootballPitchManagement
         {
 
         }
+
+        private void lblGiaTien_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

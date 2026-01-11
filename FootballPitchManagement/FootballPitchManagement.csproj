@@ -107,6 +107,12 @@
     <Compile Include="Forms\Customer\ucSanBong.Designer.cs">
       <DependentUpon>ucSanBong.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Customer\ucDonDatItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Customer\ucDonDatItem.Designer.cs">
+      <DependentUpon>ucDonDatItem.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Forms\Admin\frmAdmin.resx">
       <DependentUpon>frmAdmin.cs</DependentUpon>
     </EmbeddedResource>
@@ -144,6 +150,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Customer\ucSanBong.resx">
       <DependentUpon>ucSanBong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Customer\ucDonDatItem.resx">
+      <DependentUpon>ucDonDatItem.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="App.config.example" />
@@ -258,6 +267,30 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icons8-statistic-32 %282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\7ef84578-33d5-496f-ba37-d92901052ffe.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pngtree-green-field-on-the-stadium-with-sky-view-at-evening-time-image_16465673.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pngtree-beautiful-grass-football-field-with-bokeh-background-picture-image_15553657.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\6d444db096de763b4f84dfee0ace1663.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\29001677-3d-growth-bar-graph-vector-business-concept.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bbb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pngtree-soccer-ball-lying-on-vibrant-green-grass-field-image_16734728.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\29001677-3d-growth-bar-graph-vector-business-concept1.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
