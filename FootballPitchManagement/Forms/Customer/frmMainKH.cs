@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FootballPitchManagement.Forms.Customer;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -98,6 +99,11 @@ namespace FootballPitchManagement
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnProfile_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmHoSo(1));
         }
     }
 }
