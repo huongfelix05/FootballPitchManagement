@@ -63,6 +63,12 @@
     <Compile Include="Forms\Admin\frmAdmin.Designer.cs">
       <DependentUpon>frmAdmin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Customer\frmDoAn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Customer\frmDoAn.Designer.cs">
+      <DependentUpon>frmDoAn.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Customer\frmLichdatsan.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -121,6 +127,9 @@
     </Compile>
     <EmbeddedResource Include="Forms\Admin\frmAdmin.resx">
       <DependentUpon>frmAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Customer\frmDoAn.resx">
+      <DependentUpon>frmDoAn.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Customer\frmLichdatsan.resx">
       <DependentUpon>frmLichdatsan.cs</DependentUpon>
