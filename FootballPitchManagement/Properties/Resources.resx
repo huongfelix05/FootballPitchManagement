@@ -217,8 +217,8 @@
   <data name="calendar" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\calendar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="z7323897720284_a54d07854b792a7723b12d3787f07cb2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\z7323897720284_a54d07854b792a7723b12d3787f07cb2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icons8-calendar-48 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-calendar-48 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="pngtree-soccer-ball-lying-on-vibrant-green-grass-field-image_16734728" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\pngtree-soccer-ball-lying-on-vibrant-green-grass-field-image_16734728.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
