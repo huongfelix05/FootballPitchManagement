@@ -162,7 +162,7 @@ namespace FootballPitchManagement
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            QuenMatKhau qmk = new QuenMatKhau();
+            frmQuenMatKhau qmk = new frmQuenMatKhau();
             this.Hide();
             qmk.ShowDialog();
             this.Show();

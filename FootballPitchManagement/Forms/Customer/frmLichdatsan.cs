@@ -21,7 +21,6 @@ namespace FootballPitchManagement
         public frmLichdatsan()
         {
             InitializeComponent();
-            // Gán sự kiện Load
             this.Load += LichDatSan_Load;
         }
 
@@ -29,7 +28,9 @@ namespace FootballPitchManagement
         {
             try
             {
-                // Test kết nối database trước
+                // 1. GỌI HÀM DỌN DẸP NGAY ĐẦU TIÊN
+                TuDongXoaLichQuaKhu();
+                // --------------------------------
                 if (!DatabaseConnection.TestConnection(out string error))
                 {
                     DatabaseConnection.ShowConnectionError(error);
@@ -37,65 +38,66 @@ namespace FootballPitchManagement
                     return;
                 }
 
-                // 1. Load dữ liệu vào ComboBox
+                // 1. Load dữ liệu
                 LoadChiNhanh();
                 LoadLoaiSan();
 
-                // 2. Gán sự kiện cho DateTimePicker
+                // 2. Gán sự kiện
                 dtpNgayXem.ValueChanged += Filter_Changed;
                 dtpGioBatDau.ValueChanged += dtpGio_ValueChanged;
                 dtpGioKetThuc.ValueChanged += dtpGio_ValueChanged;
 
-                // 3. Gán sự kiện cho các nút
                 btnTimKH.Click += btnTimKH_Click;
                 btnDatSan.Click += btnDatSan_Click;
                 btnHuy.Click += btnHuy_Click;
 
-                // 4. Thiết lập giá trị mặc định
+                // 3. Mặc định
                 dtpNgayXem.Value = DateTime.Now;
                 dtpGioBatDau.Value = DateTime.Now;
                 dtpGioKetThuc.Value = DateTime.Now.AddHours(1);
-                
-                // 5. Reset form về trạng thái ban đầu
+
                 ResetFormDatSan();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Lỗi khởi tạo form: {ex.Message}", "Lỗi", 
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Lỗi khởi tạo hệ thống:\n{ex.Message}", "Lỗi Khởi Tạo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        #region === HÀM XỬ LÝ SỰ KIỆN BỘ LỌC ===
+        #region === 1. BỘ LỌC & LOAD DỮ LIỆU ===
 
         private void Filter_Changed(object sender, EventArgs e)
         {
             try
             {
-                // Kiểm tra Chi nhánh
-                if (cboChiNhanh.SelectedValue == null) return;
-                if (!int.TryParse(cboChiNhanh.SelectedValue.ToString(), out int maCN)) return;
+                if (cboChiNhanh.SelectedValue == null || cboLoaiSan.SelectedValue == null) return;
 
-                // Kiểm tra Loại sân
-                if (cboLoaiSan.SelectedValue == null) return;
-                if (!int.TryParse(cboLoaiSan.SelectedValue.ToString(), out int maLoai)) return;
+                int maCN;
+                int maLoai;
 
-                // Lấy Ngày xem
+                if (!int.TryParse(cboChiNhanh.SelectedValue.ToString(), out maCN)) return;
+                if (!int.TryParse(cboLoaiSan.SelectedValue.ToString(), out maLoai)) return;
+
                 DateTime ngayXem = dtpNgayXem.Value.Date;
 
-                // Tải danh sách sân
+                // Load sân bóng
                 LoadSanBong(maCN, maLoai, ngayXem);
+
+                // Load lại danh sách đơn hàng CỦA KHÁCH ĐANG CHỌN (nếu có)
+                if (int.TryParse(lblMaKH.Text, out int maKH) && maKH > 0)
+                {
+                    LoadDanhSachDonHangCuaKhach(maKH);
+                }
+                else
+                {
+                    if (flpDanhSachDonHang != null) flpDanhSachDonHang.Controls.Clear();
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Lỗi lọc dữ liệu: {ex.Message}", "Lỗi", 
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Đã xảy ra lỗi khi lọc dữ liệu:\n{ex.Message}", "Lỗi Bộ Lọc", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        #endregion
-
-        #region === HÀM LOAD DỮ LIỆU ===
 
         private void LoadChiNhanh()
         {
@@ -105,27 +107,19 @@ namespace FootballPitchManagement
                 {
                     conn.Open();
                     string sql = "SELECT MaChiNhanh, TenChiNhanh FROM ChiNhanh WHERE TrangThai = 1 ORDER BY TenChiNhanh";
-                    
-                    using (SqlDataAdapter da = new SqlDataAdapter(sql, conn))
-                    {
-                        DataTable dt = new DataTable();
-                        da.Fill(dt);
+                    SqlDataAdapter da = new SqlDataAdapter(sql, conn);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
 
-                        cboChiNhanh.DataSource = dt;
-                        cboChiNhanh.DisplayMember = "TenChiNhanh";
-                        cboChiNhanh.ValueMember = "MaChiNhanh";
-                        cboChiNhanh.SelectedIndex = -1;
+                    cboChiNhanh.DataSource = dt;
+                    cboChiNhanh.DisplayMember = "TenChiNhanh";
+                    cboChiNhanh.ValueMember = "MaChiNhanh";
+                    cboChiNhanh.SelectedIndex = -1;
 
-                        // Gán sự kiện (tránh gán trùng)
-                        cboChiNhanh.SelectedIndexChanged -= Filter_Changed;
-                        cboChiNhanh.SelectedIndexChanged += Filter_Changed;
-                    }
+                    cboChiNhanh.SelectedIndexChanged -= Filter_Changed;
+                    cboChiNhanh.SelectedIndexChanged += Filter_Changed;
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Lỗi load Chi nhánh: {ex.Message}", "Lỗi", 
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                catch { }
             }
         }
 
@@ -137,246 +131,207 @@ namespace FootballPitchManagement
                 {
                     conn.Open();
                     string sql = "SELECT MaLoaiSan, TenLoaiSan FROM LoaiSan ORDER BY TenLoaiSan";
-                    
-                    using (SqlDataAdapter da = new SqlDataAdapter(sql, conn))
-                    {
-                        DataTable dt = new DataTable();
-                        da.Fill(dt);
+                    SqlDataAdapter da = new SqlDataAdapter(sql, conn);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
 
-                        cboLoaiSan.DataSource = dt;
-                        cboLoaiSan.DisplayMember = "TenLoaiSan";
-                        cboLoaiSan.ValueMember = "MaLoaiSan";
-                        cboLoaiSan.SelectedIndex = -1;
+                    cboLoaiSan.DataSource = dt;
+                    cboLoaiSan.DisplayMember = "TenLoaiSan";
+                    cboLoaiSan.ValueMember = "MaLoaiSan";
+                    cboLoaiSan.SelectedIndex = -1;
 
-                        // Gán sự kiện (tránh gán trùng)
-                        cboLoaiSan.SelectedIndexChanged -= Filter_Changed;
-                        cboLoaiSan.SelectedIndexChanged += Filter_Changed;
-                    }
+                    cboLoaiSan.SelectedIndexChanged -= Filter_Changed;
+                    cboLoaiSan.SelectedIndexChanged += Filter_Changed;
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Lỗi load Loại sân: {ex.Message}", "Lỗi", 
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                catch { }
             }
         }
 
         private void LoadSanBong(int maChiNhanh, int maLoaiSan, DateTime ngayXem)
         {
-            // Xóa hết sân cũ
             flpDanhSachSan.Controls.Clear();
-
             using (SqlConnection conn = DatabaseConnection.GetConnection())
             {
                 try
                 {
                     conn.Open();
+                    string sql = @"
+                        SELECT s.MaSan, s.TenSan, s.GiaMacDinh, tt.TenTinhTrang AS TrangThaiCoDinh
+                        FROM San s
+                        INNER JOIN TinhTrangSan tt ON s.MaTinhTrang = tt.MaTinhTrang
+                        WHERE s.MaChiNhanh = @MaCN AND s.MaLoaiSan = @MaLoai AND s.TrangThai = 1
+                        ORDER BY s.TenSan";
 
-                    // ✅ ĐÃ SỬA: tt.MaTinhTrang (không có khoảng trắng)
-                        string sql = @"
-                SELECT 
-                    s.MaSan, 
-                    s.TenSan, 
-                    s.GiaMacDinh, 
-                    tt.TenTinhTrang AS TrangThaiCoDinh,
-                    (SELECT COUNT(*) 
-                     FROM LichDatSan l 
-                     WHERE l.MaSan = s.MaSan 
-                       AND l.NgayDat = @NgayXem 
-                       AND l.TrangThai != N'DA_HUY') AS SoLuotDat
-                FROM San s
-                INNER JOIN TinhTrangSan tt ON s.MaTinhTrang = tt.MaTinhTrang
-                WHERE s.MaChiNhanh = @MaCN
-                  AND s.MaLoaiSan = @MaLoai
-                  AND s.TrangThai = 1
-                ORDER BY s.TenSan";
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@MaCN", maChiNhanh);
+                    cmd.Parameters.AddWithValue("@MaLoai", maLoaiSan);
 
-                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    int count = 0;
+                    while (reader.Read())
                     {
-                        cmd.Parameters.AddWithValue("@MaCN", maChiNhanh);
-                        cmd.Parameters.AddWithValue("@MaLoai", maLoaiSan);
-                        cmd.Parameters.AddWithValue("@NgayXem", ngayXem);
+                        count++;
+                        ucSanBong item = new ucSanBong();
+                        int id = Convert.ToInt32(reader["MaSan"]);
+                        string ten = reader["TenSan"].ToString();
+                        decimal gia = Convert.ToDecimal(reader["GiaMacDinh"]);
+                        string ttCoDinh = reader["TrangThaiCoDinh"].ToString();
 
-                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        string trangThaiHienThi = "Trống";
+                        if (ttCoDinh.Equals("Bảo trì", StringComparison.OrdinalIgnoreCase))
                         {
-                            int count = 0;
-
-                            while (reader.Read())
-                            {
-                                count++;
-
-                                // Lấy dữ liệu
-                                int id = Convert.ToInt32(reader["MaSan"]);
-                                string ten = reader["TenSan"].ToString();
-                                decimal gia = Convert.ToDecimal(reader["GiaMacDinh"]);
-                                string trangThaiCoDinh = reader["TrangThaiCoDinh"].ToString();
-                                int soLuotDat = Convert.ToInt32(reader["SoLuotDat"]);
-
-                                // Xử lý trạng thái hiển thị
-                                string trangThaiHienThi;
-                                if (trangThaiCoDinh.Equals("Bảo trì", StringComparison.OrdinalIgnoreCase))
-                                {
-                                    trangThaiHienThi = "Bảo trì";
-                                }
-                                else if (soLuotDat > 0)
-                                {
-                                    trangThaiHienThi = "Đã đặt";
-                                }
-                                else
-                                {
-                                    trangThaiHienThi = "Trống";
-                                }
-
-                                // Tạo và thêm control
-                                ucSanBong item = new ucSanBong();
-                                item.ThietLapThongTin(id, ten, trangThaiHienThi, gia);
-                                item.OnSelect += Item_OnSelect;
-                                flpDanhSachSan.Controls.Add(item);
-                            }
-
-                            // Thông báo nếu không có sân
-                            if (count == 0)
-                            {
-                                Label lblEmpty = new Label
-                                {
-                                    Text = "📢 Không có sân nào phù hợp với điều kiện lọc",
-                                    AutoSize = false,
-                                    Width = flpDanhSachSan.Width - 20,
-                                    Height = 50,
-                                    TextAlign = ContentAlignment.MiddleCenter,
-                                    ForeColor = Color.Gray,
-                                    Font = new Font("Segoe UI", 10, FontStyle.Italic)
-                                };
-                                flpDanhSachSan.Controls.Add(lblEmpty);
-                            }
+                            trangThaiHienThi = "Bảo trì";
                         }
+
+                        item.ThietLapThongTin(id, ten, trangThaiHienThi, gia);
+                        item.OnSelect += Item_OnSelect;
+                        flpDanhSachSan.Controls.Add(item);
+                    }
+                    if (count == 0)
+                    {
+                        Label lbl = new Label() { Text = "Không có sân phù hợp với bộ lọc", AutoSize = true, ForeColor = Color.Red, Font = new Font("Segoe UI", 10, FontStyle.Italic) };
+                        flpDanhSachSan.Controls.Add(lbl);
                     }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Lỗi tải sân: {ex.Message}", "Lỗi", 
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                catch (Exception ex) { MessageBox.Show($"Không thể tải danh sách sân:\n{ex.Message}", "Lỗi Tải Dữ Liệu", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             }
         }
 
         #endregion
 
-        #region === XỬ LÝ CHỌN SÂN ===
+        #region === 2. XỬ LÝ CHỌN SÂN & TÍNH TIỀN ===
 
         private void Item_OnSelect(object sender, EventArgs e)
         {
-            ucSanBong sanDuocChon = sender as ucSanBong;
-            if (sanDuocChon == null) return;
+            ucSanBong san = sender as ucSanBong;
+            if (san == null) return;
 
-            // Kiểm tra trạng thái sân
-            if (sanDuocChon.TrangThai.Equals("Bảo trì", StringComparison.OrdinalIgnoreCase))
+            // 1. Nếu bảo trì -> Chặn
+            if (san.TrangThai == "Bảo trì")
             {
-                MessageBox.Show(
-                    "⚠️ Sân này đang bảo trì/sửa chữa.\nVui lòng chọn sân khác!",
-                    "Cảnh báo", 
-                    MessageBoxButtons.OK, 
-                    MessageBoxIcon.Warning);
+                MessageBox.Show("Sân đang trong quá trình bảo trì.\nVui lòng chọn sân khác!", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (sanDuocChon.TrangThai.Equals("Đã đặt", StringComparison.OrdinalIgnoreCase))
-            {
-                MessageBox.Show(
-                    "ℹ️ Sân này đã có lịch đặt trong ngày này.\nVui lòng chọn giờ khác hoặc sân khác!",
-                    "Thông báo", 
-                    MessageBoxButtons.OK, 
-                    MessageBoxIcon.Information);
-                return;
-            }
+            // 2. Cập nhật biến toàn cục để chuẩn bị đặt
+            _maSanDangChon = san.MaSan;
+            _giaSanHienTai = san.GiaMacDinh;
 
-            // Cập nhật thông tin sân đã chọn
-            lblTenSanChon.Text = sanDuocChon.TenSan;
-            lblGiaGoc.Text = sanDuocChon.GiaMacDinh.ToString("N0") + " đ";
-            lblMaSan.Text = sanDuocChon.MaSan.ToString();
-            lblTenSanChon.ForeColor = Color.Green;
+            // 3. Đưa thông tin sang Panel Phải
+            lblTenSanChon.Text = san.TenSan;
+            lblMaSan.Text = san.MaSan.ToString();
+            lblGiaGoc.Text = san.GiaMacDinh.ToString("N0");
+            lblTenSanChon.ForeColor = Color.Blue;
 
-            _maSanDangChon = sanDuocChon.MaSan;
-            _giaSanHienTai = sanDuocChon.GiaMacDinh;
+            // 4. Kiểm tra giờ hiện tại có trùng không (để báo đỏ ô tiền nếu cần)
+            dtpGio_ValueChanged(null, null);
 
-            // Reset giờ về mặc định
-            DateTime now = DateTime.Now;
-            dtpGioBatDau.Value = new DateTime(now.Year, now.Month, now.Day, now.Hour, 0, 0);
-            dtpGioKetThuc.Value = dtpGioBatDau.Value.AddHours(1);
-
-            // Tính tiền
-            TinhTien();
+            // 5. QUAN TRỌNG: LOAD DANH SÁCH CÁC KHUNG GIỜ ĐÃ ĐẶT CỦA SÂN NÀY
+            LoadLichDatCuaSan(san.MaSan);
         }
 
-        #endregion
+        private void LoadKhachHangCuaSanDaDat(int maSan, DateTime ngayDat)
+        {
+            using (SqlConnection conn = DatabaseConnection.GetConnection())
+            {
+                try
+                {
+                    conn.Open();
+                    string sql = @"SELECT TOP 1 k.MaKH, k.HoTen, k.DienThoai
+                                   FROM LichDatSan l JOIN KhachHang k ON l.MaKH = k.MaKH
+                                   WHERE l.MaSan=@San AND l.NgayDat=@Ngay AND l.TrangThai IN ('DA_XAC_NHAN','CHO_XAC_NHAN')";
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@San", maSan);
+                    cmd.Parameters.AddWithValue("@Ngay", ngayDat);
 
-        #region === TÍNH TIỀN ===
+                    SqlDataReader r = cmd.ExecuteReader();
+                    if (r.Read())
+                    {
+                        lblMaKH.Text = r["MaKH"].ToString();
+                        txtTenKhach.Text = r["HoTen"].ToString();
+                        txtSDT.Text = r["DienThoai"].ToString();
+                        txtTenKhach.ForeColor = Color.Red;
+
+                        LoadDanhSachDonHangCuaKhach(int.Parse(lblMaKH.Text));
+                    }
+                }
+                catch { }
+            }
+        }
 
         private void TinhTien()
         {
-            try
-            {
-                // Kiểm tra có chọn sân chưa
-                if (_giaSanHienTai == 0)
-                {
-                    txtTongTien.Text = "0";
-                    return;
-                }
+            if (_giaSanHienTai == 0) { txtTongTien.Text = "0"; return; }
+            double soGio = (dtpGioKetThuc.Value - dtpGioBatDau.Value).TotalHours;
+            if (soGio <= 0) { txtTongTien.Text = "0"; return; }
 
-                TimeSpan thoiLuong = dtpGioKetThuc.Value - dtpGioBatDau.Value;
-                double soGio = thoiLuong.TotalHours;
-
-                if (soGio <= 0)
-                {
-                    txtTongTien.Text = "0";
-                    txtTongTien.ForeColor = Color.Red;
-                    return;
-                }
-
-                decimal tongTien = (decimal)soGio * _giaSanHienTai;
-                txtTongTien.Text = tongTien.ToString("N0");
-                txtTongTien.ForeColor = Color.Blue;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Lỗi tính tiền: {ex.Message}", "Lỗi", 
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            decimal tongTien = (decimal)soGio * _giaSanHienTai;
+            txtTongTien.Text = tongTien.ToString("N0");
         }
 
         private void dtpGio_ValueChanged(object sender, EventArgs e)
         {
-            TinhTien();
+            // 1. Reset thông báo
+            lblThongBao.Text = "";
+            txtTongTien.Text = "0"; // Mặc định về 0 khi đang check
+
+            TimeSpan gioBD = dtpGioBatDau.Value.TimeOfDay;
+            TimeSpan gioKT = dtpGioKetThuc.Value.TimeOfDay;
+            double soPhutDa = (gioKT - gioBD).TotalMinutes;
+
+            // 2. CHECK LỖI 1: Giờ kết thúc nhỏ hơn giờ bắt đầu
+            if (gioKT <= gioBD)
+            {
+                lblThongBao.Text = "❌ Giờ kết thúc phải sau giờ bắt đầu!";
+                lblThongBao.ForeColor = Color.Red;
+                btnDatSan.Enabled = false;
+                return;
+            }
+
+            // 3. CHECK LỖI 2: Thời lượng dưới 60 phút (MỚI THÊM)
+            if (soPhutDa < 60)
+            {
+                lblThongBao.Text = $"⚠️ Tối thiểu phải đặt 1 tiếng!\n(Hiện tại: {soPhutDa} phút)";
+                lblThongBao.ForeColor = Color.OrangeRed; // Màu cam đỏ cảnh báo
+                btnDatSan.Enabled = false;
+                return;
+            }
+
+            // 4. CHECK LỖI 3: Trùng lịch (SQL)
+            bool biTrung = KiemTraTrungLich(
+                _maSanDangChon,
+                dtpNgayXem.Value.Date,
+                gioBD,
+                gioKT
+            );
+
+            if (biTrung)
+            {
+                lblThongBao.Text = "⛔ KHUNG GIỜ NÀY ĐÃ KÍN!";
+                lblThongBao.ForeColor = Color.Red;
+                btnDatSan.Enabled = false;
+            }
+            else
+            {
+                // HỢP LỆ
+                lblThongBao.Text = "✅ Có thể đặt";
+                lblThongBao.ForeColor = Color.Red;
+                btnDatSan.Enabled = true;
+
+                TinhTien(); // Tính tiền chuẩn
+            }
         }
 
         #endregion
 
-        #region === TÌM KHÁCH HÀNG ===
+        #region === 3. KHÁCH HÀNG & ĐẶT SÂN ===
 
         private void btnTimKH_Click(object sender, EventArgs e)
         {
             string sdt = txtSDT.Text.Trim();
-
-            // Validation
-            if (string.IsNullOrWhiteSpace(sdt))
+            if (string.IsNullOrEmpty(sdt) || sdt.Length < 10)
             {
-                MessageBox.Show("⚠️ Vui lòng nhập số điện thoại!", 
-                    "Thiếu thông tin", 
-                    MessageBoxButtons.OK, 
-                    MessageBoxIcon.Warning);
-                txtSDT.Focus();
-                return;
-            }
-
-            // Kiểm tra định dạng số điện thoại
-            if (sdt.Length < 10 || !sdt.All(char.IsDigit))
-            {
-                MessageBox.Show("⚠️ Số điện thoại không hợp lệ!\nVui lòng nhập từ 10 chữ số.", 
-                    "Lỗi định dạng", 
-                    MessageBoxButtons.OK, 
-                    MessageBoxIcon.Warning);
-                txtSDT.Focus();
-                txtSDT.SelectAll();
+                MessageBox.Show("Số điện thoại không hợp lệ!\nVui lòng nhập đúng số điện thoại khách hàng.", "Lỗi Nhập Liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -385,321 +340,403 @@ namespace FootballPitchManagement
                 try
                 {
                     conn.Open();
-                    string sql = "SELECT MaKH, HoTen FROM KhachHang WHERE DienThoai = @SDT";
-                    
-                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    SqlCommand cmd = new SqlCommand("SELECT MaKH, HoTen FROM KhachHang WHERE DienThoai = @SDT", conn);
+                    cmd.Parameters.AddWithValue("@SDT", sdt);
+                    SqlDataReader r = cmd.ExecuteReader();
+
+                    if (r.Read())
                     {
-                        cmd.Parameters.AddWithValue("@SDT", sdt);
+                        txtTenKhach.Text = r["HoTen"].ToString();
+                        lblMaKH.Text = r["MaKH"].ToString();
+                        txtTenKhach.ForeColor = Color.Red;
 
-                        using (SqlDataReader r = cmd.ExecuteReader())
+                        LoadDanhSachDonHangCuaKhach(int.Parse(lblMaKH.Text));
+                    }
+                    else
+                    {
+                        r.Close();
+                        if (MessageBox.Show("Không tìm thấy khách hàng này.\nBạn có muốn THÊM MỚI khách hàng ngay không?", "Khách Hàng Mới", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
-                            if (r.Read())
-                            {
-                                // ✅ Tìm thấy khách hàng
-                                txtTenKhach.Text = r["HoTen"].ToString();
-                                lblMaKH.Text = r["MaKH"].ToString();
-                                txtTenKhach.ForeColor = Color.Green;
-                                
-                                MessageBox.Show("✅ Đã tìm thấy thông tin khách hàng!", 
-                                    "Thành công", 
-                                    MessageBoxButtons.OK, 
-                                    MessageBoxIcon.Information);
-                            }
-                            else
-                            {
-                                // ❌ Không tìm thấy - Hỏi có thêm mới không
-                                r.Close();
-                                
-                                DialogResult kq = MessageBox.Show(
-                                    "❓ Khách hàng này chưa có trong hệ thống.\n\n" +
-                                    "Bạn có muốn THÊM MỚI nhanh không?",
-                                    "Không tìm thấy", 
-                                    MessageBoxButtons.YesNo, 
-                                    MessageBoxIcon.Question);
-
-                                if (kq == DialogResult.Yes)
-                                {
-                                    ThemKhachHangMoi(sdt, conn);
-                                }
-                            }
+                            ThemKhachHangMoi(sdt, conn);
                         }
                     }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"❌ Lỗi tìm khách hàng: {ex.Message}", 
-                        "Lỗi", 
-                        MessageBoxButtons.OK, 
-                        MessageBoxIcon.Error);
-                }
+                catch (Exception ex) { MessageBox.Show($"Lỗi khi tìm kiếm khách hàng:\n{ex.Message}", "Lỗi Hệ Thống", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             }
         }
 
         private void ThemKhachHangMoi(string sdt, SqlConnection conn)
         {
-            try
+            string ten = $"Khách vãng lai ({sdt})";
+            SqlCommand cmd = new SqlCommand("INSERT INTO KhachHang(HoTen, DienThoai) VALUES (@Ten, @SDT); SELECT SCOPE_IDENTITY();", conn);
+            cmd.Parameters.AddWithValue("@Ten", ten);
+            cmd.Parameters.AddWithValue("@SDT", sdt);
+            object newId = cmd.ExecuteScalar();
+
+            txtTenKhach.Text = ten;
+            lblMaKH.Text = newId.ToString();
+            txtTenKhach.ForeColor = Color.Red;
+
+            LoadDanhSachDonHangCuaKhach(Convert.ToInt32(newId));
+            MessageBox.Show("Đã thêm khách hàng mới thành công!", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void btnDatSan_Click(object sender, EventArgs e)
+        {
+            // Validation
+            if (_maSanDangChon == 0) { MessageBox.Show("Vui lòng chọn một sân bóng!", "Chưa Chọn Sân", MessageBoxButtons.OK, MessageBoxIcon.Warning); return; }
+            if (lblMaKH.Text == "0" || string.IsNullOrEmpty(lblMaKH.Text)) { MessageBox.Show("Vui lòng chọn khách hàng!", "Chưa Chọn Khách", MessageBoxButtons.OK, MessageBoxIcon.Warning); return; }
+
+            DateTime ngayDat = dtpNgayXem.Value.Date;
+            TimeSpan bd = dtpGioBatDau.Value.TimeOfDay;
+            TimeSpan kt = dtpGioKetThuc.Value.TimeOfDay;
+
+            if (kt <= bd) { MessageBox.Show("Giờ kết thúc phải lớn hơn giờ bắt đầu!", "Lỗi Thời Gian", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
+
+            // --- [MỚI] KIỂM TRA DƯỚI 1 TIẾNG ---
+            if ((kt - bd).TotalMinutes < 60)
             {
-                string tenKhachMoi = $"Khách vãng lai ({sdt})";
-                string sqlInsert = @"
-                    INSERT INTO KhachHang(HoTen, DienThoai) 
-                    VALUES (@HoTen, @SDT); 
-                    SELECT SCOPE_IDENTITY();";
-                
-                using (SqlCommand cmdInsert = new SqlCommand(sqlInsert, conn))
-                {
-                    cmdInsert.Parameters.AddWithValue("@HoTen", tenKhachMoi);
-                    cmdInsert.Parameters.AddWithValue("@SDT", sdt);
-
-                    object newId = cmdInsert.ExecuteScalar();
-
-                    if (newId != null)
-                    {
-                        txtTenKhach.Text = tenKhachMoi;
-                        lblMaKH.Text = newId.ToString();
-                        txtTenKhach.ForeColor = Color.Green;
-                        
-                        MessageBox.Show(
-                            "✅ Đã thêm khách hàng mới thành công!\n\n" +
-                            $"Mã KH: {newId}\n" +
-                            $"Tên: {tenKhachMoi}", 
-                            "Thành công", 
-                            MessageBoxButtons.OK, 
-                            MessageBoxIcon.Information);
-                    }
-                }
+                MessageBox.Show(
+                    "Thời gian đặt sân tối thiểu phải là 1 tiếng (60 phút)!",
+                    "Quy Định Đặt Sân",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return; // Dừng lại, không cho lưu
             }
-            catch (Exception ex)
+
+            // Kiểm tra trùng lần cuối
+            if (KiemTraTrungLich(_maSanDangChon, ngayDat, bd, kt))
             {
-                MessageBox.Show($"❌ Lỗi thêm khách hàng: {ex.Message}", 
-                    "Lỗi", 
-                    MessageBoxButtons.OK, 
-                    MessageBoxIcon.Error);
+                MessageBox.Show("❌ Rất tiếc! Khung giờ này vừa có người đặt.\nVui lòng chọn giờ khác.", "Trùng Lịch", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                Filter_Changed(null, null);
+                return;
+            }
+
+            using (SqlConnection conn = DatabaseConnection.GetConnection())
+            {
+                try
+                {
+                    conn.Open();
+                    string sqlIns = @"INSERT INTO LichDatSan(MaKH, MaSan, NgayDat, GioBatDau, GioKetThuc, SoGio, TongTienSan, TrangThai) 
+                                      VALUES(@MaKH, @MaSan, @NgayDat, @BD, @KT, @SoGio, @Tien, 'DA_XAC_NHAN')";
+                    SqlCommand cmd = new SqlCommand(sqlIns, conn);
+                    cmd.Parameters.AddWithValue("@MaKH", int.Parse(lblMaKH.Text));
+                    cmd.Parameters.AddWithValue("@MaSan", _maSanDangChon);
+                    cmd.Parameters.AddWithValue("@NgayDat", ngayDat);
+                    cmd.Parameters.AddWithValue("@BD", bd);
+                    cmd.Parameters.AddWithValue("@KT", kt);
+                    cmd.Parameters.AddWithValue("@SoGio", (kt - bd).TotalHours);
+
+                    decimal tien = 0;
+                    decimal.TryParse(txtTongTien.Text.Replace(".", "").Replace(",", ""), out tien);
+                    cmd.Parameters.AddWithValue("@Tien", tien);
+
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("✅ Đặt sân thành công!", "Thành Công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    LoadDanhSachDonHangCuaKhach(int.Parse(lblMaKH.Text)); // Load đơn mới
+                    LoadLichDatCuaSan(_maSanDangChon);
+
+                    // Reset sân, giữ khách
+                    _maSanDangChon = 0;
+                    _giaSanHienTai = 0;
+                    lblTenSanChon.Text = "Chưa chọn";
+                    txtTongTien.Text = "0";
+                }
+                catch (Exception ex) { MessageBox.Show($"Lỗi khi lưu đặt sân:\n{ex.Message}", "Lỗi Hệ Thống", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             }
         }
 
         #endregion
 
-        #region === ĐẶT SÂN ===
+        #region === 4. QUẢN LÝ ĐƠN & LIST VIEW ===
 
-        private void btnDatSan_Click(object sender, EventArgs e)
+        private void LoadDanhSachDonHangCuaKhach(int maKH)
         {
-            // ===== VALIDATION =====
+            if (flpDanhSachDonHang == null) return;
+            flpDanhSachDonHang.Controls.Clear();
+            if (maKH == 0) return;
 
-            // 1. Kiểm tra đã chọn sân chưa
-            if (_maSanDangChon == 0)
+            if (grpThongTinDon != null) grpThongTinDon.Enabled = true;
+
+            using (SqlConnection conn = DatabaseConnection.GetConnection())
             {
-                MessageBox.Show(
-                    "⚠️ Vui lòng chọn một sân bóng trước khi đặt!", 
-                    "Thiếu thông tin", 
-                    MessageBoxButtons.OK, 
-                    MessageBoxIcon.Warning);
-                return;
-            }
+                try
+                {
+                    conn.Open();
+                    // Lấy thêm cột NgayDat
+                    string sql = @"
+                SELECT l.MaDatSan, l.NgayDat, k.HoTen, s.TenSan, l.GioBatDau, l.GioKetThuc, l.TongTienSan, l.TrangThai
+                FROM LichDatSan l
+                JOIN KhachHang k ON l.MaKH = k.MaKH
+                JOIN San s ON l.MaSan = s.MaSan
+                WHERE l.NgayDat = @NgayDat AND l.MaKH = @MaKH AND l.TrangThai != 'DA_HUY'
+                ORDER BY l.MaDatSan DESC";
 
-            // 2. Kiểm tra đã chọn khách hàng chưa
-            if (string.IsNullOrEmpty(lblMaKH.Text) || lblMaKH.Text == "0")
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@NgayDat", dtpNgayXem.Value.Date);
+                    cmd.Parameters.AddWithValue("@MaKH", maKH);
+                    SqlDataReader r = cmd.ExecuteReader();
+
+                    while (r.Read())
+                    {
+                        ucDonDatItem item = new ucDonDatItem();
+
+                        int maDon = Convert.ToInt32(r["MaDatSan"]);
+                        string tenKhach = r["HoTen"].ToString();
+                        string tenSan = r["TenSan"].ToString();
+                        DateTime ngay = Convert.ToDateTime(r["NgayDat"]);
+
+                        string gioBD = TimeSpan.Parse(r["GioBatDau"].ToString()).ToString(@"hh\:mm");
+                        string gioKT = TimeSpan.Parse(r["GioKetThuc"].ToString()).ToString(@"hh\:mm");
+                        string thoiGian = $"{gioBD} - {gioKT}";
+
+                        decimal tien = Convert.ToDecimal(r["TongTienSan"]);
+                        string tt = r["TrangThai"].ToString();
+
+                        // GỌI HÀM HIỂN THỊ MỚI
+                        item.HienThiThongTin(maDon, tenKhach, tenSan, ngay, thoiGian, tien, tt);
+
+                        item.OnThanhToanClick += Item_OnThanhToanClick;
+                        item.OnHuyClick += Item_OnHuyClick;
+
+                        flpDanhSachDonHang.Controls.Add(item);
+                    }
+                }
+                catch (Exception ex) { MessageBox.Show($"Lỗi tải danh sách đơn:\n{ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+            }
+        }
+
+        private void Item_OnThanhToanClick(object sender, EventArgs e)
+        {
+            ucDonDatItem item = sender as ucDonDatItem;
+            if (item == null) return;
+
+            if (MessageBox.Show($"Xác nhận THANH TOÁN cho đơn #{item.MaDatSan}?\nThao tác này sẽ lưu hóa đơn và không thể hoàn tác.", "Xác Nhận Thanh Toán", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                MessageBox.Show(
-                    "⚠️ Vui lòng tìm và chọn khách hàng trước!", 
-                    "Thiếu thông tin", 
-                    MessageBoxButtons.OK, 
-                    MessageBoxIcon.Warning);
-                txtSDT.Focus();
-                return;
+                ThucHienThanhToan(item.MaDatSan);
+                if (int.TryParse(lblMaKH.Text, out int maKH)) LoadDanhSachDonHangCuaKhach(maKH);
+                Filter_Changed(null, null);
             }
+        }
 
-            // 3. Lấy dữ liệu ngày giờ
-            DateTime ngayDat = dtpNgayXem.Value.Date;
-            TimeSpan gioBatDau = dtpGioBatDau.Value.TimeOfDay;
-            TimeSpan gioKetThuc = dtpGioKetThuc.Value.TimeOfDay;
+        private void Item_OnHuyClick(object sender, EventArgs e)
+        {
+            ucDonDatItem item = sender as ucDonDatItem;
+            if (item == null) return;
 
-            // 4. Kiểm tra logic giờ
-            if (gioKetThuc <= gioBatDau)
+            if (MessageBox.Show($"Bạn có chắc chắn muốn HỦY đơn #{item.MaDatSan} không?\nĐơn hàng sẽ bị xóa khỏi danh sách đặt.", "Xác Nhận Hủy Đơn", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
-                MessageBox.Show(
-                    "❌ Giờ kết thúc phải lớn hơn giờ bắt đầu!", 
-                    "Lỗi thời gian", 
-                    MessageBoxButtons.OK, 
-                    MessageBoxIcon.Error);
-                dtpGioKetThuc.Focus();
-                return;
+                ThucHienHuyDon(item.MaDatSan);
+                if (int.TryParse(lblMaKH.Text, out int maKH)) LoadDanhSachDonHangCuaKhach(maKH);
+                Filter_Changed(null, null);
             }
+        }
 
-            // 5. Kiểm tra thời lượng tối thiểu
-            double thoiLuongPhut = (gioKetThuc - gioBatDau).TotalMinutes;
-            if (thoiLuongPhut < 30)
+        private void ThucHienThanhToan(int maDatSan)
+        {
+            using (SqlConnection conn = DatabaseConnection.GetConnection())
             {
-                MessageBox.Show(
-                    "⚠️ Thời gian đá tối thiểu phải là 30 phút!", 
-                    "Lỗi thời gian", 
-                    MessageBoxButtons.OK, 
-                    MessageBoxIcon.Warning);
-                return;
-            }
+                try
+                {
+                    conn.Open();
+                    string sql = @"
+                        INSERT INTO HoaDon (MaDatSan, MaKH, MaChiNhanh, TongTienSan, ThanhTien, NgayLap, NguoiLap, TrangThaiThanhToan)
+                        SELECT MaDatSan, MaKH, (SELECT MaChiNhanh FROM San WHERE San.MaSan = LichDatSan.MaSan), TongTienSan, TongTienSan, GETDATE(), 1, 'DA_THANH_TOAN'
+                        FROM LichDatSan WHERE MaDatSan = @Ma;
+                        
+                        UPDATE LichDatSan SET TrangThai = 'HOAN_THANH' WHERE MaDatSan = @Ma;";
 
-            // 6. Kiểm tra đặt sân trong quá khứ
-            DateTime gioHienTai = DateTime.Now;
-            DateTime gioSoBatDau = ngayDat.Add(gioBatDau);
-            
-            if (gioSoBatDau < gioHienTai)
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@Ma", maDatSan);
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("✅ Thanh toán thành công!", "Đã Thanh Toán", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex) { MessageBox.Show($"Lỗi khi thanh toán:\n{ex.Message}", "Lỗi Thanh Toán", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+            }
+        }
+
+        private void ThucHienHuyDon(int maDatSan)
+        {
+            using (SqlConnection conn = DatabaseConnection.GetConnection())
             {
-                MessageBox.Show(
-                    "⚠️ Không thể đặt sân trong quá khứ!\n\n" +
-                    "Vui lòng chọn thời gian trong tương lai.", 
-                    "Lỗi thời gian", 
-                    MessageBoxButtons.OK, 
-                    MessageBoxIcon.Warning);
-                return;
+                try
+                {
+                    conn.Open();
+                    string sql = "UPDATE LichDatSan SET TrangThai = 'DA_HUY' WHERE MaDatSan = @Ma";
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@Ma", maDatSan);
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Đã hủy đơn thành công.", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex) { MessageBox.Show($"Lỗi khi hủy đơn:\n{ex.Message}", "Lỗi Hủy Đơn", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             }
+        }
 
-            // ===== XỬ LÝ ĐẶT SÂN =====
+        // HÀM KIỂM TRA TRÙNG LỊCH (ĐÃ SỬA LỖI TÊN BIẾN)
+        private bool KiemTraTrungLich(int maSan, DateTime ngayDat, TimeSpan gioBD, TimeSpan gioKT)
+        {
+            bool ketQua = false;
+            if (maSan == 0) return false;
+
+            using (SqlConnection conn = DatabaseConnection.GetConnection())
+            {
+                try
+                {
+                    conn.Open();
+                    string sql = @"
+                        SELECT COUNT(*) FROM LichDatSan 
+                        WHERE MaSan = @MaSan 
+                          AND NgayDat = @NgayDat 
+                          AND TrangThai != 'DA_HUY'
+                          AND (@GioBD < GioKetThuc AND @GioKT > GioBatDau)";
+
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@MaSan", maSan);
+                    cmd.Parameters.AddWithValue("@NgayDat", ngayDat);
+                    cmd.Parameters.AddWithValue("@GioBD", gioBD);
+                    cmd.Parameters.AddWithValue("@GioKT", gioKT);
+
+                    // Sửa lỗi: Dùng đúng biến cmd thay vì cmdCheck
+                    int count = (int)cmd.ExecuteScalar();
+                    if (count > 0) ketQua = true;
+                }
+                catch (Exception ex) { MessageBox.Show($"Lỗi kiểm tra lịch:\n{ex.Message}", "Lỗi Hệ Thống", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+            }
+            return ketQua;
+        }
+
+        #endregion
+
+        #region === 5. RESET ===
+
+        private void btnHuy_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Bạn muốn xóa hết thông tin đang nhập?", "Xác Nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                ResetFormDatSan();
+            }
+        }
+
+        private void ResetFormDatSan()
+        {
+            txtSDT.Clear();
+            txtTenKhach.Clear();
+            lblMaKH.Text = "0";
+            txtTongTien.Clear();
+            lblTenSanChon.Text = "Chưa chọn";
+            _maSanDangChon = 0;
+            _giaSanHienTai = 0;
+            if (flpDanhSachDonHang != null) flpDanhSachDonHang.Controls.Clear();
+        }
+
+        private void LoadLichDatCuaSan(int maSan)
+        {
+            // Kiểm tra và xóa danh sách cũ
+            if (flpDanhSachDonHang == null) return;
+            flpDanhSachDonHang.Controls.Clear();
+
+            // Mở khóa danh sách
+            if (grpThongTinDon != null) grpThongTinDon.Enabled = true;
+
+            using (SqlConnection conn = DatabaseConnection.GetConnection())
+            {
+                try
+                {
+                    conn.Open();
+                    // SQL: Lấy tất cả đơn của Sân này + Ngày này (Sắp xếp theo giờ đá tăng dần)
+                    string sql = @"
+                SELECT l.MaDatSan, l.NgayDat, k.HoTen, s.TenSan, l.GioBatDau, l.GioKetThuc, l.TongTienSan, l.TrangThai
+                FROM LichDatSan l
+                JOIN KhachHang k ON l.MaKH = k.MaKH
+                JOIN San s ON l.MaSan = s.MaSan
+                WHERE l.MaSan = @MaSan 
+                  AND l.NgayDat = @NgayDat 
+                  AND l.TrangThai != 'DA_HUY'
+                ORDER BY l.GioBatDau ASC";
+
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@MaSan", maSan);
+                    cmd.Parameters.AddWithValue("@NgayDat", dtpNgayXem.Value.Date);
+
+                    SqlDataReader r = cmd.ExecuteReader();
+
+                    while (r.Read())
+                    {
+                        ucDonDatItem item = new ucDonDatItem();
+
+                        // Lấy dữ liệu
+                        int maDon = Convert.ToInt32(r["MaDatSan"]);
+                        string tenKhach = r["HoTen"].ToString();
+                        string tenSan = r["TenSan"].ToString();
+                        DateTime ngay = Convert.ToDateTime(r["NgayDat"]);
+
+                        string gioBD = TimeSpan.Parse(r["GioBatDau"].ToString()).ToString(@"hh\:mm");
+                        string gioKT = TimeSpan.Parse(r["GioKetThuc"].ToString()).ToString(@"hh\:mm");
+                        string thoiGian = $"{gioBD} - {gioKT}";
+
+                        decimal tien = Convert.ToDecimal(r["TongTienSan"]);
+                        string tt = r["TrangThai"].ToString();
+
+                        // Hiển thị lên thẻ (Dùng hàm mới nhất bạn đã sửa có Tên, Ngày, Giờ)
+                        item.HienThiThongTin(maDon, tenKhach, tenSan, ngay, thoiGian, tien, tt);
+
+                        // Gán sự kiện click cho thẻ
+                        item.OnThanhToanClick += Item_OnThanhToanClick;
+                        item.OnHuyClick += Item_OnHuyClick;
+
+                        flpDanhSachDonHang.Controls.Add(item);
+                    }
+                }
+                catch (Exception ex) { MessageBox.Show($"Lỗi tải lịch sử sân:\n{ex.Message}", "Lỗi Tải Dữ Liệu", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+            }
+        }
+
+        // Hàm tự động xóa (hoặc hủy) các đơn chưa hoàn thành của những ngày trước
+        private void TuDongXoaLichQuaKhu()
+        {
             using (SqlConnection conn = DatabaseConnection.GetConnection())
             {
                 try
                 {
                     conn.Open();
 
-                    // Kiểm tra trùng lịch
-                    if (KiemTraTrungLich(conn, ngayDat, gioBatDau, gioKetThuc))
-                    {
-                        MessageBox.Show(
-                            "❌ Rất tiếc! Sân này ĐÃ CÓ NGƯỜI ĐẶT trong khung giờ bạn chọn.\n\n" +
-                            "Vui lòng:\n" +
-                            "• Kiểm tra lại lịch sân (các ô màu đỏ)\n" +
-                            "• Hoặc chọn khung giờ khác",
-                            "Trùng lịch đặt sân", 
-                            MessageBoxButtons.OK, 
-                            MessageBoxIcon.Stop);
-                        return;
-                    }
+                    // --- LỰA CHỌN CỦA BẠN (Chọn 1 trong 2 dòng sql bên dưới) ---
 
-                    // Thực hiện đặt sân
-                    if (ThucHienDatSan(conn, ngayDat, gioBatDau, gioKetThuc, thoiLuongPhut))
-                    {
-                        MessageBox.Show(
-                            "✅ ĐẶT SÂN THÀNH CÔNG!\n\n" +
-                            $"📅 Ngày: {ngayDat:dd/MM/yyyy}\n" +
-                            $"⏰ Giờ: {gioBatDau:hh\\:mm} - {gioKetThuc:hh\\:mm}\n" +
-                            $"💰 Tổng tiền: {txtTongTien.Text} đ",
-                            "Thông báo", 
-                            MessageBoxButtons.OK, 
-                            MessageBoxIcon.Information);
+                    // CÁCH 1: XÓA VĨNH VIỄN (Xóa bay khỏi CSDL luôn - Cho nhẹ máy)
+                    string sql = @"
+                DELETE FROM LichDatSan 
+                WHERE NgayDat < CAST(GETDATE() AS DATE) 
+                  AND TrangThai IN ('DA_XAC_NHAN', 'CHO_XAC_NHAN')";
 
-                        // Refresh và reset
-                        Filter_Changed(null, null);
-                        ResetFormDatSan();
-                    }
+                    /* // CÁCH 2: HỦY MỀM (Chỉ đổi trạng thái thành DA_HUY để lưu lịch sử, không xóa mất)
+                    string sql = @"
+                        UPDATE LichDatSan SET TrangThai = 'DA_HUY' 
+                        WHERE NgayDat < CAST(GETDATE() AS DATE) 
+                          AND TrangThai IN ('DA_XAC_NHAN', 'CHO_XAC_NHAN')";
+                    */
+
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    int soLuongXoa = cmd.ExecuteNonQuery();
+
+                    // (Tùy chọn) Nếu muốn thông báo thì mở dòng dưới ra, nhưng thường thì nên làm âm thầm
+                    // if (soLuongXoa > 0) MessageBox.Show($"Hệ thống đã tự động dọn dẹp {soLuongXoa} đơn quá hạn.");
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(
-                        $"❌ Lỗi hệ thống: {ex.Message}\n\n" +
-                        "Vui lòng thử lại hoặc liên hệ quản trị viên.", 
-                        "Lỗi", 
-                        MessageBoxButtons.OK, 
-                        MessageBoxIcon.Error);
+                    // Chỉ ghi ra cửa sổ Output để debug, không hiện MessageBox làm phiền khách lúc mở app
+                    System.Diagnostics.Debug.WriteLine("Lỗi dọn dẹp lịch cũ: " + ex.Message);
                 }
             }
         }
 
-        private bool KiemTraTrungLich(SqlConnection conn, DateTime ngayDat, TimeSpan gioBatDau, TimeSpan gioKetThuc)
-        {
-            string sqlCheck = @"
-                SELECT COUNT(*) 
-                FROM LichDatSan 
-                WHERE MaSan = @MaSan 
-                  AND NgayDat = @NgayDat 
-                  AND TrangThai != N'DA_HUY' 
-                  AND (@GioBatDau < GioKetThuc) 
-                  AND (@GioKetThuc > GioBatDau)";
-
-            using (SqlCommand cmdCheck = new SqlCommand(sqlCheck, conn))
-            {
-                cmdCheck.Parameters.AddWithValue("@MaSan", _maSanDangChon);
-                cmdCheck.Parameters.AddWithValue("@NgayDat", ngayDat);
-                cmdCheck.Parameters.AddWithValue("@GioBatDau", gioBatDau);
-                cmdCheck.Parameters.AddWithValue("@GioKetThuc", gioKetThuc);
-
-                int soLuongTrung = (int)cmdCheck.ExecuteScalar();
-                return soLuongTrung > 0;
-            }
-        }
-
-        private bool ThucHienDatSan(SqlConnection conn, DateTime ngayDat, TimeSpan gioBatDau, TimeSpan gioKetThuc, double thoiLuongPhut)
-        {
-            string sqlInsert = @"
-                INSERT INTO LichDatSan (
-                    MaKH, MaSan, NgayDat, GioBatDau, GioKetThuc, 
-                    SoGio, TongTienSan, TrangThai, GhiChu
-                )
-                VALUES (
-                    @MaKH, @MaSan, @NgayDat, @GioBatDau, @GioKetThuc, 
-                    @SoGio, @TongTien, N'DA_XAC_NHAN', N'Đặt tại quầy'
-                )";
-
-            using (SqlCommand cmdInsert = new SqlCommand(sqlInsert, conn))
-            {
-                cmdInsert.Parameters.AddWithValue("@MaKH", int.Parse(lblMaKH.Text));
-                cmdInsert.Parameters.AddWithValue("@MaSan", _maSanDangChon);
-                cmdInsert.Parameters.AddWithValue("@NgayDat", ngayDat);
-                cmdInsert.Parameters.AddWithValue("@GioBatDau", gioBatDau);
-                cmdInsert.Parameters.AddWithValue("@GioKetThuc", gioKetThuc);
-
-                double soGio = thoiLuongPhut / 60.0;
-                cmdInsert.Parameters.AddWithValue("@SoGio", soGio);
-
-                string tienSach = txtTongTien.Text.Replace(".", "").Replace(",", "").Trim();
-                decimal tongTien = decimal.TryParse(tienSach, out decimal t) ? t : 0;
-                cmdInsert.Parameters.AddWithValue("@TongTien", tongTien);
-
-                int ketQua = cmdInsert.ExecuteNonQuery();
-                return ketQua > 0;
-            }
-        }
-
-        #endregion
-
-        #region === RESET FORM ===
-
-        private void ResetFormDatSan()
-        {
-            // Reset thông tin khách hàng
-            txtSDT.Clear();
-            txtTenKhach.Clear();
-            lblMaKH.Text = "0";
-            txtTenKhach.ForeColor = SystemColors.ControlText;
-
-            // Reset thông tin sân
-            lblTenSanChon.Text = "Chưa chọn";
-            lblTenSanChon.ForeColor = Color.Gray;
-            lblGiaGoc.Text = "0 đ";
-            lblMaSan.Text = "0";
-
-            // Reset tiền
-            txtTongTien.Clear();
-            txtTongTien.ForeColor = SystemColors.ControlText;
-
-            // Reset biến
-            _maSanDangChon = 0;
-            _giaSanHienTai = 0;
-
-            // Focus vào ô số điện thoại
-            txtSDT.Focus();
-        }
-
-        private void btnHuy_Click(object sender, EventArgs e)
-        {
-            DialogResult result = MessageBox.Show(
-                "Bạn có chắc muốn hủy và xóa toàn bộ thông tin đã nhập?",
-                "Xác nhận hủy",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question);
-
-            if (result == DialogResult.Yes)
-            {
-                ResetFormDatSan();
-            }
-        }
+        // Các hàm rỗng để tránh lỗi Designer nếu còn sót sự kiện cũ
+        private void ResetGroupDon() { }
+        private void btnThanhToan_Click(object sender, EventArgs e) { }
+        private void btnXoaDon_Click(object sender, EventArgs e) { }
+        private void groupBox3_Enter(object sender, EventArgs e) { }
+        private void lblThongBao_Click(object sender, EventArgs e) { }
+        private void btnHuy_Click_1(object sender, EventArgs e) { }
 
         #endregion
     }

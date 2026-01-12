@@ -19,7 +19,7 @@ namespace FootballPitchManagement.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "18.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -57,6 +57,46 @@ namespace FootballPitchManagement.Properties {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _29001677_3d_growth_bar_graph_vector_business_concept {
+            get {
+                object obj = ResourceManager.GetObject("29001677-3d-growth-bar-graph-vector-business-concept", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _29001677_3d_growth_bar_graph_vector_business_concept1 {
+            get {
+                object obj = ResourceManager.GetObject("29001677-3d-growth-bar-graph-vector-business-concept1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _6d444db096de763b4f84dfee0ace1663 {
+            get {
+                object obj = ResourceManager.GetObject("6d444db096de763b4f84dfee0ace1663", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _7ef84578_33d5_496f_ba37_d92901052ffe {
+            get {
+                object obj = ResourceManager.GetObject("7ef84578-33d5-496f-ba37-d92901052ffe", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -106,6 +146,16 @@ namespace FootballPitchManagement.Properties {
         internal static System.Drawing.Bitmap ảnh_sân_7 {
             get {
                 object obj = ResourceManager.GetObject("ảnh sân 7", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap bbb {
+            get {
+                object obj = ResourceManager.GetObject("bbb", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -183,9 +233,29 @@ namespace FootballPitchManagement.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_calendar_48__1_ {
+            get {
+                object obj = ResourceManager.GetObject("icons8-calendar-48 (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_calendar_50 {
             get {
                 object obj = ResourceManager.GetObject("icons8-calendar-50", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_calendar_94 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-calendar-94", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -253,6 +323,46 @@ namespace FootballPitchManagement.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_money_bag_60 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-money-bag-60", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_statistic_32 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-statistic-32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_statistic_32__2_ {
+            get {
+                object obj = ResourceManager.GetObject("icons8-statistic-32 (2)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_user_100 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-user-100", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_user_50 {
             get {
                 object obj = ResourceManager.GetObject("icons8-user-50", resourceCulture);
@@ -296,6 +406,37 @@ namespace FootballPitchManagement.Properties {
         internal static System.Drawing.Bitmap pexels_pixabay_46798 {
             get {
                 object obj = ResourceManager.GetObject("pexels-pixabay-46798", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pngtree_beautiful_grass_football_field_with_bokeh_background_picture_image_15553657 {
+            get {
+                object obj = ResourceManager.GetObject("pngtree-beautiful-grass-football-field-with-bokeh-background-picture-image_155536" +
+                        "57", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pngtree_green_field_on_the_stadium_with_sky_view_at_evening_time_image_16465673 {
+            get {
+                object obj = ResourceManager.GetObject("pngtree-green-field-on-the-stadium-with-sky-view-at-evening-time-image_16465673", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pngtree_soccer_ball_lying_on_vibrant_green_grass_field_image_16734728 {
+            get {
+                object obj = ResourceManager.GetObject("pngtree-soccer-ball-lying-on-vibrant-green-grass-field-image_16734728", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
