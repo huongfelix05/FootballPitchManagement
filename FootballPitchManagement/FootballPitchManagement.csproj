@@ -63,6 +63,12 @@
     <Compile Include="Forms\Admin\frmAdmin.Designer.cs">
       <DependentUpon>frmAdmin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Admin\frmQuanlysan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Admin\frmQuanlysan.Designer.cs">
+      <DependentUpon>frmQuanlysan.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Customer\frmDoAn.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -127,6 +133,9 @@
     </Compile>
     <EmbeddedResource Include="Forms\Admin\frmAdmin.resx">
       <DependentUpon>frmAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Admin\frmQuanlysan.resx">
+      <DependentUpon>frmQuanlysan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Customer\frmDoAn.resx">
       <DependentUpon>frmDoAn.cs</DependentUpon>
@@ -307,6 +316,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\29001677-3d-growth-bar-graph-vector-business-concept1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-add.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-add-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\z7323897720284_a54d07854b792a7723b12d3787f07cb21.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
