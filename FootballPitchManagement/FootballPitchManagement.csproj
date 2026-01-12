@@ -14,26 +14,23 @@
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  
   <ItemGroup>
-    <Reference Include="Guna.UI2, Version=2.0.4.7, Culture=neutral, PublicKeyToken=8b9d14aa5142e261, processorArchitecture=MSIL">
+    <Reference Include="Guna.UI2">
       <HintPath>..\packages\Guna.UI2.WinForms.2.0.4.7\lib\net472\Guna.UI2.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -55,7 +52,9 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
+
   <ItemGroup>
+    <Compile Include="Program.cs" />
     <Compile Include="Common\DatabaseConnection.cs" />
     <Compile Include="Forms\Admin\frmAdmin.cs">
       <SubType>Form</SubType>
@@ -68,6 +67,12 @@
     </Compile>
     <Compile Include="Forms\Customer\frmHoSo.Designer.cs">
       <DependentUpon>frmHoSo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Customer\frmDoAn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Customer\frmDoAn.Designer.cs">
+      <DependentUpon>frmDoAn.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Customer\frmLichdatsan.cs">
       <SubType>Form</SubType>
@@ -105,8 +110,6 @@
     <Compile Include="frmDoanhThu.Designer.cs">
       <DependentUpon>frmDoanhThu.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Forms\Auth\frmQuenMatKhau.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -125,11 +128,26 @@
     <Compile Include="Forms\Customer\ucDonDatItem.Designer.cs">
       <DependentUpon>ucDonDatItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <DependentUpon>Resources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <DependentUpon>Settings.settings</DependentUpon>
+      <AutoGen>True</AutoGen>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Include="Forms\Admin\frmAdmin.resx">
       <DependentUpon>frmAdmin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Customer\frmHoSo.resx">
       <DependentUpon>frmHoSo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Customer\frmDoAn.resx">
+      <DependentUpon>frmDoAn.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Customer\frmLichdatsan.resx">
       <DependentUpon>frmLichdatsan.cs</DependentUpon>
@@ -142,7 +160,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Auth\frmRegister.resx">
       <DependentUpon>frmRegister.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Customer\Nhap1.resx">
       <DependentUpon>Nhap1.cs</DependentUpon>
@@ -150,16 +167,6 @@
     <EmbeddedResource Include="frmDoanhThu.resx">
       <DependentUpon>frmDoanhThu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="Forms\Auth\frmQuenMatKhau.resx">
       <DependentUpon>frmQuenMatKhau.cs</DependentUpon>
     </EmbeddedResource>
@@ -169,144 +176,19 @@
     <EmbeddedResource Include="Forms\Customer\ucDonDatItem.resx">
       <DependentUpon>ucDonDatItem.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="App.config" />
-    <None Include="App.config.example" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Lovepik_com-400166909-football-field.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icons8-calendar-48.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icons8-calendar-50.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\calendar.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icons8-home-50.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icons8-booking-80.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icons8-fast-food-50.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icons8-bill-50.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icons8-feedback-50.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icons8-customer-50.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\grass-structure-plant-field-lawn-green-976043-pxhere.com.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\grass-structure-plant-field-lawn-green-976043-pxhere.com1.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icons8-user-50.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Lovepik_com-400166909-football-field1.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\pexels-pixabay-46798.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icons8-eye-80.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icons8-eye-64.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\wind-21844_256.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\snow-9996_256.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\z7323897720284_a54d07854b792a7723b12d3787f07cb2.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\nút thoát.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\trái banh.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ảnh mô phỏng sân 5-7.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ảnh sân 5.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ảnh sân 5 người.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ảnh sân 7.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Ảnh chụp màn hình 2025-12-22 153310.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icons8-admin-50.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icons8-money-bag-60.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icons8-calendar-48 %281%29.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icons8-calendar-94.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icons8-user-100.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icons8-statistic-32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icons8-statistic-32 %282%29.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\7ef84578-33d5-496f-ba37-d92901052ffe.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\pngtree-green-field-on-the-stadium-with-sky-view-at-evening-time-image_16465673.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\pngtree-beautiful-grass-football-field-with-bokeh-background-picture-image_15553657.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\6d444db096de763b4f84dfee0ace1663.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\29001677-3d-growth-bar-graph-vector-business-concept.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\bbb.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\pngtree-soccer-ball-lying-on-vibrant-green-grass-field-image_16734728.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\29001677-3d-growth-bar-graph-vector-business-concept1.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

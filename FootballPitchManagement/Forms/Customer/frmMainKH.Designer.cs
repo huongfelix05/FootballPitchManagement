@@ -30,7 +30,7 @@
         {
             this.pnlSidebar = new System.Windows.Forms.Panel();
             this.picFood = new System.Windows.Forms.PictureBox();
-            this.btnFood = new System.Windows.Forms.Button();
+            this.btnDoAn = new System.Windows.Forms.Button();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
@@ -91,7 +91,7 @@
             // 
             this.pnlSidebar.BackColor = System.Drawing.Color.Silver;
             this.pnlSidebar.Controls.Add(this.picFood);
-            this.pnlSidebar.Controls.Add(this.btnFood);
+            this.pnlSidebar.Controls.Add(this.btnDoAn);
             this.pnlSidebar.Controls.Add(this.pictureBox6);
             this.pnlSidebar.Controls.Add(this.pictureBox5);
             this.pnlSidebar.Controls.Add(this.pictureBox4);
@@ -108,6 +108,7 @@
             this.pnlSidebar.Name = "pnlSidebar";
             this.pnlSidebar.Size = new System.Drawing.Size(258, 644);
             this.pnlSidebar.TabIndex = 3;
+            this.pnlSidebar.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlSidebar_Paint);
             // 
             // picFood
             // 
@@ -119,20 +120,20 @@
             this.picFood.TabIndex = 15;
             this.picFood.TabStop = false;
             // 
-            // btnFood
+            // btnDoAn
             // 
-            this.btnFood.FlatAppearance.BorderSize = 0;
-            this.btnFood.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFood.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFood.Location = new System.Drawing.Point(0, 198);
-            this.btnFood.Name = "btnFood";
-            this.btnFood.Padding = new System.Windows.Forms.Padding(60, 0, 0, 0);
-            this.btnFood.Size = new System.Drawing.Size(258, 60);
-            this.btnFood.TabIndex = 14;
-            this.btnFood.Text = "Đồ Ăn";
-            this.btnFood.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnFood.UseVisualStyleBackColor = true;
-            this.btnFood.Click += new System.EventHandler(this.btnFood_Click);
+            this.btnDoAn.FlatAppearance.BorderSize = 0;
+            this.btnDoAn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDoAn.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDoAn.Location = new System.Drawing.Point(0, 198);
+            this.btnDoAn.Name = "btnDoAn";
+            this.btnDoAn.Padding = new System.Windows.Forms.Padding(60, 0, 0, 0);
+            this.btnDoAn.Size = new System.Drawing.Size(258, 60);
+            this.btnDoAn.TabIndex = 14;
+            this.btnDoAn.Text = "Đồ Ăn";
+            this.btnDoAn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDoAn.UseVisualStyleBackColor = true;
+            this.btnDoAn.Click += new System.EventHandler(this.btnDoAn_Click);
             // 
             // pictureBox6
             // 
@@ -293,7 +294,7 @@
             this.pnlTopBa.Controls.Add(this.lblTitle);
             this.pnlTopBa.Location = new System.Drawing.Point(269, 0);
             this.pnlTopBa.Name = "pnlTopBa";
-            this.pnlTopBa.Size = new System.Drawing.Size(882, 644);
+            this.pnlTopBa.Size = new System.Drawing.Size(848, 644);
             this.pnlTopBa.TabIndex = 4;
             // 
             // pictureBox3
@@ -312,9 +313,9 @@
             this.txtName_Load.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.txtName_Load.Enabled = false;
             this.txtName_Load.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtName_Load.Location = new System.Drawing.Point(701, 0);
+            this.txtName_Load.Location = new System.Drawing.Point(667, 0);
             this.txtName_Load.Name = "txtName_Load";
-            this.txtName_Load.Size = new System.Drawing.Size(181, 32);
+            this.txtName_Load.Size = new System.Drawing.Size(181, 37);
             this.txtName_Load.TabIndex = 6;
             this.txtName_Load.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -335,7 +336,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(882, 480);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(848, 480);
             this.tableLayoutPanel1.TabIndex = 5;
             // 
             // panel4
@@ -352,7 +353,7 @@
             this.panel4.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel4.Location = new System.Drawing.Point(3, 243);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(426, 234);
+            this.panel4.Size = new System.Drawing.Size(409, 234);
             this.panel4.TabIndex = 2;
             // 
             // textBox3
@@ -360,7 +361,7 @@
             this.textBox3.Enabled = false;
             this.textBox3.Location = new System.Drawing.Point(5, 202);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(53, 31);
+            this.textBox3.Size = new System.Drawing.Size(53, 36);
             this.textBox3.TabIndex = 7;
             // 
             // btnDatSan3
@@ -371,7 +372,7 @@
             this.btnDatSan3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDatSan3.ForeColor = System.Drawing.Color.White;
             this.btnDatSan3.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnDatSan3.Location = new System.Drawing.Point(310, 201);
+            this.btnDatSan3.Location = new System.Drawing.Point(293, 201);
             this.btnDatSan3.Name = "btnDatSan3";
             this.btnDatSan3.Size = new System.Drawing.Size(115, 32);
             this.btnDatSan3.TabIndex = 6;
@@ -385,7 +386,7 @@
             this.lblSan3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSan3.Location = new System.Drawing.Point(3, 182);
             this.lblSan3.Name = "lblSan3";
-            this.lblSan3.Size = new System.Drawing.Size(58, 20);
+            this.lblSan3.Size = new System.Drawing.Size(72, 25);
             this.lblSan3.TabIndex = 5;
             this.lblSan3.Text = "Số Sân ";
             // 
@@ -398,7 +399,7 @@
             this.lblPrice3.Location = new System.Drawing.Point(0, 150);
             this.lblPrice3.Name = "lblPrice3";
             this.lblPrice3.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.lblPrice3.Size = new System.Drawing.Size(175, 17);
+            this.lblPrice3.Size = new System.Drawing.Size(213, 21);
             this.lblPrice3.TabIndex = 2;
             this.lblPrice3.Text = "300.000 - 800.00 VNĐ/giờ";
             this.lblPrice3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -410,7 +411,7 @@
             this.lblPitchNABC3.Location = new System.Drawing.Point(0, 120);
             this.lblPitchNABC3.Name = "lblPitchNABC3";
             this.lblPitchNABC3.Padding = new System.Windows.Forms.Padding(5, 5, 5, 0);
-            this.lblPitchNABC3.Size = new System.Drawing.Size(424, 30);
+            this.lblPitchNABC3.Size = new System.Drawing.Size(407, 30);
             this.lblPitchNABC3.TabIndex = 1;
             this.lblPitchNABC3.Text = "Sân Bóng ABC3";
             // 
@@ -421,7 +422,7 @@
             this.pictureBox8.Dock = System.Windows.Forms.DockStyle.Top;
             this.pictureBox8.Location = new System.Drawing.Point(0, 0);
             this.pictureBox8.Name = "pictureBox8";
-            this.pictureBox8.Size = new System.Drawing.Size(424, 120);
+            this.pictureBox8.Size = new System.Drawing.Size(407, 120);
             this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox8.TabIndex = 0;
             this.pictureBox8.TabStop = false;
@@ -438,9 +439,9 @@
             this.pnlPitchCard1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pnlPitchCard1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlPitchCard1.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnlPitchCard1.Location = new System.Drawing.Point(435, 3);
+            this.pnlPitchCard1.Location = new System.Drawing.Point(418, 3);
             this.pnlPitchCard1.Name = "pnlPitchCard1";
-            this.pnlPitchCard1.Size = new System.Drawing.Size(444, 234);
+            this.pnlPitchCard1.Size = new System.Drawing.Size(427, 234);
             this.pnlPitchCard1.TabIndex = 0;
             // 
             // textBox2
@@ -448,7 +449,7 @@
             this.textBox2.Enabled = false;
             this.textBox2.Location = new System.Drawing.Point(5, 200);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(53, 31);
+            this.textBox2.Size = new System.Drawing.Size(53, 36);
             this.textBox2.TabIndex = 6;
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
@@ -460,7 +461,7 @@
             this.btnDatSan2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDatSan2.ForeColor = System.Drawing.Color.White;
             this.btnDatSan2.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnDatSan2.Location = new System.Drawing.Point(328, 201);
+            this.btnDatSan2.Location = new System.Drawing.Point(311, 201);
             this.btnDatSan2.Name = "btnDatSan2";
             this.btnDatSan2.Size = new System.Drawing.Size(115, 32);
             this.btnDatSan2.TabIndex = 5;
@@ -474,7 +475,7 @@
             this.lblSan2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSan2.Location = new System.Drawing.Point(3, 177);
             this.lblSan2.Name = "lblSan2";
-            this.lblSan2.Size = new System.Drawing.Size(58, 20);
+            this.lblSan2.Size = new System.Drawing.Size(72, 25);
             this.lblSan2.TabIndex = 4;
             this.lblSan2.Text = "Số Sân ";
             // 
@@ -487,7 +488,7 @@
             this.lblPrice2.Location = new System.Drawing.Point(0, 150);
             this.lblPrice2.Name = "lblPrice2";
             this.lblPrice2.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.lblPrice2.Size = new System.Drawing.Size(182, 17);
+            this.lblPrice2.Size = new System.Drawing.Size(222, 21);
             this.lblPrice2.TabIndex = 2;
             this.lblPrice2.Text = "300.000 - 800.000 VNĐ/giờ";
             this.lblPrice2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -499,7 +500,7 @@
             this.lblPitchNABC2.Location = new System.Drawing.Point(0, 120);
             this.lblPitchNABC2.Name = "lblPitchNABC2";
             this.lblPitchNABC2.Padding = new System.Windows.Forms.Padding(5, 5, 5, 0);
-            this.lblPitchNABC2.Size = new System.Drawing.Size(442, 30);
+            this.lblPitchNABC2.Size = new System.Drawing.Size(425, 30);
             this.lblPitchNABC2.TabIndex = 1;
             this.lblPitchNABC2.Text = "Sân Bóng ABC2";
             // 
@@ -510,7 +511,7 @@
             this.picPitch1.Dock = System.Windows.Forms.DockStyle.Top;
             this.picPitch1.Location = new System.Drawing.Point(0, 0);
             this.picPitch1.Name = "picPitch1";
-            this.picPitch1.Size = new System.Drawing.Size(442, 120);
+            this.picPitch1.Size = new System.Drawing.Size(425, 120);
             this.picPitch1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picPitch1.TabIndex = 0;
             this.picPitch1.TabStop = false;
@@ -529,7 +530,7 @@
             this.panel3.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel3.Location = new System.Drawing.Point(3, 3);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(426, 234);
+            this.panel3.Size = new System.Drawing.Size(409, 234);
             this.panel3.TabIndex = 1;
             // 
             // textBox1
@@ -537,7 +538,7 @@
             this.textBox1.Enabled = false;
             this.textBox1.Location = new System.Drawing.Point(7, 201);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(53, 31);
+            this.textBox1.Size = new System.Drawing.Size(53, 36);
             this.textBox1.TabIndex = 5;
             // 
             // btnDatSan1
@@ -548,7 +549,7 @@
             this.btnDatSan1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDatSan1.ForeColor = System.Drawing.Color.White;
             this.btnDatSan1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnDatSan1.Location = new System.Drawing.Point(309, 200);
+            this.btnDatSan1.Location = new System.Drawing.Point(292, 200);
             this.btnDatSan1.Name = "btnDatSan1";
             this.btnDatSan1.Size = new System.Drawing.Size(115, 32);
             this.btnDatSan1.TabIndex = 4;
@@ -562,7 +563,7 @@
             this.lblSan1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSan1.Location = new System.Drawing.Point(3, 177);
             this.lblSan1.Name = "lblSan1";
-            this.lblSan1.Size = new System.Drawing.Size(58, 20);
+            this.lblSan1.Size = new System.Drawing.Size(72, 25);
             this.lblSan1.TabIndex = 3;
             this.lblSan1.Text = "Số Sân ";
             // 
@@ -575,7 +576,7 @@
             this.lblPrice1.Location = new System.Drawing.Point(0, 150);
             this.lblPrice1.Name = "lblPrice1";
             this.lblPrice1.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.lblPrice1.Size = new System.Drawing.Size(182, 17);
+            this.lblPrice1.Size = new System.Drawing.Size(222, 21);
             this.lblPrice1.TabIndex = 2;
             this.lblPrice1.Text = "300.000 - 800.000 VNĐ/giờ";
             this.lblPrice1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -587,7 +588,7 @@
             this.label2.Location = new System.Drawing.Point(0, 120);
             this.label2.Name = "label2";
             this.label2.Padding = new System.Windows.Forms.Padding(5, 5, 5, 0);
-            this.label2.Size = new System.Drawing.Size(424, 30);
+            this.label2.Size = new System.Drawing.Size(407, 30);
             this.label2.TabIndex = 1;
             this.label2.Text = "Sân Bóng ABC1";
             // 
@@ -598,7 +599,7 @@
             this.pictureBox7.Dock = System.Windows.Forms.DockStyle.Top;
             this.pictureBox7.Location = new System.Drawing.Point(0, 0);
             this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(424, 120);
+            this.pictureBox7.Size = new System.Drawing.Size(407, 120);
             this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox7.TabIndex = 0;
             this.pictureBox7.TabStop = false;
@@ -611,7 +612,7 @@
             this.label1.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(3, 141);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(215, 23);
+            this.label1.Size = new System.Drawing.Size(268, 30);
             this.label1.TabIndex = 1;
             this.label1.Text = "Danh Sách Các Chi Nhánh";
             // 
@@ -622,16 +623,16 @@
             this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.Location = new System.Drawing.Point(0, 0);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(96, 38);
+            this.lblTitle.Size = new System.Drawing.Size(113, 45);
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "Home";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // frmMainKH
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1151, 644);
+            this.ClientSize = new System.Drawing.Size(1117, 644);
             this.Controls.Add(this.pnlTopBa);
             this.Controls.Add(this.pnlSidebar);
             this.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -699,7 +700,7 @@
         private System.Windows.Forms.Button btnDatSan2;
         private System.Windows.Forms.Button btnDatSan3;
         private System.Windows.Forms.TextBox txtName_Load;
-        private System.Windows.Forms.Button btnFood;
+        private System.Windows.Forms.Button btnDoAn;
         private System.Windows.Forms.PictureBox picFood;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.TextBox textBox3;

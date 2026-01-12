@@ -122,15 +122,7 @@ namespace FootballPitchManagement
 
         private void btnThoat_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Bạn muốn hủy và quay lại đăng nhập?",
-                                                  "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result == DialogResult.Yes)
-            {
-                this.Hide();
-                frmLogin Login = new frmLogin();
-                Login.ShowDialog();
-                this.Close();
-            }
+            
         }
 
         private void txtEmailTenDN_TextChanged_1(object sender, EventArgs e)
@@ -317,6 +309,28 @@ namespace FootballPitchManagement
             {
                 if (sqlCon != null && sqlCon.State != ConnectionState.Closed)
                     sqlCon.Close();
+            }
+        }
+
+        private void frmQuenMatKhau_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // Chỉ hỏi khi người dùng bấm nút X hoặc Alt+F4
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                DialogResult result = MessageBox.Show("Bạn muốn hủy và quay lại đăng nhập?",
+                                                      "Xác nhận",
+                                                      MessageBoxButtons.YesNo,
+                                                      MessageBoxIcon.Question);
+
+                if (result == DialogResult.No)
+                {
+                    e.Cancel = true; // Giữ nguyên form, không cho tắt
+                }
+                else
+                {
+                    frmLogin Login = new frmLogin();
+                    Login.Show();
+                }
             }
         }
     }

@@ -73,11 +73,7 @@ namespace FootballPitchManagement
             }
         }
 
-        private void btnFood_Click(object sender, EventArgs e)
-        {
-            if (currentFormChild is Nhap1) { return; }
-            OpenChildForm(new Nhap1());
-        }
+        
 
         private void btnDatSan1_Click(object sender, EventArgs e)
         {
@@ -101,9 +97,26 @@ namespace FootballPitchManagement
 
         }
 
+//<<<<<<< HEAD
         private void btnProfile_Click(object sender, EventArgs e)
         {
             OpenChildForm(new frmHoSo(1));
         }
+//=======
+        private void pnlSidebar_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnDoAn_Click(object sender, EventArgs e)
+        {
+            // Tạo form đồ ăn mới
+            frmDoAn fDoAn = new frmDoAn();
+
+            // Gọi cái hàm vừa viết ở trên để nhét nó vào
+            OpenChildForm(fDoAn);
+        }
+        
+//>>>>>>> ff74be947abc8f35b04d7f8733f1d21935322cd4
     }
 }
