@@ -34,17 +34,17 @@
             this.btnThem = new System.Windows.Forms.Button();
             this.lblTongQuan = new System.Windows.Forms.Label();
             this.guna2CustomGradientPanel1 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
-            this.guna2CustomGradientPanel2 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
-            this.guna2CustomGradientPanel3 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
-            this.guna2CustomGradientPanel4 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
-            this.lblTongsosan = new System.Windows.Forms.Label();
             this.lblSo1 = new System.Windows.Forms.Label();
-            this.lblDangsudung = new System.Windows.Forms.Label();
-            this.lblDanghoatdong = new System.Windows.Forms.Label();
-            this.lblBaotri = new System.Windows.Forms.Label();
+            this.lblTongsosan = new System.Windows.Forms.Label();
+            this.guna2CustomGradientPanel2 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             this.lblSo2 = new System.Windows.Forms.Label();
+            this.lblDanghoatdong = new System.Windows.Forms.Label();
+            this.guna2CustomGradientPanel3 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             this.lblSo3 = new System.Windows.Forms.Label();
+            this.lblDangsudung = new System.Windows.Forms.Label();
+            this.guna2CustomGradientPanel4 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             this.lblSo4 = new System.Windows.Forms.Label();
+            this.lblBaotri = new System.Windows.Forms.Label();
             this.tblQuanlysan.SuspendLayout();
             this.pnlHead.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picThem)).BeginInit();
@@ -71,11 +71,12 @@
             this.tblQuanlysan.Location = new System.Drawing.Point(0, 0);
             this.tblQuanlysan.Name = "tblQuanlysan";
             this.tblQuanlysan.RowCount = 3;
-            this.tblQuanlysan.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.71548F));
-            this.tblQuanlysan.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.09192F));
-            this.tblQuanlysan.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 75.20892F));
+            this.tblQuanlysan.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.50975F));
+            this.tblQuanlysan.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.62396F));
+            this.tblQuanlysan.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 71.86629F));
             this.tblQuanlysan.Size = new System.Drawing.Size(945, 718);
             this.tblQuanlysan.TabIndex = 0;
+            this.tblQuanlysan.Paint += new System.Windows.Forms.PaintEventHandler(this.tblQuanlysan_Paint);
             // 
             // pnlHead
             // 
@@ -88,7 +89,7 @@
             this.pnlHead.Controls.Add(this.lblTongQuan);
             this.pnlHead.Location = new System.Drawing.Point(3, 3);
             this.pnlHead.Name = "pnlHead";
-            this.pnlHead.Size = new System.Drawing.Size(939, 78);
+            this.pnlHead.Size = new System.Drawing.Size(939, 91);
             this.pnlHead.TabIndex = 1;
             // 
             // picThem
@@ -134,45 +135,22 @@
             this.guna2CustomGradientPanel1.Controls.Add(this.lblSo1);
             this.guna2CustomGradientPanel1.Controls.Add(this.lblTongsosan);
             this.guna2CustomGradientPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.guna2CustomGradientPanel1.Location = new System.Drawing.Point(7, 91);
+            this.guna2CustomGradientPanel1.Location = new System.Drawing.Point(7, 104);
             this.guna2CustomGradientPanel1.Margin = new System.Windows.Forms.Padding(7);
             this.guna2CustomGradientPanel1.Name = "guna2CustomGradientPanel1";
-            this.guna2CustomGradientPanel1.Size = new System.Drawing.Size(222, 79);
+            this.guna2CustomGradientPanel1.Size = new System.Drawing.Size(222, 91);
             this.guna2CustomGradientPanel1.TabIndex = 2;
             // 
-            // guna2CustomGradientPanel2
+            // lblSo1
             // 
-            this.guna2CustomGradientPanel2.Controls.Add(this.lblSo2);
-            this.guna2CustomGradientPanel2.Controls.Add(this.lblDanghoatdong);
-            this.guna2CustomGradientPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.guna2CustomGradientPanel2.Location = new System.Drawing.Point(243, 91);
-            this.guna2CustomGradientPanel2.Margin = new System.Windows.Forms.Padding(7);
-            this.guna2CustomGradientPanel2.Name = "guna2CustomGradientPanel2";
-            this.guna2CustomGradientPanel2.Size = new System.Drawing.Size(222, 79);
-            this.guna2CustomGradientPanel2.TabIndex = 3;
-            // 
-            // guna2CustomGradientPanel3
-            // 
-            this.guna2CustomGradientPanel3.Controls.Add(this.lblSo3);
-            this.guna2CustomGradientPanel3.Controls.Add(this.lblDangsudung);
-            this.guna2CustomGradientPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.guna2CustomGradientPanel3.Location = new System.Drawing.Point(479, 91);
-            this.guna2CustomGradientPanel3.Margin = new System.Windows.Forms.Padding(7);
-            this.guna2CustomGradientPanel3.Name = "guna2CustomGradientPanel3";
-            this.guna2CustomGradientPanel3.Size = new System.Drawing.Size(222, 79);
-            this.guna2CustomGradientPanel3.TabIndex = 4;
-            // 
-            // guna2CustomGradientPanel4
-            // 
-            this.guna2CustomGradientPanel4.Controls.Add(this.lblSo4);
-            this.guna2CustomGradientPanel4.Controls.Add(this.lblBaotri);
-            this.guna2CustomGradientPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.guna2CustomGradientPanel4.Location = new System.Drawing.Point(715, 91);
-            this.guna2CustomGradientPanel4.Margin = new System.Windows.Forms.Padding(7);
-            this.guna2CustomGradientPanel4.Name = "guna2CustomGradientPanel4";
-            this.guna2CustomGradientPanel4.Size = new System.Drawing.Size(223, 79);
-            this.guna2CustomGradientPanel4.TabIndex = 5;
-            this.guna2CustomGradientPanel4.Paint += new System.Windows.Forms.PaintEventHandler(this.guna2CustomGradientPanel4_Paint);
+            this.lblSo1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblSo1.AutoSize = true;
+            this.lblSo1.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSo1.Location = new System.Drawing.Point(10, 64);
+            this.lblSo1.Name = "lblSo1";
+            this.lblSo1.Size = new System.Drawing.Size(76, 23);
+            this.lblSo1.TabIndex = 1;
+            this.lblSo1.Text = "số lượng";
             // 
             // lblTongsosan
             // 
@@ -184,26 +162,27 @@
             this.lblTongsosan.TabIndex = 0;
             this.lblTongsosan.Text = "Tổng Số Sân";
             // 
-            // lblSo1
+            // guna2CustomGradientPanel2
             // 
-            this.lblSo1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblSo1.AutoSize = true;
-            this.lblSo1.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSo1.Location = new System.Drawing.Point(10, 52);
-            this.lblSo1.Name = "lblSo1";
-            this.lblSo1.Size = new System.Drawing.Size(76, 23);
-            this.lblSo1.TabIndex = 1;
-            this.lblSo1.Text = "số lượng";
+            this.guna2CustomGradientPanel2.Controls.Add(this.lblSo2);
+            this.guna2CustomGradientPanel2.Controls.Add(this.lblDanghoatdong);
+            this.guna2CustomGradientPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.guna2CustomGradientPanel2.Location = new System.Drawing.Point(243, 104);
+            this.guna2CustomGradientPanel2.Margin = new System.Windows.Forms.Padding(7);
+            this.guna2CustomGradientPanel2.Name = "guna2CustomGradientPanel2";
+            this.guna2CustomGradientPanel2.Size = new System.Drawing.Size(222, 91);
+            this.guna2CustomGradientPanel2.TabIndex = 3;
             // 
-            // lblDangsudung
+            // lblSo2
             // 
-            this.lblDangsudung.AutoSize = true;
-            this.lblDangsudung.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDangsudung.Location = new System.Drawing.Point(11, 4);
-            this.lblDangsudung.Name = "lblDangsudung";
-            this.lblDangsudung.Size = new System.Drawing.Size(140, 28);
-            this.lblDangsudung.TabIndex = 2;
-            this.lblDangsudung.Text = "Đang Sử Dụng";
+            this.lblSo2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblSo2.AutoSize = true;
+            this.lblSo2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSo2.Location = new System.Drawing.Point(9, 67);
+            this.lblSo2.Name = "lblSo2";
+            this.lblSo2.Size = new System.Drawing.Size(72, 20);
+            this.lblSo2.TabIndex = 4;
+            this.lblSo2.Text = "số lượng";
             // 
             // lblDanghoatdong
             // 
@@ -215,6 +194,61 @@
             this.lblDanghoatdong.TabIndex = 3;
             this.lblDanghoatdong.Text = "Đang Hoạt Động";
             // 
+            // guna2CustomGradientPanel3
+            // 
+            this.guna2CustomGradientPanel3.Controls.Add(this.lblSo3);
+            this.guna2CustomGradientPanel3.Controls.Add(this.lblDangsudung);
+            this.guna2CustomGradientPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.guna2CustomGradientPanel3.Location = new System.Drawing.Point(479, 104);
+            this.guna2CustomGradientPanel3.Margin = new System.Windows.Forms.Padding(7);
+            this.guna2CustomGradientPanel3.Name = "guna2CustomGradientPanel3";
+            this.guna2CustomGradientPanel3.Size = new System.Drawing.Size(222, 91);
+            this.guna2CustomGradientPanel3.TabIndex = 4;
+            // 
+            // lblSo3
+            // 
+            this.lblSo3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblSo3.AutoSize = true;
+            this.lblSo3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSo3.Location = new System.Drawing.Point(11, 66);
+            this.lblSo3.Name = "lblSo3";
+            this.lblSo3.Size = new System.Drawing.Size(72, 20);
+            this.lblSo3.TabIndex = 3;
+            this.lblSo3.Text = "số lượng";
+            // 
+            // lblDangsudung
+            // 
+            this.lblDangsudung.AutoSize = true;
+            this.lblDangsudung.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDangsudung.Location = new System.Drawing.Point(11, 4);
+            this.lblDangsudung.Name = "lblDangsudung";
+            this.lblDangsudung.Size = new System.Drawing.Size(140, 28);
+            this.lblDangsudung.TabIndex = 2;
+            this.lblDangsudung.Text = "Đang Sử Dụng";
+            // 
+            // guna2CustomGradientPanel4
+            // 
+            this.guna2CustomGradientPanel4.Controls.Add(this.lblSo4);
+            this.guna2CustomGradientPanel4.Controls.Add(this.lblBaotri);
+            this.guna2CustomGradientPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.guna2CustomGradientPanel4.Location = new System.Drawing.Point(715, 104);
+            this.guna2CustomGradientPanel4.Margin = new System.Windows.Forms.Padding(7);
+            this.guna2CustomGradientPanel4.Name = "guna2CustomGradientPanel4";
+            this.guna2CustomGradientPanel4.Size = new System.Drawing.Size(223, 91);
+            this.guna2CustomGradientPanel4.TabIndex = 5;
+            this.guna2CustomGradientPanel4.Paint += new System.Windows.Forms.PaintEventHandler(this.guna2CustomGradientPanel4_Paint);
+            // 
+            // lblSo4
+            // 
+            this.lblSo4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblSo4.AutoSize = true;
+            this.lblSo4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSo4.Location = new System.Drawing.Point(12, 66);
+            this.lblSo4.Name = "lblSo4";
+            this.lblSo4.Size = new System.Drawing.Size(72, 20);
+            this.lblSo4.TabIndex = 5;
+            this.lblSo4.Text = "số lượng";
+            // 
             // lblBaotri
             // 
             this.lblBaotri.AutoSize = true;
@@ -224,39 +258,6 @@
             this.lblBaotri.Size = new System.Drawing.Size(70, 28);
             this.lblBaotri.TabIndex = 4;
             this.lblBaotri.Text = "Bảo Trì";
-            // 
-            // lblSo2
-            // 
-            this.lblSo2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblSo2.AutoSize = true;
-            this.lblSo2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSo2.Location = new System.Drawing.Point(9, 55);
-            this.lblSo2.Name = "lblSo2";
-            this.lblSo2.Size = new System.Drawing.Size(72, 20);
-            this.lblSo2.TabIndex = 4;
-            this.lblSo2.Text = "số lượng";
-            // 
-            // lblSo3
-            // 
-            this.lblSo3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblSo3.AutoSize = true;
-            this.lblSo3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSo3.Location = new System.Drawing.Point(11, 54);
-            this.lblSo3.Name = "lblSo3";
-            this.lblSo3.Size = new System.Drawing.Size(72, 20);
-            this.lblSo3.TabIndex = 3;
-            this.lblSo3.Text = "số lượng";
-            // 
-            // lblSo4
-            // 
-            this.lblSo4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblSo4.AutoSize = true;
-            this.lblSo4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSo4.Location = new System.Drawing.Point(12, 54);
-            this.lblSo4.Name = "lblSo4";
-            this.lblSo4.Size = new System.Drawing.Size(72, 20);
-            this.lblSo4.TabIndex = 5;
-            this.lblSo4.Text = "số lượng";
             // 
             // frmQuanlysan
             // 

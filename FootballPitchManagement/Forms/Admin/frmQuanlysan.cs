@@ -21,5 +21,10 @@ namespace FootballPitchManagement.Forms.Admin
         {
 
         }
+
+        private void tblQuanlysan_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

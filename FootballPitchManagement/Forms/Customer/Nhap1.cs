@@ -17,5 +17,10 @@ namespace FootballPitchManagement
         {
             InitializeComponent();
         }
+
+        private void Nhap1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

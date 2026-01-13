@@ -299,7 +299,7 @@
             // pictureBox3
             // 
             this.pictureBox3.Image = global::FootballPitchManagement.Properties.Resources.icons8_user_50;
-            this.pictureBox3.Location = new System.Drawing.Point(701, 0);
+            this.pictureBox3.Location = new System.Drawing.Point(667, 0);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(42, 32);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;

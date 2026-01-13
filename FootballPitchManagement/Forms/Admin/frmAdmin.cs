@@ -1,39 +1,38 @@
-﻿using System;
+﻿using FootballPitchManagement.Common;
+using FootballPitchManagement.Forms.Admin;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
-using FootballPitchManagement.Common;
 
 namespace FootballPitchManagement
 {
     public partial class frmAdmin : Form
     {
+        private Form currentFormChild;
+
         public frmAdmin()
         {
             InitializeComponent();
+            this.Load += frmAdmin_Load;
         }
 
         private void frmAdmin_Load(object sender, EventArgs e)
         {
             try
             {
-                // Test kết nối
                 if (!DatabaseConnection.TestConnection(out string error))
                 {
                     DatabaseConnection.ShowConnectionError(error);
                     return;
                 }
 
-                // Cấu hình chart
                 CauHinhChart();
-                
-                // Load dữ liệu thống kê
                 LoadThongKeTongQuan();
-                
-                // Load biểu đồ doanh thu
                 LoadBieuDoDoanhThuThang();
+                ShowHomePage();
             }
             catch (Exception ex)
             {
@@ -46,10 +45,7 @@ namespace FootballPitchManagement
         {
             try
             {
-                // Xóa series mặc định nếu có
                 chartDoanhThu.Series.Clear();
-
-                // Cấu hình Chart Area
                 chartDoanhThu.ChartAreas[0].BackColor = Color.White;
                 chartDoanhThu.ChartAreas[0].AxisX.MajorGrid.LineColor = Color.LightGray;
                 chartDoanhThu.ChartAreas[0].AxisY.MajorGrid.LineColor = Color.LightGray;
@@ -59,16 +55,14 @@ namespace FootballPitchManagement
                 chartDoanhThu.ChartAreas[0].AxisY.Title = "Doanh thu (Triệu đồng)";
                 chartDoanhThu.ChartAreas[0].AxisX.Interval = 1;
 
-                // Tạo Series mới
                 Series series = new Series("Doanh thu");
                 series.ChartType = SeriesChartType.Column;
-                series.Color = Color.FromArgb(138, 43, 226); // Màu xanh lá
+                series.Color = Color.FromArgb(138, 43, 226);
                 series.IsValueShownAsLabel = true;
                 series.Font = new Font("Segoe UI", 8, FontStyle.Bold);
                 series.LabelFormat = "N1";
                 chartDoanhThu.Series.Add(series);
 
-                // Cấu hình Legend
                 chartDoanhThu.Legends[0].Docking = Docking.Top;
                 chartDoanhThu.Legends[0].Font = new Font("Segoe UI", 9, FontStyle.Bold);
             }
@@ -87,77 +81,34 @@ namespace FootballPitchManagement
                 {
                     conn.Open();
 
-                    DateTime dauThang = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
-                    DateTime cuoiThang = dauThang.AddMonths(1).AddDays(-1);
-
-                        // ✅ 1. TỔNG DOANH THU TOÀN BỘ (TẤT CẢ THỜI GIAN)
-                    string sqlDoanhThu = @"
-                        SELECT ISNULL(SUM(SoTien), 0) AS TongDoanhThu
-                        FROM DoanhThu";
-
+                    string sqlDoanhThu = @"SELECT ISNULL(SUM(SoTien), 0) AS TongDoanhThu FROM DoanhThu";
                     using (SqlCommand cmd = new SqlCommand(sqlDoanhThu, conn))
                     {
                         object result = cmd.ExecuteScalar();
                         decimal tongDoanhThu = result != DBNull.Value ? Convert.ToDecimal(result) : 0;
-                        
-                        // Hiển thị dưới dạng "75.6 M"
                         lblTongDoanhThu.Text = $"{(tongDoanhThu / 1000000):N1} M";
                     }
 
-                    // ✅ 2. TỔNG LƯỢT ĐẶT SÂN
-                    string sqlLuotDat = @"
-                        SELECT COUNT(*) 
-                        FROM LichDatSan
-                        WHERE TrangThai != N'DA_HUY'";
-
+                    string sqlLuotDat = @"SELECT COUNT(*) FROM LichDatSan WHERE TrangThai != N'DA_HUY'";
                     using (SqlCommand cmd = new SqlCommand(sqlLuotDat, conn))
                     {
                         lblSoluotdat.Text = cmd.ExecuteScalar().ToString();
                     }
 
-                    // ✅ 3. TỔNG KHÁCH HÀNG
                     string sqlKH = "SELECT COUNT(*) FROM KhachHang";
                     using (SqlCommand cmd = new SqlCommand(sqlKH, conn))
                     {
                         lblSokhach.Text = cmd.ExecuteScalar().ToString();
                     }
-
-                    //// ✅ 4. TỶ LỆ LẤP ĐẦY (THÁNG HIỆN TẠI)
-                    //string sqlTyLe = @"
-                    //    SELECT 
-                    //        COUNT(DISTINCT l.MaSan) AS SoSanDaDat,
-                    //        (SELECT COUNT(*) FROM San WHERE TrangThai = 1) AS TongSan
-                    //    FROM LichDatSan l
-                    //    WHERE l.TrangThai != N'DA_HUY'
-                    //      AND l.NgayDat BETWEEN @DauThang AND @CuoiThang";
-
-                    //using (SqlCommand cmd = new SqlCommand(sqlTyLe, conn))
-                    //{
-                    //    cmd.Parameters.AddWithValue("@DauThang", dauThang);
-                    //    cmd.Parameters.AddWithValue("@CuoiThang", cuoiThang);
-                        
-                    //    using (SqlDataReader reader = cmd.ExecuteReader())
-                    //    {
-                    //        if (reader.Read())
-                    //        {
-                    //            int sanDaDat = reader.IsDBNull(0) ? 0 : reader.GetInt32(0);
-                    //            int tongSan = reader.IsDBNull(1) ? 0 : reader.GetInt32(1);
-                    //            int tyLe = tongSan > 0 ? (sanDaDat * 100 / tongSan) : 0;
-                    //            lblPhamtram.Text = $"{tyLe}%";
-                    //        }
-                    //    }
-                    //}
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show($"Lỗi load thống kê: {ex.Message}", "Lỗi", 
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                     
-                    // Hiển thị giá trị mặc định
                     lblTongDoanhThu.Text = "0 M";
                     lblSoluotdat.Text = "0";
                     lblSokhach.Text = "0";
-                    //lblPhamtram.Text = "0%";
                 }
             }
         }
@@ -170,7 +121,6 @@ namespace FootballPitchManagement
                 {
                     conn.Open();
 
-                    // ✅ QUERY ĐÚNG: Lấy doanh thu 12 tháng gần nhất (theo năm 2023)
                     string sql = @"
                         SELECT 
                             MONTH(Ngay) AS Thang,
@@ -187,7 +137,6 @@ namespace FootballPitchManagement
                             DataTable dt = new DataTable();
                             da.Fill(dt);
 
-                            // ✅ HIỂN THỊ DỮ LIỆU THẬT (không dùng mẫu nữa)
                             if (chartDoanhThu.Series.Count > 0)
                             {
                                 chartDoanhThu.Series[0].Points.Clear();
@@ -195,7 +144,6 @@ namespace FootballPitchManagement
 
                             if (dt.Rows.Count == 0)
                             {
-                                // Nếu không có dữ liệu năm nay, hiển thị thông báo
                                 chartDoanhThu.Titles.Clear();
                                 chartDoanhThu.Titles.Add(new Title(
                                     "CHƯA CÓ DỮ LIỆU DOANH THU NĂM NAY",
@@ -206,7 +154,6 @@ namespace FootballPitchManagement
                                 return;
                             }
 
-                            // Thêm dữ liệu THẬT từ database
                             foreach (DataRow row in dt.Rows)
                             {
                                 int thang = Convert.ToInt32(row["Thang"]);
@@ -214,13 +161,10 @@ namespace FootballPitchManagement
                                 decimal doanhThuTrieu = doanhThu / 1000000;
                                 
                                 int pointIndex = chartDoanhThu.Series[0].Points.AddXY(thang, doanhThuTrieu);
-                                
-                                // Tooltip
                                 chartDoanhThu.Series[0].Points[pointIndex].ToolTip = 
                                     $"Tháng {thang}\nDoanh thu: {doanhThu:N0} đ";
                             }
 
-                            // Đặt tiêu đề
                             chartDoanhThu.Titles.Clear();
                             chartDoanhThu.Titles.Add(new Title(
                                 $"BIỂU ĐỒ DOANH THU NĂM {DateTime.Now.Year}",
@@ -233,51 +177,135 @@ namespace FootballPitchManagement
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Lỗi load biểu đồ: {ex.Message}\n\n{ex.StackTrace}", "Lỗi", 
+                    MessageBox.Show($"Lỗi load biểu đồ: {ex.Message}", "Lỗi", 
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
 
+        // ✅ HÀM HIỂN THỊ TRANG CHỦ
+        private void ShowHomePage()
+        {
+            try
+            {
+                // Đóng form con nếu có
+                if (currentFormChild != null)
+                {
+                    tlpMainAdmin.Controls.Remove(currentFormChild);
+                    currentFormChild.Close();
+                    currentFormChild.Dispose();
+                    currentFormChild = null;
+                }
+
+                // HIỆN LẠI TẤT CẢ CONTROL DASHBOARD (theo tên từ Designer)
+                pnlTopBa.Visible = true;
+                pnlTongdoanhthu.Visible = true;
+                pnlLuotdatsan.Visible = true;
+                pnlKhachhang.Visible = true;
+                chartDoanhThu.Visible = true;
+
+                // Đưa lên trên cùng
+                pnlTopBa.BringToFront();
+                chartDoanhThu.BringToFront();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi hiển thị trang chủ: {ex.Message}", "Lỗi", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // ✅ HÀM MỞ FORM CON (FIXED)
+        private void OpenChildForm(Form childForm)
+        {
+            try
+            {
+                // 1. Đóng form con cũ
+                if (currentFormChild != null)
+                {
+                    tlpMainAdmin.Controls.Remove(currentFormChild);
+                    currentFormChild.Close();
+                    currentFormChild.Dispose();
+                }
+
+                // 2. ẨN TẤT CẢ CONTROL DASHBOARD (theo tên từ Designer)
+                pnlTopBa.Visible = false;
+                pnlTongdoanhthu.Visible = false;
+                pnlLuotdatsan.Visible = false;
+                pnlKhachhang.Visible = false;
+                chartDoanhThu.Visible = false;
+
+                // 3. THIẾT LẬP FORM CON MỚI
+                currentFormChild = childForm;
+                childForm.TopLevel = false;
+                childForm.FormBorderStyle = FormBorderStyle.None;
+                childForm.Dock = DockStyle.Fill;
+
+                // 4. THÊM VÀO tlpMainAdmin
+                tlpMainAdmin.Controls.Add(childForm);
+                tlpMainAdmin.SetColumnSpan(childForm, 3); // Chiếm cả 3 cột
+                tlpMainAdmin.SetRowSpan(childForm, 3);    // Chiếm cả 3 row
+                childForm.BringToFront();
+                childForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi mở form: {ex.Message}\n\n{ex.StackTrace}", "Lỗi", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // ✅ NÚT QUẢN LÝ SÂN
+        private void btnQuanLySan_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (currentFormChild is frmQuanlysan)
+                {
+                    return;
+                }
+
+                OpenChildForm(new frmQuanlysan());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi mở Quản lý sân: {ex.Message}", "Lỗi", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // ✅ NÚT TRANG CHỦ
+        private void btnHome_Click(object sender, EventArgs e)
+        {
+            ShowHomePage();
+        }
+
+        // ✅ NÚT TỔNG QUAN
         private void btnTongQuan_Click(object sender, EventArgs e)
         {
-            // Refresh dữ liệu
+            ShowHomePage();
             LoadThongKeTongQuan();
             LoadBieuDoDoanhThuThang();
         }
 
         private void panel3_Paint(object sender, PaintEventArgs e)
         {
-            // Không cần xử lý
         }
-        private Form currentFormChild;
-        private void OpenChildForm(Form childForm)
+
+        private void btnQuanLyKhachHang_Click(object sender, EventArgs e)
         {
-            //if (currentFormChild != null)
-            //{
-            //    currentFormChild.Close();
-            //}
-            //tableLayoutPanel1.Visible = false;
-            //currentFormChild = childForm;
-            //childForm.TopLevel = false;
-            //childForm.FormBorderStyle = FormBorderStyle.None;
-            //childForm.Dock = DockStyle.Fill;
-
-            //pnlTopBa.Controls.Add(childForm);
-            //pnlTopBa.Tag = childForm;
-            //childForm.BringToFront();
-            //childForm.Show();
         }
 
-        private void btnQuanLySan_Click(object sender, EventArgs e)
+        private void btnQuanLyLichDat_Click(object sender, EventArgs e)
         {
-
         }
 
-        private void lblKhachhang_Click(object sender, EventArgs e)
+        private void lblTongQuan_Click(object sender, EventArgs e)
         {
-
+            ShowHomePage();
         }
+
+       
     }
 }
 

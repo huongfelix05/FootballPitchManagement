@@ -335,5 +335,35 @@
   <ItemGroup>
     <None Include="Resources\z7323897720284_a54d07854b792a7723b12d3787f07cb21.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-homepage-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-homepage-481.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\z7323897720284_a54d07854b792a7723b12d3787f07cb22.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-add-481.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-add1.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-field-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-calendar-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-revenue-64.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
