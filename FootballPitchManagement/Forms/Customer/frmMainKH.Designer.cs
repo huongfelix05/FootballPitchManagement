@@ -315,7 +315,7 @@
             this.txtName_Load.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtName_Load.Location = new System.Drawing.Point(667, 0);
             this.txtName_Load.Name = "txtName_Load";
-            this.txtName_Load.Size = new System.Drawing.Size(181, 37);
+            this.txtName_Load.Size = new System.Drawing.Size(181, 32);
             this.txtName_Load.TabIndex = 6;
             this.txtName_Load.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -361,7 +361,7 @@
             this.textBox3.Enabled = false;
             this.textBox3.Location = new System.Drawing.Point(5, 202);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(53, 36);
+            this.textBox3.Size = new System.Drawing.Size(53, 31);
             this.textBox3.TabIndex = 7;
             // 
             // btnDatSan3
@@ -386,7 +386,7 @@
             this.lblSan3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSan3.Location = new System.Drawing.Point(3, 182);
             this.lblSan3.Name = "lblSan3";
-            this.lblSan3.Size = new System.Drawing.Size(72, 25);
+            this.lblSan3.Size = new System.Drawing.Size(58, 20);
             this.lblSan3.TabIndex = 5;
             this.lblSan3.Text = "Số Sân ";
             // 
@@ -399,7 +399,7 @@
             this.lblPrice3.Location = new System.Drawing.Point(0, 150);
             this.lblPrice3.Name = "lblPrice3";
             this.lblPrice3.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.lblPrice3.Size = new System.Drawing.Size(213, 21);
+            this.lblPrice3.Size = new System.Drawing.Size(175, 17);
             this.lblPrice3.TabIndex = 2;
             this.lblPrice3.Text = "300.000 - 800.00 VNĐ/giờ";
             this.lblPrice3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -449,7 +449,7 @@
             this.textBox2.Enabled = false;
             this.textBox2.Location = new System.Drawing.Point(5, 200);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(53, 36);
+            this.textBox2.Size = new System.Drawing.Size(53, 31);
             this.textBox2.TabIndex = 6;
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
@@ -475,7 +475,7 @@
             this.lblSan2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSan2.Location = new System.Drawing.Point(3, 177);
             this.lblSan2.Name = "lblSan2";
-            this.lblSan2.Size = new System.Drawing.Size(72, 25);
+            this.lblSan2.Size = new System.Drawing.Size(58, 20);
             this.lblSan2.TabIndex = 4;
             this.lblSan2.Text = "Số Sân ";
             // 
@@ -488,7 +488,7 @@
             this.lblPrice2.Location = new System.Drawing.Point(0, 150);
             this.lblPrice2.Name = "lblPrice2";
             this.lblPrice2.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.lblPrice2.Size = new System.Drawing.Size(222, 21);
+            this.lblPrice2.Size = new System.Drawing.Size(182, 17);
             this.lblPrice2.TabIndex = 2;
             this.lblPrice2.Text = "300.000 - 800.000 VNĐ/giờ";
             this.lblPrice2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -538,7 +538,7 @@
             this.textBox1.Enabled = false;
             this.textBox1.Location = new System.Drawing.Point(7, 201);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(53, 36);
+            this.textBox1.Size = new System.Drawing.Size(53, 31);
             this.textBox1.TabIndex = 5;
             // 
             // btnDatSan1
@@ -563,7 +563,7 @@
             this.lblSan1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSan1.Location = new System.Drawing.Point(3, 177);
             this.lblSan1.Name = "lblSan1";
-            this.lblSan1.Size = new System.Drawing.Size(72, 25);
+            this.lblSan1.Size = new System.Drawing.Size(58, 20);
             this.lblSan1.TabIndex = 3;
             this.lblSan1.Text = "Số Sân ";
             // 
@@ -576,7 +576,7 @@
             this.lblPrice1.Location = new System.Drawing.Point(0, 150);
             this.lblPrice1.Name = "lblPrice1";
             this.lblPrice1.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.lblPrice1.Size = new System.Drawing.Size(222, 21);
+            this.lblPrice1.Size = new System.Drawing.Size(182, 17);
             this.lblPrice1.TabIndex = 2;
             this.lblPrice1.Text = "300.000 - 800.000 VNĐ/giờ";
             this.lblPrice1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -612,7 +612,7 @@
             this.label1.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(3, 141);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(268, 30);
+            this.label1.Size = new System.Drawing.Size(215, 23);
             this.label1.TabIndex = 1;
             this.label1.Text = "Danh Sách Các Chi Nhánh";
             // 
@@ -623,14 +623,14 @@
             this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.Location = new System.Drawing.Point(0, 0);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(113, 45);
+            this.lblTitle.Size = new System.Drawing.Size(96, 38);
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "Home";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // frmMainKH
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1117, 644);
             this.Controls.Add(this.pnlTopBa);
