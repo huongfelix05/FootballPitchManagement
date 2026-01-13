@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend9 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.pnlLuotdatsan = new System.Windows.Forms.Panel();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.lblLuotdatsan = new System.Windows.Forms.Label();
@@ -171,20 +171,20 @@
             // 
             // chartDoanhThu
             // 
-            chartArea9.Name = "ChartArea1";
-            this.chartDoanhThu.ChartAreas.Add(chartArea9);
+            chartArea1.Name = "ChartArea1";
+            this.chartDoanhThu.ChartAreas.Add(chartArea1);
             this.tlpMainAdmin.SetColumnSpan(this.chartDoanhThu, 3);
             this.chartDoanhThu.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend9.Name = "Legend1";
-            this.chartDoanhThu.Legends.Add(legend9);
+            legend1.Name = "Legend1";
+            this.chartDoanhThu.Legends.Add(legend1);
             this.chartDoanhThu.Location = new System.Drawing.Point(25, 221);
             this.chartDoanhThu.Margin = new System.Windows.Forms.Padding(25, 10, 25, 10);
             this.chartDoanhThu.Name = "chartDoanhThu";
             this.chartDoanhThu.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Berry;
-            series9.ChartArea = "ChartArea1";
-            series9.Legend = "Legend1";
-            series9.Name = "Series1";
-            this.chartDoanhThu.Series.Add(series9);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chartDoanhThu.Series.Add(series1);
             this.chartDoanhThu.Size = new System.Drawing.Size(974, 519);
             this.chartDoanhThu.TabIndex = 10;
             this.chartDoanhThu.Text = "Doanh thu tháng";
@@ -595,6 +595,7 @@
             this.btnQuanLyDatSan.Text = "Quản Lý Đặt Sân";
             this.btnQuanLyDatSan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnQuanLyDatSan.UseVisualStyleBackColor = true;
+            this.btnQuanLyDatSan.Click += new System.EventHandler(this.btnQuanLyDatSan_Click);
             // 
             // btnQuanLySan
             // 

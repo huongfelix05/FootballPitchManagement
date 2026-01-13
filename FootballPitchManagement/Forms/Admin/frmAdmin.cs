@@ -305,7 +305,23 @@ namespace FootballPitchManagement
             ShowHomePage();
         }
 
-       
+        private void btnQuanLyDatSan_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (currentFormChild is frmQuanlysan)
+                {
+                    return;
+                }
+
+                OpenChildForm(new frmQuanlysan());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi mở Quản lý sân: {ex.Message}", "Lỗi",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
 

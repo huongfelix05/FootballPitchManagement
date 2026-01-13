@@ -21,13 +21,13 @@ namespace FootballPitchManagement
            //Application.Run(new frmMainKH());
             //Application.Run(new frmLogin());
             //Application.Run(new frmAdmin());
-            Application.Run(new frmLichdatsan());
+            //Application.Run(new frmLichdatsan());
           //  Application.Run(new frmQuanLyDatSan());
 
             // Application.Run(new frmDoAn());
            // Application.Run(new frmMainKH());
            // Application.Run(new frmLogin());
-            Application.Run(new frmAdmin());
+             Application.Run(new frmAdmin());
             //Application.Run(new frmLichdatsan());
            // Application.Run(new frmQuanlysan()); 
         }
