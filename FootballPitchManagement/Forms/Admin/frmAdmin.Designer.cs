@@ -31,7 +31,9 @@
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -46,60 +48,87 @@
             this.btnQuanLySan = new System.Windows.Forms.Button();
             this.btnTongQuan = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.pnlMainAd = new System.Windows.Forms.Panel();
-            this.pnlBody = new System.Windows.Forms.Panel();
             this.pnlHead = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.btnNameAd = new System.Windows.Forms.Button();
             this.lblTongQuan = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.chartDoanhThu = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.lblTongdoanh = new System.Windows.Forms.Label();
-            this.lblTongDoanhThu = new System.Windows.Forms.Label();
-            this.lblSoluotdat = new System.Windows.Forms.Label();
-            this.lblLuotdatsan = new System.Windows.Forms.Label();
-            this.lblKhachhang = new System.Windows.Forms.Label();
-            this.lblSokhach = new System.Windows.Forms.Label();
-            this.lblTylelapday = new System.Windows.Forms.Label();
-            this.lblPhamtram = new System.Windows.Forms.Label();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.pnlTongdoanhthu = new System.Windows.Forms.Panel();
             this.picTien = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lblTongDoanhThu = new System.Windows.Forms.Label();
+            this.lblTongdoanh = new System.Windows.Forms.Label();
+            this.pnlLuotdatsan = new System.Windows.Forms.Panel();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.lblLuotdatsan = new System.Windows.Forms.Label();
+            this.lblSoluotdat = new System.Windows.Forms.Label();
+            this.pnlKhachhang = new System.Windows.Forms.Panel();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.lblSokhach = new System.Windows.Forms.Label();
+            this.lblKhachhang = new System.Windows.Forms.Label();
+            this.chartDoanhThu = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.pnlMainAd.SuspendLayout();
-            this.pnlBody.SuspendLayout();
-            this.pnlHead.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.panel4.SuspendLayout();
-            this.panel5.SuspendLayout();
-            this.panel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chartDoanhThu)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picTien)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel2.SuspendLayout();
+            this.pnlHead.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.pnlTongdoanhthu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picTien)).BeginInit();
+            this.pnlLuotdatsan.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            this.pnlKhachhang.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartDoanhThu)).BeginInit();
             this.SuspendLayout();
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.tableLayoutPanel1.ColumnCount = 4;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.Controls.Add(this.chartDoanhThu, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.pnlKhachhang, 3, 1);
+            this.tableLayoutPanel1.Controls.Add(this.pnlLuotdatsan, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.pnlTongdoanhthu, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.pnlHead, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.panel2, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 3;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.06667F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15.06667F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 71.86667F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1261, 750);
+            this.tableLayoutPanel1.TabIndex = 4;
             // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(45)))), ((int)(((byte)(50)))));
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(242, 93);
-            this.panel1.TabIndex = 0;
+            this.panel1.Size = new System.Drawing.Size(242, 92);
+            this.panel1.TabIndex = 4;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.pictureBox1.Image = global::FootballPitchManagement.Properties.Resources.Ảnh_chụp_màn_hình_2025_12_22_153310;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 22);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(59, 48);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 2;
+            this.pictureBox1.TabStop = false;
             // 
             // label2
             // 
@@ -138,10 +167,11 @@
             this.panel2.Controls.Add(this.btnQuanLySan);
             this.panel2.Controls.Add(this.btnTongQuan);
             this.panel2.Controls.Add(this.label3);
-            this.panel2.Location = new System.Drawing.Point(0, 76);
+            this.panel2.Location = new System.Drawing.Point(3, 101);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(242, 674);
-            this.panel2.TabIndex = 1;
+            this.tableLayoutPanel1.SetRowSpan(this.panel2, 2);
+            this.panel2.Size = new System.Drawing.Size(242, 646);
+            this.panel2.TabIndex = 5;
             // 
             // label5
             // 
@@ -283,7 +313,6 @@
             this.btnTongQuan.Text = "Tổng Quan";
             this.btnTongQuan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnTongQuan.UseVisualStyleBackColor = true;
-            this.btnTongQuan.Click += new System.EventHandler(this.btnTongQuan_Click);
             // 
             // label3
             // 
@@ -295,52 +324,36 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "Quản Lý Chính";
             // 
-            // pnlMainAd
-            // 
-            this.pnlMainAd.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlMainAd.BackColor = System.Drawing.SystemColors.Control;
-            this.pnlMainAd.Controls.Add(this.pnlBody);
-            this.pnlMainAd.Controls.Add(this.pnlHead);
-            this.pnlMainAd.Location = new System.Drawing.Point(240, 0);
-            this.pnlMainAd.Name = "pnlMainAd";
-            this.pnlMainAd.Size = new System.Drawing.Size(1021, 750);
-            this.pnlMainAd.TabIndex = 2;
-            // 
-            // pnlBody
-            // 
-            this.pnlBody.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.pnlBody.Controls.Add(this.chartDoanhThu);
-            this.pnlBody.Controls.Add(this.panel4);
-            this.pnlBody.Controls.Add(this.panel6);
-            this.pnlBody.Controls.Add(this.panel5);
-            this.pnlBody.Controls.Add(this.panel3);
-            this.pnlBody.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlBody.Location = new System.Drawing.Point(0, 77);
-            this.pnlBody.Name = "pnlBody";
-            this.pnlBody.Size = new System.Drawing.Size(1021, 673);
-            this.pnlBody.TabIndex = 1;
-            // 
             // pnlHead
             // 
-            this.pnlHead.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlHead.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.tableLayoutPanel1.SetColumnSpan(this.pnlHead, 3);
             this.pnlHead.Controls.Add(this.pictureBox2);
             this.pnlHead.Controls.Add(this.btnNameAd);
             this.pnlHead.Controls.Add(this.lblTongQuan);
-            this.pnlHead.Location = new System.Drawing.Point(0, 0);
+            this.pnlHead.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlHead.Location = new System.Drawing.Point(251, 3);
             this.pnlHead.Name = "pnlHead";
-            this.pnlHead.Size = new System.Drawing.Size(1021, 78);
-            this.pnlHead.TabIndex = 0;
+            this.pnlHead.Size = new System.Drawing.Size(1007, 92);
+            this.pnlHead.TabIndex = 6;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox2.Image = global::FootballPitchManagement.Properties.Resources.icons8_admin_50;
+            this.pictureBox2.Location = new System.Drawing.Point(810, 22);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(42, 38);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 2;
+            this.pictureBox2.TabStop = false;
             // 
             // btnNameAd
             // 
             this.btnNameAd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnNameAd.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.btnNameAd.Enabled = false;
-            this.btnNameAd.Location = new System.Drawing.Point(824, 21);
+            this.btnNameAd.Location = new System.Drawing.Point(810, 21);
             this.btnNameAd.Name = "btnNameAd";
             this.btnNameAd.Size = new System.Drawing.Size(197, 39);
             this.btnNameAd.TabIndex = 1;
@@ -356,71 +369,41 @@
             this.lblTongQuan.TabIndex = 0;
             this.lblTongQuan.Text = "Tổng Quan";
             // 
-            // panel3
+            // pnlTongdoanhthu
             // 
-            this.panel3.BackColor = System.Drawing.Color.White;
-            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel3.Controls.Add(this.picTien);
-            this.panel3.Controls.Add(this.lblTongDoanhThu);
-            this.panel3.Controls.Add(this.lblTongdoanh);
-            this.panel3.Location = new System.Drawing.Point(21, 11);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(219, 100);
-            this.panel3.TabIndex = 0;
-            this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
+            this.pnlTongdoanhthu.BackColor = System.Drawing.Color.White;
+            this.pnlTongdoanhthu.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnlTongdoanhthu.Controls.Add(this.picTien);
+            this.pnlTongdoanhthu.Controls.Add(this.lblTongDoanhThu);
+            this.pnlTongdoanhthu.Controls.Add(this.lblTongdoanh);
+            this.pnlTongdoanhthu.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlTongdoanhthu.Location = new System.Drawing.Point(258, 108);
+            this.pnlTongdoanhthu.Margin = new System.Windows.Forms.Padding(10);
+            this.pnlTongdoanhthu.Name = "pnlTongdoanhthu";
+            this.pnlTongdoanhthu.Size = new System.Drawing.Size(317, 92);
+            this.pnlTongdoanhthu.TabIndex = 7;
             // 
-            // panel4
+            // picTien
             // 
-            this.panel4.BackColor = System.Drawing.Color.White;
-            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel4.Controls.Add(this.pictureBox6);
-            this.panel4.Controls.Add(this.lblPhamtram);
-            this.panel4.Controls.Add(this.lblTylelapday);
-            this.panel4.Location = new System.Drawing.Point(791, 11);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(218, 100);
-            this.panel4.TabIndex = 1;
+            this.picTien.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.picTien.BackColor = System.Drawing.Color.White;
+            this.picTien.Image = global::FootballPitchManagement.Properties.Resources.icons8_money_bag_60;
+            this.picTien.Location = new System.Drawing.Point(251, 19);
+            this.picTien.Name = "picTien";
+            this.picTien.Size = new System.Drawing.Size(59, 58);
+            this.picTien.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picTien.TabIndex = 3;
+            this.picTien.TabStop = false;
             // 
-            // panel5
+            // lblTongDoanhThu
             // 
-            this.panel5.BackColor = System.Drawing.Color.White;
-            this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel5.Controls.Add(this.pictureBox5);
-            this.panel5.Controls.Add(this.lblSokhach);
-            this.panel5.Controls.Add(this.lblKhachhang);
-            this.panel5.Location = new System.Drawing.Point(534, 11);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(218, 100);
-            this.panel5.TabIndex = 2;
-            // 
-            // panel6
-            // 
-            this.panel6.BackColor = System.Drawing.Color.White;
-            this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel6.Controls.Add(this.pictureBox4);
-            this.panel6.Controls.Add(this.lblLuotdatsan);
-            this.panel6.Controls.Add(this.lblSoluotdat);
-            this.panel6.Location = new System.Drawing.Point(280, 11);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(216, 100);
-            this.panel6.TabIndex = 3;
-            // 
-            // chartDoanhThu
-            // 
-            chartArea1.Name = "ChartArea1";
-            this.chartDoanhThu.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chartDoanhThu.Legends.Add(legend1);
-            this.chartDoanhThu.Location = new System.Drawing.Point(72, 129);
-            this.chartDoanhThu.Name = "chartDoanhThu";
-            this.chartDoanhThu.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Berry;
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chartDoanhThu.Series.Add(series1);
-            this.chartDoanhThu.Size = new System.Drawing.Size(892, 541);
-            this.chartDoanhThu.TabIndex = 4;
-            this.chartDoanhThu.Text = "Doanh thu tháng";
+            this.lblTongDoanhThu.AutoSize = true;
+            this.lblTongDoanhThu.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTongDoanhThu.Location = new System.Drawing.Point(8, 52);
+            this.lblTongDoanhThu.Name = "lblTongDoanhThu";
+            this.lblTongDoanhThu.Size = new System.Drawing.Size(73, 25);
+            this.lblTongDoanhThu.TabIndex = 1;
+            this.lblTongDoanhThu.Text = "75.6 M";
             // 
             // lblTongdoanh
             // 
@@ -433,25 +416,31 @@
             this.lblTongdoanh.TabIndex = 0;
             this.lblTongdoanh.Text = "Tổng doanh thu";
             // 
-            // lblTongDoanhThu
+            // pnlLuotdatsan
             // 
-            this.lblTongDoanhThu.AutoSize = true;
-            this.lblTongDoanhThu.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTongDoanhThu.Location = new System.Drawing.Point(16, 41);
-            this.lblTongDoanhThu.Name = "lblTongDoanhThu";
-            this.lblTongDoanhThu.Size = new System.Drawing.Size(73, 25);
-            this.lblTongDoanhThu.TabIndex = 1;
-            this.lblTongDoanhThu.Text = "75.6 M";
+            this.pnlLuotdatsan.BackColor = System.Drawing.Color.White;
+            this.pnlLuotdatsan.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnlLuotdatsan.Controls.Add(this.pictureBox4);
+            this.pnlLuotdatsan.Controls.Add(this.lblLuotdatsan);
+            this.pnlLuotdatsan.Controls.Add(this.lblSoluotdat);
+            this.pnlLuotdatsan.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlLuotdatsan.Location = new System.Drawing.Point(595, 108);
+            this.pnlLuotdatsan.Margin = new System.Windows.Forms.Padding(10);
+            this.pnlLuotdatsan.Name = "pnlLuotdatsan";
+            this.pnlLuotdatsan.Size = new System.Drawing.Size(317, 92);
+            this.pnlLuotdatsan.TabIndex = 8;
             // 
-            // lblSoluotdat
+            // pictureBox4
             // 
-            this.lblSoluotdat.AutoSize = true;
-            this.lblSoluotdat.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSoluotdat.Location = new System.Drawing.Point(20, 46);
-            this.lblSoluotdat.Name = "lblSoluotdat";
-            this.lblSoluotdat.Size = new System.Drawing.Size(45, 25);
-            this.lblSoluotdat.TabIndex = 1;
-            this.lblSoluotdat.Text = "179";
+            this.pictureBox4.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.pictureBox4.BackColor = System.Drawing.Color.White;
+            this.pictureBox4.Image = global::FootballPitchManagement.Properties.Resources.icons8_calendar_94;
+            this.pictureBox4.Location = new System.Drawing.Point(251, 22);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(59, 60);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox4.TabIndex = 4;
+            this.pictureBox4.TabStop = false;
             // 
             // lblLuotdatsan
             // 
@@ -463,6 +452,52 @@
             this.lblLuotdatsan.TabIndex = 3;
             this.lblLuotdatsan.Text = "Lượt đặt sân";
             // 
+            // lblSoluotdat
+            // 
+            this.lblSoluotdat.AutoSize = true;
+            this.lblSoluotdat.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSoluotdat.Location = new System.Drawing.Point(23, 52);
+            this.lblSoluotdat.Name = "lblSoluotdat";
+            this.lblSoluotdat.Size = new System.Drawing.Size(45, 25);
+            this.lblSoluotdat.TabIndex = 1;
+            this.lblSoluotdat.Text = "179";
+            // 
+            // pnlKhachhang
+            // 
+            this.pnlKhachhang.BackColor = System.Drawing.Color.White;
+            this.pnlKhachhang.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnlKhachhang.Controls.Add(this.pictureBox5);
+            this.pnlKhachhang.Controls.Add(this.lblSokhach);
+            this.pnlKhachhang.Controls.Add(this.lblKhachhang);
+            this.pnlKhachhang.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlKhachhang.Location = new System.Drawing.Point(932, 108);
+            this.pnlKhachhang.Margin = new System.Windows.Forms.Padding(10);
+            this.pnlKhachhang.Name = "pnlKhachhang";
+            this.pnlKhachhang.Size = new System.Drawing.Size(319, 92);
+            this.pnlKhachhang.TabIndex = 9;
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.pictureBox5.BackColor = System.Drawing.Color.White;
+            this.pictureBox5.Image = global::FootballPitchManagement.Properties.Resources.icons8_user_100;
+            this.pictureBox5.Location = new System.Drawing.Point(253, 22);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(59, 60);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox5.TabIndex = 5;
+            this.pictureBox5.TabStop = false;
+            // 
+            // lblSokhach
+            // 
+            this.lblSokhach.AutoSize = true;
+            this.lblSokhach.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSokhach.Location = new System.Drawing.Point(13, 52);
+            this.lblSokhach.Name = "lblSokhach";
+            this.lblSokhach.Size = new System.Drawing.Size(45, 25);
+            this.lblSokhach.TabIndex = 2;
+            this.lblSokhach.Text = "200";
+            // 
             // lblKhachhang
             // 
             this.lblKhachhang.AutoSize = true;
@@ -472,102 +507,27 @@
             this.lblKhachhang.Size = new System.Drawing.Size(86, 20);
             this.lblKhachhang.TabIndex = 1;
             this.lblKhachhang.Text = "Khách hàng";
+            this.lblKhachhang.Click += new System.EventHandler(this.lblKhachhang_Click);
             // 
-            // lblSokhach
+            // chartDoanhThu
             // 
-            this.lblSokhach.AutoSize = true;
-            this.lblSokhach.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSokhach.Location = new System.Drawing.Point(19, 48);
-            this.lblSokhach.Name = "lblSokhach";
-            this.lblSokhach.Size = new System.Drawing.Size(45, 25);
-            this.lblSokhach.TabIndex = 2;
-            this.lblSokhach.Text = "200";
-            // 
-            // lblTylelapday
-            // 
-            this.lblTylelapday.AutoSize = true;
-            this.lblTylelapday.Font = new System.Drawing.Font("Segoe UI", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTylelapday.Location = new System.Drawing.Point(14, 10);
-            this.lblTylelapday.Name = "lblTylelapday";
-            this.lblTylelapday.Size = new System.Drawing.Size(93, 20);
-            this.lblTylelapday.TabIndex = 1;
-            this.lblTylelapday.Text = "Tỷ lệ lấp đầy";
-            // 
-            // lblPhamtram
-            // 
-            this.lblPhamtram.AutoSize = true;
-            this.lblPhamtram.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPhamtram.Location = new System.Drawing.Point(24, 48);
-            this.lblPhamtram.Name = "lblPhamtram";
-            this.lblPhamtram.Size = new System.Drawing.Size(50, 25);
-            this.lblPhamtram.TabIndex = 2;
-            this.lblPhamtram.Text = "87%";
-            // 
-            // pictureBox6
-            // 
-            this.pictureBox6.BackColor = System.Drawing.Color.White;
-            this.pictureBox6.Image = global::FootballPitchManagement.Properties.Resources.icons8_statistic_32__2_;
-            this.pictureBox6.Location = new System.Drawing.Point(147, 22);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(59, 60);
-            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox6.TabIndex = 5;
-            this.pictureBox6.TabStop = false;
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.BackColor = System.Drawing.Color.White;
-            this.pictureBox4.Image = global::FootballPitchManagement.Properties.Resources.icons8_calendar_94;
-            this.pictureBox4.Location = new System.Drawing.Point(144, 24);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(59, 60);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox4.TabIndex = 4;
-            this.pictureBox4.TabStop = false;
-            // 
-            // pictureBox5
-            // 
-            this.pictureBox5.BackColor = System.Drawing.Color.White;
-            this.pictureBox5.Image = global::FootballPitchManagement.Properties.Resources.icons8_user_100;
-            this.pictureBox5.Location = new System.Drawing.Point(144, 22);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(59, 60);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox5.TabIndex = 5;
-            this.pictureBox5.TabStop = false;
-            // 
-            // picTien
-            // 
-            this.picTien.BackColor = System.Drawing.Color.White;
-            this.picTien.Image = global::FootballPitchManagement.Properties.Resources.icons8_money_bag_60;
-            this.picTien.Location = new System.Drawing.Point(148, 24);
-            this.picTien.Name = "picTien";
-            this.picTien.Size = new System.Drawing.Size(59, 58);
-            this.picTien.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picTien.TabIndex = 3;
-            this.picTien.TabStop = false;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox2.Image = global::FootballPitchManagement.Properties.Resources.icons8_admin_50;
-            this.pictureBox2.Location = new System.Drawing.Point(824, 22);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(42, 38);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 2;
-            this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.pictureBox1.Image = global::FootballPitchManagement.Properties.Resources.Ảnh_chụp_màn_hình_2025_12_22_153310;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 22);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(59, 48);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
+            chartArea1.Name = "ChartArea1";
+            this.chartDoanhThu.ChartAreas.Add(chartArea1);
+            this.tableLayoutPanel1.SetColumnSpan(this.chartDoanhThu, 3);
+            this.chartDoanhThu.Dock = System.Windows.Forms.DockStyle.Fill;
+            legend1.Name = "Legend1";
+            this.chartDoanhThu.Legends.Add(legend1);
+            this.chartDoanhThu.Location = new System.Drawing.Point(273, 220);
+            this.chartDoanhThu.Margin = new System.Windows.Forms.Padding(25, 10, 25, 10);
+            this.chartDoanhThu.Name = "chartDoanhThu";
+            this.chartDoanhThu.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Berry;
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chartDoanhThu.Series.Add(series1);
+            this.chartDoanhThu.Size = new System.Drawing.Size(963, 520);
+            this.chartDoanhThu.TabIndex = 10;
+            this.chartDoanhThu.Text = "Doanh thu tháng";
             // 
             // frmAdmin
             // 
@@ -575,48 +535,45 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1261, 750);
-            this.Controls.Add(this.pnlMainAd);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.tableLayoutPanel1);
             this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "frmAdmin";
             this.Text = "frmAdmin";
             this.Load += new System.EventHandler(this.frmAdmin_Load);
+            this.tableLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.pnlMainAd.ResumeLayout(false);
-            this.pnlBody.ResumeLayout(false);
             this.pnlHead.ResumeLayout(false);
             this.pnlHead.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
-            this.panel6.ResumeLayout(false);
-            this.panel6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chartDoanhThu)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picTien)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.pnlTongdoanhthu.ResumeLayout(false);
+            this.pnlTongdoanhthu.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picTien)).EndInit();
+            this.pnlLuotdatsan.ResumeLayout(false);
+            this.pnlLuotdatsan.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            this.pnlKhachhang.ResumeLayout(false);
+            this.pnlKhachhang.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartDoanhThu)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnCaiDat;
         private System.Windows.Forms.Button btnNhanVien;
         private System.Windows.Forms.Button btnBaoCao;
@@ -626,30 +583,22 @@
         private System.Windows.Forms.Button btnQuanLySan;
         private System.Windows.Forms.Button btnTongQuan;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Panel pnlMainAd;
         private System.Windows.Forms.Panel pnlHead;
-        private System.Windows.Forms.Panel pnlBody;
-        private System.Windows.Forms.Label lblTongQuan;
-        private System.Windows.Forms.Button btnNameAd;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chartDoanhThu;
+        private System.Windows.Forms.Button btnNameAd;
+        private System.Windows.Forms.Label lblTongQuan;
+        private System.Windows.Forms.Panel pnlTongdoanhthu;
+        private System.Windows.Forms.PictureBox picTien;
+        private System.Windows.Forms.Label lblTongDoanhThu;
         private System.Windows.Forms.Label lblTongdoanh;
+        private System.Windows.Forms.Panel pnlLuotdatsan;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Label lblLuotdatsan;
         private System.Windows.Forms.Label lblSoluotdat;
+        private System.Windows.Forms.Panel pnlKhachhang;
+        private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.Label lblSokhach;
         private System.Windows.Forms.Label lblKhachhang;
-        private System.Windows.Forms.Label lblPhamtram;
-        private System.Windows.Forms.Label lblTylelapday;
-        private System.Windows.Forms.PictureBox picTien;
-        private System.Windows.Forms.Label lblTongDoanhThu;
-        private System.Windows.Forms.PictureBox pictureBox6;
-        private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartDoanhThu;
     }
 }
