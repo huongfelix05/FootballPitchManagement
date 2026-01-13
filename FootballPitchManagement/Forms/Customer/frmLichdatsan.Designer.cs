@@ -60,7 +60,6 @@
             this.btnHuy = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.cboLoaiSan = new System.Windows.Forms.ComboBox();
             this.dtpNgayXem = new System.Windows.Forms.DateTimePicker();
             this.cboChiNhanh = new System.Windows.Forms.ComboBox();
@@ -74,8 +73,9 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.grpThongTinDon = new System.Windows.Forms.GroupBox();
             this.flpDanhSachDonHang = new System.Windows.Forms.FlowLayoutPanel();
-            this.flpDanhSachSan = new System.Windows.Forms.FlowLayoutPanel();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.flpDanhSachSan = new System.Windows.Forms.FlowLayoutPanel();
             this.groupBox2.SuspendLayout();
             this.panel7.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -85,7 +85,6 @@
             this.panel2.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.panel9.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -95,6 +94,7 @@
             this.groupBox4.SuspendLayout();
             this.panel4.SuspendLayout();
             this.grpThongTinDon.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -105,7 +105,7 @@
             this.groupBox2.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(0, 88);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(356, 143);
+            this.groupBox2.Size = new System.Drawing.Size(357, 143);
             this.groupBox2.TabIndex = 9;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "THÔNG TIN KHÁCH HÀNG";
@@ -122,7 +122,7 @@
             this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel7.Location = new System.Drawing.Point(3, 30);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(350, 110);
+            this.panel7.Size = new System.Drawing.Size(351, 110);
             this.panel7.TabIndex = 0;
             // 
             // label7
@@ -234,7 +234,7 @@
             this.groupBox1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(356, 88);
+            this.groupBox1.Size = new System.Drawing.Size(357, 88);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "THÔNG TIN SÂN";
@@ -250,7 +250,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(3, 30);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(350, 55);
+            this.panel3.Size = new System.Drawing.Size(351, 55);
             this.panel3.TabIndex = 0;
             // 
             // lblGiaGoc
@@ -347,7 +347,7 @@
             this.groupBox3.ForeColor = System.Drawing.SystemColors.ControlText;
             this.groupBox3.Location = new System.Drawing.Point(0, 231);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(356, 216);
+            this.groupBox3.Size = new System.Drawing.Size(357, 216);
             this.groupBox3.TabIndex = 10;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "THỜI GIAN VS CHI PHÍ";
@@ -366,7 +366,7 @@
             this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel8.Location = new System.Drawing.Point(3, 30);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(350, 183);
+            this.panel8.Size = new System.Drawing.Size(351, 183);
             this.panel8.TabIndex = 0;
             // 
             // lblThongBao
@@ -388,9 +388,9 @@
             this.panel2.Controls.Add(this.groupBox2);
             this.panel2.Controls.Add(this.groupBox1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(837, 3);
+            this.panel2.Location = new System.Drawing.Point(836, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(356, 660);
+            this.panel2.Size = new System.Drawing.Size(357, 660);
             this.panel2.TabIndex = 3;
             // 
             // groupBox7
@@ -400,7 +400,7 @@
             this.groupBox7.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox7.Location = new System.Drawing.Point(0, 447);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(356, 210);
+            this.groupBox7.Size = new System.Drawing.Size(357, 210);
             this.groupBox7.TabIndex = 11;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "GHI CHÚ VS ĐẶT SÂN";
@@ -417,7 +417,7 @@
             this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel9.Location = new System.Drawing.Point(3, 30);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(350, 177);
+            this.panel9.Size = new System.Drawing.Size(351, 177);
             this.panel9.TabIndex = 0;
             // 
             // label2
@@ -464,16 +464,6 @@
             this.label1.TabIndex = 12;
             this.label1.Text = "17:00 - 21:00";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImage = global::FootballPitchManagement.Properties.Resources._29001677_3d_growth_bar_graph_vector_business_concept1;
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(41, 25);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(88, 43);
-            this.pictureBox1.TabIndex = 11;
-            this.pictureBox1.TabStop = false;
-            // 
             // cboLoaiSan
             // 
             this.cboLoaiSan.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -508,7 +498,7 @@
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.41493F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 66.58507F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 361F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 362F));
             this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel2, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.flpDanhSachSan, 1, 0);
@@ -530,7 +520,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(273, 660);
+            this.panel1.Size = new System.Drawing.Size(272, 660);
             this.panel1.TabIndex = 2;
             // 
             // groupBox6
@@ -541,7 +531,7 @@
             this.groupBox6.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox6.Location = new System.Drawing.Point(0, 134);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(273, 68);
+            this.groupBox6.Size = new System.Drawing.Size(272, 68);
             this.groupBox6.TabIndex = 9;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "LOẠI SÂN";
@@ -553,7 +543,7 @@
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel6.Location = new System.Drawing.Point(3, 30);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(267, 35);
+            this.panel6.Size = new System.Drawing.Size(266, 35);
             this.panel6.TabIndex = 8;
             // 
             // groupBox5
@@ -564,7 +554,7 @@
             this.groupBox5.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox5.Location = new System.Drawing.Point(0, 66);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(273, 68);
+            this.groupBox5.Size = new System.Drawing.Size(272, 68);
             this.groupBox5.TabIndex = 8;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "CHỌN NGÀY";
@@ -576,7 +566,7 @@
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel5.Location = new System.Drawing.Point(3, 30);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(267, 35);
+            this.panel5.Size = new System.Drawing.Size(266, 35);
             this.panel5.TabIndex = 8;
             // 
             // groupBox4
@@ -587,7 +577,7 @@
             this.groupBox4.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox4.Location = new System.Drawing.Point(0, 0);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(273, 66);
+            this.groupBox4.Size = new System.Drawing.Size(272, 66);
             this.groupBox4.TabIndex = 7;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "CHỌN CHI NHÁNH";
@@ -599,7 +589,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(3, 30);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(267, 33);
+            this.panel4.Size = new System.Drawing.Size(266, 33);
             this.panel4.TabIndex = 8;
             // 
             // grpThongTinDon
@@ -610,7 +600,7 @@
             this.grpThongTinDon.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpThongTinDon.Location = new System.Drawing.Point(0, 212);
             this.grpThongTinDon.Name = "grpThongTinDon";
-            this.grpThongTinDon.Size = new System.Drawing.Size(273, 448);
+            this.grpThongTinDon.Size = new System.Drawing.Size(272, 448);
             this.grpThongTinDon.TabIndex = 6;
             this.grpThongTinDon.TabStop = false;
             this.grpThongTinDon.Text = "QUẢN LÝ ĐƠN ĐẶT";
@@ -624,9 +614,19 @@
             this.flpDanhSachDonHang.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flpDanhSachDonHang.Location = new System.Drawing.Point(3, 30);
             this.flpDanhSachDonHang.Name = "flpDanhSachDonHang";
-            this.flpDanhSachDonHang.Size = new System.Drawing.Size(267, 415);
+            this.flpDanhSachDonHang.Size = new System.Drawing.Size(266, 415);
             this.flpDanhSachDonHang.TabIndex = 0;
             this.flpDanhSachDonHang.WrapContents = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImage = global::FootballPitchManagement.Properties.Resources._29001677_3d_growth_bar_graph_vector_business_concept1;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Location = new System.Drawing.Point(41, 25);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(88, 43);
+            this.pictureBox1.TabIndex = 11;
+            this.pictureBox1.TabStop = false;
             // 
             // flpDanhSachSan
             // 
@@ -635,7 +635,7 @@
             this.flpDanhSachSan.BackgroundImage = global::FootballPitchManagement.Properties.Resources.pngtree_green_field_on_the_stadium_with_sky_view_at_evening_time_image_16465673;
             this.flpDanhSachSan.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.flpDanhSachSan.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flpDanhSachSan.Location = new System.Drawing.Point(282, 3);
+            this.flpDanhSachSan.Location = new System.Drawing.Point(281, 3);
             this.flpDanhSachSan.Name = "flpDanhSachSan";
             this.flpDanhSachSan.Size = new System.Drawing.Size(549, 660);
             this.flpDanhSachSan.TabIndex = 4;
@@ -663,7 +663,6 @@
             this.groupBox7.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
             this.panel9.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
@@ -673,6 +672,7 @@
             this.groupBox4.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.grpThongTinDon.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }

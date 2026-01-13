@@ -329,9 +329,13 @@ namespace FootballPitchManagement
         private void btnTimKH_Click(object sender, EventArgs e)
         {
             string sdt = txtSDT.Text.Trim();
+
+            // 1. Kiểm tra nhập liệu
             if (string.IsNullOrEmpty(sdt) || sdt.Length < 10)
             {
-                MessageBox.Show("Số điện thoại không hợp lệ!\nVui lòng nhập đúng số điện thoại khách hàng.", "Lỗi Nhập Liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Vui lòng nhập số điện thoại hợp lệ (ít nhất 10 số)!",
+                    "Lỗi Nhập Liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtSDT.Focus();
                 return;
             }
 
@@ -346,22 +350,45 @@ namespace FootballPitchManagement
 
                     if (r.Read())
                     {
+                        // === TRƯỜNG HỢP 1: TÌM THẤY KHÁCH ===
                         txtTenKhach.Text = r["HoTen"].ToString();
                         lblMaKH.Text = r["MaKH"].ToString();
-                        txtTenKhach.ForeColor = Color.Red;
+                        txtTenKhach.ForeColor = Color.Green;
 
+                        // Load lịch sử đơn hàng của khách này
                         LoadDanhSachDonHangCuaKhach(int.Parse(lblMaKH.Text));
+
+                        MessageBox.Show("✅ Đã tìm thấy khách hàng: " + txtTenKhach.Text,
+                            "Thành Công", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
+                        // === TRƯỜNG HỢP 2: KHÔNG TÌM THẤY ===
                         r.Close();
-                        if (MessageBox.Show("Không tìm thấy khách hàng này.\nBạn có muốn THÊM MỚI khách hàng ngay không?", "Khách Hàng Mới", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                        {
-                            ThemKhachHangMoi(sdt, conn);
-                        }
+
+                        // 1. Reset thông tin để ngăn chặn việc đặt sân
+                        lblMaKH.Text = "0";
+                        txtTenKhach.Text = "";
+
+                        // Xóa danh sách đơn hàng cũ (nếu có)
+                        if (flpDanhSachDonHang != null) flpDanhSachDonHang.Controls.Clear();
+
+                        // 2. Thông báo lỗi KHÔNG CHO PHÉP đặt
+                        MessageBox.Show(
+                            "❌ Không tìm thấy thông tin khách hàng với số điện thoại này!\n\n" +
+                            "Vui lòng kiểm tra lại SĐT hoặc yêu cầu khách hàng đăng ký thành viên trước khi đặt sân.",
+                            "Không Tìm Thấy",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error); // Dùng icon Error màu đỏ
+
+                        txtSDT.Focus();
+                        txtSDT.SelectAll();
                     }
                 }
-                catch (Exception ex) { MessageBox.Show($"Lỗi khi tìm kiếm khách hàng:\n{ex.Message}", "Lỗi Hệ Thống", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Lỗi hệ thống khi tìm khách:\n{ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -385,7 +412,7 @@ namespace FootballPitchManagement
         {
             // Validation
             if (_maSanDangChon == 0) { MessageBox.Show("Vui lòng chọn một sân bóng!", "Chưa Chọn Sân", MessageBoxButtons.OK, MessageBoxIcon.Warning); return; }
-            if (lblMaKH.Text == "0" || string.IsNullOrEmpty(lblMaKH.Text)) { MessageBox.Show("Vui lòng chọn khách hàng!", "Chưa Chọn Khách", MessageBoxButtons.OK, MessageBoxIcon.Warning); return; }
+            if (lblMaKH.Text == "0" || string.IsNullOrEmpty(lblMaKH.Text)) { MessageBox.Show("Vui lòng nhập sđt và tìm tên khách hàng!", "Chưa Chọn Khách", MessageBoxButtons.OK, MessageBoxIcon.Warning); return; }
 
             DateTime ngayDat = dtpNgayXem.Value.Date;
             TimeSpan bd = dtpGioBatDau.Value.TimeOfDay;

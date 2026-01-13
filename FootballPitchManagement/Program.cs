@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuanLySanBong;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,10 +18,12 @@ namespace FootballPitchManagement
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             // Application.Run(new QuenMatKhau());
-           Application.Run(new frmMainKH());
+           //Application.Run(new frmMainKH());
             //Application.Run(new frmLogin());
             //Application.Run(new frmAdmin());
-          // Application.Run(new frmLichdatsan());
+            Application.Run(new frmLichdatsan());
+          //  Application.Run(new frmQuanLyDatSan());
+
         }
     }
 }
