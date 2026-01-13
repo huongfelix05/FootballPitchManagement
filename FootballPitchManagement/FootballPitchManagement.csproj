@@ -117,10 +117,10 @@
     <Compile Include="frmDoanhThu.Designer.cs">
       <DependentUpon>frmDoanhThu.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Customer\frmQuanLiDatSan.cs">
+    <Compile Include="Forms\Admin\frmQuanLiDatSan.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Customer\frmQuanLiDatSan.Designer.cs">
+    <Compile Include="Forms\Admin\frmQuanLiDatSan.Designer.cs">
       <DependentUpon>frmQuanLiDatSan.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -174,7 +174,7 @@
     <EmbeddedResource Include="frmDoanhThu.resx">
       <DependentUpon>frmDoanhThu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Customer\frmQuanLiDatSan.resx">
+    <EmbeddedResource Include="Forms\Admin\frmQuanLiDatSan.resx">
       <DependentUpon>frmQuanLiDatSan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
