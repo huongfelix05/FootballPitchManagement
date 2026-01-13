@@ -151,40 +151,46 @@ namespace QuanLySanBong
 
         void TinhToanThongKe()
         {
-            // Kiểm tra dữ liệu rỗng để tránh lỗi
+            // Kiểm tra dữ liệu để tránh lỗi
             if (dtDuLieuGoc == null) return;
 
             // 1. Tổng đơn
             lblTongDon.Text = dtDuLieuGoc.Rows.Count.ToString();
 
-            // 2. Đã hủy (Đếm theo cột TrangThai)
+            // 2. Đã hủy
             lblDaHuy.Text = dtDuLieuGoc.Select("TrangThai = 'DA_HUY'").Length.ToString();
 
-            // 3. Đã xác nhận/Hoàn thành (Đếm theo cột TrangThai)
-            // Lưu ý: Tùy vào dữ liệu của bạn muốn đếm cái nào. 
-            // Ở đây tôi cộng cả HOAN_THANH và DA_XAC_NHAN (nếu có)
-            int countHoanThanh = dtDuLieuGoc.Select("TrangThai = 'HOAN_THANH'").Length;
+            // 3. SỬA ĐOẠN NÀY: CHỈ ĐẾM ĐƠN "ĐÃ XÁC NHẬN" (Màu xanh lá)
+            // (Bỏ phần cộng HOAN_THANH đi)
             int countDaXacNhan = dtDuLieuGoc.Select("TrangThai = 'DA_XAC_NHAN'").Length;
-            lblDaXacNhan.Text = (countHoanThanh + countDaXacNhan).ToString();
 
-            // --- 4. ĐÃ THANH TOÁN (CODE MỚI THÊM) ---
-            // Logic: Đếm trong cột 'TrangThaiThanhToan' những dòng có giá trị 'DA_THANH_TOAN'
+            // Gán kết quả vào ô label (Trên giao diện bạn đang đặt tên nó là lblDaXacNhan hoặc lblHoanThanh)
+            // Dựa vào code cũ thì tên nó là lblDaXacNhan
+            lblDaXacNhan.Text = countDaXacNhan.ToString();
+
+
+            // 4. Nếu bạn muốn hiển thị số "Hoàn Thành" ở một ô khác (ví dụ ô Chờ xác nhận cũ)
+            // thì dùng đoạn này, còn không thì bỏ qua.
             try
             {
-                // Kiểm tra xem trong bảng dữ liệu có cột này không trước khi đếm
+                //lblHoanThanh.Text = dtDuLieuGoc.Select("TrangThai = 'HOAN_THANH'").Length.ToString();
+            }
+            catch { }
+
+
+            // 5. Đã thanh toán (Giữ nguyên logic cũ)
+            try
+            {
                 if (dtDuLieuGoc.Columns.Contains("TrangThaiThanhToan"))
                 {
-                    int countDaTT = dtDuLieuGoc.Select("TrangThaiThanhToan = 'DA_THANH_TOAN'").Length;
+                    int countDaTT = dtDuLieuGoc.Select("TrangThaiThanhToan = 'DA_THANH_TOAN' OR TrangThaiThanhToan = 'Đã TT'").Length;
                     lblDaThanhToan.Text = countDaTT.ToString();
                 }
             }
             catch
             {
-                // Nếu lỗi thì hiện 0
                 lblDaThanhToan.Text = "0";
             }
-
-            
         }
 
         // Sự kiện dùng chung cho các nút lọc (được gán ở Form_Load)
