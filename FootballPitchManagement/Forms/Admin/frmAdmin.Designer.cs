@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.pnlLuotdatsan = new System.Windows.Forms.Panel();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.lblLuotdatsan = new System.Windows.Forms.Label();
@@ -171,20 +171,20 @@
             // 
             // chartDoanhThu
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chartDoanhThu.ChartAreas.Add(chartArea1);
+            chartArea3.Name = "ChartArea1";
+            this.chartDoanhThu.ChartAreas.Add(chartArea3);
             this.tlpMainAdmin.SetColumnSpan(this.chartDoanhThu, 3);
             this.chartDoanhThu.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Name = "Legend1";
-            this.chartDoanhThu.Legends.Add(legend1);
+            legend3.Name = "Legend1";
+            this.chartDoanhThu.Legends.Add(legend3);
             this.chartDoanhThu.Location = new System.Drawing.Point(25, 221);
             this.chartDoanhThu.Margin = new System.Windows.Forms.Padding(25, 10, 25, 10);
             this.chartDoanhThu.Name = "chartDoanhThu";
             this.chartDoanhThu.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Berry;
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chartDoanhThu.Series.Add(series1);
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.chartDoanhThu.Series.Add(series3);
             this.chartDoanhThu.Size = new System.Drawing.Size(974, 519);
             this.chartDoanhThu.TabIndex = 10;
             this.chartDoanhThu.Text = "Doanh thu tháng";
@@ -512,10 +512,10 @@
             this.btnCaiDat.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue;
             this.btnCaiDat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCaiDat.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCaiDat.Location = new System.Drawing.Point(0, 552);
+            this.btnCaiDat.Location = new System.Drawing.Point(12, 552);
             this.btnCaiDat.Name = "btnCaiDat";
             this.btnCaiDat.Padding = new System.Windows.Forms.Padding(60, 0, 0, 0);
-            this.btnCaiDat.Size = new System.Drawing.Size(242, 54);
+            this.btnCaiDat.Size = new System.Drawing.Size(230, 54);
             this.btnCaiDat.TabIndex = 8;
             this.btnCaiDat.Text = "Cài Đặt\r\n";
             this.btnCaiDat.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -527,10 +527,10 @@
             this.btnNhanVien.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue;
             this.btnNhanVien.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNhanVien.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNhanVien.Location = new System.Drawing.Point(0, 492);
+            this.btnNhanVien.Location = new System.Drawing.Point(12, 492);
             this.btnNhanVien.Name = "btnNhanVien";
             this.btnNhanVien.Padding = new System.Windows.Forms.Padding(60, 0, 0, 0);
-            this.btnNhanVien.Size = new System.Drawing.Size(242, 54);
+            this.btnNhanVien.Size = new System.Drawing.Size(230, 54);
             this.btnNhanVien.TabIndex = 7;
             this.btnNhanVien.Text = "Nhân Viên";
             this.btnNhanVien.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -542,10 +542,10 @@
             this.btnBaoCao.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue;
             this.btnBaoCao.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBaoCao.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBaoCao.Location = new System.Drawing.Point(0, 382);
+            this.btnBaoCao.Location = new System.Drawing.Point(12, 382);
             this.btnBaoCao.Name = "btnBaoCao";
             this.btnBaoCao.Padding = new System.Windows.Forms.Padding(60, 0, 0, 0);
-            this.btnBaoCao.Size = new System.Drawing.Size(242, 54);
+            this.btnBaoCao.Size = new System.Drawing.Size(230, 54);
             this.btnBaoCao.TabIndex = 6;
             this.btnBaoCao.Text = "Báo Cáo";
             this.btnBaoCao.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -557,10 +557,10 @@
             this.btnKhachHang.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue;
             this.btnKhachHang.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnKhachHang.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnKhachHang.Location = new System.Drawing.Point(0, 322);
+            this.btnKhachHang.Location = new System.Drawing.Point(12, 322);
             this.btnKhachHang.Name = "btnKhachHang";
             this.btnKhachHang.Padding = new System.Windows.Forms.Padding(60, 0, 0, 0);
-            this.btnKhachHang.Size = new System.Drawing.Size(242, 54);
+            this.btnKhachHang.Size = new System.Drawing.Size(230, 54);
             this.btnKhachHang.TabIndex = 5;
             this.btnKhachHang.Text = "Khách Hàng ";
             this.btnKhachHang.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -572,10 +572,10 @@
             this.btnDoanhThu.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue;
             this.btnDoanhThu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDoanhThu.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDoanhThu.Location = new System.Drawing.Point(0, 211);
+            this.btnDoanhThu.Location = new System.Drawing.Point(12, 211);
             this.btnDoanhThu.Name = "btnDoanhThu";
             this.btnDoanhThu.Padding = new System.Windows.Forms.Padding(60, 0, 0, 0);
-            this.btnDoanhThu.Size = new System.Drawing.Size(242, 54);
+            this.btnDoanhThu.Size = new System.Drawing.Size(230, 54);
             this.btnDoanhThu.TabIndex = 4;
             this.btnDoanhThu.Text = "Thu Doanh ";
             this.btnDoanhThu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -587,10 +587,10 @@
             this.btnQuanLyDatSan.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue;
             this.btnQuanLyDatSan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnQuanLyDatSan.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnQuanLyDatSan.Location = new System.Drawing.Point(0, 151);
+            this.btnQuanLyDatSan.Location = new System.Drawing.Point(12, 151);
             this.btnQuanLyDatSan.Name = "btnQuanLyDatSan";
             this.btnQuanLyDatSan.Padding = new System.Windows.Forms.Padding(60, 0, 0, 0);
-            this.btnQuanLyDatSan.Size = new System.Drawing.Size(242, 54);
+            this.btnQuanLyDatSan.Size = new System.Drawing.Size(230, 54);
             this.btnQuanLyDatSan.TabIndex = 3;
             this.btnQuanLyDatSan.Text = "Quản Lý Đặt Sân";
             this.btnQuanLyDatSan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -603,10 +603,10 @@
             this.btnQuanLySan.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue;
             this.btnQuanLySan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnQuanLySan.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnQuanLySan.Location = new System.Drawing.Point(0, 91);
+            this.btnQuanLySan.Location = new System.Drawing.Point(12, 91);
             this.btnQuanLySan.Name = "btnQuanLySan";
             this.btnQuanLySan.Padding = new System.Windows.Forms.Padding(60, 0, 0, 0);
-            this.btnQuanLySan.Size = new System.Drawing.Size(242, 54);
+            this.btnQuanLySan.Size = new System.Drawing.Size(230, 54);
             this.btnQuanLySan.TabIndex = 2;
             this.btnQuanLySan.Text = "Quản lý Sân\r\n";
             this.btnQuanLySan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -621,10 +621,10 @@
             this.btnTongQuan.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue;
             this.btnTongQuan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTongQuan.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTongQuan.Location = new System.Drawing.Point(0, 31);
+            this.btnTongQuan.Location = new System.Drawing.Point(12, 31);
             this.btnTongQuan.Name = "btnTongQuan";
             this.btnTongQuan.Padding = new System.Windows.Forms.Padding(60, 0, 0, 0);
-            this.btnTongQuan.Size = new System.Drawing.Size(242, 54);
+            this.btnTongQuan.Size = new System.Drawing.Size(230, 54);
             this.btnTongQuan.TabIndex = 1;
             this.btnTongQuan.Text = "Tổng Quan";
             this.btnTongQuan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;

@@ -1,4 +1,4 @@
-﻿namespace QuanLySanBong
+﻿namespace FootballPitchManagement.Forms.Admin
 {
     partial class frmQuanLyDatSan
     {

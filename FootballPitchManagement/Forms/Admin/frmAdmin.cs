@@ -1,5 +1,6 @@
 ﻿using FootballPitchManagement.Common;
 using FootballPitchManagement.Forms.Admin;
+//using QuanLySanBong;
 using System;
 using System.Data;
 using System.Data.SqlClient;
@@ -309,16 +310,16 @@ namespace FootballPitchManagement
         {
             try
             {
-                if (currentFormChild is frmQuanlysan)
+                if (currentFormChild is frmQuanLyDatSan)
                 {
                     return;
                 }
 
-                OpenChildForm(new frmQuanlysan());
+                OpenChildForm(new frmQuanLyDatSan());
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Lỗi mở Quản lý sân: {ex.Message}", "Lỗi",
+                MessageBox.Show($"Lỗi mở Quản lý đặt sân: {ex.Message}", "Lỗi",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

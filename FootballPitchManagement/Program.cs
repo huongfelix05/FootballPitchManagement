@@ -1,4 +1,5 @@
-﻿using QuanLySanBong;
+﻿using FootballPitchManagement.Forms.Admin;
+//using QuanLySanBong;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,14 +21,14 @@ namespace FootballPitchManagement
             // Application.Run(new QuenMatKhau());
            //Application.Run(new frmMainKH());
             //Application.Run(new frmLogin());
-            //Application.Run(new frmAdmin());
+           //Application.Run(new frmAdmin());
             //Application.Run(new frmLichdatsan());
-          //  Application.Run(new frmQuanLyDatSan());
+          // Application.Run(new frmQuanLyDatSan());
 
             // Application.Run(new frmDoAn());
-           // Application.Run(new frmMainKH());
-           // Application.Run(new frmLogin());
-             Application.Run(new frmAdmin());
+           //Application.Run(new frmMainKH());
+          // Application.Run(new frmLogin());
+            Application.Run(new frmAdmin());
             //Application.Run(new frmLichdatsan());
            // Application.Run(new frmQuanlysan()); 
         }

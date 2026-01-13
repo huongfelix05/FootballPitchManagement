@@ -117,11 +117,11 @@
     <Compile Include="frmDoanhThu.Designer.cs">
       <DependentUpon>frmDoanhThu.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Admin\frmQuanLiDatSan.cs">
+    <Compile Include="Forms\Admin\frmQuanLyDatSan.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Admin\frmQuanLiDatSan.Designer.cs">
-      <DependentUpon>frmQuanLiDatSan.cs</DependentUpon>
+    <Compile Include="Forms\Admin\frmQuanLyDatSan.Designer.cs">
+      <DependentUpon>frmQuanLyDatSan.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -174,8 +174,8 @@
     <EmbeddedResource Include="frmDoanhThu.resx">
       <DependentUpon>frmDoanhThu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Admin\frmQuanLiDatSan.resx">
-      <DependentUpon>frmQuanLiDatSan.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Admin\frmQuanLyDatSan.resx">
+      <DependentUpon>frmQuanLyDatSan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
