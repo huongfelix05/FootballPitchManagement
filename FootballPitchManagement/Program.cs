@@ -1,5 +1,5 @@
 ﻿using FootballPitchManagement.Forms.Admin;
-//using QuanLySanBong;
+using QuanLySanBong;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,8 +16,8 @@ namespace FootballPitchManagement
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
+            //Application.EnableVisualStyles();
+           // Application.SetCompatibleTextRenderingDefault(false);
             // Application.Run(new QuenMatKhau());
            //Application.Run(new frmMainKH());
             //Application.Run(new frmLogin());

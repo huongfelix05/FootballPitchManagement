@@ -54,6 +54,33 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>9</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\DatabaseConnection.cs" />
@@ -63,17 +90,23 @@
     <Compile Include="Forms\Admin\frmAdmin.Designer.cs">
       <DependentUpon>frmAdmin.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Admin\frmDoanhThu.cs">
+    <Compile Include="Forms\Admin\frmdoanhthuu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Admin\frmDoanhThu.Designer.cs">
-      <DependentUpon>frmDoanhThu.cs</DependentUpon>
+    <Compile Include="Forms\Admin\frmdoanhthuu.Designer.cs">
+      <DependentUpon>frmdoanhthuu.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Admin\frmQuanlysan.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Admin\frmQuanlysan.Designer.cs">
       <DependentUpon>frmQuanlysan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Admin\frmQuanLyDatSan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Admin\frmQuanLyDatSan.Designer.cs">
+      <DependentUpon>frmQuanLyDatSan.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Admin\frmThemSuaSan.cs">
       <SubType>Form</SubType>
@@ -116,24 +149,13 @@
     </Compile>
     <Compile Include="Forms\Auth\frmRegister.Designer.cs">
       <DependentUpon>frmRegister.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </Compile>
     <Compile Include="Forms\Customer\Nhap1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Customer\Nhap1.Designer.cs">
       <DependentUpon>Nhap1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmDoanhThu.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmDoanhThu.Designer.cs">
-      <DependentUpon>frmDoanhThu.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Admin\frmQuanLyDatSan.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Admin\frmQuanLyDatSan.Designer.cs">
-      <DependentUpon>frmQuanLyDatSan.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -158,11 +180,14 @@
     <EmbeddedResource Include="Forms\Admin\frmAdmin.resx">
       <DependentUpon>frmAdmin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Admin\frmDoanhThu.resx">
-      <DependentUpon>frmDoanhThu.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Admin\frmdoanhthuu.resx">
+      <DependentUpon>frmdoanhthuu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Admin\frmQuanlysan.resx">
       <DependentUpon>frmQuanlysan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Admin\frmQuanLyDatSan.resx">
+      <DependentUpon>frmQuanLyDatSan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Admin\frmThemSuaSan.resx">
       <DependentUpon>frmThemSuaSan.cs</DependentUpon>
@@ -188,12 +213,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Customer\Nhap1.resx">
       <DependentUpon>Nhap1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmDoanhThu.resx">
-      <DependentUpon>frmDoanhThu.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Admin\frmQuanLyDatSan.resx">
-      <DependentUpon>frmQuanLyDatSan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -229,230 +248,80 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Lovepik_com-400166909-football-field.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\icons8-calendar-48.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\icons8-calendar-50.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\calendar.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\icons8-home-50.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\icons8-booking-80.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\icons8-fast-food-50.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\icons8-bill-50.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\icons8-feedback-50.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\icons8-customer-50.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\grass-structure-plant-field-lawn-green-976043-pxhere.com.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\grass-structure-plant-field-lawn-green-976043-pxhere.com1.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\icons8-user-50.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Lovepik_com-400166909-football-field1.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\pexels-pixabay-46798.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\icons8-eye-80.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\icons8-eye-64.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\wind-21844_256.gif" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\snow-9996_256.gif" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\z7323897720284_a54d07854b792a7723b12d3787f07cb2.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\nút thoát.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\trái banh.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\ảnh mô phỏng sân 5-7.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\ảnh sân 5.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\ảnh sân 5 người.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\ảnh sân 7.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Ảnh chụp màn hình 2025-12-22 153310.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\icons8-admin-50.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\icons8-money-bag-60.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\icons8-calendar-48 %281%29.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\icons8-calendar-94.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\icons8-user-100.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\icons8-statistic-32.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\icons8-statistic-32 %282%29.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\7ef84578-33d5-496f-ba37-d92901052ffe.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\pngtree-green-field-on-the-stadium-with-sky-view-at-evening-time-image_16465673.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\pngtree-beautiful-grass-football-field-with-bokeh-background-picture-image_15553657.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\6d444db096de763b4f84dfee0ace1663.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\29001677-3d-growth-bar-graph-vector-business-concept.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\bbb.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\pngtree-soccer-ball-lying-on-vibrant-green-grass-field-image_16734728.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\29001677-3d-growth-bar-graph-vector-business-concept1.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\icons8-add.gif" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\icons8-add-48.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\z7323897720284_a54d07854b792a7723b12d3787f07cb21.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\icons8-homepage-48.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\logo.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\icons8-homepage-481.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\z7323897720284_a54d07854b792a7723b12d3787f07cb22.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\icons8-add-481.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\icons8-add1.gif" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\logo1.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\icons8-field-64.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\icons8-calendar-64.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\icons8-revenue-64.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Ảnh chụp màn hình 2026-01-13 221715.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\6d209b84-ea13-48d4-ad28-85d889ae277c.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\90e6eb89-de97-49e6-8110-f31832cd4608.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\6d209b84-ea13-48d4-ad28-85d889ae277c1.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\image %282%29.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\image %281%29.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\image.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\90e6eb89-de97-49e6-8110-f31832cd46081.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\90e6eb89-de97-49e6-8110-f31832cd46082.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\icons8-home-50 %281%29.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\icons8-home-50 %281%291.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\icons8-home-40.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\icons8-field-94.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\icons8-calendar-48 %282%29.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\icons8-revenue-48.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\icons8-staff-100.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\icons8-account-management-53.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\icons8-report-48.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\icons8-setting-100.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\icons8-setting-64.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\icons8-food-bar-100.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

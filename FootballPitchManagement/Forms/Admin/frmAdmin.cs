@@ -1,5 +1,7 @@
 ﻿using FootballPitchManagement.Common;
 using FootballPitchManagement.Forms.Admin;
+using QuanLySanBong;
+
 //using QuanLySanBong;
 using System;
 using System.Data;
