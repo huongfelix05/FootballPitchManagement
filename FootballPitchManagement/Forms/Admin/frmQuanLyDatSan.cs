@@ -4,7 +4,6 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq; // Cần thêm thư viện này để dùng LINQ
 using System.Windows.Forms;
-using FootballPitchManagement.Common;
 
 namespace QuanLySanBong
 {
@@ -23,23 +22,8 @@ namespace QuanLySanBong
 
         private void frmQuanLyDatSan_Load(object sender, EventArgs e)
         {
-            try
-            {
-                if (!DatabaseConnection.TestConnection(out string error))
-                {
-                    DatabaseConnection.ShowConnectionError(error);
-                    this.Close();
-                    return;
-                }
-
-                CaiDatGiaoDien();
+            CaiDatGiaoDien();
             LayDuLieuTuDatabase(); // Chỉ gọi DB 1 lần khi mở form (hoặc khi cần Refresh)
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Lỗi khởi tạo form: {ex.Message}", "Lỗi", 
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
 
         // --- PHẦN 1: CẤU HÌNH GIAO DIỆN ---
@@ -103,8 +87,7 @@ namespace QuanLySanBong
                     conn.Open();
                     SqlDataAdapter da = new SqlDataAdapter(sql, conn);
                     dtDuLieuGoc = new DataTable(); // Reset lại bảng gốc
-                        da.Fill(dtDuLieuGoc);
-                    }
+                    da.Fill(dtDuLieuGoc);
                 }
 
                 // Sau khi lấy dữ liệu về, gọi hàm lọc để hiển thị lên lưới
@@ -124,52 +107,46 @@ namespace QuanLySanBong
             if (dtDuLieuGoc.Rows.Count == 0) return;
 
             // 1. Lấy giá trị từ các control
-                string tuKhoa = txtTimKiem.Text.ToLower().Trim();
+            string tuKhoa = txtTimKiem.Text.ToLower().Trim();
             string trangThaiChon = cboTrangThai.SelectedValue.ToString();
             DateTime tuNgay = dtpTuNgay.Value.Date; // Chỉ lấy ngày, bỏ giờ
-                DateTime denNgay = dtpDenNgay.Value.Date;
+            DateTime denNgay = dtpDenNgay.Value.Date;
 
             // 2. Sử dụng LINQ để lọc dữ liệu từ DataTable gốc
             // Logic: Lọc những dòng thỏa mãn TẤT CẢ điều kiện
-                var ketQuaLoc = dtDuLieuGoc.AsEnumerable().Where(row =>
-                {
+            var ketQuaLoc = dtDuLieuGoc.AsEnumerable().Where(row =>
+            {
                 // A. Lọc theo ngày (So sánh ngày đặt)
-                    DateTime ngayDat = row.Field<DateTime>("NgayDat").Date;
-                    bool checkNgay = ngayDat >= tuNgay && ngayDat <= denNgay;
+                DateTime ngayDat = row.Field<DateTime>("NgayDat").Date;
+                bool checkNgay = ngayDat >= tuNgay && ngayDat <= denNgay;
 
                 // B. Lọc theo trạng thái
-                    string trangThaiDB = row.Field<string>("TrangThai");
-                    bool checkTrangThai = (trangThaiChon == "ALL") || (trangThaiDB == trangThaiChon);
+                string trangThaiDB = row.Field<string>("TrangThai");
+                bool checkTrangThai = (trangThaiChon == "ALL") || (trangThaiDB == trangThaiChon);
 
                 // C. Lọc theo từ khóa (Tên khách hoặc SĐT)
-                    string tenKhach = row.Field<string>("HoTen").ToLower();
-                    string sdt = row.Field<string>("DienThoai");
-                    bool checkTuKhoa = string.IsNullOrEmpty(tuKhoa) ||
-                                       tenKhach.Contains(tuKhoa) ||
-                                       sdt.Contains(tuKhoa);
+                string tenKhach = row.Field<string>("HoTen").ToLower();
+                string sdt = row.Field<string>("DienThoai");
+                bool checkTuKhoa = string.IsNullOrEmpty(tuKhoa) ||
+                                   tenKhach.Contains(tuKhoa) ||
+                                   sdt.Contains(tuKhoa);
 
-                    return checkNgay && checkTrangThai && checkTuKhoa;
-                });
+                return checkNgay && checkTrangThai && checkTuKhoa;
+            });
 
             // 3. Hiển thị kết quả lọc lên DataGridView
-                if (ketQuaLoc.Any())
-                {
-                    dgvDanhSach.DataSource = ketQuaLoc.CopyToDataTable();
-                }
-                else
-                {
-                // Nếu không tìm thấy gì thì xóa trắng Grid nhưng giữ Header
-                    DataTable dtTrong = dtDuLieuGoc.Clone();
-                    dgvDanhSach.DataSource = dtTrong;
-                }
-
-                CauHinhCotGrid();
-            }
-            catch (Exception ex)
+            if (ketQuaLoc.Any())
             {
-                MessageBox.Show($"Lỗi lọc dữ liệu: {ex.Message}", "Lỗi", 
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                dgvDanhSach.DataSource = ketQuaLoc.CopyToDataTable();
             }
+            else
+            {
+                // Nếu không tìm thấy gì thì xóa trắng Grid nhưng giữ Header
+                DataTable dtTrong = dtDuLieuGoc.Clone();
+                dgvDanhSach.DataSource = dtTrong;
+            }
+
+            CauHinhCotGrid();
         }
 
         void TinhToanThongKe()
@@ -186,7 +163,6 @@ namespace QuanLySanBong
             // 3. SỬA ĐOẠN NÀY: CHỈ ĐẾM ĐƠN "ĐÃ XÁC NHẬN" (Màu xanh lá)
             // (Bỏ phần cộng HOAN_THANH đi)
             int countDaXacNhan = dtDuLieuGoc.Select("TrangThai = 'DA_XAC_NHAN'").Length;
-            lblDaXacNhan.Text = (countHoanThanh + countDaXacNhan).ToString();
 
             // Gán kết quả vào ô label (Trên giao diện bạn đang đặt tên nó là lblDaXacNhan hoặc lblHoanThanh)
             // Dựa vào code cũ thì tên nó là lblDaXacNhan
@@ -209,10 +185,6 @@ namespace QuanLySanBong
                 {
                     int countDaTT = dtDuLieuGoc.Select("TrangThaiThanhToan = 'DA_THANH_TOAN' OR TrangThaiThanhToan = 'Đã TT'").Length;
                     lblDaThanhToan.Text = countDaTT.ToString();
-                }
-                else
-                {
-                    lblDaThanhToan.Text = "0";
                 }
             }
             catch
@@ -242,23 +214,23 @@ namespace QuanLySanBong
             if (dgvDanhSach.Columns["GioKetThuc"] != null) dgvDanhSach.Columns["GioKetThuc"].Visible = false;
 
             // B. Thêm cột "Mã Đơn" (nếu chưa có)
-                if (dgvDanhSach.Columns["MaHienThi"] == null)
-                {
+            if (dgvDanhSach.Columns["MaHienThi"] == null)
+            {
                 DataGridViewTextBoxColumn colMa = new DataGridViewTextBoxColumn();
                 colMa.Name = "MaHienThi"; // Tên này quan trọng để code nhận diện
                 colMa.HeaderText = "Mã Đơn";
                 colMa.Width = 80;
                 dgvDanhSach.Columns.Insert(0, colMa); // Chèn vào vị trí đầu tiên
-                }
+            }
 
             // C. Thêm cột "Khung Giờ" (nếu chưa có)
-                if (dgvDanhSach.Columns["KhungGioHienThi"] == null)
-                {
+            if (dgvDanhSach.Columns["KhungGioHienThi"] == null)
+            {
                 DataGridViewTextBoxColumn colGio = new DataGridViewTextBoxColumn();
                 colGio.Name = "KhungGioHienThi"; // Tên này quan trọng
                 colGio.HeaderText = "Khung Giờ";
                 dgvDanhSach.Columns.Insert(4, colGio); // Chèn vào giữa
-                }
+            }
 
             // D. Đặt lại tiêu đề tiếng Việt cho các cột khác
             if (dgvDanhSach.Columns["HoTen"] != null) dgvDanhSach.Columns["HoTen"].HeaderText = "Khách Hàng";
@@ -266,17 +238,16 @@ namespace QuanLySanBong
             if (dgvDanhSach.Columns["TenSan"] != null) dgvDanhSach.Columns["TenSan"].HeaderText = "Sân";
             if (dgvDanhSach.Columns["NgayDat"] != null) dgvDanhSach.Columns["NgayDat"].HeaderText = "Ngày Đặt";
 
-                // Format tiền
-                if (dgvDanhSach.Columns["TongTienSan"] != null)
-                {
-                    dgvDanhSach.Columns["TongTienSan"].HeaderText = "Tổng Tiền";
-                    dgvDanhSach.Columns["TongTienSan"].DefaultCellStyle.Format = "N0";
-                    dgvDanhSach.Columns["TongTienSan"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                }
+            // Format tiền
+            if (dgvDanhSach.Columns["TongTienSan"] != null)
+            {
+                dgvDanhSach.Columns["TongTienSan"].HeaderText = "Tổng Tiền";
+                dgvDanhSach.Columns["TongTienSan"].DefaultCellStyle.Format = "N0";
+            }
             // --- THÊM ĐOẠN NÀY ĐỂ TẠO NÚT XÓA ---
             // Kiểm tra nếu chưa có cột btnXoa thì mới thêm
-                if (dgvDanhSach.Columns["btnXoa"] == null)
-                {
+            if (dgvDanhSach.Columns["btnXoa"] == null)
+            {
                 DataGridViewButtonColumn btnXoa = new DataGridViewButtonColumn();
                 btnXoa.Name = "btnXoa";
                 btnXoa.HeaderText = "Thao tác";
@@ -285,13 +256,7 @@ namespace QuanLySanBong
                 btnXoa.Width = 60;
 
                 // Thêm vào cuối bảng
-                    dgvDanhSach.Columns.Add(btnXoa);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Lỗi cấu hình cột: {ex.Message}", "Lỗi", 
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                dgvDanhSach.Columns.Add(btnXoa);
             }
         }
 
@@ -302,100 +267,88 @@ namespace QuanLySanBong
             if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
 
             // Lấy tên cột đang xử lý
-                string colName = dgvDanhSach.Columns[e.ColumnIndex].Name;
+            string colName = dgvDanhSach.Columns[e.ColumnIndex].Name;
 
             // 1. HIỂN THỊ MÃ ĐƠN (B001)
-                if (colName == "MaHienThi")
-                {
+            if (colName == "MaHienThi")
+            {
                 // Lấy giá trị cột MaDatSan ẩn
-                    var giaTriGoc = dgvDanhSach.Rows[e.RowIndex].Cells["MaDatSan"].Value;
+                var giaTriGoc = dgvDanhSach.Rows[e.RowIndex].Cells["MaDatSan"].Value;
 
                 if (giaTriGoc != null)
-                    {
+                {
                     // Chỉ cần chuyển sang chuỗi là xong, không cần "B" hay "D3" nữa
                     e.Value = giaTriGoc.ToString();
 
                     // Căn giữa cho đẹp (nếu thích)
-                        e.CellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                        e.CellStyle.Font = new Font(e.CellStyle.Font, FontStyle.Bold);
-                        e.FormattingApplied = true;
-                    }
-                }
-
-            // 2. HIỂN THỊ KHUNG GIỜ (18:00 - 19:00)
-                if (colName == "KhungGioHienThi")
-                {
-                // Lấy giá trị cột ẩn (dùng Object để tránh lỗi null)
-                    object valBD = dgvDanhSach.Rows[e.RowIndex].Cells["GioBatDau"].Value;
-                    object valKT = dgvDanhSach.Rows[e.RowIndex].Cells["GioKetThuc"].Value;
-
-                if (valBD != null && valKT != null)
-                    {
-                    // Xử lý an toàn: Chuyển sang chuỗi rồi cắt lấy 5 ký tự đầu (00:00)
-                    // Cách này chạy đúng dù DB trả về TimeSpan hay DateTime
-                        string strBD = valBD.ToString();
-                        string strKT = valKT.ToString();
-
-                    // Lấy 5 ký tự đầu (VD: 18:00:00 -> 18:00)
-                        if (strBD.Length >= 5) strBD = strBD.Substring(0, 5);
-                        if (strKT.Length >= 5) strKT = strKT.Substring(0, 5);
-
-                        e.Value = $"{strBD} - {strKT}";
-                        e.CellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                        e.FormattingApplied = true;
-                    }
-                }
-
-            // 3. MÀU SẮC TRẠNG THÁI (Code cũ của bạn, giữ nguyên hoặc dùng cái này cho chuẩn)
-                if (colName == "TrangThai")
-                {
-                    string status = e.Value?.ToString();
-                    switch (status)
-                    {
-                        case "HOAN_THANH":
-                            e.Value = "Hoàn thành";
-                            e.CellStyle.ForeColor = Color.Blue;
-                            e.CellStyle.Font = new Font(e.CellStyle.Font, FontStyle.Bold);
-                            break;
-                        case "DA_XAC_NHAN":
-                            e.Value = "Đã xác nhận";
-                            e.CellStyle.ForeColor = Color.Green;
-                            e.CellStyle.Font = new Font(e.CellStyle.Font, FontStyle.Bold);
-                            break;
-                        case "CHO_XAC_NHAN":
-                            e.Value = "Chờ xác nhận";
-                            e.CellStyle.ForeColor = Color.OrangeRed;
-                            break;
-                        case "DA_HUY":
-                            e.Value = "Đã hủy";
-                            e.CellStyle.ForeColor = Color.Gray;
-                            e.CellStyle.Font = new Font(e.CellStyle.Font, FontStyle.Strikeout);
-                            break;
-                    }
-                    e.FormattingApplied = true;
-                }
-
-            // 4. TRẠNG THÁI THANH TOÁN
-                if (colName == "TrangThaiThanhToan")
-                {
-                    string tt = e.Value?.ToString();
-                if (tt != null && (tt.Contains("DA_THANH") || tt == "Đã TT"))
-                    {
-                    e.Value = "Đã thanh toán";
-                        e.CellStyle.ForeColor = Color.Green;
-                        e.CellStyle.Font = new Font(e.CellStyle.Font, FontStyle.Bold);
-                    }
-                    else
-                    {
-                    e.Value = "Chưa thanh toán";
-                        e.CellStyle.ForeColor = Color.Red;
-                    }
+                    e.CellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                     e.FormattingApplied = true;
                 }
             }
-            catch (Exception ex)
+
+            // 2. HIỂN THỊ KHUNG GIỜ (18:00 - 19:00)
+            if (colName == "KhungGioHienThi")
             {
-                System.Diagnostics.Debug.WriteLine($"Lỗi format cell: {ex.Message}");
+                // Lấy giá trị cột ẩn (dùng Object để tránh lỗi null)
+                object valBD = dgvDanhSach.Rows[e.RowIndex].Cells["GioBatDau"].Value;
+                object valKT = dgvDanhSach.Rows[e.RowIndex].Cells["GioKetThuc"].Value;
+
+                if (valBD != null && valKT != null)
+                {
+                    // Xử lý an toàn: Chuyển sang chuỗi rồi cắt lấy 5 ký tự đầu (00:00)
+                    // Cách này chạy đúng dù DB trả về TimeSpan hay DateTime
+                    string strBD = valBD.ToString();
+                    string strKT = valKT.ToString();
+
+                    // Lấy 5 ký tự đầu (VD: 18:00:00 -> 18:00)
+                    if (strBD.Length >= 5) strBD = strBD.Substring(0, 5);
+                    if (strKT.Length >= 5) strKT = strKT.Substring(0, 5);
+
+                    e.Value = $"{strBD} - {strKT}";
+                    e.FormattingApplied = true;
+                }
+            }
+
+            // 3. MÀU SẮC TRẠNG THÁI (Code cũ của bạn, giữ nguyên hoặc dùng cái này cho chuẩn)
+            if (colName == "TrangThai")
+            {
+                string status = e.Value?.ToString();
+                switch (status)
+                {
+                    case "HOAN_THANH":
+                        e.Value = "Hoàn thành";
+                        e.CellStyle.ForeColor = Color.Blue;
+                        break;
+                    case "DA_XAC_NHAN":
+                        e.Value = "Đã xác nhận";
+                        e.CellStyle.ForeColor = Color.Green;
+                        e.CellStyle.Font = new Font(e.CellStyle.Font, FontStyle.Bold);
+                        break;
+                    case "CHO_XAC_NHAN":
+                        e.Value = "Chờ xác nhận";
+                        e.CellStyle.ForeColor = Color.OrangeRed;
+                        break;
+                    case "DA_HUY":
+                        e.Value = "Đã hủy";
+                        e.CellStyle.ForeColor = Color.Gray;
+                        break;
+                }
+            }
+
+            // 4. TRẠNG THÁI THANH TOÁN
+            if (colName == "TrangThaiThanhToan")
+            {
+                string tt = e.Value?.ToString();
+                if (tt != null && (tt.Contains("DA_THANH") || tt == "Đã TT"))
+                {
+                    e.Value = "Đã thanh toán";
+                    e.CellStyle.ForeColor = Color.Green;
+                }
+                else
+                {
+                    e.Value = "Chưa thanh toán";
+                    e.CellStyle.ForeColor = Color.Red;
+                }
             }
         }
 
@@ -413,9 +366,9 @@ namespace QuanLySanBong
                     string sql = "DELETE FROM LichDatSan WHERE MaDatSan = @MaDatSan";
 
                     SqlCommand cmd = new SqlCommand(sql, conn);
-                        cmd.Parameters.AddWithValue("@MaDatSan", maDatSan);
+                    cmd.Parameters.AddWithValue("@MaDatSan", maDatSan);
 
-                        int rowsAffected = cmd.ExecuteNonQuery();
+                    int rowsAffected = cmd.ExecuteNonQuery();
                     return rowsAffected > 0; // Trả về true nếu có dòng bị xóa
                 }
             }
@@ -441,27 +394,27 @@ namespace QuanLySanBong
         {
             // 1. Kiểm tra xem người dùng có bấm vào cột "btnXoa" không
             if (e.RowIndex >= 0 && dgvDanhSach.Columns[e.ColumnIndex].Name == "btnXoa")
-                {
+            {
                 // 2. Hỏi xác nhận cho chắc ăn
                 DialogResult hoi = MessageBox.Show("Bạn có chắc chắn muốn xóa đơn đặt sân này không?\nHành động này không thể hoàn tác!", "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                    if (hoi == DialogResult.Yes)
-                    {
+                if (hoi == DialogResult.Yes)
+                {
                     // 3. Lấy MaDatSan của dòng đó (Cột ẩn)
-                        int maDatSan = Convert.ToInt32(dgvDanhSach.Rows[e.RowIndex].Cells["MaDatSan"].Value);
+                    int maDatSan = Convert.ToInt32(dgvDanhSach.Rows[e.RowIndex].Cells["MaDatSan"].Value);
 
                     // 4. Gọi hàm xóa SQL (Bước 2)
-                        if (XoaDonDatSanTrongSQL(maDatSan))
-                        {
+                    if (XoaDonDatSanTrongSQL(maDatSan))
+                    {
                         // 5. NẾU XÓA SQL THÀNH CÔNG -> XÓA TRÊN GIAO DIỆN
                         // Ta xóa dòng tương ứng trong DataTable gốc (dtDuLieuGoc)
                         // để không phải Load lại toàn bộ Database => App chạy nhanh hơn
 
                         DataRow[] dongCanXoa = dtDuLieuGoc.Select("MaDatSan = " + maDatSan);
-                            if (dongCanXoa.Length > 0)
-                            {
+                        if (dongCanXoa.Length > 0)
+                        {
                             dtDuLieuGoc.Rows.Remove(dongCanXoa[0]); // Xóa khỏi bộ nhớ
-                            }
+                        }
 
                         // 6. Cập nhật lại Grid và Số liệu thống kê
                         XuLyLocVaHienThi(); // Load lại lưới từ DataTable đã cập nhật
@@ -469,20 +422,20 @@ namespace QuanLySanBong
 
                         MessageBox.Show("Đã xóa thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
-                        }
-                    }
                 }
+            }
+        }
 
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-                {
+        {
 
-                }
+        }
 
         private void tableLayoutPanel3_Paint(object sender, PaintEventArgs e)
         {
 
-            }
+        }
 
         private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
         {
