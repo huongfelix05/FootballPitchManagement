@@ -257,7 +257,7 @@
             this.groupBox3.Size = new System.Drawing.Size(269, 53);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Xác Nhận-Hoàn Thành";
+            this.groupBox3.Text = "Đã Xác Nhận";
             // 
             // panel15
             // 
