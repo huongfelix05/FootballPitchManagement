@@ -507,7 +507,6 @@
             this.lblKhachhang.Size = new System.Drawing.Size(86, 20);
             this.lblKhachhang.TabIndex = 1;
             this.lblKhachhang.Text = "Khách hàng";
-            this.lblKhachhang.Click += new System.EventHandler(this.lblKhachhang_Click);
             // 
             // chartDoanhThu
             // 

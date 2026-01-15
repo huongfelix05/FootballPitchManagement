@@ -186,7 +186,7 @@
             // 
             // panel13
             // 
-            this.panel13.BackColor = System.Drawing.Color.Linen;
+            this.panel13.BackColor = System.Drawing.SystemColors.Control;
             this.panel13.Controls.Add(this.lblTongDon);
             this.panel13.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel13.Location = new System.Drawing.Point(3, 28);
@@ -219,7 +219,7 @@
             // 
             // panel14
             // 
-            this.panel14.BackColor = System.Drawing.Color.Linen;
+            this.panel14.BackColor = System.Drawing.SystemColors.Control;
             this.panel14.Controls.Add(this.lblDaHuy);
             this.panel14.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel14.Location = new System.Drawing.Point(3, 28);
@@ -261,7 +261,7 @@
             // 
             // panel15
             // 
-            this.panel15.BackColor = System.Drawing.Color.Linen;
+            this.panel15.BackColor = System.Drawing.SystemColors.Control;
             this.panel15.Controls.Add(this.lblDaXacNhan);
             this.panel15.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel15.Location = new System.Drawing.Point(3, 28);
@@ -303,7 +303,7 @@
             // 
             // panel16
             // 
-            this.panel16.BackColor = System.Drawing.Color.Linen;
+            this.panel16.BackColor = System.Drawing.SystemColors.Control;
             this.panel16.Controls.Add(this.lblDaThanhToan);
             this.panel16.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel16.Location = new System.Drawing.Point(3, 28);
@@ -408,19 +408,20 @@
             // 
             // btnTimKiem
             // 
-            this.btnTimKiem.BackColor = System.Drawing.Color.PaleGreen;
+            this.btnTimKiem.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnTimKiem.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnTimKiem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTimKiem.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTimKiem.Location = new System.Drawing.Point(184, 4);
+            this.btnTimKiem.Location = new System.Drawing.Point(181, 4);
             this.btnTimKiem.Name = "btnTimKiem";
-            this.btnTimKiem.Size = new System.Drawing.Size(81, 31);
+            this.btnTimKiem.Size = new System.Drawing.Size(81, 30);
             this.btnTimKiem.TabIndex = 2;
-            this.btnTimKiem.Text = "Tìm kiếm";
+            this.btnTimKiem.Text = "Tìm";
             this.btnTimKiem.UseVisualStyleBackColor = false;
             // 
             // txtTimKiem
             // 
+            this.txtTimKiem.BackColor = System.Drawing.SystemColors.Control;
             this.txtTimKiem.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTimKiem.Location = new System.Drawing.Point(3, 4);
             this.txtTimKiem.Name = "txtTimKiem";
@@ -461,6 +462,7 @@
             // 
             // cboTrangThai
             // 
+            this.cboTrangThai.BackColor = System.Drawing.SystemColors.Control;
             this.cboTrangThai.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cboTrangThai.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboTrangThai.FormattingEnabled = true;
@@ -507,6 +509,7 @@
             // 
             // dtpTuNgay
             // 
+            this.dtpTuNgay.CalendarMonthBackground = System.Drawing.SystemColors.Control;
             this.dtpTuNgay.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dtpTuNgay.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpTuNgay.Format = System.Windows.Forms.DateTimePickerFormat.Short;
