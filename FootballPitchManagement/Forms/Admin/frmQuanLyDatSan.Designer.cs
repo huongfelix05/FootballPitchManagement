@@ -124,7 +124,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1115, 742);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1229, 742);
             this.tableLayoutPanel1.TabIndex = 2;
             this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
@@ -136,7 +136,7 @@
             this.groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)), true);
             this.groupBox5.Location = new System.Drawing.Point(3, 3);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(1109, 94);
+            this.groupBox5.Size = new System.Drawing.Size(1223, 94);
             this.groupBox5.TabIndex = 1;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "QUẢN LÍ ĐẶT SÂN";
@@ -158,7 +158,7 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1103, 59);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1217, 59);
             this.tableLayoutPanel2.TabIndex = 0;
             this.tableLayoutPanel2.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel2_Paint);
             // 
@@ -168,7 +168,7 @@
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel6.Location = new System.Drawing.Point(3, 3);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(269, 53);
+            this.panel6.Size = new System.Drawing.Size(298, 53);
             this.panel6.TabIndex = 0;
             // 
             // groupBox1
@@ -179,7 +179,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)), true);
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(269, 53);
+            this.groupBox1.Size = new System.Drawing.Size(298, 53);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tổng Đơn";
@@ -191,16 +191,16 @@
             this.panel13.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel13.Location = new System.Drawing.Point(3, 28);
             this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(263, 22);
+            this.panel13.Size = new System.Drawing.Size(292, 22);
             this.panel13.TabIndex = 0;
             // 
             // panel7
             // 
             this.panel7.Controls.Add(this.groupBox4);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel7.Location = new System.Drawing.Point(278, 3);
+            this.panel7.Location = new System.Drawing.Point(307, 3);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(269, 53);
+            this.panel7.Size = new System.Drawing.Size(298, 53);
             this.panel7.TabIndex = 1;
             // 
             // groupBox4
@@ -211,7 +211,7 @@
             this.groupBox4.Font = new System.Drawing.Font("Times New Roman", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)), true);
             this.groupBox4.Location = new System.Drawing.Point(0, 0);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(269, 53);
+            this.groupBox4.Size = new System.Drawing.Size(298, 53);
             this.groupBox4.TabIndex = 3;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Đã Hủy";
@@ -224,7 +224,7 @@
             this.panel14.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel14.Location = new System.Drawing.Point(3, 28);
             this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(263, 22);
+            this.panel14.Size = new System.Drawing.Size(292, 22);
             this.panel14.TabIndex = 0;
             // 
             // lblDaHuy
@@ -241,9 +241,9 @@
             // 
             this.panel8.Controls.Add(this.groupBox3);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel8.Location = new System.Drawing.Point(553, 3);
+            this.panel8.Location = new System.Drawing.Point(611, 3);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(269, 53);
+            this.panel8.Size = new System.Drawing.Size(298, 53);
             this.panel8.TabIndex = 2;
             // 
             // groupBox3
@@ -254,7 +254,7 @@
             this.groupBox3.Font = new System.Drawing.Font("Times New Roman", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)), true);
             this.groupBox3.Location = new System.Drawing.Point(0, 0);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(269, 53);
+            this.groupBox3.Size = new System.Drawing.Size(298, 53);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Đã Xác Nhận";
@@ -266,7 +266,7 @@
             this.panel15.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel15.Location = new System.Drawing.Point(3, 28);
             this.panel15.Name = "panel15";
-            this.panel15.Size = new System.Drawing.Size(263, 22);
+            this.panel15.Size = new System.Drawing.Size(292, 22);
             this.panel15.TabIndex = 0;
             // 
             // lblDaXacNhan
@@ -283,9 +283,9 @@
             // 
             this.panel9.Controls.Add(this.groupBox2);
             this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel9.Location = new System.Drawing.Point(828, 3);
+            this.panel9.Location = new System.Drawing.Point(915, 3);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(272, 53);
+            this.panel9.Size = new System.Drawing.Size(299, 53);
             this.panel9.TabIndex = 3;
             // 
             // groupBox2
@@ -296,7 +296,7 @@
             this.groupBox2.Font = new System.Drawing.Font("Times New Roman", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)), true);
             this.groupBox2.Location = new System.Drawing.Point(0, 0);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(272, 53);
+            this.groupBox2.Size = new System.Drawing.Size(299, 53);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Đã Thanh Toán";
@@ -308,7 +308,7 @@
             this.panel16.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel16.Location = new System.Drawing.Point(3, 28);
             this.panel16.Name = "panel16";
-            this.panel16.Size = new System.Drawing.Size(266, 22);
+            this.panel16.Size = new System.Drawing.Size(293, 22);
             this.panel16.TabIndex = 0;
             // 
             // lblDaThanhToan
@@ -329,7 +329,7 @@
             this.groupBox6.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox6.Location = new System.Drawing.Point(3, 183);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(1109, 556);
+            this.groupBox6.Size = new System.Drawing.Size(1223, 556);
             this.groupBox6.TabIndex = 2;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "DANH SÁCH ĐẶT SÂN";
@@ -347,7 +347,7 @@
             this.dgvDanhSach.RowHeadersVisible = false;
             this.dgvDanhSach.RowHeadersWidth = 51;
             this.dgvDanhSach.RowTemplate.Height = 24;
-            this.dgvDanhSach.Size = new System.Drawing.Size(1103, 521);
+            this.dgvDanhSach.Size = new System.Drawing.Size(1217, 521);
             this.dgvDanhSach.TabIndex = 0;
             this.dgvDanhSach.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDanhSach_CellContentClick);
             this.dgvDanhSach.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvDanhSach_CellFormatting);
@@ -369,7 +369,7 @@
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(1109, 74);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(1223, 74);
             this.tableLayoutPanel3.TabIndex = 3;
             this.tableLayoutPanel3.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel3_Paint);
             // 
@@ -379,7 +379,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(271, 68);
+            this.panel2.Size = new System.Drawing.Size(299, 68);
             this.panel2.TabIndex = 0;
             // 
             // groupBox7
@@ -390,7 +390,7 @@
             this.groupBox7.Font = new System.Drawing.Font("Times New Roman", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox7.Location = new System.Drawing.Point(0, 0);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(271, 68);
+            this.groupBox7.Size = new System.Drawing.Size(299, 68);
             this.groupBox7.TabIndex = 0;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Nhâp sđt";
@@ -403,7 +403,7 @@
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel5.Location = new System.Drawing.Point(3, 28);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(265, 37);
+            this.panel5.Size = new System.Drawing.Size(293, 37);
             this.panel5.TabIndex = 3;
             // 
             // btnTimKiem
@@ -431,9 +431,9 @@
             // 
             this.panel10.Controls.Add(this.groupBox8);
             this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel10.Location = new System.Drawing.Point(280, 3);
+            this.panel10.Location = new System.Drawing.Point(308, 3);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(271, 68);
+            this.panel10.Size = new System.Drawing.Size(299, 68);
             this.panel10.TabIndex = 1;
             // 
             // groupBox8
@@ -444,7 +444,7 @@
             this.groupBox8.Font = new System.Drawing.Font("Times New Roman", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox8.Location = new System.Drawing.Point(0, 0);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(271, 68);
+            this.groupBox8.Size = new System.Drawing.Size(299, 68);
             this.groupBox8.TabIndex = 0;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Trạng Thái";
@@ -456,7 +456,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(3, 28);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(265, 37);
+            this.panel4.Size = new System.Drawing.Size(293, 37);
             this.panel4.TabIndex = 2;
             // 
             // cboTrangThai
@@ -477,9 +477,9 @@
             // 
             this.panel11.Controls.Add(this.groupBox9);
             this.panel11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel11.Location = new System.Drawing.Point(557, 3);
+            this.panel11.Location = new System.Drawing.Point(613, 3);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(271, 68);
+            this.panel11.Size = new System.Drawing.Size(299, 68);
             this.panel11.TabIndex = 2;
             // 
             // groupBox9
@@ -490,7 +490,7 @@
             this.groupBox9.Font = new System.Drawing.Font("Times New Roman", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox9.Location = new System.Drawing.Point(0, 0);
             this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(271, 68);
+            this.groupBox9.Size = new System.Drawing.Size(299, 68);
             this.groupBox9.TabIndex = 0;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "Từ Ngày";
@@ -502,7 +502,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(3, 28);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(265, 37);
+            this.panel3.Size = new System.Drawing.Size(293, 37);
             this.panel3.TabIndex = 1;
             // 
             // dtpTuNgay
@@ -519,9 +519,9 @@
             // 
             this.panel12.Controls.Add(this.groupBox10);
             this.panel12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel12.Location = new System.Drawing.Point(834, 3);
+            this.panel12.Location = new System.Drawing.Point(918, 3);
             this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(272, 68);
+            this.panel12.Size = new System.Drawing.Size(302, 68);
             this.panel12.TabIndex = 3;
             // 
             // groupBox10
@@ -532,7 +532,7 @@
             this.groupBox10.Font = new System.Drawing.Font("Times New Roman", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox10.Location = new System.Drawing.Point(0, 0);
             this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(272, 68);
+            this.groupBox10.Size = new System.Drawing.Size(302, 68);
             this.groupBox10.TabIndex = 0;
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "Đến Ngày";
@@ -545,7 +545,7 @@
             this.panel1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel1.Location = new System.Drawing.Point(3, 28);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(266, 37);
+            this.panel1.Size = new System.Drawing.Size(296, 37);
             this.panel1.TabIndex = 0;
             // 
             // dtpDenNgay
@@ -561,7 +561,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1115, 742);
+            this.ClientSize = new System.Drawing.Size(1229, 742);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "frmQuanLyDatSan";
             this.Text = "frmQuanLiDatSan";
