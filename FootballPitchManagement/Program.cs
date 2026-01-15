@@ -23,10 +23,10 @@ namespace FootballPitchManagement
             //Application.Run(new frmLogin());
            //Application.Run(new frmAdmin());
             
-          Application.Run(new frmQuanLyDatSan());
+          //Application.Run(new frmQuanLyDatSan());
 
             // Application.Run(new frmDoAn());
-          // Application.Run(new Nhap1());
+           Application.Run(new Nhap1());
          //Application.Run(new frmLogin());
           // Application.Run(new frmAdmin());
             //Application.Run(new frmLichdatsan());
