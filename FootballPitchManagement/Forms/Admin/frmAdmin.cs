@@ -122,31 +122,31 @@ namespace FootballPitchManagement
                         lblSokhach.Text = cmd.ExecuteScalar().ToString();
                     }
 
-                    // ✅ 4. TỶ LỆ LẤP ĐẦY (THÁNG HIỆN TẠI)
-                    string sqlTyLe = @"
-                        SELECT 
-                            COUNT(DISTINCT l.MaSan) AS SoSanDaDat,
-                            (SELECT COUNT(*) FROM San WHERE TrangThai = 1) AS TongSan
-                        FROM LichDatSan l
-                        WHERE l.TrangThai != N'DA_HUY'
-                          AND l.NgayDat BETWEEN @DauThang AND @CuoiThang";
+                    //// ✅ 4. TỶ LỆ LẤP ĐẦY (THÁNG HIỆN TẠI)
+                    //string sqlTyLe = @"
+                    //    SELECT 
+                    //        COUNT(DISTINCT l.MaSan) AS SoSanDaDat,
+                    //        (SELECT COUNT(*) FROM San WHERE TrangThai = 1) AS TongSan
+                    //    FROM LichDatSan l
+                    //    WHERE l.TrangThai != N'DA_HUY'
+                    //      AND l.NgayDat BETWEEN @DauThang AND @CuoiThang";
 
-                    using (SqlCommand cmd = new SqlCommand(sqlTyLe, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@DauThang", dauThang);
-                        cmd.Parameters.AddWithValue("@CuoiThang", cuoiThang);
+                    //using (SqlCommand cmd = new SqlCommand(sqlTyLe, conn))
+                    //{
+                    //    cmd.Parameters.AddWithValue("@DauThang", dauThang);
+                    //    cmd.Parameters.AddWithValue("@CuoiThang", cuoiThang);
                         
-                        using (SqlDataReader reader = cmd.ExecuteReader())
-                        {
-                            if (reader.Read())
-                            {
-                                int sanDaDat = reader.IsDBNull(0) ? 0 : reader.GetInt32(0);
-                                int tongSan = reader.IsDBNull(1) ? 0 : reader.GetInt32(1);
-                                int tyLe = tongSan > 0 ? (sanDaDat * 100 / tongSan) : 0;
-                                lblPhamtram.Text = $"{tyLe}%";
-                            }
-                        }
-                    }
+                    //    using (SqlDataReader reader = cmd.ExecuteReader())
+                    //    {
+                    //        if (reader.Read())
+                    //        {
+                    //            int sanDaDat = reader.IsDBNull(0) ? 0 : reader.GetInt32(0);
+                    //            int tongSan = reader.IsDBNull(1) ? 0 : reader.GetInt32(1);
+                    //            int tyLe = tongSan > 0 ? (sanDaDat * 100 / tongSan) : 0;
+                    //            lblPhamtram.Text = $"{tyLe}%";
+                    //        }
+                    //    }
+                    //}
                 }
                 catch (Exception ex)
                 {
@@ -157,7 +157,7 @@ namespace FootballPitchManagement
                     lblTongDoanhThu.Text = "0 M";
                     lblSoluotdat.Text = "0";
                     lblSokhach.Text = "0";
-                    lblPhamtram.Text = "0%";
+                    //lblPhamtram.Text = "0%";
                 }
             }
         }
@@ -249,6 +249,34 @@ namespace FootballPitchManagement
         private void panel3_Paint(object sender, PaintEventArgs e)
         {
             // Không cần xử lý
+        }
+        private Form currentFormChild;
+        private void OpenChildForm(Form childForm)
+        {
+            //if (currentFormChild != null)
+            //{
+            //    currentFormChild.Close();
+            //}
+            //tableLayoutPanel1.Visible = false;
+            //currentFormChild = childForm;
+            //childForm.TopLevel = false;
+            //childForm.FormBorderStyle = FormBorderStyle.None;
+            //childForm.Dock = DockStyle.Fill;
+
+            //pnlTopBa.Controls.Add(childForm);
+            //pnlTopBa.Tag = childForm;
+            //childForm.BringToFront();
+            //childForm.Show();
+        }
+
+        private void btnQuanLySan_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblKhachhang_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
