@@ -63,12 +63,6 @@
     <Compile Include="Forms\Admin\frmAdmin.Designer.cs">
       <DependentUpon>frmAdmin.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Admin\frmDoanhThu.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Admin\frmDoanhThu.Designer.cs">
-      <DependentUpon>frmDoanhThu.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\Admin\frmQuanlysan.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -129,12 +123,6 @@
     <Compile Include="frmDoanhThu.Designer.cs">
       <DependentUpon>frmDoanhThu.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Admin\frmQuanLiDatSan.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Admin\frmQuanLiDatSan.Designer.cs">
-      <DependentUpon>frmQuanLiDatSan.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Forms\Auth\frmQuenMatKhau.cs">
@@ -157,9 +145,6 @@
     </Compile>
     <EmbeddedResource Include="Forms\Admin\frmAdmin.resx">
       <DependentUpon>frmAdmin.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Admin\frmDoanhThu.resx">
-      <DependentUpon>frmDoanhThu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Admin\frmQuanlysan.resx">
       <DependentUpon>frmQuanlysan.cs</DependentUpon>
@@ -188,9 +173,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmDoanhThu.resx">
       <DependentUpon>frmDoanhThu.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Admin\frmQuanLiDatSan.resx">
-      <DependentUpon>frmQuanLiDatSan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
