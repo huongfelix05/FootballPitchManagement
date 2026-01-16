@@ -104,12 +104,12 @@ namespace FootballPitchManagement
 
         private void btnDoAn_Click(object sender, EventArgs e)
         {
-            // Tạo form đồ ăn mới
-            frmDoAn fDoAn = new frmDoAn();
-
-            // Gọi cái hàm vừa viết ở trên để nhét nó vào
-            OpenChildForm(fDoAn);
+            
         }
-        
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

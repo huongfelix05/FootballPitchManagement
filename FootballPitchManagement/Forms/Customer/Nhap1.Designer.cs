@@ -28,23 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
+            this.guna2GradientPanel1 = new Guna.UI2.WinForms.Guna2GradientPanel();
             this.SuspendLayout();
             // 
-            // guna2Panel1
+            // guna2GradientPanel1
             // 
-            this.guna2Panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.guna2Panel1.Location = new System.Drawing.Point(207, 54);
-            this.guna2Panel1.Name = "guna2Panel1";
-            this.guna2Panel1.Size = new System.Drawing.Size(338, 159);
-            this.guna2Panel1.TabIndex = 0;
+            this.guna2GradientPanel1.BackColor = System.Drawing.Color.Transparent;
+            this.guna2GradientPanel1.BorderRadius = 10;
+            this.guna2GradientPanel1.BorderThickness = 1;
+            this.guna2GradientPanel1.Location = new System.Drawing.Point(247, 70);
+            this.guna2GradientPanel1.Name = "guna2GradientPanel1";
+            this.guna2GradientPanel1.Size = new System.Drawing.Size(200, 100);
+            this.guna2GradientPanel1.TabIndex = 0;
+            this.guna2GradientPanel1.UseTransparentBackground = true;
             // 
             // Nhap1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1375, 775);
-            this.Controls.Add(this.guna2Panel1);
+            this.Controls.Add(this.guna2GradientPanel1);
             this.Name = "Nhap1";
             this.Load += new System.EventHandler(this.Nhap1_Load);
             this.ResumeLayout(false);
@@ -53,6 +56,6 @@
 
         #endregion
 
-        private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
+        private Guna.UI2.WinForms.Guna2GradientPanel guna2GradientPanel1;
     }
 }
