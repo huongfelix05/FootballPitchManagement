@@ -117,12 +117,6 @@
     <Compile Include="Forms\Customer\Nhap1.Designer.cs">
       <DependentUpon>Nhap1.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmDoanhThu.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmDoanhThu.Designer.cs">
-      <DependentUpon>frmDoanhThu.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Forms\Auth\frmQuenMatKhau.cs">
@@ -170,9 +164,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Customer\Nhap1.resx">
       <DependentUpon>Nhap1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmDoanhThu.resx">
-      <DependentUpon>frmDoanhThu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

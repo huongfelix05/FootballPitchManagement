@@ -1,6 +1,6 @@
 ﻿using FootballPitchManagement.Common;
 using FootballPitchManagement.Forms.Admin;
-using QuanLySanBong;
+//using QuanLySanBong;
 
 //using QuanLySanBong;
 using System;
@@ -312,12 +312,12 @@ namespace FootballPitchManagement
         {
             try
             {
-                if (currentFormChild is frmQuanLyDatSan)
+       //         if (currentFormChild is frmQuanLyDatSan)
                 {
                     return;
                 }
 
-                OpenChildForm(new frmQuanLyDatSan());
+     //           OpenChildForm(new frmQuanLyDatSan());
             }
             catch (Exception ex)
             {
