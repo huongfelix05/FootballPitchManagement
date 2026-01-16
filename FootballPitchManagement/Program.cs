@@ -18,14 +18,15 @@ namespace FootballPitchManagement
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new frmQuenMatKhau());
-            // Application.Run(new frmMainKH());
+           // Application.Run(new frmMainKH());
+            Application.Run(new frmDanhGia(1));
 
             // Application.Run(new frmLogin());
             //Application.Run(new frmAdmin());
             // Application.Run(new frmLichdatsan());
-            //Application.Run(new frmHoSo(1));
-            Application.Run(new frmDanhGia(1));
+            //Application.Run(new frmHoSo());
 
+         
         }
     }
 }

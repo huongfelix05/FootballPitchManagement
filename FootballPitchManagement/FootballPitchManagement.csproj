@@ -75,7 +75,7 @@
     <Compile Include="Forms\Admin\frmQuanlysan.Designer.cs">
       <DependentUpon>frmQuanlysan.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Customer\frmDoAn.cs">
+    <Compile Include="Forms\Customer\frmDanhGia.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Customer\frmDanhGia.Designer.cs">
@@ -164,8 +164,8 @@
     <EmbeddedResource Include="Forms\Admin\frmQuanlysan.resx">
       <DependentUpon>frmQuanlysan.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Customer\frmDoAn.resx">
-      <DependentUpon>frmDoAn.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Customer\frmDanhGia.resx">
+      <DependentUpon>frmDanhGia.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Customer\frmHoadon.resx">
       <DependentUpon>frmHoadon.cs</DependentUpon>

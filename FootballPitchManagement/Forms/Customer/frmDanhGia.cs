@@ -1,38 +1,53 @@
 ﻿using System;
 using System.Data;
-using System.Data.SqlClient;
+using System.Data.SqlClient; // Thư viện kết nối SQL
 using System.Windows.Forms;
 
 namespace FootballPitchManagement.Forms.Customer
 {
     public partial class frmDanhGia : Form
     {
-        // ==========================================================
-        // KHAI BÁO KẾT NỐI (Sửa tên máy tính DANGKHOA nếu cần)
-        // ==========================================================
-        private string strKetNoi = @"Data Source=DANGKHOA;Initial Catalog=QuanLychuoiDatSan;Integrated Security=True";
+        // =======================================================================
+        // 1. KHAI BÁO BIẾN KẾT NỐI
+        // (Lưu ý: Bạn kiểm tra lại tên Server DANGKHOA xem đúng máy bạn chưa nhé)
+        // =======================================================================
+        private string strKetNoi = @"Data Source=DangKhoa;Initial Catalog=QuanLychuoiDatSan;Integrated Security=True";
 
-        // Biến lưu mã khách hàng đang đăng nhập
+        // Biến lưu mã khách hàng được truyền từ bên ngoài vào
         private int _maKH;
 
-        // Constructor nhận ID khách hàng từ Form Main truyền sang
+        // =======================================================================
+        // 2. CONSTRUCTOR (Hàm khởi tạo)
+        // =======================================================================
+        // Đã sửa thêm tham số 'int maKH' để fix lỗi bên Program.cs
         public frmDanhGia(int maKH)
         {
             InitializeComponent();
+
+            // Lưu mã khách hàng lại để dùng khi lưu xuống DB
             _maKH = maKH;
 
-            // Đăng ký sự kiện
+            // Gán các sự kiện (Event) bằng code cho chắc chắn
             this.Load += FrmDanhGia_Load;
-            if (btnGui != null) btnGui.Click += BtnGui_Click;
+
+            // Kiểm tra nút btnGui có tồn tại không trước khi gán sự kiện click
+            if (btnGui != null)
+            {
+                btnGui.Click += BtnGui_Click;
+            }
         }
 
-        // Sự kiện khi Form vừa mở lên -> Load danh sách sân
+        // =======================================================================
+        // 3. CÁC HÀM XỬ LÝ LOGIC
+        // =======================================================================
+
+        // Sự kiện khi Form vừa hiện lên -> Load danh sách sân
         private void FrmDanhGia_Load(object sender, EventArgs e)
         {
             LoadDanhSachSan();
         }
 
-        // Hàm lấy dữ liệu sân từ SQL đổ vào ComboBox
+        // Hàm kết nối SQL lấy tên sân đổ vào ComboBox
         private void LoadDanhSachSan()
         {
             using (SqlConnection conn = new SqlConnection(strKetNoi))
@@ -45,18 +60,18 @@ namespace FootballPitchManagement.Forms.Customer
                     DataTable dt = new DataTable();
                     da.Fill(dt);
 
-                    // Tạo dòng "Chọn sân..." giả ở đầu danh sách
+                    // Tạo một dòng "giả" để làm placeholder: "-- Chọn sân --"
                     DataRow dr = dt.NewRow();
-                    dr["MaSan"] = -1; // Giá trị ảo
+                    dr["MaSan"] = -1;
                     dr["TenSan"] = "-- Chọn sân bạn muốn đánh giá --";
                     dt.Rows.InsertAt(dr, 0);
 
                     if (cboSanBong != null)
                     {
                         cboSanBong.DataSource = dt;
-                        cboSanBong.DisplayMember = "TenSan"; // Cái hiện lên cho người xem
-                        cboSanBong.ValueMember = "MaSan";    // Cái giá trị lưu ngầm bên dưới
-                        cboSanBong.SelectedIndex = 0;        // Mặc định chọn dòng đầu tiên
+                        cboSanBong.DisplayMember = "TenSan"; // Hiển thị tên
+                        cboSanBong.ValueMember = "MaSan";    // Lưu mã bên dưới
+                        cboSanBong.SelectedIndex = 0;        // Chọn dòng đầu tiên
                     }
                 }
                 catch (Exception ex)
@@ -66,29 +81,23 @@ namespace FootballPitchManagement.Forms.Customer
             }
         }
 
-        // Sự kiện khi bấm nút Gửi
+        // Sự kiện khi bấm nút "GỬI ĐÁNH GIÁ"
         private void BtnGui_Click(object sender, EventArgs e)
         {
-            // 1. Kiểm tra xem đã chọn sân chưa (Mã phải khác -1)
+            // 1. Kiểm tra dữ liệu
             if (cboSanBong.SelectedIndex == 0 || Convert.ToInt32(cboSanBong.SelectedValue) == -1)
             {
-                MessageBox.Show("Vui lòng chọn một sân bóng để đánh giá!", "Nhắc nhở", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Vui lòng chọn sân bóng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // 2. Kiểm tra xem đã viết nội dung chưa
             if (string.IsNullOrWhiteSpace(txtNhanXet.Text))
             {
-                MessageBox.Show("Bạn hãy viết vài lời nhận xét nhé!", "Nhắc nhở", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Hãy viết vài lời nhận xét bạn nhé!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // 3. Tiến hành lưu vào SQL
-            LuuDanhGia();
-        }
-
-        private void LuuDanhGia()
-        {
+            // 2. Lưu vào CSDL
             using (SqlConnection conn = new SqlConnection(strKetNoi))
             {
                 try
@@ -99,10 +108,9 @@ namespace FootballPitchManagement.Forms.Customer
 
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
-                        // Truyền các tham số vào câu lệnh SQL
                         cmd.Parameters.AddWithValue("@MaKH", _maKH);
                         cmd.Parameters.AddWithValue("@MaSan", Convert.ToInt32(cboSanBong.SelectedValue));
-                        cmd.Parameters.AddWithValue("@Diem", (int)rtSao.Value); // Lấy số sao
+                        cmd.Parameters.AddWithValue("@Diem", (int)rtSao.Value); // Lấy số sao từ control
                         cmd.Parameters.AddWithValue("@NoiDung", txtNhanXet.Text.Trim());
 
                         int ketQua = cmd.ExecuteNonQuery();
@@ -110,22 +118,25 @@ namespace FootballPitchManagement.Forms.Customer
                         if (ketQua > 0)
                         {
                             MessageBox.Show("Cảm ơn bạn đã gửi đánh giá!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            // Reset lại form cho sạch
+
+                            // Reset lại form sau khi gửi xong
                             txtNhanXet.Clear();
                             cboSanBong.SelectedIndex = 0;
                             rtSao.Value = 5;
-                        }
-                        else
-                        {
-                            MessageBox.Show("Gửi thất bại. Vui lòng thử lại.", "Lỗi");
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Lỗi hệ thống: " + ex.Message);
+                    MessageBox.Show("Lỗi lưu đánh giá: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        // Hàm này code cũ của bạn tự sinh ra, cứ để trống cũng được
+        private void cboSanBong_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

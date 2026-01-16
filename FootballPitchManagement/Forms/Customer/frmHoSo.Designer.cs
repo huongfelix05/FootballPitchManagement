@@ -2,15 +2,8 @@
 {
     partial class frmHoSo
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -22,353 +15,287 @@
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-            this.btnThoat = new System.Windows.Forms.Button();
-            this.btnLuu = new System.Windows.Forms.Button();
-            this.txtDiaChi = new System.Windows.Forms.TextBox();
-            this.dtpNgaySinh = new System.Windows.Forms.DateTimePicker();
-            this.txtEmail = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtSDT = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtHoTen = new System.Windows.Forms.TextBox();
-            this.txtMaKH = new System.Windows.Forms.TextBox();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.label9 = new System.Windows.Forms.Label();
-            this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
-            this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.flowLayoutPanel2.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
-            this.flowLayoutPanel3.SuspendLayout();
-            this.flowLayoutPanel4.SuspendLayout();
+            this.components = new System.ComponentModel.Container();
+            this.pnlMain = new Guna.UI2.WinForms.Guna2Panel();
+            this.btnThoat = new Guna.UI2.WinForms.Guna2Button();
+            this.btnLuu = new Guna.UI2.WinForms.Guna2Button();
+            this.txtDiaChi = new Guna.UI2.WinForms.Guna2TextBox();
+            this.lblDiaChi = new System.Windows.Forms.Label();
+            this.dtpNgaySinh = new Guna.UI2.WinForms.Guna2DateTimePicker();
+            this.lblNgaySinh = new System.Windows.Forms.Label();
+            this.rdoNu = new Guna.UI2.WinForms.Guna2RadioButton();
+            this.rdoNam = new Guna.UI2.WinForms.Guna2RadioButton();
+            this.lblGioiTinh = new System.Windows.Forms.Label();
+            this.txtEmail = new Guna.UI2.WinForms.Guna2TextBox();
+            this.lblEmail = new System.Windows.Forms.Label();
+            this.txtSDT = new Guna.UI2.WinForms.Guna2TextBox();
+            this.lblSDT = new System.Windows.Forms.Label();
+            this.txtHoTen = new Guna.UI2.WinForms.Guna2TextBox();
+            this.lblHoTen = new System.Windows.Forms.Label();
+            this.txtMaKH = new Guna.UI2.WinForms.Guna2TextBox();
+            this.lblMaKH = new System.Windows.Forms.Label();
+            this.labelHeader = new System.Windows.Forms.Label();
+
+            this.pnlMain.SuspendLayout();
             this.SuspendLayout();
+
             // 
-            // label2
+            // pnlMain (Panel chính - Giờ sẽ chiếm toàn bộ Form)
             // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(156, 87);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(154, 25);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Mã Khách Hàng";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label2.Click += new System.EventHandler(this.label2_Click);
-            // 
-            // label1
-            // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(233, 127);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 25);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Họ Tên";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // flowLayoutPanel2
-            // 
-            this.flowLayoutPanel2.BackColor = System.Drawing.Color.White;
-            this.flowLayoutPanel2.Controls.Add(this.btnLuu);
-            this.flowLayoutPanel2.Controls.Add(this.btnThoat);
-            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(316, 363);
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(663, 231);
-            this.flowLayoutPanel2.TabIndex = 16;
-            // 
-            // btnThoat
-            // 
-            this.btnThoat.BackColor = System.Drawing.Color.LightGray;
-            this.btnThoat.Location = new System.Drawing.Point(506, 3);
-            this.btnThoat.Name = "btnThoat";
-            this.btnThoat.Size = new System.Drawing.Size(74, 44);
-            this.btnThoat.TabIndex = 1;
-            this.btnThoat.Text = "Thoát";
-            this.btnThoat.UseVisualStyleBackColor = false;
-            // 
-            // btnLuu
-            // 
-            this.btnLuu.BackColor = System.Drawing.Color.LightGray;
-            this.btnLuu.Location = new System.Drawing.Point(586, 3);
-            this.btnLuu.Name = "btnLuu";
-            this.btnLuu.Size = new System.Drawing.Size(74, 44);
-            this.btnLuu.TabIndex = 0;
-            this.btnLuu.Text = "Lưu";
-            this.btnLuu.UseVisualStyleBackColor = false;
-            // 
-            // txtDiaChi
-            // 
-            this.txtDiaChi.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDiaChi.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.txtDiaChi.Location = new System.Drawing.Point(316, 329);
+            this.pnlMain.BackColor = System.Drawing.Color.White;
+            this.pnlMain.Controls.Add(this.btnThoat);
+            this.pnlMain.Controls.Add(this.btnLuu);
+            this.pnlMain.Controls.Add(this.txtDiaChi);
+            this.pnlMain.Controls.Add(this.lblDiaChi);
+            this.pnlMain.Controls.Add(this.dtpNgaySinh);
+            this.pnlMain.Controls.Add(this.lblNgaySinh);
+            this.pnlMain.Controls.Add(this.rdoNu);
+            this.pnlMain.Controls.Add(this.rdoNam);
+            this.pnlMain.Controls.Add(this.lblGioiTinh);
+            this.pnlMain.Controls.Add(this.txtEmail);
+            this.pnlMain.Controls.Add(this.lblEmail);
+            this.pnlMain.Controls.Add(this.txtSDT);
+            this.pnlMain.Controls.Add(this.lblSDT);
+            this.pnlMain.Controls.Add(this.txtHoTen);
+            this.pnlMain.Controls.Add(this.lblHoTen);
+            this.pnlMain.Controls.Add(this.txtMaKH);
+            this.pnlMain.Controls.Add(this.lblMaKH);
+            this.pnlMain.Controls.Add(this.labelHeader);
+            this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill; // Lấp đầy toàn bộ
+            this.pnlMain.Location = new System.Drawing.Point(0, 0);
+            this.pnlMain.Name = "pnlMain";
+            this.pnlMain.Size = new System.Drawing.Size(1000, 650);
+            this.pnlMain.TabIndex = 1;
+
+            // --- CÁC CONTROL NHẬP LIỆU (Đã căn chỉnh lại vị trí cho cân đối hơn) ---
+
+            // Header
+            this.labelHeader.AutoSize = true;
+            this.labelHeader.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold);
+            this.labelHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.labelHeader.Location = new System.Drawing.Point(40, 30);
+            this.labelHeader.Name = "labelHeader";
+            this.labelHeader.Size = new System.Drawing.Size(355, 46);
+            this.labelHeader.TabIndex = 0;
+            this.labelHeader.Text = "CÀI ĐẶT TÀI KHOẢN";
+
+            // Mã KH
+            this.lblMaKH.AutoSize = true;
+            this.lblMaKH.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            this.lblMaKH.ForeColor = System.Drawing.Color.Gray;
+            this.lblMaKH.Location = new System.Drawing.Point(50, 100);
+            this.lblMaKH.Name = "lblMaKH";
+            this.lblMaKH.Size = new System.Drawing.Size(71, 25);
+            this.lblMaKH.TabIndex = 1;
+            this.lblMaKH.Text = "Mã KH";
+
+            this.txtMaKH.BorderRadius = 8;
+            this.txtMaKH.Enabled = false;
+            this.txtMaKH.FillColor = System.Drawing.Color.WhiteSmoke;
+            this.txtMaKH.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.txtMaKH.Location = new System.Drawing.Point(50, 130);
+            this.txtMaKH.Name = "txtMaKH";
+            this.txtMaKH.Size = new System.Drawing.Size(150, 45);
+            this.txtMaKH.TabIndex = 2;
+
+            // Họ Tên
+            this.lblHoTen.AutoSize = true;
+            this.lblHoTen.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            this.lblHoTen.ForeColor = System.Drawing.Color.Gray;
+            this.lblHoTen.Location = new System.Drawing.Point(230, 100);
+            this.lblHoTen.Name = "lblHoTen";
+            this.lblHoTen.Size = new System.Drawing.Size(98, 25);
+            this.lblHoTen.TabIndex = 3;
+            this.lblHoTen.Text = "Họ và tên";
+
+            this.txtHoTen.BorderRadius = 8;
+            this.txtHoTen.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.txtHoTen.Location = new System.Drawing.Point(230, 130);
+            this.txtHoTen.Name = "txtHoTen";
+            this.txtHoTen.Size = new System.Drawing.Size(500, 45);
+            this.txtHoTen.TabIndex = 4;
+
+            // Số điện thoại
+            this.lblSDT.AutoSize = true;
+            this.lblSDT.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            this.lblSDT.ForeColor = System.Drawing.Color.Gray;
+            this.lblSDT.Location = new System.Drawing.Point(50, 200);
+            this.lblSDT.Name = "lblSDT";
+            this.lblSDT.Size = new System.Drawing.Size(129, 25);
+            this.lblSDT.TabIndex = 5;
+            this.lblSDT.Text = "Số điện thoại";
+
+            this.txtSDT.BorderRadius = 8;
+            this.txtSDT.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.txtSDT.Location = new System.Drawing.Point(50, 230);
+            this.txtSDT.Name = "txtSDT";
+            this.txtSDT.Size = new System.Drawing.Size(320, 45);
+            this.txtSDT.TabIndex = 6;
+
+            // Email
+            this.lblEmail.AutoSize = true;
+            this.lblEmail.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            this.lblEmail.ForeColor = System.Drawing.Color.Gray;
+            this.lblEmail.Location = new System.Drawing.Point(410, 200);
+            this.lblEmail.Name = "lblEmail";
+            this.lblEmail.Size = new System.Drawing.Size(59, 25);
+            this.lblEmail.TabIndex = 7;
+            this.lblEmail.Text = "Email";
+
+            this.txtEmail.BorderRadius = 8;
+            this.txtEmail.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.txtEmail.Location = new System.Drawing.Point(410, 230);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(320, 45);
+            this.txtEmail.TabIndex = 8;
+
+            // Giới tính
+            this.lblGioiTinh.AutoSize = true;
+            this.lblGioiTinh.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            this.lblGioiTinh.ForeColor = System.Drawing.Color.Gray;
+            this.lblGioiTinh.Location = new System.Drawing.Point(50, 300);
+            this.lblGioiTinh.Name = "lblGioiTinh";
+            this.lblGioiTinh.Size = new System.Drawing.Size(88, 25);
+            this.lblGioiTinh.TabIndex = 9;
+            this.lblGioiTinh.Text = "Giới tính";
+
+            this.rdoNam.AutoSize = true;
+            this.rdoNam.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.rdoNam.CheckedState.BorderThickness = 0;
+            this.rdoNam.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.rdoNam.CheckedState.InnerColor = System.Drawing.Color.White;
+            this.rdoNam.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.rdoNam.Location = new System.Drawing.Point(50, 335);
+            this.rdoNam.Name = "rdoNam";
+            this.rdoNam.Size = new System.Drawing.Size(73, 29);
+            this.rdoNam.TabIndex = 10;
+            this.rdoNam.Text = "Nam";
+
+            this.rdoNu.AutoSize = true;
+            this.rdoNu.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.rdoNu.CheckedState.BorderThickness = 0;
+            this.rdoNu.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.rdoNu.CheckedState.InnerColor = System.Drawing.Color.White;
+            this.rdoNu.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.rdoNu.Location = new System.Drawing.Point(140, 335);
+            this.rdoNu.Name = "rdoNu";
+            this.rdoNu.Size = new System.Drawing.Size(59, 29);
+            this.rdoNu.TabIndex = 11;
+            this.rdoNu.Text = "Nữ";
+
+            // Ngày sinh
+            this.lblNgaySinh.AutoSize = true;
+            this.lblNgaySinh.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            this.lblNgaySinh.ForeColor = System.Drawing.Color.Gray;
+            this.lblNgaySinh.Location = new System.Drawing.Point(410, 300);
+            this.lblNgaySinh.Name = "lblNgaySinh";
+            this.lblNgaySinh.Size = new System.Drawing.Size(100, 25);
+            this.lblNgaySinh.TabIndex = 12;
+            this.lblNgaySinh.Text = "Ngày sinh";
+
+            this.dtpNgaySinh.BorderRadius = 8;
+            this.dtpNgaySinh.Checked = true;
+            this.dtpNgaySinh.FillColor = System.Drawing.Color.White;
+            this.dtpNgaySinh.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.dtpNgaySinh.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpNgaySinh.Location = new System.Drawing.Point(410, 330);
+            this.dtpNgaySinh.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.dtpNgaySinh.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.dtpNgaySinh.Name = "dtpNgaySinh";
+            this.dtpNgaySinh.Size = new System.Drawing.Size(320, 45);
+            this.dtpNgaySinh.TabIndex = 13;
+            this.dtpNgaySinh.Value = new System.DateTime(2023, 10, 27, 0, 0, 0, 0);
+            this.dtpNgaySinh.BorderThickness = 1;
+            this.dtpNgaySinh.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(218)))), ((int)(((byte)(223)))));
+
+            // Địa chỉ
+            this.lblDiaChi.AutoSize = true;
+            this.lblDiaChi.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            this.lblDiaChi.ForeColor = System.Drawing.Color.Gray;
+            this.lblDiaChi.Location = new System.Drawing.Point(50, 400);
+            this.lblDiaChi.Name = "lblDiaChi";
+            this.lblDiaChi.Size = new System.Drawing.Size(71, 25);
+            this.lblDiaChi.TabIndex = 14;
+            this.lblDiaChi.Text = "Địa chỉ";
+
+            this.txtDiaChi.BorderRadius = 8;
+            this.txtDiaChi.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.txtDiaChi.Location = new System.Drawing.Point(50, 430);
             this.txtDiaChi.Multiline = true;
             this.txtDiaChi.Name = "txtDiaChi";
-            this.txtDiaChi.Size = new System.Drawing.Size(663, 22);
+            this.txtDiaChi.Size = new System.Drawing.Size(680, 100);
             this.txtDiaChi.TabIndex = 15;
-            // 
-            // dtpNgaySinh
-            // 
-            this.dtpNgaySinh.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpNgaySinh.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpNgaySinh.Location = new System.Drawing.Point(316, 283);
-            this.dtpNgaySinh.Name = "dtpNgaySinh";
-            this.dtpNgaySinh.Size = new System.Drawing.Size(200, 30);
-            this.dtpNgaySinh.TabIndex = 13;
-            // 
-            // txtEmail
-            // 
-            this.txtEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtEmail.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.txtEmail.Location = new System.Drawing.Point(316, 205);
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(663, 30);
-            this.txtEmail.TabIndex = 11;
-            // 
-            // label8
-            // 
-            this.label8.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(234, 327);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(76, 25);
-            this.label8.TabIndex = 10;
-            this.label8.Text = "Địa Chỉ";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label4
-            // 
-            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(250, 207);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(60, 25);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "Email";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // txtSDT
-            // 
-            this.txtSDT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSDT.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.txtSDT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSDT.Location = new System.Drawing.Point(316, 165);
-            this.txtSDT.MaxLength = 15;
-            this.txtSDT.Name = "txtSDT";
-            this.txtSDT.Size = new System.Drawing.Size(663, 30);
-            this.txtSDT.TabIndex = 9;
-            // 
-            // label6
-            // 
-            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(207, 287);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(103, 25);
-            this.label6.TabIndex = 7;
-            this.label6.Text = "Ngày Sinh";
-            // 
-            // label5
-            // 
-            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(220, 247);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(90, 25);
-            this.label5.TabIndex = 6;
-            this.label5.Text = "Giới Tính";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label3
-            // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(203, 167);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(107, 25);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Điện Thoại";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // txtHoTen
-            // 
-            this.txtHoTen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtHoTen.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.txtHoTen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtHoTen.Location = new System.Drawing.Point(316, 125);
-            this.txtHoTen.Name = "txtHoTen";
-            this.txtHoTen.Size = new System.Drawing.Size(663, 30);
-            this.txtHoTen.TabIndex = 3;
-            // 
-            // txtMaKH
-            // 
-            this.txtMaKH.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtMaKH.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.txtMaKH.Enabled = false;
-            this.txtMaKH.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMaKH.Location = new System.Drawing.Point(316, 85);
-            this.txtMaKH.Name = "txtMaKH";
-            this.txtMaKH.ReadOnly = true;
-            this.txtMaKH.Size = new System.Drawing.Size(663, 30);
-            this.txtMaKH.TabIndex = 1;
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.BackColor = System.Drawing.Color.White;
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.5F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 69.5F));
-            this.tableLayoutPanel1.Controls.Add(this.label8, 0, 7);
-            this.tableLayoutPanel1.Controls.Add(this.txtDiaChi, 1, 7);
-            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel2, 1, 8);
-            this.tableLayoutPanel1.Controls.Add(this.dtpNgaySinh, 1, 6);
-            this.tableLayoutPanel1.Controls.Add(this.label6, 0, 6);
-            this.tableLayoutPanel1.Controls.Add(this.label5, 0, 5);
-            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel3, 1, 5);
-            this.tableLayoutPanel1.Controls.Add(this.label4, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.txtEmail, 1, 4);
-            this.tableLayoutPanel1.Controls.Add(this.label3, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.txtSDT, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.txtHoTen, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.txtMaKH, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label9, 1, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(20);
-            this.tableLayoutPanel1.RowCount = 9;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1002, 510);
-            this.tableLayoutPanel1.TabIndex = 0;
-            this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(316, 51);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(663, 29);
-            this.label9.TabIndex = 1;
-            this.label9.Text = "QUẢN LÝ HỒ SƠ";
-            this.label9.Click += new System.EventHandler(this.label9_Click);
-            // 
-            // flowLayoutPanel3
-            // 
-            this.flowLayoutPanel3.Controls.Add(this.flowLayoutPanel4);
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(316, 243);
-            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(200, 34);
-            this.flowLayoutPanel3.TabIndex = 17;
-            // 
-            // flowLayoutPanel4
-            // 
-            this.flowLayoutPanel4.Controls.Add(this.radioButton1);
-            this.flowLayoutPanel4.Controls.Add(this.radioButton2);
-            this.flowLayoutPanel4.Location = new System.Drawing.Point(3, 3);
-            this.flowLayoutPanel4.Name = "flowLayoutPanel4";
-            this.flowLayoutPanel4.Size = new System.Drawing.Size(663, 34);
-            this.flowLayoutPanel4.TabIndex = 13;
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton1.Location = new System.Drawing.Point(3, 3);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(74, 29);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Nam";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton2.Location = new System.Drawing.Point(83, 3);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(58, 29);
-            this.radioButton2.TabIndex = 1;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Nữ";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            // 
-            // frmHoSo
-            // 
+
+            // Nút Lưu
+            this.btnLuu.BorderRadius = 25;
+            this.btnLuu.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96))))); // Xanh lá
+            this.btnLuu.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.btnLuu.ForeColor = System.Drawing.Color.White;
+            this.btnLuu.Location = new System.Drawing.Point(400, 560);
+            this.btnLuu.Name = "btnLuu";
+            this.btnLuu.Size = new System.Drawing.Size(200, 50);
+            this.btnLuu.TabIndex = 16;
+            this.btnLuu.Text = "LƯU THAY ĐỔI";
+            this.btnLuu.Cursor = System.Windows.Forms.Cursors.Hand;
+
+            // Nút Thoát
+            this.btnThoat.BorderRadius = 25;
+            this.btnThoat.BorderThickness = 1;
+            this.btnThoat.BorderColor = System.Drawing.Color.Gray;
+            this.btnThoat.FillColor = System.Drawing.Color.White;
+            this.btnThoat.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.btnThoat.ForeColor = System.Drawing.Color.Gray;
+            this.btnThoat.Location = new System.Drawing.Point(620, 560);
+            this.btnThoat.Name = "btnThoat";
+            this.btnThoat.Size = new System.Drawing.Size(110, 50);
+            this.btnThoat.TabIndex = 17;
+            this.btnThoat.Text = "Thoát";
+            this.btnThoat.Cursor = System.Windows.Forms.Cursors.Hand;
+
+            // Form HoSo
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1002, 510);
-            this.Controls.Add(this.tableLayoutPanel1);
+            this.ClientSize = new System.Drawing.Size(1000, 650);
+            this.Controls.Add(this.pnlMain);
             this.Name = "frmHoSo";
-            this.Text = "frmHoSo";
-            this.Load += new System.EventHandler(this.frmHoSo_Load_1);
-            this.flowLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
-            this.flowLayoutPanel3.ResumeLayout(false);
-            this.flowLayoutPanel4.ResumeLayout(false);
-            this.flowLayoutPanel4.PerformLayout();
-            this.ResumeLayout(false);
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Hồ sơ cá nhân";
 
+            this.pnlMain.ResumeLayout(false);
+            this.pnlMain.PerformLayout();
+            this.ResumeLayout(false);
         }
 
         #endregion
 
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
-        private System.Windows.Forms.Button btnLuu;
-        private System.Windows.Forms.Button btnThoat;
-        private System.Windows.Forms.TextBox txtDiaChi;
-        private System.Windows.Forms.DateTimePicker dtpNgaySinh;
-        private System.Windows.Forms.TextBox txtEmail;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtSDT;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtHoTen;
-        private System.Windows.Forms.TextBox txtMaKH;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel4;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
+        private Guna.UI2.WinForms.Guna2Panel pnlMain;
+        private System.Windows.Forms.Label labelHeader;
+
+        private System.Windows.Forms.Label lblMaKH;
+        private Guna.UI2.WinForms.Guna2TextBox txtMaKH;
+
+        private System.Windows.Forms.Label lblHoTen;
+        private Guna.UI2.WinForms.Guna2TextBox txtHoTen;
+
+        private System.Windows.Forms.Label lblSDT;
+        private Guna.UI2.WinForms.Guna2TextBox txtSDT;
+
+        private System.Windows.Forms.Label lblEmail;
+        private Guna.UI2.WinForms.Guna2TextBox txtEmail;
+
+        private System.Windows.Forms.Label lblGioiTinh;
+        private Guna.UI2.WinForms.Guna2RadioButton rdoNam;
+        private Guna.UI2.WinForms.Guna2RadioButton rdoNu;
+
+        private System.Windows.Forms.Label lblNgaySinh;
+        private Guna.UI2.WinForms.Guna2DateTimePicker dtpNgaySinh;
+
+        private System.Windows.Forms.Label lblDiaChi;
+        private Guna.UI2.WinForms.Guna2TextBox txtDiaChi;
+
+        private Guna.UI2.WinForms.Guna2Button btnLuu;
+        private Guna.UI2.WinForms.Guna2Button btnThoat;
     }
 }
