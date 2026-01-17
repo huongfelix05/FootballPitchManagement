@@ -182,14 +182,14 @@
 
         private System.Windows.Forms.Label lblThongTin;
         private System.Windows.Forms.Label lblGio;
-        private System.Windows.Forms.Label lblGia;
         private System.Windows.Forms.Button btnThanhToan;
         private System.Windows.Forms.Button btnHuy;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblNgayDat;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label lblTenKhach;
         private System.Windows.Forms.Label label4;
+        public System.Windows.Forms.Label lblGia;
+        public System.Windows.Forms.Label lblTenKhach;
     }
 }
