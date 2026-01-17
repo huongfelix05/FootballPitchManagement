@@ -97,9 +97,6 @@
     <Compile Include="Forms\Customer\frmBaocao.Designer.cs">
       <DependentUpon>frmBaocao.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Customer\frmDanhGia.Designer.cs">
-      <DependentUpon>frmDanhGia.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\Customer\frmHoSo.cs">
       <SubType>Form</SubType>
     </Compile>

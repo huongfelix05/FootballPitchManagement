@@ -19,7 +19,7 @@ namespace FootballPitchManagement
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new frmQuenMatKhau());
             // Application.Run(new frmMainKH());
-            Application.Run(new frmDanhGia());
+            //Application.Run(new frmDanhGia());
 
             // Application.Run(new frmLogin());
             //Application.Run(new frmAdmin());
