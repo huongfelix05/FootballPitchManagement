@@ -13,7 +13,7 @@ namespace FootballPitchManagement.Forms.Customer
         // ==================================================================================
 
         // LƯU Ý: Sửa lại 'Server Name' (chỗ DESKTOP-...) cho đúng máy bạn
-        private string strKetNoi = @"Data Source=DANGKHOA;Initial Catalog=QuanLychuoiDatSan;Integrated Security=True";
+        private string strKetNoi = @"Data Source=LAPTOP-BV9HL7MV;Initial Catalog=QuanLychuoiDatSan;Integrated Security=True";
 
         // Biến lưu mã khách hàng (ID). Nếu = 0 là thêm mới, > 0 là sửa.
         private int _maKH;

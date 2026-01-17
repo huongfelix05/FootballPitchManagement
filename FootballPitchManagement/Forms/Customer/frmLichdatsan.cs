@@ -21,12 +21,12 @@ namespace FootballPitchManagement
         private decimal _giaSanHienTai = 0;
 
         // --- CẤU HÌNH NGÂN HÀNG (VIETQR & CASSO) ---
-        private const string BANK_ID = "MB";       // Mã ngân hàng
-        private const string ACCOUNT_NO = "431903007"; // Số tài khoản CỦA BẠN
-        private const string ACCOUNT_NAME = "NGUYEN QUOC DAT";
+        private const string BANK_ID = "BIDV";       // Mã ngân hàng
+        private const string ACCOUNT_NO = "V3CASS7500868888"; // Số tài khoản CỦA BẠN
+        private const string ACCOUNT_NAME = "NGUYEN VAN HUONG";
 
         // API KEY CASSO (Bạn đã điền)
-        private const string CASSO_API_KEY = "AK_CS.d79578b0f2f211f0819c2d6675ce85db.lrtqUZCRHv8Zi3JgarGbVBnPlq1u16vmJGmLgCbcDk2DrFMd60vFY7eOnNDWIzsSeNjMlbhU";
+        private const string CASSO_API_KEY = "AK_CS.edc4ea30f36f11f0819c2d6675ce85db.52vDQ5Scri98fUECSifsHaXxiw6f5w5FpN00LtDUJGhrKfjmpoEReVfZZDkytjHQdbVujT9w";
 
         public frmLichdatsan()
         {

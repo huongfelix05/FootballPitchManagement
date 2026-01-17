@@ -90,9 +90,6 @@
     <Compile Include="Forms\Customer\frmBaocao.Designer.cs">
       <DependentUpon>frmBaocao.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Customer\frmDoAn.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Forms\Customer\frmDanhGia.Designer.cs">
       <DependentUpon>frmDanhGia.cs</DependentUpon>
     </Compile>
@@ -184,9 +181,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Customer\frmBaocao.resx">
       <DependentUpon>frmBaocao.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Customer\frmDoAn.resx">
-      <DependentUpon>frmDoAn.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Customer\frmHoaDon1.resx">
       <DependentUpon>frmHoaDon1.cs</DependentUpon>
@@ -324,6 +318,35 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icons8-food-bar-1001.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>9</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
