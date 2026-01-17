@@ -1,4 +1,6 @@
 ﻿using FootballPitchManagement.Forms.Admin;
+using FootballPitchManagement.Forms.Customer;
+
 //using QuanLySanBong;
 using System;
 using System.Collections.Generic;
@@ -19,11 +21,11 @@ namespace FootballPitchManagement
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             // Application.Run(new QuenMatKhau());
-           //Application.Run(new frmMainKH());
+            //Application.Run(new frmMainKH());
             //Application.Run(new frmLogin());
-           //Application.Run(new frmAdmin());
-            
-          // Application.Run(new frmQuanLyDatSan());
+            //Application.Run(new frmAdmin());
+
+            // Application.Run(new frmQuanLyDatSan());
 
             // Application.Run(new frmDoAn());
           // Application.Run(new Nhap1());
@@ -32,5 +34,6 @@ namespace FootballPitchManagement
             //Application.Run(new frmLichdatsan());
            Application.Run(new frmQuanlysan()); 
         }
+        
     }
 }

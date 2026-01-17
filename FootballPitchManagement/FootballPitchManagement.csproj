@@ -87,11 +87,11 @@
     <Compile Include="Forms\Customer\frmDoAn.Designer.cs">
       <DependentUpon>frmDoAn.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Customer\frmHoadon.cs">
+    <Compile Include="Forms\Customer\frmHoaDon1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Customer\frmHoadon.Designer.cs">
-      <DependentUpon>frmHoadon.cs</DependentUpon>
+    <Compile Include="Forms\Customer\frmHoaDon1.Designer.cs">
+      <DependentUpon>frmHoaDon1.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Customer\frmLichdatsan.cs">
       <SubType>Form</SubType>
@@ -170,8 +170,8 @@
     <EmbeddedResource Include="Forms\Customer\frmDoAn.resx">
       <DependentUpon>frmDoAn.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Customer\frmHoadon.resx">
-      <DependentUpon>frmHoadon.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Customer\frmHoaDon1.resx">
+      <DependentUpon>frmHoaDon1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Customer\frmLichdatsan.resx">
       <DependentUpon>frmLichdatsan.cs</DependentUpon>
@@ -215,7 +215,6 @@
       <DependentUpon>ucDonDatItem.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
-    <None Include="App.config.example" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
