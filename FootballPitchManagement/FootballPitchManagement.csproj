@@ -36,6 +36,13 @@
     <Reference Include="Guna.UI2, Version=2.0.4.7, Culture=neutral, PublicKeyToken=8b9d14aa5142e261, processorArchitecture=MSIL">
       <HintPath>..\packages\Guna.UI2.WinForms.2.0.4.7\lib\net472\Guna.UI2.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Excel.16.0.18925.20022\lib\net40\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -69,6 +76,9 @@
     <Compile Include="Forms\Admin\frmDoanhThu.Designer.cs">
       <DependentUpon>frmDoanhThu.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Admin\frmdoanhthuu.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Admin\frmQuanlysan.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,8 +91,11 @@
     <Compile Include="Forms\Admin\frmThemSuaSan.Designer.cs">
       <DependentUpon>frmThemSuaSan.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Customer\frmDanhGia.cs">
+    <Compile Include="Forms\Customer\frmBaocao.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Customer\frmBaocao.Designer.cs">
+      <DependentUpon>frmBaocao.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Customer\frmDanhGia.Designer.cs">
       <DependentUpon>frmDanhGia.cs</DependentUpon>
@@ -167,17 +180,17 @@
     <EmbeddedResource Include="Forms\Admin\frmDoanhThu.resx">
       <DependentUpon>frmDoanhThu.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Admin\frmdoanhthuu.resx">
+      <DependentUpon>frmdoanhthuu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Admin\frmQuanlysan.resx">
       <DependentUpon>frmQuanlysan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Admin\frmThemSuaSan.resx">
       <DependentUpon>frmThemSuaSan.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Customer\frmDanhGia.resx">
-      <DependentUpon>frmDanhGia.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Customer\frmHoSo.resx">
-      <DependentUpon>frmHoSo.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Customer\frmBaocao.resx">
+      <DependentUpon>frmBaocao.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Customer\frmHoaDon1.resx">
       <DependentUpon>frmHoaDon1.cs</DependentUpon>
