@@ -56,7 +56,7 @@
             // panelLogin
             // 
             this.panelLogin.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panelLogin.BackColor = System.Drawing.Color.White;
+            this.panelLogin.BackColor = System.Drawing.Color.MistyRose;
             this.panelLogin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.panelLogin.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelLogin.Controls.Add(this.picTilte);
@@ -188,24 +188,24 @@
             // IbIPassword
             // 
             this.IbIPassword.AutoSize = true;
-            this.IbIPassword.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.IbIPassword.Location = new System.Drawing.Point(45, 263);
+            this.IbIPassword.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.IbIPassword.Location = new System.Drawing.Point(45, 266);
             this.IbIPassword.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.IbIPassword.Name = "IbIPassword";
-            this.IbIPassword.Size = new System.Drawing.Size(96, 23);
+            this.IbIPassword.Size = new System.Drawing.Size(75, 20);
             this.IbIPassword.TabIndex = 1;
-            this.IbIPassword.Text = "Mật khẩu: ";
+            this.IbIPassword.Text = "Mật khẩu";
             // 
             // lblUsername
             // 
             this.lblUsername.AutoSize = true;
-            this.lblUsername.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsername.Location = new System.Drawing.Point(45, 186);
+            this.lblUsername.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUsername.Location = new System.Drawing.Point(45, 189);
             this.lblUsername.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(133, 23);
+            this.lblUsername.Size = new System.Drawing.Size(157, 20);
             this.lblUsername.TabIndex = 8;
-            this.lblUsername.Text = "Tên đăng nhập:";
+            this.lblUsername.Text = "Tên đăng nhập/Email";
             // 
             // lblTitle
             // 

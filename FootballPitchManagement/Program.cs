@@ -22,17 +22,17 @@ namespace FootballPitchManagement
             Application.SetCompatibleTextRenderingDefault(false);
             // Application.Run(new QuenMatKhau());
             //Application.Run(new frmMainKH());
-            //Application.Run(new frmLogin());
+            Application.Run(new frmLogin());
             //Application.Run(new frmAdmin());
 
             // Application.Run(new frmQuanLyDatSan());
 
             // Application.Run(new frmDoAn());
           // Application.Run(new Nhap1());
-         //Application.Run(new frmLogin());
+         //Application.Run(new frmHoaDon1());
           // Application.Run(new frmAdmin());
             //Application.Run(new frmLichdatsan());
-           Application.Run(new frmQuanlysan()); 
+           //Application.Run(new frmQuanlysan()); 
         }
         
     }

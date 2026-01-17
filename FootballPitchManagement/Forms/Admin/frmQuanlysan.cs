@@ -273,15 +273,19 @@ namespace FootballPitchManagement.Forms.Admin
                         FROM San s
                         JOIN ChiNhanh cn ON s.MaChiNhanh = cn.MaChiNhanh
                         JOIN LoaiSan ls ON s.MaLoaiSan = ls.MaLoaiSan
-                        JOIN TinhTrangSan tt ON s.MaTinhTrang = tt.MaTinhTrang
-                        WHERE s.TrangThai = 1";
+                        JOIN TinhTrangSan tt ON s.MaTinhTrang = tt.MaTinhTrang";
+                        // ✅ BỎ ĐIỀU KIỆN WHERE s.TrangThai = 1
 
                     if (maChiNhanh > 0)
-                        sql += " AND s.MaChiNhanh = @MaChiNhanh";
+                        sql += " WHERE s.MaChiNhanh = @MaChiNhanh";
                     if (maLoaiSan > 0)
-                        sql += " AND s.MaLoaiSan = @MaLoaiSan";
+                    {
+                        sql += (maChiNhanh > 0 ? " AND" : " WHERE") + " s.MaLoaiSan = @MaLoaiSan";
+                    }
                     if (maTinhTrang > 0)
-                        sql += " AND s.MaTinhTrang = @MaTinhTrang";
+                    {
+                        sql += ((maChiNhanh > 0 || maLoaiSan > 0) ? " AND" : " WHERE") + " s.MaTinhTrang = @MaTinhTrang";
+                    }
 
                     sql += " ORDER BY s.TenSan";
 

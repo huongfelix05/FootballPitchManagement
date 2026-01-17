@@ -32,7 +32,7 @@ namespace FootballPitchManagement
             // Validate
             if (string.IsNullOrWhiteSpace(txtUsername.Text))
             {
-                MessageBox.Show("Vui lòng nhập tên đăng nhập!", "Thông báo", 
+                MessageBox.Show("Vui lòng nhập tên đăng nhập hoặc email!", "Thông báo", 
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtUsername.Focus();
                 return;
@@ -53,16 +53,17 @@ namespace FootballPitchManagement
                 {
                     conn.Open();
                     
-                    string query = @"SELECT TenDangNhap, tk.MaLoaiTK, kh.HoTen
+                    // ✅ SỬA QUERY ĐỂ HỖ TRỢ ĐĂNG NHẬP BẰNG CẢ TÊN ĐĂNG NHẬP VÀ EMAIL
+                    string query = @"SELECT tk.TenDangNhap, tk.MaLoaiTK, kh.HoTen, kh.Email
                                     FROM TaiKhoan tk
                                     LEFT JOIN KhachHang kh ON tk.MaKH = kh.MaKH
-                                    WHERE tk.TenDangNhap = @username 
+                                    WHERE (tk.TenDangNhap = @loginInput OR kh.Email = @loginInput)
                                     AND tk.MatKhau = @password
                                     AND tk.TrangThai = 1";
                     
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@username", txtUsername.Text.Trim());
+                        cmd.Parameters.AddWithValue("@loginInput", txtUsername.Text.Trim());
                         cmd.Parameters.AddWithValue("@password", txtPassword.Text);
                         
                         using (SqlDataReader reader = cmd.ExecuteReader())
@@ -70,9 +71,14 @@ namespace FootballPitchManagement
                             if (reader.Read())
                             {
                                 string tenKhachHang = reader["HoTen"]?.ToString() ?? "Người dùng";
+                                string email = reader["Email"]?.ToString() ?? "";
                                 int maLoaiTK = Convert.ToInt32(reader["MaLoaiTK"]);
                                 
-                                MessageBox.Show($"Xin chào {tenKhachHang}!\nĐăng nhập thành công!", 
+                                // ✅ HIỂN THỊ THÔNG TIN ĐĂNG NHẬP THÀNH CÔNG
+                                string loginMethod = !string.IsNullOrEmpty(email) && txtUsername.Text.Trim().Contains("@") 
+                                    ? "email" : "tên đăng nhập";
+                                
+                                MessageBox.Show($"Xin chào {tenKhachHang}!\nĐăng nhập thành công bằng {loginMethod}!", 
                                     "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 
                                 this.Hide();
@@ -94,7 +100,7 @@ namespace FootballPitchManagement
                             }
                             else
                             {
-                                MessageBox.Show("Tên đăng nhập hoặc mật khẩu không đúng!", 
+                                MessageBox.Show("Tên đăng nhập/Email hoặc mật khẩu không đúng!", 
                                     "Lỗi đăng nhập", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 txtPassword.Clear();
                                 txtPassword.Focus();
