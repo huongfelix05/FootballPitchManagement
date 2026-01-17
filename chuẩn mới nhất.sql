@@ -40,7 +40,7 @@ CREATE TABLE San (
     -- Thông tin hiển thị
     TenSan NVARCHAR(50) NOT NULL,           -- Sân 5, Sân 7, Sân B1
               
-    HinhAnh NVARCHAR(255),                   -- Đường dẫn ảnh
+                  
 
     -- Liên kết nghiệp vụ
     MaLoaiSan INT NOT NULL,                  -- Sân 5 / 7 / 11

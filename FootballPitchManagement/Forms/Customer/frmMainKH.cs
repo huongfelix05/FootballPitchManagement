@@ -97,6 +97,12 @@ namespace FootballPitchManagement
 
         }
 
+//<<<<<<< HEAD
+        private void btnProfile_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmHoSo(1));
+        }
+//=======
         private void pnlSidebar_Paint(object sender, PaintEventArgs e)
         {
 
@@ -104,12 +110,18 @@ namespace FootballPitchManagement
 
         private void btnDoAn_Click(object sender, EventArgs e)
         {
-            
+            // Tạo form đồ ăn mới
+   //         frmDoAn fDoAn = new frmDoAn();
+
+            // Gọi cái hàm vừa viết ở trên để nhét nó vào
+  //          OpenChildForm(fDoAn);
         }
 
-        private void pictureBox3_Click(object sender, EventArgs e)
+        private void btnFeedBack_Click(object sender, EventArgs e)
         {
 
         }
+
+        //>>>>>>> ff74be947abc8f35b04d7f8733f1d21935322cd4
     }
 }

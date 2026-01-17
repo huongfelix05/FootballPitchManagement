@@ -131,8 +131,9 @@ private decimal GetRevenue(DateTime from, DateTime to, int? maCN)
         }
         catch (Exception ex)
         {
-            // Nếu lỗi thì trả về 0 (để không crash chương trình)
-            total = 0;
+                    System.Diagnostics.Debug.WriteLine("Lỗi tính doanh thu: " + ex.Message);
+                    // Nếu lỗi thì trả về 0 (để không crash chương trình)
+                    total = 0;
         }
     }
     return total;
@@ -622,6 +623,9 @@ private decimal GetRevenue(DateTime from, DateTime to, int? maCN)
                 GC.Collect();
             }
         }
+
+
+
 
 
 
