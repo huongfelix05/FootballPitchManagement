@@ -30,11 +30,11 @@ namespace FootballPitchManagement
             // Application.Run(new frmQuanLyDatSan());
 
             // Application.Run(new frmHoSo());
-           Application.Run(new frmDoanhThu());
+           //Application.Run(new frmDoanhThu());
             //Application.Run(new frmHoaDon1());
             // Application.Run(new frmAdmin());
             //Application.Run(new frmLichdatsan());
-            //Application.Run(new frmQuanlysan()); 
+            Application.Run(new frmQuanlysan()); 
         }
     }
 }

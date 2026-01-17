@@ -459,8 +459,8 @@ namespace FootballPitchManagement.Forms.Admin
 
         private void BtnThemSan_Click(object sender, EventArgs e)
         {
-            //frmThemSuaSan frm = new frmThemSuaSan();
-        //    if (frm.ShowDialog() == DialogResult.OK)
+            frmThemSuaSan frm = new frmThemSuaSan();
+            if (frm.ShowDialog() == DialogResult.OK)
             {
                 LoadDanhSachSan();
                 LoadThongKe();

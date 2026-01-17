@@ -72,6 +72,7 @@
     <Compile Include="Forms\Admin\frmDoanhThu.Designer.cs">
       <DependentUpon>frmDoanhThu.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Admin\frmdoanhthuu.cs" />
     <Compile Include="Forms\Admin\frmQuanlysan.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,6 +91,7 @@
     <Compile Include="Forms\Customer\frmBaocao.Designer.cs">
       <DependentUpon>frmBaocao.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Customer\frmDanhGia.cs" />
     <Compile Include="Forms\Customer\frmDanhGia.Designer.cs">
       <DependentUpon>frmDanhGia.cs</DependentUpon>
     </Compile>
@@ -173,6 +175,9 @@
     <EmbeddedResource Include="Forms\Admin\frmDoanhThu.resx">
       <DependentUpon>frmDoanhThu.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Admin\frmdoanhthuu.resx">
+      <DependentUpon>frmdoanhthuu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Admin\frmQuanlysan.resx">
       <DependentUpon>frmQuanlysan.cs</DependentUpon>
     </EmbeddedResource>
@@ -181,6 +186,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Customer\frmBaocao.resx">
       <DependentUpon>frmBaocao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Customer\frmDanhGia.resx">
+      <DependentUpon>frmDanhGia.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Customer\frmHoaDon1.resx">
       <DependentUpon>frmHoaDon1.cs</DependentUpon>
