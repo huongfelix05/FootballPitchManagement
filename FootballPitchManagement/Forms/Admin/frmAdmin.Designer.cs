@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAdmin));
             this.pnldashboardAdmin = new System.Windows.Forms.Panel();
             this.guna2GradientPanel2 = new Guna.UI2.WinForms.Guna2GradientPanel();
@@ -76,7 +76,6 @@
             this.btnNameAd = new System.Windows.Forms.Button();
             this.pnlTongdoanhthu = new Guna.UI2.WinForms.Guna2GradientPanel();
             this.picTien = new System.Windows.Forms.PictureBox();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.pnldashboardAdmin.SuspendLayout();
             this.guna2GradientPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
@@ -534,20 +533,20 @@
             // 
             // chartDoanhThu
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chartDoanhThu.ChartAreas.Add(chartArea2);
+            chartArea1.Name = "ChartArea1";
+            this.chartDoanhThu.ChartAreas.Add(chartArea1);
             this.tlpMainAdmin.SetColumnSpan(this.chartDoanhThu, 3);
             this.chartDoanhThu.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend2.Name = "Legend1";
-            this.chartDoanhThu.Legends.Add(legend2);
+            legend1.Name = "Legend1";
+            this.chartDoanhThu.Legends.Add(legend1);
             this.chartDoanhThu.Location = new System.Drawing.Point(25, 222);
             this.chartDoanhThu.Margin = new System.Windows.Forms.Padding(25, 10, 25, 10);
             this.chartDoanhThu.Name = "chartDoanhThu";
             this.chartDoanhThu.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Berry;
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chartDoanhThu.Series.Add(series2);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chartDoanhThu.Series.Add(series1);
             this.chartDoanhThu.Size = new System.Drawing.Size(916, 525);
             this.chartDoanhThu.TabIndex = 10;
             this.chartDoanhThu.Text = "Doanh thu tháng";
@@ -815,6 +814,5 @@
         private Guna.UI2.WinForms.Guna2GradientPanel guna2GradientPanel2;
         private System.Windows.Forms.PictureBox pictureBox13;
         private System.Windows.Forms.Button button1;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }

@@ -564,111 +564,22 @@ namespace FootballPitchManagement
         {
             using (SqlConnection conn = DatabaseConnection.GetConnection())
             {
-                conn.Open();
-                SqlTransaction transaction = conn.BeginTransaction();
-
                 try
                 {
-                    // ---------------------------------------------------------
-                    // BƯỚC 1: LẤY THÔNG TIN TỪ LỊCH ĐẶT (LẤY THÊM NgayDat)
-                    // ---------------------------------------------------------
-                    string sqlGetInfo = @"
-                SELECT l.MaKH, s.MaChiNhanh, l.TongTienSan, l.SoGio, l.MaSan, l.NgayDat
-                FROM LichDatSan l
-                JOIN San s ON l.MaSan = s.MaSan
-                WHERE l.MaDatSan = @MaDatSan";
+                    conn.Open();
+                    string sql = @"
+                        INSERT INTO HoaDon (MaDatSan, MaKH, MaChiNhanh, TongTienSan, ThanhTien, NgayLap, NguoiLap, TrangThaiThanhToan)
+                        SELECT MaDatSan, MaKH, (SELECT MaChiNhanh FROM San WHERE San.MaSan = LichDatSan.MaSan), TongTienSan, TongTienSan, GETDATE(), 1, 'DA_THANH_TOAN'
+                        FROM LichDatSan WHERE MaDatSan = @Ma;
+                        
+                        UPDATE LichDatSan SET TrangThai = 'HOAN_THANH' WHERE MaDatSan = @Ma;";
 
-                    SqlCommand cmdGet = new SqlCommand(sqlGetInfo, conn, transaction);
-                    cmdGet.Parameters.AddWithValue("@MaDatSan", maDatSan);
-
-                    int maKH = 0, maChiNhanh = 0;
-                    decimal tongTien = 0;
-                    double soGio = 0;
-                    DateTime ngayDat = DateTime.Now; // Biến lưu ngày đặt
-
-                    using (SqlDataReader r = cmdGet.ExecuteReader())
-                    {
-                        if (r.Read())
-                        {
-                            maKH = Convert.ToInt32(r["MaKH"]);
-                            maChiNhanh = Convert.ToInt32(r["MaChiNhanh"]);
-                            tongTien = Convert.ToDecimal(r["TongTienSan"]);
-                            soGio = Convert.ToDouble(r["SoGio"]);
-                            ngayDat = Convert.ToDateTime(r["NgayDat"]); // Lấy ngày đặt từ CSDL
-                        }
-                        else
-                        {
-                            throw new Exception("Không tìm thấy thông tin đơn đặt sân!");
-                        }
-                    }
-
-                    // ---------------------------------------------------------
-                    // BƯỚC 2: TẠO HÓA ĐƠN (Dùng biến @NgayLap thay vì GETDATE())
-                    // ---------------------------------------------------------
-                    // Lưu ý: Tôi dùng ngayDat (ngày khách đá) làm ngày hóa đơn
-                    string sqlHoaDon = @"
-                INSERT INTO HoaDon (MaDatSan, MaKH, MaChiNhanh, NgayLap, TongTienSan, ThanhTien, TrangThaiThanhToan, PhuongThucTT, NguoiLap)
-                VALUES (@MaDatSan, @MaKH, @MaChiNhanh, @NgayLap, @TongTien, @TongTien, N'DA_THANH_TOAN', N'TIEN_MAT', 1);
-                SELECT SCOPE_IDENTITY();";
-
-                    SqlCommand cmdHoaDon = new SqlCommand(sqlHoaDon, conn, transaction);
-                    cmdHoaDon.Parameters.AddWithValue("@MaDatSan", maDatSan);
-                    cmdHoaDon.Parameters.AddWithValue("@MaKH", maKH);
-                    cmdHoaDon.Parameters.AddWithValue("@MaChiNhanh", maChiNhanh);
-
-                    // --- SỬA Ở ĐÂY: Truyền ngày đặt vào ---
-                    cmdHoaDon.Parameters.AddWithValue("@NgayLap", ngayDat);
-                    // --------------------------------------
-
-                    cmdHoaDon.Parameters.AddWithValue("@TongTien", tongTien);
-
-                    int maHoaDon = Convert.ToInt32(cmdHoaDon.ExecuteScalar());
-
-                    // ---------------------------------------------------------
-                    // BƯỚC 3: TẠO CHI TIẾT HÓA ĐƠN SÂN
-                    // ---------------------------------------------------------
-                    string sqlChiTiet = @"
-                INSERT INTO ChiTietHoaDonSan (MaHoaDon, MaDatSan, DonGia, SoGio, ThanhTien)
-                VALUES (@MaHoaDon, @MaDatSan, @DonGia, @SoGio, @ThanhTien)";
-
-                    SqlCommand cmdChiTiet = new SqlCommand(sqlChiTiet, conn, transaction);
-                    cmdChiTiet.Parameters.AddWithValue("@MaHoaDon", maHoaDon);
-                    cmdChiTiet.Parameters.AddWithValue("@MaDatSan", maDatSan);
-                    decimal donGia = (soGio > 0) ? (tongTien / (decimal)soGio) : tongTien;
-                    cmdChiTiet.Parameters.AddWithValue("@DonGia", donGia);
-                    cmdChiTiet.Parameters.AddWithValue("@SoGio", soGio);
-                    cmdChiTiet.Parameters.AddWithValue("@ThanhTien", tongTien);
-                    cmdChiTiet.ExecuteNonQuery();
-
-                    // ---------------------------------------------------------
-                    // BƯỚC 4: GHI NHẬN THANH TOÁN
-                    // ---------------------------------------------------------
-                    string sqlThanhToan = @"
-                INSERT INTO ThanhToan (MaHoaDon, MaKH, SoTien, PhuongThuc, TrangThai, NgayThanhToan, NguoiThucHien)
-                VALUES (@MaHoaDon, @MaKH, @SoTien, N'TIEN_MAT', N'THANH_CONG', GETDATE(), 1)";
-
-                    SqlCommand cmdTT = new SqlCommand(sqlThanhToan, conn, transaction);
-                    cmdTT.Parameters.AddWithValue("@MaHoaDon", maHoaDon);
-                    cmdTT.Parameters.AddWithValue("@MaKH", maKH);
-                    cmdTT.Parameters.AddWithValue("@SoTien", tongTien);
-                    cmdTT.ExecuteNonQuery();
-
-                    // ---------------------------------------------------------
-                    // BƯỚC 5: CẬP NHẬT TRẠNG THÁI LỊCH ĐẶT
-                    // ---------------------------------------------------------
-                    string sqlUpdate = "UPDATE LichDatSan SET TrangThai = 'HOAN_THANH' WHERE MaDatSan = @MaDatSan";
-                    SqlCommand cmdUpd = new SqlCommand(sqlUpdate, conn, transaction);
-                    cmdUpd.Parameters.AddWithValue("@MaDatSan", maDatSan);
-                    cmdUpd.ExecuteNonQuery();
-
-                    transaction.Commit();
-                    MessageBox.Show("✅ Thanh toán thành công!", "Thành Công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@Ma", maDatSan);
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("✅ Thanh toán thành công!", "Đã Thanh Toán", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                catch (Exception ex)
-                {
-                    transaction.Rollback();
-                    MessageBox.Show($"Lỗi thanh toán: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                catch (Exception ex) { MessageBox.Show($"Lỗi khi thanh toán:\n{ex.Message}", "Lỗi Thanh Toán", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             }
         }
 

@@ -113,24 +113,6 @@ VALUES
 (2, 2, 4, N'Giá hợp lý'),
 (3, 3, 3, N'Sân hơi trơn');
 ---
-USE QuanLychuoiDatSan;
-GO
-
--- Thêm 5 hóa đơn đồ ăn đã thanh toán
-INSERT INTO HoaDonDoAn (MaChiNhanh, NgayLap, TongTien, TrangThai, NguoiLap)
-VALUES 
-(1, '2026-01-10', 500000, 'DA_THANH_TOAN', 1), -- Q1 bán nước
-(1, '2026-01-12', 300000, 'DA_THANH_TOAN', 1),
-(2, '2026-01-11', 450000, 'DA_THANH_TOAN', 1), -- Q7 bán nước
-(3, '2026-01-13', 200000, 'DA_THANH_TOAN', 1), -- Thủ Đức bán nước
-(1, '2026-01-14', 600000, 'DA_THANH_TOAN', 1);
-
-
-
--- Thêm hóa đơn cho Tháng 3/2026
-INSERT INTO HoaDon (MaDatSan, MaKH, MaChiNhanh, NgayLap, TongTienSan, ThanhTien, TrangThaiThanhToan)
-VALUES 
-(3, 3, 1, '2026-03-10', 5000000, 5000000, 'DA_THANH_TOAN');
 
 
 
