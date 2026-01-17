@@ -473,6 +473,16 @@ namespace FootballPitchManagement.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_food_bar_1001 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-food-bar-1001", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_home_40 {
             get {
                 object obj = ResourceManager.GetObject("icons8-home-40", resourceCulture);

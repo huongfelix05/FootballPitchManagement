@@ -28,12 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tblQuanlysan = new System.Windows.Forms.TableLayoutPanel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.btnThemSan = new Guna.UI2.WinForms.Guna2Button();
             this.guna2CustomGradientPanel1 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             this.lblTongSoSan = new System.Windows.Forms.Label();
             this.lblTong = new System.Windows.Forms.Label();
@@ -66,6 +65,8 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.cboTinhTrang = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.picThemSan = new System.Windows.Forms.PictureBox();
+            this.btnThemSan = new Guna.UI2.WinForms.Guna2GradientButton();
             this.tblQuanlysan.SuspendLayout();
             this.panel3.SuspendLayout();
             this.guna2CustomGradientPanel1.SuspendLayout();
@@ -77,6 +78,7 @@
             this.guna2Panel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picThemSan)).BeginInit();
             this.SuspendLayout();
             // 
             // tblQuanlysan
@@ -111,26 +113,13 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.picThemSan);
             this.panel3.Controls.Add(this.btnThemSan);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(819, 211);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(266, 69);
             this.panel3.TabIndex = 0;
-            // 
-            // btnThemSan
-            // 
-            this.btnThemSan.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnThemSan.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnThemSan.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnThemSan.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnThemSan.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.btnThemSan.ForeColor = System.Drawing.Color.White;
-            this.btnThemSan.Location = new System.Drawing.Point(43, 13);
-            this.btnThemSan.Name = "btnThemSan";
-            this.btnThemSan.Size = new System.Drawing.Size(180, 45);
-            this.btnThemSan.TabIndex = 7;
-            this.btnThemSan.Text = "Thêm sân";
             // 
             // guna2CustomGradientPanel1
             // 
@@ -284,19 +273,19 @@
             // 
             // dgvDanhSachSan
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            this.dgvDanhSachSan.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
+            this.dgvDanhSachSan.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.dgvDanhSachSan.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDanhSachSan.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDanhSachSan.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dgvDanhSachSan.ColumnHeadersHeight = 18;
             this.dgvDanhSachSan.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.dgvDanhSachSan.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -309,14 +298,14 @@
             this.colEdit,
             this.colDelete});
             this.tblQuanlysan.SetColumnSpan(this.dgvDanhSachSan, 4);
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvDanhSachSan.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvDanhSachSan.DefaultCellStyle = dataGridViewCellStyle9;
             this.dgvDanhSachSan.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvDanhSachSan.Location = new System.Drawing.Point(3, 286);
             this.dgvDanhSachSan.Name = "dgvDanhSachSan";
@@ -346,6 +335,7 @@
             this.dgvDanhSachSan.ThemeStyle.RowsStyle.Height = 24;
             this.dgvDanhSachSan.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvDanhSachSan.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            this.dgvDanhSachSan.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDanhSachSan_CellContentClick_1);
             // 
             // colMaSan
             // 
@@ -508,13 +498,44 @@
             this.cboTinhTrang.Size = new System.Drawing.Size(203, 36);
             this.cboTinhTrang.TabIndex = 9;
             // 
+            // picThemSan
+            // 
+            this.picThemSan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.picThemSan.Image = global::FootballPitchManagement.Properties.Resources.icons8_add_481;
+            this.picThemSan.Location = new System.Drawing.Point(84, 13);
+            this.picThemSan.Name = "picThemSan";
+            this.picThemSan.Size = new System.Drawing.Size(55, 45);
+            this.picThemSan.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picThemSan.TabIndex = 8;
+            this.picThemSan.TabStop = false;
+            // 
+            // btnThemSan
+            // 
+            this.btnThemSan.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnThemSan.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnThemSan.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnThemSan.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnThemSan.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnThemSan.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnThemSan.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnThemSan.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnThemSan.ForeColor = System.Drawing.Color.Black;
+            this.btnThemSan.Location = new System.Drawing.Point(84, 13);
+            this.btnThemSan.Name = "btnThemSan";
+            this.btnThemSan.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
+            this.btnThemSan.Size = new System.Drawing.Size(162, 45);
+            this.btnThemSan.TabIndex = 6;
+            this.btnThemSan.Text = "Thêm sân";
+            this.btnThemSan.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.btnThemSan.Click += new System.EventHandler(this.BtnThemSan_Click);
+            // 
             // frmQuanlysan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1088, 753);
             this.Controls.Add(this.tblQuanlysan);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "frmQuanlysan";
             this.Text = "frmQuanlysan";
             this.tblQuanlysan.ResumeLayout(false);
@@ -536,6 +557,7 @@
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picThemSan)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -569,7 +591,6 @@
         private Guna.UI2.WinForms.Guna2ComboBox cboLoaiSan;
         private Guna.UI2.WinForms.Guna2ComboBox cboTinhTrang;
         private Guna.UI2.WinForms.Guna2ComboBox cboChiNhanh;
-        private Guna.UI2.WinForms.Guna2Button btnThemSan;
         private System.Windows.Forms.Panel panel3;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
         private System.Windows.Forms.Label label1;
@@ -577,5 +598,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.PictureBox picThemSan;
+        private Guna.UI2.WinForms.Guna2GradientButton btnThemSan;
     }
 }

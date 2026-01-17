@@ -121,10 +121,10 @@ namespace FootballPitchManagement.Forms.Admin
             }
 
             // Gán sự kiện cho các nút
-            if (btnThemSan != null) 
+            if (picThemSan != null) 
             {
-                btnThemSan.Click -= BtnThemSan_Click;
-                btnThemSan.Click += BtnThemSan_Click;
+                picThemSan.Click -= BtnThemSan_Click;
+                picThemSan.Click += BtnThemSan_Click;
             }
             
             //if (btnLamMoi != null) 
@@ -515,6 +515,11 @@ namespace FootballPitchManagement.Forms.Admin
         #endregion
 
         private void cboChiNhanh_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvDanhSachSan_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
 
         }
