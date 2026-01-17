@@ -119,7 +119,8 @@ VALUES
 (2, 2, 4, N'Giá hợp lý'),
 (3, 3, 3, N'Sân hơi trơn');
 ---
-
+USE QuanLychuoiDatSan;
+GO
 
 -- Thêm 5 hóa đơn đồ ăn đã thanh toán
 INSERT INTO HoaDonDoAn (MaChiNhanh, NgayLap, TongTien, TrangThai, NguoiLap)

@@ -127,11 +127,11 @@ namespace FootballPitchManagement.Forms.Admin
                 btnThemSan.Click += BtnThemSan_Click;
             }
             
-            if (btnLamMoi != null) 
-            {
-                btnLamMoi.Click -= BtnLamMoi_Click;
-                btnLamMoi.Click += BtnLamMoi_Click;
-            }
+            //if (btnLamMoi != null) 
+            //{
+            //    btnLamMoi.Click -= BtnLamMoi_Click;
+            //    btnLamMoi.Click += BtnLamMoi_Click;
+            //}
         }
 
         #endregion
@@ -154,7 +154,7 @@ namespace FootballPitchManagement.Forms.Admin
 
                         DataRow row = dt.NewRow();
                         row["MaChiNhanh"] = 0;
-                        row["TenChiNhanh"] = "-- Tất cả chi nhánh --";
+                        row["TenChiNhanh"] = "-- Tất cả --";
                         dt.Rows.InsertAt(row, 0);
 
                         cboChiNhanh.DataSource = dt;
@@ -226,7 +226,7 @@ namespace FootballPitchManagement.Forms.Admin
 
                         DataRow row = dt.NewRow();
                         row["MaTinhTrang"] = 0;
-                        row["TenTinhTrang"] = "-- Tất cả trạng thái --";        
+                        row["TenTinhTrang"] = "-- Tất cả --";        
                         dt.Rows.InsertAt(row, 0);
 
                         cboTinhTrang.DataSource = dt;
@@ -415,8 +415,8 @@ namespace FootballPitchManagement.Forms.Admin
                 {
                     try
                     {
-                        frmThemSuaSan frm = new frmThemSuaSan(maSan);
-                        if (frm.ShowDialog() == DialogResult.OK)
+                     //   frmThemSuaSan frm = new frmThemSuaSan(maSan);
+               //         if (frm.ShowDialog() == DialogResult.OK)
                         {
                             LoadDanhSachSan();
                             LoadThongKe();
@@ -455,8 +455,8 @@ namespace FootballPitchManagement.Forms.Admin
 
         private void BtnThemSan_Click(object sender, EventArgs e)
         {
-            frmThemSuaSan frm = new frmThemSuaSan();
-            if (frm.ShowDialog() == DialogResult.OK)
+            //frmThemSuaSan frm = new frmThemSuaSan();
+        //    if (frm.ShowDialog() == DialogResult.OK)
             {
                 LoadDanhSachSan();
                 LoadThongKe();
@@ -511,6 +511,12 @@ namespace FootballPitchManagement.Forms.Admin
             LoadThongKe();
         }
 
+
         #endregion
+
+        private void cboChiNhanh_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

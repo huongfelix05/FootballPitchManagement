@@ -57,33 +57,6 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <COMReference Include="Microsoft.Office.Core">
-      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
-      <VersionMajor>2</VersionMajor>
-      <VersionMinor>8</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>primary</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
-    <COMReference Include="Microsoft.Office.Interop.Excel">
-      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>9</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>primary</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
-    <COMReference Include="VBIDE">
-      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
-      <VersionMajor>5</VersionMajor>
-      <VersionMinor>3</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>primary</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\DatabaseConnection.cs" />
@@ -93,23 +66,17 @@
     <Compile Include="Forms\Admin\frmAdmin.Designer.cs">
       <DependentUpon>frmAdmin.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Admin\frmdoanhthuu.cs">
+    <Compile Include="Forms\Admin\frmDoanhThu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Admin\frmdoanhthuu.Designer.cs">
-      <DependentUpon>frmdoanhthuu.cs</DependentUpon>
+    <Compile Include="Forms\Admin\frmDoanhThu.Designer.cs">
+      <DependentUpon>frmDoanhThu.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Admin\frmQuanlysan.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Admin\frmQuanlysan.Designer.cs">
       <DependentUpon>frmQuanlysan.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Admin\frmQuanLyDatSan.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Admin\frmQuanLyDatSan.Designer.cs">
-      <DependentUpon>frmQuanLyDatSan.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Admin\frmThemSuaSan.cs">
       <SubType>Form</SubType>
@@ -126,14 +93,20 @@
     <Compile Include="Forms\Customer\frmDoAn.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Customer\frmDoAn.Designer.cs">
-      <DependentUpon>frmDoAn.cs</DependentUpon>
+    <Compile Include="Forms\Customer\frmDanhGia.Designer.cs">
+      <DependentUpon>frmDanhGia.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Customer\frmHoadon.cs">
+    <Compile Include="Forms\Customer\frmHoSo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Customer\frmHoadon.Designer.cs">
-      <DependentUpon>frmHoadon.cs</DependentUpon>
+    <Compile Include="Forms\Customer\frmHoSo.Designer.cs">
+      <DependentUpon>frmHoSo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Customer\frmHoaDon1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Customer\frmHoaDon1.Designer.cs">
+      <DependentUpon>frmHoaDon1.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Customer\frmLichdatsan.cs">
       <SubType>Form</SubType>
@@ -158,13 +131,24 @@
     </Compile>
     <Compile Include="Forms\Auth\frmRegister.Designer.cs">
       <DependentUpon>frmRegister.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </Compile>
     <Compile Include="Forms\Customer\Nhap1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Customer\Nhap1.Designer.cs">
       <DependentUpon>Nhap1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDoanhThu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDoanhThu.Designer.cs">
+      <DependentUpon>frmDoanhThu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Admin\frmQuanLyDatSan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Admin\frmQuanLyDatSan.Designer.cs">
+      <DependentUpon>frmQuanLyDatSan.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -189,14 +173,11 @@
     <EmbeddedResource Include="Forms\Admin\frmAdmin.resx">
       <DependentUpon>frmAdmin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Admin\frmdoanhthuu.resx">
-      <DependentUpon>frmdoanhthuu.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Admin\frmDoanhThu.resx">
+      <DependentUpon>frmDoanhThu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Admin\frmQuanlysan.resx">
       <DependentUpon>frmQuanlysan.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Admin\frmQuanLyDatSan.resx">
-      <DependentUpon>frmQuanLyDatSan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Admin\frmThemSuaSan.resx">
       <DependentUpon>frmThemSuaSan.cs</DependentUpon>
@@ -207,8 +188,8 @@
     <EmbeddedResource Include="Forms\Customer\frmDoAn.resx">
       <DependentUpon>frmDoAn.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Customer\frmHoadon.resx">
-      <DependentUpon>frmHoadon.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Customer\frmHoaDon1.resx">
+      <DependentUpon>frmHoaDon1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Customer\frmLichdatsan.resx">
       <DependentUpon>frmLichdatsan.cs</DependentUpon>
@@ -225,6 +206,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Customer\Nhap1.resx">
       <DependentUpon>Nhap1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDoanhThu.resx">
+      <DependentUpon>frmDoanhThu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Admin\frmQuanLyDatSan.resx">
+      <DependentUpon>frmQuanLyDatSan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -246,7 +233,6 @@
       <DependentUpon>ucDonDatItem.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
-    <None Include="App.config.example" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
