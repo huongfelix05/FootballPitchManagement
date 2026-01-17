@@ -42,7 +42,7 @@
             this.SuspendLayout();
 
             // 
-            // pnlMain (Panel chính - Giờ sẽ chiếm toàn bộ Form)
+            // pnlMain
             // 
             this.pnlMain.BackColor = System.Drawing.Color.White;
             this.pnlMain.Controls.Add(this.btnThoat);
@@ -63,13 +63,11 @@
             this.pnlMain.Controls.Add(this.txtMaKH);
             this.pnlMain.Controls.Add(this.lblMaKH);
             this.pnlMain.Controls.Add(this.labelHeader);
-            this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill; // Lấp đầy toàn bộ
+            this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMain.Location = new System.Drawing.Point(0, 0);
             this.pnlMain.Name = "pnlMain";
             this.pnlMain.Size = new System.Drawing.Size(1000, 650);
             this.pnlMain.TabIndex = 1;
-
-            // --- CÁC CONTROL NHẬP LIỆU (Đã căn chỉnh lại vị trí cho cân đối hơn) ---
 
             // Header
             this.labelHeader.AutoSize = true;
@@ -77,9 +75,9 @@
             this.labelHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
             this.labelHeader.Location = new System.Drawing.Point(40, 30);
             this.labelHeader.Name = "labelHeader";
-            this.labelHeader.Size = new System.Drawing.Size(355, 46);
+            this.labelHeader.Size = new System.Drawing.Size(294, 46);
             this.labelHeader.TabIndex = 0;
-            this.labelHeader.Text = "CÀI ĐẶT TÀI KHOẢN";
+            this.labelHeader.Text = "HỒ SƠ CÁ NHÂN"; // Đổi tên tiêu đề cho hợp lý
 
             // Mã KH
             this.lblMaKH.AutoSize = true;
@@ -92,7 +90,7 @@
             this.lblMaKH.Text = "Mã KH";
 
             this.txtMaKH.BorderRadius = 8;
-            this.txtMaKH.Enabled = false;
+            this.txtMaKH.ReadOnly = true; // KHÔNG CHO SỬA
             this.txtMaKH.FillColor = System.Drawing.Color.WhiteSmoke;
             this.txtMaKH.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.txtMaKH.Location = new System.Drawing.Point(50, 130);
@@ -111,6 +109,8 @@
             this.lblHoTen.Text = "Họ và tên";
 
             this.txtHoTen.BorderRadius = 8;
+            this.txtHoTen.ReadOnly = true; // KHÔNG CHO SỬA
+            this.txtHoTen.FillColor = System.Drawing.Color.WhiteSmoke; // Màu nền xám nhẹ báo hiệu không sửa được
             this.txtHoTen.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.txtHoTen.Location = new System.Drawing.Point(230, 130);
             this.txtHoTen.Name = "txtHoTen";
@@ -128,6 +128,8 @@
             this.lblSDT.Text = "Số điện thoại";
 
             this.txtSDT.BorderRadius = 8;
+            this.txtSDT.ReadOnly = true; // KHÔNG CHO SỬA
+            this.txtSDT.FillColor = System.Drawing.Color.WhiteSmoke;
             this.txtSDT.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.txtSDT.Location = new System.Drawing.Point(50, 230);
             this.txtSDT.Name = "txtSDT";
@@ -145,6 +147,8 @@
             this.lblEmail.Text = "Email";
 
             this.txtEmail.BorderRadius = 8;
+            this.txtEmail.ReadOnly = true; // KHÔNG CHO SỬA
+            this.txtEmail.FillColor = System.Drawing.Color.WhiteSmoke;
             this.txtEmail.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.txtEmail.Location = new System.Drawing.Point(410, 230);
             this.txtEmail.Name = "txtEmail";
@@ -162,10 +166,10 @@
             this.lblGioiTinh.Text = "Giới tính";
 
             this.rdoNam.AutoSize = true;
-            this.rdoNam.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.rdoNam.Enabled = false; // KHÔNG CHO CHỌN
+            this.rdoNam.CheckedState.BorderColor = System.Drawing.Color.Gray;
             this.rdoNam.CheckedState.BorderThickness = 0;
-            this.rdoNam.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
-            this.rdoNam.CheckedState.InnerColor = System.Drawing.Color.White;
+            this.rdoNam.CheckedState.FillColor = System.Drawing.Color.Gray;
             this.rdoNam.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.rdoNam.Location = new System.Drawing.Point(50, 335);
             this.rdoNam.Name = "rdoNam";
@@ -174,10 +178,10 @@
             this.rdoNam.Text = "Nam";
 
             this.rdoNu.AutoSize = true;
-            this.rdoNu.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.rdoNu.Enabled = false; // KHÔNG CHO CHỌN
+            this.rdoNu.CheckedState.BorderColor = System.Drawing.Color.Gray;
             this.rdoNu.CheckedState.BorderThickness = 0;
-            this.rdoNu.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
-            this.rdoNu.CheckedState.InnerColor = System.Drawing.Color.White;
+            this.rdoNu.CheckedState.FillColor = System.Drawing.Color.Gray;
             this.rdoNu.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.rdoNu.Location = new System.Drawing.Point(140, 335);
             this.rdoNu.Name = "rdoNu";
@@ -196,17 +200,14 @@
             this.lblNgaySinh.Text = "Ngày sinh";
 
             this.dtpNgaySinh.BorderRadius = 8;
-            this.dtpNgaySinh.Checked = true;
-            this.dtpNgaySinh.FillColor = System.Drawing.Color.White;
+            this.dtpNgaySinh.Enabled = false; // KHÔNG CHO CHỌN LỊCH
+            this.dtpNgaySinh.FillColor = System.Drawing.Color.WhiteSmoke;
             this.dtpNgaySinh.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.dtpNgaySinh.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpNgaySinh.Location = new System.Drawing.Point(410, 330);
-            this.dtpNgaySinh.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.dtpNgaySinh.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.dtpNgaySinh.Name = "dtpNgaySinh";
             this.dtpNgaySinh.Size = new System.Drawing.Size(320, 45);
             this.dtpNgaySinh.TabIndex = 13;
-            this.dtpNgaySinh.Value = new System.DateTime(2023, 10, 27, 0, 0, 0, 0);
             this.dtpNgaySinh.BorderThickness = 1;
             this.dtpNgaySinh.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(218)))), ((int)(((byte)(223)))));
 
@@ -221,6 +222,8 @@
             this.lblDiaChi.Text = "Địa chỉ";
 
             this.txtDiaChi.BorderRadius = 8;
+            this.txtDiaChi.ReadOnly = true; // KHÔNG CHO SỬA
+            this.txtDiaChi.FillColor = System.Drawing.Color.WhiteSmoke;
             this.txtDiaChi.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.txtDiaChi.Location = new System.Drawing.Point(50, 430);
             this.txtDiaChi.Multiline = true;
@@ -228,9 +231,10 @@
             this.txtDiaChi.Size = new System.Drawing.Size(680, 100);
             this.txtDiaChi.TabIndex = 15;
 
-            // Nút Lưu
+            // Nút Lưu (ĐÃ ẨN ĐI)
+            this.btnLuu.Visible = false; // ẨN LUÔN VÌ KHÔNG CHO SỬA
             this.btnLuu.BorderRadius = 25;
-            this.btnLuu.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96))))); // Xanh lá
+            this.btnLuu.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
             this.btnLuu.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.btnLuu.ForeColor = System.Drawing.Color.White;
             this.btnLuu.Location = new System.Drawing.Point(400, 560);
@@ -238,7 +242,6 @@
             this.btnLuu.Size = new System.Drawing.Size(200, 50);
             this.btnLuu.TabIndex = 16;
             this.btnLuu.Text = "LƯU THAY ĐỔI";
-            this.btnLuu.Cursor = System.Windows.Forms.Cursors.Hand;
 
             // Nút Thoát
             this.btnThoat.BorderRadius = 25;
