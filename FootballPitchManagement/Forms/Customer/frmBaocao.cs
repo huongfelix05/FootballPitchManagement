@@ -11,7 +11,7 @@ namespace FootballPitchManagement.Forms.Customer
     public partial class frmBaocao : Form
     {
         // --- KHAI BÁO BIẾN TOÀN CỤC Ở ĐÂY (SỬA LỖI) ---
-        string connStr = @"Data Source=MSI;Initial Catalog=QuanLychuoiDatSan;Integrated Security=True";
+        string connStr = @"Data Source=LAPTOP-BV9HL7MV;Initial Catalog=QuanLychuoiDatSan;Integrated Security=True";
 
         // Đưa 2 dòng này ra ngoài hàm frmBaocao()
         DataTable dtSanTotNhat = new DataTable();

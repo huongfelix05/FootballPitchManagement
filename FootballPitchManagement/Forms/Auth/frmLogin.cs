@@ -32,7 +32,7 @@ namespace FootballPitchManagement
             // Validate
             if (string.IsNullOrWhiteSpace(txtUsername.Text))
             {
-                MessageBox.Show("Vui lòng nhập tên đăng nhập hoặc email!", "Thông báo", 
+                MessageBox.Show("Vui lòng nhập tên đăng nhập hoặc email!", "Thông báo",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtUsername.Focus();
                 return;
@@ -40,7 +40,7 @@ namespace FootballPitchManagement
 
             if (string.IsNullOrWhiteSpace(txtPassword.Text))
             {
-                MessageBox.Show("Vui lòng nhập mật khẩu!", "Thông báo", 
+                MessageBox.Show("Vui lòng nhập mật khẩu!", "Thông báo",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtPassword.Focus();
                 return;
@@ -52,7 +52,7 @@ namespace FootballPitchManagement
                 using (SqlConnection conn = DatabaseConnection.GetConnection())
                 {
                     conn.Open();
-                    
+
                     // ✅ SỬA QUERY ĐỂ HỖ TRỢ ĐĂNG NHẬP BẰNG CẢ TÊN ĐĂNG NHẬP VÀ EMAIL
                     string query = @"SELECT tk.TenDangNhap, tk.MaLoaiTK, kh.HoTen, kh.Email
                                     FROM TaiKhoan tk
@@ -60,12 +60,12 @@ namespace FootballPitchManagement
                                     WHERE (tk.TenDangNhap = @loginInput OR kh.Email = @loginInput)
                                     AND tk.MatKhau = @password
                                     AND tk.TrangThai = 1";
-                    
+
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@loginInput", txtUsername.Text.Trim());
                         cmd.Parameters.AddWithValue("@password", txtPassword.Text);
-                        
+
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
                             if (reader.Read())
@@ -73,34 +73,34 @@ namespace FootballPitchManagement
                                 string tenKhachHang = reader["HoTen"]?.ToString() ?? "Người dùng";
                                 string email = reader["Email"]?.ToString() ?? "";
                                 int maLoaiTK = Convert.ToInt32(reader["MaLoaiTK"]);
-                                
+
                                 // ✅ HIỂN THỊ THÔNG TIN ĐĂNG NHẬP THÀNH CÔNG
-                                string loginMethod = !string.IsNullOrEmpty(email) && txtUsername.Text.Trim().Contains("@") 
+                                string loginMethod = !string.IsNullOrEmpty(email) && txtUsername.Text.Trim().Contains("@")
                                     ? "email" : "tên đăng nhập";
-                                
-                                MessageBox.Show($"Xin chào {tenKhachHang}!\nĐăng nhập thành công bằng {loginMethod}!", 
+
+                                MessageBox.Show($"Xin chào {tenKhachHang}!\nĐăng nhập thành công bằng {loginMethod}!",
                                     "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                
+
                                 this.Hide();
-                                
+
                                 // Mở form tương ứng với loại tài khoản
                                 if (maLoaiTK == 1) // Admin
                                 {
                                     frmAdmin frm = new frmAdmin();
                                     frm.ShowDialog();
-                                }   
+                                }
                                 else // Khách hàng
                                 {
                                     frmMainKH frm = new frmMainKH();
                                     frm.TenKhachHang = tenKhachHang;
                                     frm.ShowDialog();
                                 }
-                                
+
                                 this.Close();
                             }
                             else
                             {
-                                MessageBox.Show("Tên đăng nhập/Email hoặc mật khẩu không đúng!", 
+                                MessageBox.Show("Tên đăng nhập/Email hoặc mật khẩu không đúng!",
                                     "Lỗi đăng nhập", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 txtPassword.Clear();
                                 txtPassword.Focus();
@@ -120,7 +120,7 @@ namespace FootballPitchManagement
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", 
+                MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -176,3 +176,17 @@ namespace FootballPitchManagement
     }
 }
 
+//// Nút "Đặt Ngay" với thiết kế đẹp
+//Button btnDatNgay = new Button
+//            // Nút "Đặt Ngay" với thiết kế đẹp
+//            Button btnDatNgay = new Button
+//                                {
+//                                    Text = "🎯 ĐẶT NGAY",
+//                                    Font = new Font("Segoe UI", 11, FontStyle.Bold),
+//                                    BackColor = Color.FromArgb(231, 76, 60),
+//                                    ForeColor = Color.White,
+//                                    FlatStyle = FlatStyle.Flat,
+//                                    Location = new Point(15, 275),
+//                                    // Hover effect
+//                                    btnDatNgay.MouseEnter += (s, e) => btnDatNgay.BackColor = Color.FromArgb(192, 57, 43);
+            

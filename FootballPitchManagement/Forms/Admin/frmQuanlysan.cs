@@ -126,8 +126,8 @@ namespace FootballPitchManagement.Forms.Admin
                 picThemSan.Click -= BtnThemSan_Click;
                 picThemSan.Click += BtnThemSan_Click;
             }
-            
-            //if (btnLamMoi != null) 
+
+            //if (btnLamMoi != null)
             //{
             //    btnLamMoi.Click -= BtnLamMoi_Click;
             //    btnLamMoi.Click += BtnLamMoi_Click;
@@ -273,19 +273,16 @@ namespace FootballPitchManagement.Forms.Admin
                         FROM San s
                         JOIN ChiNhanh cn ON s.MaChiNhanh = cn.MaChiNhanh
                         JOIN LoaiSan ls ON s.MaLoaiSan = ls.MaLoaiSan
-                        JOIN TinhTrangSan tt ON s.MaTinhTrang = tt.MaTinhTrang";
-                        // ✅ BỎ ĐIỀU KIỆN WHERE s.TrangThai = 1
+                        JOIN TinhTrangSan tt ON s.MaTinhTrang = tt.MaTinhTrang
+                        WHERE s.TrangThai = 1"; // ✅ CỐ ĐỊNH ĐIỀU KIỆN ĐẦU TIÊN
 
+                    // ✅ THÊM ĐIỀU KIỆN BỔ SUNG
                     if (maChiNhanh > 0)
-                        sql += " WHERE s.MaChiNhanh = @MaChiNhanh";
+                        sql += " AND s.MaChiNhanh = @MaChiNhanh";
                     if (maLoaiSan > 0)
-                    {
-                        sql += (maChiNhanh > 0 ? " AND" : " WHERE") + " s.MaLoaiSan = @MaLoaiSan";
-                    }
+                        sql += " AND s.MaLoaiSan = @MaLoaiSan";
                     if (maTinhTrang > 0)
-                    {
-                        sql += ((maChiNhanh > 0 || maLoaiSan > 0) ? " AND" : " WHERE") + " s.MaTinhTrang = @MaTinhTrang";
-                    }
+                        sql += " AND s.MaTinhTrang = @MaTinhTrang";
 
                     sql += " ORDER BY s.TenSan";
 
@@ -320,21 +317,24 @@ namespace FootballPitchManagement.Forms.Admin
                 {
                     conn.Open();
 
+                    // ✅ 1. TỔNG SỐ SÂN (chỉ đếm sân còn hoạt động)
                     string sqlTong = "SELECT COUNT(*) FROM San WHERE TrangThai = 1";
                     using (SqlCommand cmd = new SqlCommand(sqlTong, conn))
                     {
                         lblTongSoSan.Text = cmd.ExecuteScalar().ToString();
                     }
 
-                    string sqlHoatDong = @"
+                    // ✅ 2. SÂN TRỐNG (sẵn sàng cho thuê)
+                    string sqlTrong = @"
                         SELECT COUNT(*) FROM San 
                         WHERE TrangThai = 1 
                         AND MaTinhTrang = (SELECT MaTinhTrang FROM TinhTrangSan WHERE TenTinhTrang = N'Trống')";
-                    using (SqlCommand cmd = new SqlCommand(sqlHoatDong, conn))
+                    using (SqlCommand cmd = new SqlCommand(sqlTrong, conn))
                     {
                         lblDangHoatDong.Text = cmd.ExecuteScalar().ToString();
                     }
 
+                    // ✅ 3. SÂN ĐANG SỬ DỤNG
                     string sqlDangDung = @"
                         SELECT COUNT(*) FROM San 
                         WHERE TrangThai = 1 
@@ -344,9 +344,11 @@ namespace FootballPitchManagement.Forms.Admin
                         lblDangSuDung.Text = cmd.ExecuteScalar().ToString();
                     }
 
+                    // ✅ 4. SÂN BẢO TRÌ (THÊM ĐIỀU KIỆN TrangThai = 1)
                     string sqlBaoTri = @"
                         SELECT COUNT(*) FROM San 
-                        WHERE MaTinhTrang = (SELECT MaTinhTrang FROM TinhTrangSan WHERE TenTinhTrang = N'Bảo trì')";
+                        WHERE TrangThai = 1
+                        AND MaTinhTrang = (SELECT MaTinhTrang FROM TinhTrangSan WHERE TenTinhTrang = N'Bảo trì')";
                     using (SqlCommand cmd = new SqlCommand(sqlBaoTri, conn))
                     {
                         lblBaoTri.Text = cmd.ExecuteScalar().ToString();
@@ -406,52 +408,65 @@ namespace FootballPitchManagement.Forms.Admin
             }
         }
 
-        // ✅ XỬ LÝ CLICK NÚT SỬA VÀ XÓA
+        // ✅ XỬ LÝ CLICK NÚT SỬA VÀ XÓA - SỬA LẠI HOÀN TOÀN
         private void DgvDanhSachSan_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
-            {
-                string columnName = dgvDanhSachSan.Columns[e.ColumnIndex].Name;
-                int maSan = Convert.ToInt32(dgvDanhSachSan.Rows[e.RowIndex].Cells["colMaSan"].Value);
+            // ✅ KIỂM TRA HỢP LỆ
+            if (e.RowIndex < 0 || e.ColumnIndex < 0)
+                return;
 
-                // ✅ NÚT SỬA
-                if (columnName == "colEdit")
+            // ✅ KIỂM TRA CÓ DỮ LIỆU TRONG CELL
+            if (dgvDanhSachSan.Rows[e.RowIndex].Cells["colMaSan"].Value == null ||
+                dgvDanhSachSan.Rows[e.RowIndex].Cells["colMaSan"].Value == DBNull.Value)
+            {
+                MessageBox.Show("Không thể xác định mã sân!", "Lỗi", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string columnName = dgvDanhSachSan.Columns[e.ColumnIndex].Name;
+            int maSan = Convert.ToInt32(dgvDanhSachSan.Rows[e.RowIndex].Cells["colMaSan"].Value);
+
+            // ✅ NÚT SỬA
+            if (columnName == "colEdit")
+            {
+                try
                 {
-                    try
+                    frmThemSuaSan frm = new frmThemSuaSan(maSan);
+                    if (frm.ShowDialog() == DialogResult.OK)
                     {
-                     //   frmThemSuaSan frm = new frmThemSuaSan(maSan);
-               //         if (frm.ShowDialog() == DialogResult.OK)
-                        {
-                            LoadDanhSachSan();
-                            LoadThongKe();
-                            MessageBox.Show("Cập nhật sân thành công!", "Thông báo", 
-                                MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show($"Lỗi mở form sửa: {ex.Message}", "Lỗi", 
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        LoadDanhSachSan();
+                        LoadThongKe();
+                        MessageBox.Show("Cập nhật sân thành công!", "Thông báo", 
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
-
-                // ✅ NÚT XÓA
-                if (columnName == "colDelete")
+                catch (Exception ex)
                 {
-                    DialogResult result = MessageBox.Show(
-                        $"Bạn có chắc muốn xóa sân '{dgvDanhSachSan.Rows[e.RowIndex].Cells["colTenSan"].Value}'?\n\n" +
-                        "Lưu ý: Chỉ xóa mềm (đổi trạng thái), không xóa khỏi database.",
-                        "Xác nhận xóa",
-                        MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Warning);
+                    MessageBox.Show($"Lỗi mở form sửa: {ex.Message}", "Lỗi", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            // ✅ NÚT XÓA
+            else if (columnName == "colDelete")
+            {
+                // ✅ LẤY TÊN SÂN ĐỂ HIỂN THỊ TRONG THÔNG BÁO
+                string tenSan = dgvDanhSachSan.Rows[e.RowIndex].Cells["colTenSan"].Value?.ToString() ?? "Sân này";
+                
+                DialogResult result = MessageBox.Show(
+                    $"Bạn có chắc muốn xóa sân '{tenSan}'?\n\n" +
+                    "Lưu ý: Chỉ xóa mềm (đổi trạng thái), không xóa khỏi database.",
+                    "Xác nhận xóa",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
 
-                    if (result == DialogResult.Yes)
-                    {
-                        XoaSan(maSan);
-                    }
+                if (result == DialogResult.Yes)
+                {
+                    XoaSan(maSan);
                 }
             }
         }
+        
 
         #endregion
 
@@ -490,6 +505,7 @@ namespace FootballPitchManagement.Forms.Admin
                             LoadThongKe();
                             MessageBox.Show("Đã xóa sân thành công!", "Thông báo", 
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            
                         }
                         else
                         {
@@ -524,6 +540,11 @@ namespace FootballPitchManagement.Forms.Admin
         }
 
         private void dgvDanhSachSan_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void lblDang_Click(object sender, EventArgs e)
         {
 
         }
