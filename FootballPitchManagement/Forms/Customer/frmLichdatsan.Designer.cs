@@ -1,4 +1,4 @@
-﻿namespace FootballPitchManagement
+﻿namespace FootballPitchManagement.Forms.Customer
 {
     partial class frmLichdatsan
     {
@@ -60,6 +60,7 @@
             this.btnHuy = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.cboLoaiSan = new System.Windows.Forms.ComboBox();
             this.dtpNgayXem = new System.Windows.Forms.DateTimePicker();
             this.cboChiNhanh = new System.Windows.Forms.ComboBox();
@@ -73,9 +74,8 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.grpThongTinDon = new System.Windows.Forms.GroupBox();
             this.flpDanhSachDonHang = new System.Windows.Forms.FlowLayoutPanel();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.flpDanhSachSan = new System.Windows.Forms.FlowLayoutPanel();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.groupBox2.SuspendLayout();
             this.panel7.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -85,6 +85,7 @@
             this.panel2.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.panel9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -94,7 +95,6 @@
             this.groupBox4.SuspendLayout();
             this.panel4.SuspendLayout();
             this.grpThongTinDon.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -354,7 +354,6 @@
             this.groupBox3.TabIndex = 10;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "THỜI GIAN VS CHI PHÍ";
-            this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
             // 
             // panel8
             // 
@@ -382,7 +381,6 @@
             this.lblThongBao.TabIndex = 11;
             this.lblThongBao.Text = "label11";
             this.lblThongBao.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblThongBao.Click += new System.EventHandler(this.lblThongBao_Click);
             // 
             // panel2
             // 
@@ -447,7 +445,6 @@
             this.btnHuy.TabIndex = 1;
             this.btnHuy.Text = "Hủy";
             this.btnHuy.UseVisualStyleBackColor = false;
-            this.btnHuy.Click += new System.EventHandler(this.btnHuy_Click_1);
             // 
             // label3
             // 
@@ -468,6 +465,17 @@
             this.label1.Size = new System.Drawing.Size(116, 22);
             this.label1.TabIndex = 12;
             this.label1.Text = "17:00 - 21:00";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImage = global::FootballPitchManagement.Properties.Resources._29001677_3d_growth_bar_graph_vector_business_concept1;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Location = new System.Drawing.Point(36, 20);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(78, 34);
+            this.pictureBox1.TabIndex = 11;
+            this.pictureBox1.TabStop = false;
             // 
             // cboLoaiSan
             // 
@@ -627,17 +635,6 @@
             this.flpDanhSachDonHang.TabIndex = 0;
             this.flpDanhSachDonHang.WrapContents = false;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImage = global::FootballPitchManagement.Properties.Resources._29001677_3d_growth_bar_graph_vector_business_concept1;
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(36, 20);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(78, 34);
-            this.pictureBox1.TabIndex = 11;
-            this.pictureBox1.TabStop = false;
-            // 
             // flpDanhSachSan
             // 
             this.flpDanhSachSan.AutoScroll = true;
@@ -660,7 +657,7 @@
             this.ClientSize = new System.Drawing.Size(1534, 666);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "frmLichdatsan";
-            this.Text = "Formfbfdb2";
+            this.Text = "frmLichdatsan";
             this.groupBox2.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
@@ -674,6 +671,7 @@
             this.groupBox7.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
             this.panel9.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
@@ -683,7 +681,6 @@
             this.groupBox4.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.grpThongTinDon.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }

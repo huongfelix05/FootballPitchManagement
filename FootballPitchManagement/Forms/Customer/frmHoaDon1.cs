@@ -14,7 +14,7 @@ namespace FootballPitchManagement.Forms.Customer
     public partial class frmHoaDon1 : Form
     {
         // 1. CẤU HÌNH KẾT NỐI
-        string connectionString = @"Data Source=DESKTOP-HDKUQKI;Initial Catalog=QuanLychuoiDatSan;Integrated Security=True";
+        string connectionString = @"Data Source=LAPTOP-BV9HL7MV;Initial Catalog=QuanLychuoiDatSan;Integrated Security=True";
         bool isLoaded = false;
 
         public frmHoaDon1()

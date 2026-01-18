@@ -55,7 +55,7 @@ namespace FootballPitchManagement.Forms.Admin
         private Label label1;
         private GroupBox groupBox11;
         private DataGridView dgvDoanhThu;
-        string strConnect = @"Data Source=MSI;Initial Catalog=QuanLychuoiDatSan;Integrated Security=True";
+        string strConnect = @"Data Source=LAPTOP-BV9HL7MV;Initial Catalog=QuanLychuoiDatSan;Integrated Security=True";
 
         public frmdoanhthuu()
         {
@@ -127,16 +127,16 @@ namespace FootballPitchManagement.Forms.Admin
             }
         }
         // Hàm phụ trợ: Tính tổng tiền trong khoảng thời gian và chi nhánh cụ thể
-private decimal GetRevenue(DateTime from, DateTime to, int? maCN)
-{
-    decimal total = 0;
-    using (SqlConnection conn = new SqlConnection(strConnect))
-    {
-        try
+        private decimal GetRevenue(DateTime from, DateTime to, int? maCN)
         {
-            conn.Open();
-            // SQL tính tổng: (Tổng tiền Hóa Đơn Sân) + (Tổng tiền Hóa Đơn Đồ Ăn)
-            string sql = @"
+            decimal total = 0;
+            using (SqlConnection conn = new SqlConnection(strConnect))
+            {
+                try
+                {
+                    conn.Open();
+                    // SQL tính tổng: (Tổng tiền Hóa Đơn Sân) + (Tổng tiền Hóa Đơn Đồ Ăn)
+                    string sql = @"
                 SELECT (
                     ISNULL((SELECT SUM(ThanhTien) FROM HoaDon 
                             WHERE NgayLap BETWEEN @F AND @T 
@@ -149,35 +149,35 @@ private decimal GetRevenue(DateTime from, DateTime to, int? maCN)
                             AND (@M IS NULL OR MaChiNhanh=@M)),0)
                 )";
 
-            SqlCommand cmd = new SqlCommand(sql, conn);
-            
-            // Thêm tham số an toàn
-            cmd.Parameters.AddWithValue("@F", from.Date);
-            // Lấy đến giây cuối cùng của ngày kết thúc (23:59:59)
-            cmd.Parameters.AddWithValue("@T", to.Date.AddDays(1).AddSeconds(-1)); 
-            
-            // Xử lý tham số Chi nhánh (Nếu null thì truyền DBNull)
-            if (maCN.HasValue)
-                cmd.Parameters.AddWithValue("@M", maCN.Value);
-            else
-                cmd.Parameters.AddWithValue("@M", DBNull.Value);
+                    SqlCommand cmd = new SqlCommand(sql, conn);
 
-            // Thực thi và lấy kết quả
-            object result = cmd.ExecuteScalar();
-            if (result != null && result != DBNull.Value)
-            {
-                total = Convert.ToDecimal(result);
-            }
-        }
-        catch (Exception ex)
-        {
+                    // Thêm tham số an toàn
+                    cmd.Parameters.AddWithValue("@F", from.Date);
+                    // Lấy đến giây cuối cùng của ngày kết thúc (23:59:59)
+                    cmd.Parameters.AddWithValue("@T", to.Date.AddDays(1).AddSeconds(-1));
+
+                    // Xử lý tham số Chi nhánh (Nếu null thì truyền DBNull)
+                    if (maCN.HasValue)
+                        cmd.Parameters.AddWithValue("@M", maCN.Value);
+                    else
+                        cmd.Parameters.AddWithValue("@M", DBNull.Value);
+
+                    // Thực thi và lấy kết quả
+                    object result = cmd.ExecuteScalar();
+                    if (result != null && result != DBNull.Value)
+                    {
+                        total = Convert.ToDecimal(result);
+                    }
+                }
+                catch (Exception ex)
+                {
                     System.Diagnostics.Debug.WriteLine("Lỗi tính doanh thu: " + ex.Message);
                     // Nếu lỗi thì trả về 0 (để không crash chương trình)
                     total = 0;
+                }
+            }
+            return total;
         }
-    }
-    return total;
-}
         // Hàm 2: Tính toán tiền cho 4 thẻ Card (Hôm nay, Tuần này, Tháng này, Tổng)
         private void LoadDashboardCards()
         {
@@ -493,7 +493,28 @@ private decimal GetRevenue(DateTime from, DateTime to, int? maCN)
         // Sự kiện khi bấm nút Xuất Excel
         private void btnXuatBaoCao_Click(object sender, EventArgs e)
         {
+         
+            try
+            {
+                // 1. Tạo hộp thoại lưu file để người dùng chọn chỗ lưu
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.Filter = "Excel Documents (*.xlsx)|*.xlsx";
+                sfd.FileName = "BaoCaoDoanhThu_" + DateTime.Now.ToString("yyyyMMdd_HHmm") + ".xlsx";
 
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    // 2. Gọi hàm xuất Excel đã viết bên dưới
+                    // g: dgvDoanhThu, duongDan: sfd.FileName, tenTapTin: "DoanhThu", tinhTongVaoCuoi: true
+                    ExportToExcel(dgvDoanhThu, sfd.FileName, "DoanhThu", true);
+
+                    MessageBox.Show("Xuất báo cáo Excel thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi xuất Excel: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        
         }
 
         // HÀM XỬ LÝ CHÍNH: GHI DỮ LIỆU TỪ GRID RA EXCEL
@@ -1051,12 +1072,13 @@ private decimal GetRevenue(DateTime from, DateTime to, int? maCN)
             this.btnXuatBaoCao.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnXuatBaoCao.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnXuatBaoCao.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnXuatBaoCao.Location = new System.Drawing.Point(3, 4);
+            this.btnXuatBaoCao.Location = new System.Drawing.Point(8, 10);
             this.btnXuatBaoCao.Name = "btnXuatBaoCao";
             this.btnXuatBaoCao.Size = new System.Drawing.Size(298, 51);
             this.btnXuatBaoCao.TabIndex = 7;
             this.btnXuatBaoCao.Text = "Xuất Excel";
             this.btnXuatBaoCao.UseVisualStyleBackColor = false;
+            this.btnXuatBaoCao.Click += new System.EventHandler(this.btnXuatBaoCao_Click);
             // 
             // groupBox9
             // 
