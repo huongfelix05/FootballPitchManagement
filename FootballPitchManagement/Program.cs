@@ -18,7 +18,7 @@ namespace FootballPitchManagement
         {
             //Application.EnableVisualStyles();
            // Application.SetCompatibleTextRenderingDefault(false);
-            // Application.Run(new QuenMatKhau());
+             //Application.Run(new frmQuenMatKhau());
            //Application.Run(new frmMainKH());
             //Application.Run(new frmLogin());
            //Application.Run(new frmAdmin());
@@ -26,7 +26,7 @@ namespace FootballPitchManagement
           //Application.Run(new frmQuanLyDatSan());
 
             // Application.Run(new frmDoAn());
-           Application.Run(new Nhap1());
+           Application.Run(new frmQuanLyDoAn());
          //Application.Run(new frmLogin());
           // Application.Run(new frmAdmin());
             //Application.Run(new frmLichdatsan());
