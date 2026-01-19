@@ -906,6 +906,7 @@ namespace FootballPitchManagement.Forms.Admin
             this.groupBox5.TabIndex = 3;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Tổng Doanh Thu";
+           
             // 
             // pnlTongDoanhThu
             // 
@@ -1273,5 +1274,7 @@ namespace FootballPitchManagement.Forms.Admin
             this.ResumeLayout(false);
 
         }
+
+       
     }
 }
