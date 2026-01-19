@@ -168,6 +168,7 @@
             this.button1.Text = "Quản Lý Đồ Ăn";
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // pictureBox11
             // 

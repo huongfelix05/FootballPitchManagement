@@ -14,7 +14,7 @@ namespace FootballPitchManagement.Forms.Admin
 {
     public partial class frmQuanLyDoAn : Form
     {
-        string strKetNoi = @"Data Source=DESKTOP-DHPAOGN;Initial Catalog=QuanLychuoiDatSan;Integrated Security=True";
+        string strKetNoi = @"Data Source=LAPTOP-BV9HL7MV;Initial Catalog=QuanLychuoiDatSan;Integrated Security=True";
         public frmQuanLyDoAn()
         {
             InitializeComponent();

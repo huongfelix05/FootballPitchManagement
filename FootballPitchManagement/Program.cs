@@ -21,12 +21,12 @@ namespace FootballPitchManagement
              //Application.Run(new frmQuenMatKhau());
            //Application.Run(new frmMainKH());
             //Application.Run(new frmLogin());
-           //Application.Run(new frmAdmin());
+           Application.Run(new frmAdmin());
             
           //Application.Run(new frmQuanLyDatSan());
 
             // Application.Run(new frmDoAn());
-           Application.Run(new frmQuanLyDoAn());
+          // Application.Run(new frmQuanLyDoAn());
          //Application.Run(new frmLogin());
           // Application.Run(new frmAdmin());
             //Application.Run(new frmLichdatsan());

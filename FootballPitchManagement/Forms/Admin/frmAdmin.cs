@@ -420,6 +420,11 @@ namespace FootballPitchManagement
         {
             OpenChildForm(new frmCaidat());
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmQuanLyDoAn());
+        }
     }
 }
 

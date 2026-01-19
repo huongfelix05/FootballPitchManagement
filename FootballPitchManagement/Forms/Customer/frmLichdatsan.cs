@@ -81,7 +81,7 @@ namespace FootballPitchManagement.Forms.Customer
                 {
                     // Chọn chi nhánh trong ComboBox
                     cboChiNhanh.SelectedValue = maChiNhanhDuocChon;
-                    
+
                     // Load thông tin chi nhánh và hiển thị
                     HienThiThongTinChiNhanh(maChiNhanhDuocChon);
                 }
@@ -90,7 +90,7 @@ namespace FootballPitchManagement.Forms.Customer
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Lỗi khởi tạo hệ thống:\n{ex.Message}", "Lỗi Khởi Tạo", 
+                MessageBox.Show($"Lỗi khởi tạo hệ thống:\n{ex.Message}", "Lỗi Khởi Tạo",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -130,7 +130,7 @@ namespace FootballPitchManagement.Forms.Customer
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Lỗi load thông tin chi nhánh: {ex.Message}", "Lỗi", 
+                    MessageBox.Show($"Lỗi load thông tin chi nhánh: {ex.Message}", "Lỗi",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
@@ -187,7 +187,7 @@ namespace FootballPitchManagement.Forms.Customer
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Đã xảy ra lỗi khi lọc dữ liệu:\n{ex.Message}", "Lỗi Bộ Lọc", 
+                MessageBox.Show($"Đã xảy ra lỗi khi lọc dữ liệu:\n{ex.Message}", "Lỗi Bộ Lọc",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -200,7 +200,7 @@ namespace FootballPitchManagement.Forms.Customer
                 {
                     conn.Open();
                     string sql = "SELECT MaChiNhanh, TenChiNhanh FROM ChiNhanh WHERE TrangThai = 1 ORDER BY TenChiNhanh";
-                    
+
                     using (SqlDataAdapter da = new SqlDataAdapter(sql, conn))
                     {
                         DataTable dt = new DataTable();
@@ -222,7 +222,7 @@ namespace FootballPitchManagement.Forms.Customer
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Lỗi load chi nhánh: {ex.Message}", "Lỗi", 
+                    MessageBox.Show($"Lỗi load chi nhánh: {ex.Message}", "Lỗi",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
@@ -236,7 +236,7 @@ namespace FootballPitchManagement.Forms.Customer
                 {
                     conn.Open();
                     string sql = "SELECT MaLoaiSan, TenLoaiSan FROM LoaiSan ORDER BY TenLoaiSan";
-                    
+
                     using (SqlDataAdapter da = new SqlDataAdapter(sql, conn))
                     {
                         DataTable dt = new DataTable();
@@ -257,7 +257,7 @@ namespace FootballPitchManagement.Forms.Customer
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Lỗi load loại sân: {ex.Message}", "Lỗi", 
+                    MessageBox.Show($"Lỗi load loại sân: {ex.Message}", "Lỗi",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
@@ -334,19 +334,20 @@ namespace FootballPitchManagement.Forms.Customer
                     }
                     if (count == 0)
                     {
-                        Label lbl = new Label() { 
-                            Text = "Không có sân phù hợp với bộ lọc", 
-                            AutoSize = true, 
-                            ForeColor = Color.Red, 
-                            Font = new Font("Segoe UI", 10, FontStyle.Italic) 
+                        Label lbl = new Label()
+                        {
+                            Text = "Không có sân phù hợp với bộ lọc",
+                            AutoSize = true,
+                            ForeColor = Color.Red,
+                            Font = new Font("Segoe UI", 10, FontStyle.Italic)
                         };
                         flpDanhSachSan.Controls.Add(lbl);
                     }
                 }
-                catch (Exception ex) 
-                { 
-                    MessageBox.Show($"Không thể tải danh sách sân:\n{ex.Message}", "Lỗi Tải Dữ Liệu", 
-                        MessageBoxButtons.OK, MessageBoxIcon.Error); 
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Không thể tải danh sách sân:\n{ex.Message}", "Lỗi Tải Dữ Liệu",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -362,7 +363,7 @@ namespace FootballPitchManagement.Forms.Customer
 
             if (san.TrangThai == "Bảo trì")
             {
-                MessageBox.Show("Sân đang trong quá trình bảo trì.\nVui lòng chọn sân khác!", 
+                MessageBox.Show("Sân đang trong quá trình bảo trì.\nVui lòng chọn sân khác!",
                     "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
@@ -448,7 +449,7 @@ namespace FootballPitchManagement.Forms.Customer
             string sdt = txtSDT.Text.Trim();
             if (string.IsNullOrEmpty(sdt) || sdt.Length < 10)
             {
-                MessageBox.Show("Vui lòng nhập số điện thoại hợp lệ (ít nhất 10 số)!", 
+                MessageBox.Show("Vui lòng nhập số điện thoại hợp lệ (ít nhất 10 số)!",
                     "Lỗi Nhập Liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtSDT.Focus();
                 return;
@@ -469,7 +470,7 @@ namespace FootballPitchManagement.Forms.Customer
                         lblMaKH.Text = r["MaKH"].ToString();
                         txtTenKhach.ForeColor = Color.Green;
                         LoadDanhSachDonHangCuaKhach(int.Parse(lblMaKH.Text));
-                        MessageBox.Show("✅ Đã tìm thấy khách hàng: " + txtTenKhach.Text, 
+                        MessageBox.Show("✅ Đã tìm thấy khách hàng: " + txtTenKhach.Text,
                             "Thành Công", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
@@ -478,7 +479,7 @@ namespace FootballPitchManagement.Forms.Customer
                         txtTenKhach.Text = "";
                         if (flpDanhSachDonHang != null) flpDanhSachDonHang.Controls.Clear();
 
-                        MessageBox.Show("❌ Không tìm thấy khách hàng!\nVui lòng kiểm tra lại SĐT.", 
+                        MessageBox.Show("❌ Không tìm thấy khách hàng!\nVui lòng kiểm tra lại SĐT.",
                             "Không Tìm Thấy", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         txtSDT.Focus();
                         txtSDT.SelectAll();
@@ -486,7 +487,7 @@ namespace FootballPitchManagement.Forms.Customer
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Lỗi hệ thống khi tìm khách:\n{ex.Message}", "Lỗi", 
+                    MessageBox.Show($"Lỗi hệ thống khi tìm khách:\n{ex.Message}", "Lỗi",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
@@ -495,41 +496,41 @@ namespace FootballPitchManagement.Forms.Customer
         // ✅ METHOD DUY NHẤT btnDatSan_Click (ĐÃ XÓA BẢN TRÙNG LẶP)
         private void btnDatSan_Click(object sender, EventArgs e)
         {
-            if (_maSanDangChon == 0) 
-            { 
-                MessageBox.Show("Vui lòng chọn một sân bóng!", "Chưa Chọn Sân", 
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning); 
-                return; 
+            if (_maSanDangChon == 0)
+            {
+                MessageBox.Show("Vui lòng chọn một sân bóng!", "Chưa Chọn Sân",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
-            
-            if (lblMaKH.Text == "0" || string.IsNullOrEmpty(lblMaKH.Text)) 
-            { 
-                MessageBox.Show("Vui lòng nhập sđt và tìm khách hàng!", "Chưa Chọn Khách", 
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning); 
-                return; 
+
+            if (lblMaKH.Text == "0" || string.IsNullOrEmpty(lblMaKH.Text))
+            {
+                MessageBox.Show("Vui lòng nhập sđt và tìm khách hàng!", "Chưa Chọn Khách",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
 
             DateTime ngayDat = dtpNgayXem.Value.Date;
             TimeSpan bd = dtpGioBatDau.Value.TimeOfDay;
             TimeSpan kt = dtpGioKetThuc.Value.TimeOfDay;
 
-            if (kt <= bd) 
-            { 
-                MessageBox.Show("Giờ kết thúc phải lớn hơn giờ bắt đầu!", "Lỗi", 
-                    MessageBoxButtons.OK, MessageBoxIcon.Error); 
-                return; 
+            if (kt <= bd)
+            {
+                MessageBox.Show("Giờ kết thúc phải lớn hơn giờ bắt đầu!", "Lỗi",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
-            
+
             if ((kt - bd).TotalMinutes < 60)
             {
-                MessageBox.Show("Thời gian đặt sân tối thiểu phải là 1 tiếng (60 phút)!", 
+                MessageBox.Show("Thời gian đặt sân tối thiểu phải là 1 tiếng (60 phút)!",
                     "Quy Định", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (KiemTraTrungLich(_maSanDangChon, ngayDat, bd, kt))
             {
-                MessageBox.Show("❌ Rất tiếc! Khung giờ này vừa có người đặt.", 
+                MessageBox.Show("❌ Rất tiếc! Khung giờ này vừa có người đặt.",
                     "Trùng Lịch", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 Filter_Changed(null, null);
                 return;
@@ -555,7 +556,7 @@ namespace FootballPitchManagement.Forms.Customer
                     cmd.Parameters.AddWithValue("@Tien", tien);
 
                     cmd.ExecuteNonQuery();
-                    MessageBox.Show("✅ Đặt sân thành công!", "Thành Công", 
+                    MessageBox.Show("✅ Đặt sân thành công!", "Thành Công",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     LoadDanhSachDonHangCuaKhach(int.Parse(lblMaKH.Text));
@@ -566,17 +567,17 @@ namespace FootballPitchManagement.Forms.Customer
                     lblTenSanChon.Text = "Chưa chọn";
                     txtTongTien.Text = "0";
                 }
-                catch (Exception ex) 
-                { 
-                    MessageBox.Show($"Lỗi khi lưu đặt sân:\n{ex.Message}", "Lỗi Hệ Thống", 
-                        MessageBoxButtons.OK, MessageBoxIcon.Error); 
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Lỗi khi lưu đặt sân:\n{ex.Message}", "Lỗi Hệ Thống",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
 
         private void btnHuy_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Bạn muốn xóa hết thông tin đang nhập?", "Xác Nhận", 
+            if (MessageBox.Show("Bạn muốn xóa hết thông tin đang nhập?", "Xác Nhận",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 ResetFormDatSan();
@@ -1020,8 +1021,8 @@ namespace FootballPitchManagement.Forms.Customer
             }
         }
 
-        private void ResetFormDatSan() 
-        { 
+        private void ResetFormDatSan()
+        {
             txtSDT.Clear();
             txtTenKhach.Clear();
             lblMaKH.Text = "0";
