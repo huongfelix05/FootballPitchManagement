@@ -451,7 +451,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BackgroundImage = global::FootballPitchManagement.Properties.Resources.dấu_x;
+//            this.pictureBox1.BackgroundImage = global::FootballPitchManagement.Properties.Resources.dấu_x;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Right;

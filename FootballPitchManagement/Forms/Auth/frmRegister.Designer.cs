@@ -297,7 +297,7 @@ namespace FootballPitchManagement
             // 
             // button3
             // 
-            this.button3.BackgroundImage = global::FootballPitchManagement.Properties.Resources.nút_thoát;
+//            this.button3.BackgroundImage = global::FootballPitchManagement.Properties.Resources.nút_thoát;
             this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button3.Location = new System.Drawing.Point(939, 12);
             this.button3.Name = "button3";
@@ -310,7 +310,7 @@ namespace FootballPitchManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::FootballPitchManagement.Properties.Resources.z7323897720284_a54d07854b792a7723b12d3787f07cb2;
+//            this.BackgroundImage = global::FootballPitchManagement.Properties.Resources.z7323897720284_a54d07854b792a7723b12d3787f07cb2;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1021, 618);
             this.Controls.Add(this.button3);

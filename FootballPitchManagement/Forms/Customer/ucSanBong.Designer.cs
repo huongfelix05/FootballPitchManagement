@@ -37,7 +37,6 @@
             // 
             // picIcon
             // 
-            this.picIcon.Image = global::FootballPitchManagement.Properties.Resources.pngtree_soccer_ball_lying_on_vibrant_green_grass_field_image_16734728;
             this.picIcon.Location = new System.Drawing.Point(0, 31);
             this.picIcon.Name = "picIcon";
             this.picIcon.Size = new System.Drawing.Size(181, 82);

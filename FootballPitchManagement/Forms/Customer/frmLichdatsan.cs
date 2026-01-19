@@ -639,7 +639,11 @@ namespace FootballPitchManagement.Forms.Customer
                     transaction.Commit();
                     string msg = (phuongThuc == "CHUYEN_KHOAN") ? "✅ Đã xác nhận chuyển khoản thành công!" : "✅ Đã thu tiền mặt thành công!";
                     MessageBox.Show(msg, "Thành Công", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+private void flpDanhSachSan_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+    }
                 catch (Exception ex)
                 {
                     transaction.Rollback();

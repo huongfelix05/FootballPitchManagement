@@ -587,7 +587,7 @@
             dataGridViewCellStyle6.NullValue = "FootballPitchManagement.Properties.Resources.btn_edit";
             this.dataGridViewImageColumn1.DefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridViewImageColumn1.HeaderText = "Sửa";
-            this.dataGridViewImageColumn1.Image = global::FootballPitchManagement.Properties.Resources.btn_edit;
+//            this.dataGridViewImageColumn1.Image = global::FootballPitchManagement.Properties.Resources.btn_edit;
             this.dataGridViewImageColumn1.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.dataGridViewImageColumn1.MinimumWidth = 8;
             this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
@@ -600,7 +600,7 @@
             dataGridViewCellStyle7.NullValue = "FootballPitchManagement.Properties.Resources.btn_delete";
             this.dataGridViewImageColumn2.DefaultCellStyle = dataGridViewCellStyle7;
             this.dataGridViewImageColumn2.HeaderText = "Xoá";
-            this.dataGridViewImageColumn2.Image = global::FootballPitchManagement.Properties.Resources.btn_delete;
+//            this.dataGridViewImageColumn2.Image = global::FootballPitchManagement.Properties.Resources.btn_delete;
             this.dataGridViewImageColumn2.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.dataGridViewImageColumn2.MinimumWidth = 8;
             this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
@@ -692,7 +692,7 @@
             dataGridViewCellStyle3.NullValue = "FootballPitchManagement.Properties.Resources.btn_edit";
             this.btnSua.DefaultCellStyle = dataGridViewCellStyle3;
             this.btnSua.HeaderText = "Sửa";
-            this.btnSua.Image = global::FootballPitchManagement.Properties.Resources.btn_edit;
+//            this.btnSua.Image = global::FootballPitchManagement.Properties.Resources.btn_edit;
             this.btnSua.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.btnSua.MinimumWidth = 8;
             this.btnSua.Name = "btnSua";
@@ -704,7 +704,7 @@
             dataGridViewCellStyle4.NullValue = "FootballPitchManagement.Properties.Resources.btn_delete";
             this.btnXoa.DefaultCellStyle = dataGridViewCellStyle4;
             this.btnXoa.HeaderText = "Xoá";
-            this.btnXoa.Image = global::FootballPitchManagement.Properties.Resources.btn_delete;
+//            this.btnXoa.Image = global::FootballPitchManagement.Properties.Resources.btn_delete;
             this.btnXoa.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.btnXoa.MinimumWidth = 8;
             this.btnXoa.Name = "btnXoa";

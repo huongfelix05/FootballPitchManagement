@@ -144,7 +144,7 @@
             // pictureBox13
             // 
             this.pictureBox13.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox13.Image = global::FootballPitchManagement.Properties.Resources.icons8_food_bar_100;
+           // this.pictureBox13.Image = global::FootballPitchManagement.Properties.Resources.icons8_food_bar_100;
             this.pictureBox13.Location = new System.Drawing.Point(20, 239);
             this.pictureBox13.Name = "pictureBox13";
             this.pictureBox13.Size = new System.Drawing.Size(54, 54);
@@ -172,7 +172,7 @@
             // pictureBox11
             // 
             this.pictureBox11.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox11.Image = global::FootballPitchManagement.Properties.Resources.icons8_staff_100;
+//            this.pictureBox11.Image = global::FootballPitchManagement.Properties.Resources.icons8_staff_100;
             this.pictureBox11.Location = new System.Drawing.Point(20, 465);
             this.pictureBox11.Name = "pictureBox11";
             this.pictureBox11.Size = new System.Drawing.Size(54, 54);
@@ -183,7 +183,7 @@
             // pictureBox12
             // 
             this.pictureBox12.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox12.Image = global::FootballPitchManagement.Properties.Resources.icons8_setting_64;
+//            this.pictureBox12.Image = global::FootballPitchManagement.Properties.Resources.icons8_setting_64;
             this.pictureBox12.Location = new System.Drawing.Point(22, 605);
             this.pictureBox12.Name = "pictureBox12";
             this.pictureBox12.Size = new System.Drawing.Size(54, 54);
@@ -194,7 +194,7 @@
             // pictureBox6
             // 
             this.pictureBox6.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox6.Image = global::FootballPitchManagement.Properties.Resources.icons8_field_94;
+//            this.pictureBox6.Image = global::FootballPitchManagement.Properties.Resources.icons8_field_94;
             this.pictureBox6.Location = new System.Drawing.Point(19, 99);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(54, 54);
@@ -222,7 +222,7 @@
             // pictureBox3
             // 
             this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox3.Image = global::FootballPitchManagement.Properties.Resources.icons8_home_40;
+//            this.pictureBox3.Image = global::FootballPitchManagement.Properties.Resources.icons8_home_40;
             this.pictureBox3.Location = new System.Drawing.Point(19, 30);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(54, 54);
@@ -233,7 +233,7 @@
             // pictureBox8
             // 
             this.pictureBox8.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox8.Image = global::FootballPitchManagement.Properties.Resources.icons8_report_48;
+//            this.pictureBox8.Image = global::FootballPitchManagement.Properties.Resources.icons8_report_48;
             this.pictureBox8.Location = new System.Drawing.Point(20, 534);
             this.pictureBox8.Name = "pictureBox8";
             this.pictureBox8.Size = new System.Drawing.Size(54, 54);
@@ -243,7 +243,7 @@
             // pictureBox9
             // 
             this.pictureBox9.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox9.Image = global::FootballPitchManagement.Properties.Resources.icons8_account_management_53;
+//            this.pictureBox9.Image = global::FootballPitchManagement.Properties.Resources.icons8_account_management_53;
             this.pictureBox9.Location = new System.Drawing.Point(20, 309);
             this.pictureBox9.Name = "pictureBox9";
             this.pictureBox9.Size = new System.Drawing.Size(54, 54);
@@ -254,7 +254,7 @@
             // pictureBox10
             // 
             this.pictureBox10.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox10.Image = global::FootballPitchManagement.Properties.Resources.icons8_revenue_48;
+//            this.pictureBox10.Image = global::FootballPitchManagement.Properties.Resources.icons8_revenue_48;
             this.pictureBox10.Location = new System.Drawing.Point(20, 397);
             this.pictureBox10.Name = "pictureBox10";
             this.pictureBox10.Size = new System.Drawing.Size(54, 54);
@@ -314,7 +314,7 @@
             // pictureBox7
             // 
             this.pictureBox7.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox7.Image = global::FootballPitchManagement.Properties.Resources.icons8_calendar_48__2_;
+//            this.pictureBox7.Image = global::FootballPitchManagement.Properties.Resources.icons8_calendar_48__2_;
             this.pictureBox7.Location = new System.Drawing.Point(19, 169);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(54, 54);
@@ -461,7 +461,7 @@
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Image = global::FootballPitchManagement.Properties.Resources._90e6eb89_de97_49e6_8110_f31832cd46082;
+//            this.pictureBox1.Image = global::FootballPitchManagement.Properties.Resources._90e6eb89_de97_49e6_8110_f31832cd46082;
             this.pictureBox1.Location = new System.Drawing.Point(7, 6);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(107, 75);

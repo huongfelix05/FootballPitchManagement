@@ -1,29 +1,29 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.ComponentModel;
-//using System.Data;
-//using System.Data.SqlClient;
-//using System.Drawing;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
-//using System.Windows.Forms;
-//using System.Windows.Forms.DataVisualization.Charting;
-//using Excel = Microsoft.Office.Interop.Excel;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
+using Excel = Microsoft.Office.Interop.Excel;
 
-//namespace FootballPitchManagement.Forms.Admin
-//{
-//    public partial class frmdoanhthuu : Form
-//    {
-//        string strConnect = @"Data Source=MSI;Initial Catalog=QuanLychuoiDatSan;Integrated Security=True";
+namespace FootballPitchManagement.Forms.Admin
+{
+    public partial class frmdoanhthuu : Form
+    {
+        string strConnect = @"Data Source=MSI;Initial Catalog=QuanLychuoiDatSan;Integrated Security=True";
 
-//        public frmdoanhthuu()
-//        {
-//            InitializeComponent();
-//            // --- THÊM 2 DÒNG NÀY ĐỂ BẮT BUỘC CODE PHẢI CHẠY ---
-//            this.Load += new EventHandler(frmDoanhThu_Load);
-//            btnThongKe.Click += new EventHandler(btnThongKe_Click);
-//        }
+        public frmdoanhthuu()
+        {
+            InitializeComponent();
+            // --- THÊM 2 DÒNG NÀY ĐỂ BẮT BUỘC CODE PHẢI CHẠY ---
+            this.Load += new EventHandler(frmDoanhThu_Load);
+            btnThongKe.Click += new EventHandler(btnThongKe_Click);
+        }
 
 
         // 2. SỰ KIỆN KHI FORM VỪA MỞ LÊN (LOAD)
@@ -43,9 +43,9 @@
 
                 // Chọn mặc định là "Tất cả chi nhánh"
                 if (cboChiNhanh.Items.Count > 0)
-                
+
                     cboChiNhanh.SelectedIndex = 0;
-                
+
 
                 // Bước 3: Đồng bộ dữ liệu Doanh Thu mới nhất từ Hóa Đơn
                 //RefreshRevenueData();
@@ -114,22 +114,22 @@
         // CÁC HÀM XỬ LÝ LOGIC (SQL) - KHU VỰC NÀY LÀ "TRÁI TIM" CỦA FORM
         // =======================================================================
 
-//        // Hàm 1: Đổ dữ liệu vào ComboBox Chi Nhánh
-//        private void LoadComboBoxChiNhanh()
-//        {
-//            using (SqlConnection conn = new SqlConnection(strConnect))
-//            {
-//                conn.Open();
-//                string sql = "SELECT MaChiNhanh, TenChiNhanh FROM ChiNhanh";
-//                SqlDataAdapter da = new SqlDataAdapter(sql, conn);
-//                DataTable dt = new DataTable();
-//                da.Fill(dt);
+        // Hàm 1: Đổ dữ liệu vào ComboBox Chi Nhánh
+        private void LoadComboBoxChiNhanh()
+        {
+            using (SqlConnection conn = new SqlConnection(strConnect))
+            {
+                conn.Open();
+                string sql = "SELECT MaChiNhanh, TenChiNhanh FROM ChiNhanh";
+                SqlDataAdapter da = new SqlDataAdapter(sql, conn);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
 
-//                // Thêm dòng "Tất cả chi nhánh" lên đầu
-//                DataRow dr = dt.NewRow();
-//                dr["MaChiNhanh"] = -1;
-//                dr["TenChiNhanh"] = "Tất cả chi nhánh";
-//                dt.Rows.InsertAt(dr, 0);
+                // Thêm dòng "Tất cả chi nhánh" lên đầu
+                DataRow dr = dt.NewRow();
+                dr["MaChiNhanh"] = -1;
+                dr["TenChiNhanh"] = "Tất cả chi nhánh";
+                dt.Rows.InsertAt(dr, 0);
 
                 cboChiNhanh.DataSource = dt;
                 cboChiNhanh.DisplayMember = "TenChiNhanh";
@@ -190,7 +190,7 @@
                 maCN = (int)cboChiNhanh.SelectedValue;
             }
 
-//            DateTime now = DateTime.Now;
+            DateTime now = DateTime.Now;
 
             // --- Ô 1: HÔM NAY ---
             lblSoTienHomNay.Text = GetRevenueFromTable(now, now, maCN).ToString("N0") + " đ";
@@ -282,17 +282,17 @@
                 cmdChart.Parameters.AddWithValue("@T", to);
                 cmdChart.Parameters.AddWithValue("@M", maCN);
 
-//                DataTable dtChart = new DataTable();
-//                new SqlDataAdapter(cmdChart).Fill(dtChart);
+                DataTable dtChart = new DataTable();
+                new SqlDataAdapter(cmdChart).Fill(dtChart);
 
                 // -- Vẽ Chart --
                 chartDoanhThuNam.Series.Clear();
                 chartDoanhThuNam.Titles.Clear();
                 chartDoanhThuNam.Titles.Add($"Biểu Đồ ({from:dd/MM} - {to:dd/MM})");
 
-//                Series sCol = new Series("Doanh Thu");
-//                sCol.ChartType = SeriesChartType.Column;
-//                sCol.IsValueShownAsLabel = true;
+                Series sCol = new Series("Doanh Thu");
+                sCol.ChartType = SeriesChartType.Column;
+                sCol.IsValueShownAsLabel = true;
 
                 foreach (DataRow r in dtChart.Rows)
                 {
@@ -314,221 +314,123 @@
                 Series sPie = new Series("TyTrong");
                 sPie.ChartType = SeriesChartType.Doughnut;
 
-//                if (totalSan + totalDoAn > 0)
-//                {
-//                    sPie.Points.AddXY("Tiền Sân", totalSan);
-//                    sPie.Points.AddXY("Đồ Ăn", totalDoAn);
-//                    sPie.Label = "#PERCENT";
-//                    sPie.LegendText = "#VALX";
-//                }
-//                else
-//                {
-//                    sPie.Points.AddXY("Không có dữ liệu", 1);
-//                    sPie.IsVisibleInLegend = false;
-//                }
-//                chartTyTrong.Series.Add(sPie);
-//            }
-//        }
+                if (totalSan + totalDoAn > 0)
+                {
+                    sPie.Points.AddXY("Tiền Sân", totalSan);
+                    sPie.Points.AddXY("Đồ Ăn", totalDoAn);
+                    sPie.Label = "#PERCENT";
+                    sPie.LegendText = "#VALX";
+                }
+                else
+                {
+                    sPie.Points.AddXY("Không có dữ liệu", 1);
+                    sPie.IsVisibleInLegend = false;
+                }
+                chartTyTrong.Series.Add(sPie);
+            }
+        }
 
-//        // Hàm 5: Vẽ 2 biểu đồ
-//        private void DrawCharts(DataTable dt)
-//        {
-//            // --- Biểu đồ Cột (Doanh thu theo chi nhánh) ---
-//            chartDoanhThuNam.Series.Clear();
-//            Series seriesCot = new Series("Doanh Thu");
-//            seriesCot.ChartType = SeriesChartType.Column; // Dạng cột
-//            seriesCot.IsValueShownAsLabel = true;
+        // Hàm 5: Vẽ 2 biểu đồ
+        private void DrawCharts(DataTable dt)
+        {
+            // --- Biểu đồ Cột (Doanh thu theo chi nhánh) ---
+            chartDoanhThuNam.Series.Clear();
+            Series seriesCot = new Series("Doanh Thu");
+            seriesCot.ChartType = SeriesChartType.Column; // Dạng cột
+            seriesCot.IsValueShownAsLabel = true;
 
-//            foreach (DataRow row in dt.Rows)
-//            {
-//                if (Convert.ToDecimal(row["TongCong"]) > 0)
-//                    seriesCot.Points.AddXY(row["TenChiNhanh"].ToString(), row["TongCong"]);
-//            }
-//            chartDoanhThuNam.Series.Add(seriesCot);
+            foreach (DataRow row in dt.Rows)
+            {
+                if (Convert.ToDecimal(row["TongCong"]) > 0)
+                    seriesCot.Points.AddXY(row["TenChiNhanh"].ToString(), row["TongCong"]);
+            }
+            chartDoanhThuNam.Series.Add(seriesCot);
 
-//            // --- Biểu đồ Tròn (Tỷ trọng Tiền Sân vs Đồ Ăn) ---
-//            decimal totalSan = 0;
-//            decimal totalDoAn = 0;
-//            foreach (DataRow row in dt.Rows)
-//            {
-//                totalSan += Convert.ToDecimal(row["TongTienSan"]);
-//                totalDoAn += Convert.ToDecimal(row["TongTienDoAn"]);
-//            }
+            // --- Biểu đồ Tròn (Tỷ trọng Tiền Sân vs Đồ Ăn) ---
+            decimal totalSan = 0;
+            decimal totalDoAn = 0;
+            foreach (DataRow row in dt.Rows)
+            {
+                totalSan += Convert.ToDecimal(row["TongTienSan"]);
+                totalDoAn += Convert.ToDecimal(row["TongTienDoAn"]);
+            }
 
-//            chartTyTrong.Series.Clear();
-//            Series seriesTron = new Series("TyTrong");
-//            seriesTron.ChartType = SeriesChartType.Doughnut; // Dạng bánh Donut
+            chartTyTrong.Series.Clear();
+            Series seriesTron = new Series("TyTrong");
+            seriesTron.ChartType = SeriesChartType.Doughnut; // Dạng bánh Donut
 
-//            if (totalSan + totalDoAn > 0)
-//            {
-//                seriesTron.Points.AddXY("Tiền Sân", totalSan);
-//                seriesTron.Points.AddXY("Đồ Ăn", totalDoAn);
-//                seriesTron.Label = "#PERCENT";
-//                seriesTron.LegendText = "#VALX";
-//            }
-//            chartTyTrong.Series.Add(seriesTron);
-//        }
+            if (totalSan + totalDoAn > 0)
+            {
+                seriesTron.Points.AddXY("Tiền Sân", totalSan);
+                seriesTron.Points.AddXY("Đồ Ăn", totalDoAn);
+                seriesTron.Label = "#PERCENT";
+                seriesTron.LegendText = "#VALX";
+            }
+            chartTyTrong.Series.Add(seriesTron);
+        }
 
-//        // Hàm 6: Format bảng hiển thị (Đặt tên tiếng Việt, định dạng tiền)
-//        private void SetupDataGridView()
-//        {
-//            // 1. CẤU HÌNH CHUNG CHO BẢNG
-//            dgvDoanhThu.AllowUserToAddRows = false;       // Bỏ dòng trống cuối
-//            dgvDoanhThu.RowHeadersVisible = false;        // Bỏ cột xám bên trái
-//            dgvDoanhThu.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-//            dgvDoanhThu.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-//            dgvDoanhThu.ReadOnly = true;
+        // Hàm 6: Format bảng hiển thị (Đặt tên tiếng Việt, định dạng tiền)
+        private void SetupDataGridView()
+        {
+            // 1. CẤU HÌNH CHUNG CHO BẢNG
+            dgvDoanhThu.AllowUserToAddRows = false;       // Bỏ dòng trống cuối
+            dgvDoanhThu.RowHeadersVisible = false;        // Bỏ cột xám bên trái
+            dgvDoanhThu.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvDoanhThu.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvDoanhThu.ReadOnly = true;
 
-//            // 2. TRANG TRÍ DÒNG VÀ FONT CHỮ (QUAN TRỌNG)
-//            dgvDoanhThu.BackgroundColor = Color.White; // Nền trắng
-//            dgvDoanhThu.BorderStyle = BorderStyle.None; // Bỏ viền cho hiện đại
+            // 2. TRANG TRÍ DÒNG VÀ FONT CHỮ (QUAN TRỌNG)
+            dgvDoanhThu.BackgroundColor = Color.White; // Nền trắng
+            dgvDoanhThu.BorderStyle = BorderStyle.None; // Bỏ viền cho hiện đại
 
-//            // Chỉnh Font chữ toàn bảng (Dùng Segoe UI nhìn sẽ sang hơn Sans Serif mặc định)
-//            dgvDoanhThu.DefaultCellStyle.Font = new Font("Segoe UI", 10);
-//            dgvDoanhThu.RowTemplate.Height = 35; // Tăng chiều cao dòng cho thoáng (Mặc định là 22 hơi chật)
+            // Chỉnh Font chữ toàn bảng (Dùng Segoe UI nhìn sẽ sang hơn Sans Serif mặc định)
+            dgvDoanhThu.DefaultCellStyle.Font = new Font("Segoe UI", 10);
+            dgvDoanhThu.RowTemplate.Height = 35; // Tăng chiều cao dòng cho thoáng (Mặc định là 22 hơi chật)
 
-//            // 3. TRANG TRÍ TIÊU ĐỀ CỘT (HEADER)
-//            dgvDoanhThu.EnableHeadersVisualStyles = false; // Bắt buộc dòng này mới chỉnh màu được
-//            dgvDoanhThu.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(41, 128, 185); // Màu Xanh Dương
-//            dgvDoanhThu.ColumnHeadersDefaultCellStyle.ForeColor = Color.White; // Chữ Trắng
-//            dgvDoanhThu.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
-//            dgvDoanhThu.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-//            dgvDoanhThu.ColumnHeadersHeight = 40; // Tiêu đề cao hơn chút
+            // 3. TRANG TRÍ TIÊU ĐỀ CỘT (HEADER)
+            dgvDoanhThu.EnableHeadersVisualStyles = false; // Bắt buộc dòng này mới chỉnh màu được
+            dgvDoanhThu.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(41, 128, 185); // Màu Xanh Dương
+            dgvDoanhThu.ColumnHeadersDefaultCellStyle.ForeColor = Color.White; // Chữ Trắng
+            dgvDoanhThu.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            dgvDoanhThu.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvDoanhThu.ColumnHeadersHeight = 40; // Tiêu đề cao hơn chút
 
-//            // 4. ĐỊNH DẠNG TỪNG CỘT (CĂN LỀ & SỐ TIỀN)
+            // 4. ĐỊNH DẠNG TỪNG CỘT (CĂN LỀ & SỐ TIỀN)
 
-//            // Cột Chi Nhánh: Căn giữa hoặc trái
-//            if (dgvDoanhThu.Columns.Contains("TenChiNhanh"))
-//            {
-//                dgvDoanhThu.Columns["TenChiNhanh"].HeaderText = "Chi Nhánh";
-//                dgvDoanhThu.Columns["TenChiNhanh"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-//            }
+            // Cột Chi Nhánh: Căn giữa hoặc trái
+            if (dgvDoanhThu.Columns.Contains("TenChiNhanh"))
+            {
+                dgvDoanhThu.Columns["TenChiNhanh"].HeaderText = "Chi Nhánh";
+                dgvDoanhThu.Columns["TenChiNhanh"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            }
 
-//            // Cột Tiền Sân: Căn Phải + Dấu phẩy ngăn cách
-//            if (dgvDoanhThu.Columns.Contains("TongTienSan"))
-//            {
-//                dgvDoanhThu.Columns["TongTienSan"].HeaderText = "Tiền Sân";
-//                dgvDoanhThu.Columns["TongTienSan"].DefaultCellStyle.Format = "N0"; // Ra dạng 1,000,000
-//                dgvDoanhThu.Columns["TongTienSan"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-//            }
+            // Cột Tiền Sân: Căn Phải + Dấu phẩy ngăn cách
+            if (dgvDoanhThu.Columns.Contains("TongTienSan"))
+            {
+                dgvDoanhThu.Columns["TongTienSan"].HeaderText = "Tiền Sân";
+                dgvDoanhThu.Columns["TongTienSan"].DefaultCellStyle.Format = "N0"; // Ra dạng 1,000,000
+                dgvDoanhThu.Columns["TongTienSan"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            }
 
-//            // Cột Tiền Đồ Ăn: Căn Phải
-//            if (dgvDoanhThu.Columns.Contains("TongTienDoAn"))
-//            {
-//                dgvDoanhThu.Columns["TongTienDoAn"].HeaderText = "Tiền Đồ Ăn";
-//                dgvDoanhThu.Columns["TongTienDoAn"].DefaultCellStyle.Format = "N0";
-//                dgvDoanhThu.Columns["TongTienDoAn"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-//            }
+            // Cột Tiền Đồ Ăn: Căn Phải
+            if (dgvDoanhThu.Columns.Contains("TongTienDoAn"))
+            {
+                dgvDoanhThu.Columns["TongTienDoAn"].HeaderText = "Tiền Đồ Ăn";
+                dgvDoanhThu.Columns["TongTienDoAn"].DefaultCellStyle.Format = "N0";
+                dgvDoanhThu.Columns["TongTienDoAn"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            }
 
-//            // Cột Tổng Cộng: Căn Phải + In Đậm + Màu chữ khác
-//            if (dgvDoanhThu.Columns.Contains("TongCong"))
-//            {
-//                dgvDoanhThu.Columns["TongCong"].HeaderText = "Tổng Cộng";
-//                dgvDoanhThu.Columns["TongCong"].DefaultCellStyle.Format = "N0";
-//                dgvDoanhThu.Columns["TongCong"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-//                dgvDoanhThu.Columns["TongCong"].DefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
-//                dgvDoanhThu.Columns["TongCong"].DefaultCellStyle.ForeColor = Color.Red; // Tô màu đỏ cho tổng tiền
-//            }
-//        }
+            // Cột Tổng Cộng: Căn Phải + In Đậm + Màu chữ khác
+            if (dgvDoanhThu.Columns.Contains("TongCong"))
+            {
+                dgvDoanhThu.Columns["TongCong"].HeaderText = "Tổng Cộng";
+                dgvDoanhThu.Columns["TongCong"].DefaultCellStyle.Format = "N0";
+                dgvDoanhThu.Columns["TongCong"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                dgvDoanhThu.Columns["TongCong"].DefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+                dgvDoanhThu.Columns["TongCong"].DefaultCellStyle.ForeColor = Color.Red; // Tô màu đỏ cho tổng tiền
+            }
+        }
 
-
-//        // Sự kiện khi bấm nút Xuất Excel
-//        private void btnXuatBaoCao_Click(object sender, EventArgs e)
-//        {
-//            if (dgvDoanhThu.Rows.Count == 0)
-//            {
-//                MessageBox.Show("Không có dữ liệu để xuất!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-//                return;
-//            }
-
-//            SaveFileDialog sfd = new SaveFileDialog();
-//            sfd.InitialDirectory = "C:\\";
-//            sfd.Title = "Lưu file báo cáo doanh thu";
-//            sfd.FileName = "BaoCaoDoanhThu_" + DateTime.Now.ToString("ddMMyyyy_HHmm");
-//            sfd.Filter = "Excel Files|*.xlsx;*.xls";
-
-//            if (sfd.ShowDialog() == DialogResult.OK)
-//            {
-//                try
-//                {
-//                    // --- KIỂM TRA XEM CÓ ĐANG CHỌN "TẤT CẢ" KHÔNG ---
-//                    bool isTongHop = false;
-//                    if (cboChiNhanh.SelectedValue != null && (int)cboChiNhanh.SelectedValue == -1)
-//                    {
-//                        isTongHop = true;
-//                    }
-
-//                    // Truyền biến isTongHop vào hàm xuất
-//                    ExportToExcel(dgvDoanhThu, sfd.FileName, "Báo Cáo Doanh Thu", isTongHop);
-
-//                    MessageBox.Show("Xuất file Excel thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-//                }
-//                catch (Exception ex)
-//                {
-//                    MessageBox.Show("Lỗi khi xuất file: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-//                }
-//            }
-//        }
-
-//        // HÀM XỬ LÝ CHÍNH: GHI DỮ LIỆU TỪ GRID RA EXCEL
-//        // Thêm tham số bool tinhTongVaoCuoi (Mặc định là false)
-//        private void ExportToExcel(DataGridView g, string duongDan, string tenTapTin, bool tinhTongVaoCuoi = false)
-//        {
-//            Excel.Application app = new Excel.Application();
-//            Excel.Workbook wb = app.Workbooks.Add(Type.Missing);
-//            Excel.Worksheet sheet = null;
-
-//            try
-//            {
-//                sheet = wb.ActiveSheet;
-//                sheet.Name = "DoanhThu";
-
-//                // Biến để cộng dồn
-//                decimal sumSan = 0;
-//                decimal sumDoAn = 0;
-//                decimal sumTong = 0;
-
-//                // 1. VIẾT TIÊU ĐỀ
-//                int colIndex = 1;
-//                for (int i = 0; i < g.Columns.Count; i++)
-//                {
-//                    if (g.Columns[i].Visible)
-//                    {
-//                        sheet.Cells[1, colIndex] = g.Columns[i].HeaderText;
-//                        Excel.Range range = sheet.Cells[1, colIndex];
-//                        range.Font.Bold = true;
-//                        range.Interior.Color = System.Drawing.Color.LightGray;
-//                        range.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
-//                        range.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
-//                        colIndex++;
-//                    }
-//                }
-
-//                // 2. VIẾT DỮ LIỆU & CỘNG DỒN
-//                for (int i = 0; i < g.Rows.Count; i++)
-//                {
-//                    colIndex = 1;
-//                    for (int j = 0; j < g.Columns.Count; j++)
-//                    {
-//                        if (g.Columns[j].Visible)
-//                        {
-//                            var value = g.Rows[i].Cells[j].Value;
-//                            if (value != null)
-//                            {
-//                                sheet.Cells[i + 2, colIndex] = value.ToString();
-
-//                                // --- Logic cộng dồn (Chỉ chạy khi cần tính tổng) ---
-//                                if (tinhTongVaoCuoi)
-//                                {
-//                                    string colName = g.Columns[j].Name;
-//                                    decimal valDec = 0;
-//                                    decimal.TryParse(value.ToString(), out valDec);
-
-//                                    if (colName == "TongTienSan") sumSan += valDec;
-//                                    if (colName == "TongTienDoAn") sumDoAn += valDec;
-//                                    if (colName == "TongCong") sumTong += valDec;
-//                                }
-//                            }
 
         // Sự kiện khi bấm nút Xuất Excel
         private void btnXuatBaoCao_Click(object sender, EventArgs e)
@@ -569,82 +471,141 @@
             }
         }
 
-//                    // Ghi chữ "TỔNG CỘNG HỆ THỐNG" vào cột đầu tiên (Chi Nhánh)
-//                    sheet.Cells[lastRow, 1] = "TỔNG CỘNG HỆ THỐNG";
+        // HÀM XỬ LÝ CHÍNH: GHI DỮ LIỆU TỪ GRID RA EXCEL
+        // Thêm tham số bool tinhTongVaoCuoi (Mặc định là false)
+        private void ExportToExcel(DataGridView g, string duongDan, string tenTapTin, bool tinhTongVaoCuoi = false)
+        {
+            Excel.Application app = new Excel.Application();
+            Excel.Workbook wb = app.Workbooks.Add(Type.Missing);
+            Excel.Worksheet sheet = null;
 
-//                    // Ghi các số tổng vào đúng cột tương ứng
-//                    // Lưu ý: Phải đếm lại colIndex vì trong vòng lặp trên colIndex chạy lung tung
-//                    int currentExcelCol = 1;
-//                    for (int j = 0; j < g.Columns.Count; j++)
-//                    {
-//                        if (g.Columns[j].Visible)
-//                        {
-//                            string colName = g.Columns[j].Name;
-//                            if (colName == "TongTienSan") sheet.Cells[lastRow, currentExcelCol] = sumSan;
-//                            if (colName == "TongTienDoAn") sheet.Cells[lastRow, currentExcelCol] = sumDoAn;
-//                            if (colName == "TongCong") sheet.Cells[lastRow, currentExcelCol] = sumTong;
+            try
+            {
+                sheet = wb.ActiveSheet;
+                sheet.Name = "DoanhThu";
 
-//                            currentExcelCol++;
-//                        }
-//                    }
+                // Biến để cộng dồn
+                decimal sumSan = 0;
+                decimal sumDoAn = 0;
+                decimal sumTong = 0;
 
-//                    // Trang trí dòng tổng: Chữ Đỏ, In Đậm, Nền Vàng nhạt
-//                    Excel.Range totalRowRange = sheet.Range[sheet.Cells[lastRow, 1], sheet.Cells[lastRow, colIndex - 1]];
-//                    totalRowRange.Font.Bold = true;
-//                    totalRowRange.Font.Color = System.Drawing.Color.Red;
-//                    totalRowRange.Interior.Color = System.Drawing.Color.LightYellow;
-//                    totalRowRange.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
-//                }
+                // 1. VIẾT TIÊU ĐỀ
+                int colIndex = 1;
+                for (int i = 0; i < g.Columns.Count; i++)
+                {
+                    if (g.Columns[i].Visible)
+                    {
+                        sheet.Cells[1, colIndex] = g.Columns[i].HeaderText;
+                        Excel.Range range = sheet.Cells[1, colIndex];
+                        range.Font.Bold = true;
+                        range.Interior.Color = System.Drawing.Color.LightGray;
+                        range.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                        range.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+                        colIndex++;
+                    }
+                }
 
-//                // 4. CĂN CHỈNH
-//                sheet.Columns.AutoFit();
-//                wb.SaveAs(duongDan);
-//            }
-//            catch (Exception ex)
-//            {
-//                throw ex;
-//            }
-//            finally
-//            {
-//                app.Quit();
-//                releaseObject(wb);
-//                releaseObject(sheet);
-//                releaseObject(app);
-//            }
-//        }
+                // 2. VIẾT DỮ LIỆU & CỘNG DỒN
+                for (int i = 0; i < g.Rows.Count; i++)
+                {
+                    colIndex = 1;
+                    for (int j = 0; j < g.Columns.Count; j++)
+                    {
+                        if (g.Columns[j].Visible)
+                        {
+                            var value = g.Rows[i].Cells[j].Value;
+                            if (value != null)
+                            {
+                                sheet.Cells[i + 2, colIndex] = value.ToString();
 
-//        // Hàm phụ trợ để giải phóng bộ nhớ COM (Tránh lỗi Excel chạy ngầm)
-//        private void releaseObject(object obj)
-//        {
-//            try
-//            {
-//                System.Runtime.InteropServices.Marshal.ReleaseComObject(obj);
-//                obj = null;
-//            }
-//            catch (Exception ex)
-//            {
-//                obj = null;
-//                MessageBox.Show("Exception Occured while releasing object " + ex.ToString());
-//            }
-//            finally
-//            {
-//                GC.Collect();
-//            }
-//        }
+                                // --- Logic cộng dồn (Chỉ chạy khi cần tính tổng) ---
+                                if (tinhTongVaoCuoi)
+                                {
+                                    string colName = g.Columns[j].Name;
+                                    decimal valDec = 0;
+                                    decimal.TryParse(value.ToString(), out valDec);
 
+                                    if (colName == "TongTienSan") sumSan += valDec;
+                                    if (colName == "TongTienDoAn") sumDoAn += valDec;
+                                    if (colName == "TongCong") sumTong += valDec;
+                                }
+                            }
 
+                            // Kẻ khung
+                            Excel.Range cell = sheet.Cells[i + 2, colIndex];
+                            cell.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+                            colIndex++;
+                        }
+                    }
+                }
 
+                // 3. VẼ DÒNG TỔNG CỘNG (MỚI)
+                if (tinhTongVaoCuoi)
+                {
+                    int lastRow = g.Rows.Count + 2; // Dòng tiếp theo sau dữ liệu
 
+                    // Ghi chữ "TỔNG CỘNG HỆ THỐNG" vào cột đầu tiên (Chi Nhánh)
+                    sheet.Cells[lastRow, 1] = "TỔNG CỘNG HỆ THỐNG";
 
+                    // Ghi các số tổng vào đúng cột tương ứng
+                    // Lưu ý: Phải đếm lại colIndex vì trong vòng lặp trên colIndex chạy lung tung
+                    int currentExcelCol = 1;
+                    for (int j = 0; j < g.Columns.Count; j++)
+                    {
+                        if (g.Columns[j].Visible)
+                        {
+                            string colName = g.Columns[j].Name;
+                            if (colName == "TongTienSan") sheet.Cells[lastRow, currentExcelCol] = sumSan;
+                            if (colName == "TongTienDoAn") sheet.Cells[lastRow, currentExcelCol] = sumDoAn;
+                            if (colName == "TongCong") sheet.Cells[lastRow, currentExcelCol] = sumTong;
 
+                            currentExcelCol++;
+                        }
+                    }
 
-//        private void groupBox1_Enter(object sender, EventArgs e)
-//        {
+                    // Trang trí dòng tổng: Chữ Đỏ, In Đậm, Nền Vàng nhạt
+                    Excel.Range totalRowRange = sheet.Range[sheet.Cells[lastRow, 1], sheet.Cells[lastRow, colIndex - 1]];
+                    totalRowRange.Font.Bold = true;
+                    totalRowRange.Font.Color = System.Drawing.Color.Red;
+                    totalRowRange.Interior.Color = System.Drawing.Color.LightYellow;
+                    totalRowRange.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+                }
 
-//        }
+                // 4. CĂN CHỈNH
+                sheet.Columns.AutoFit();
+                wb.SaveAs(duongDan);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                app.Quit();
+                releaseObject(wb);
+                releaseObject(sheet);
+                releaseObject(app);
+            }
+        }
 
-//        private void DoanhThu_Paint(object sender, PaintEventArgs e)
-//        {
+        // Hàm phụ trợ để giải phóng bộ nhớ COM (Tránh lỗi Excel chạy ngầm)
+        private void releaseObject(object obj)
+        {
+            try
+            {
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(obj);
+                obj = null;
+            }
+            catch (Exception ex)
+            {
+                obj = null;
+                MessageBox.Show("Exception Occured while releasing object " + ex.ToString());
+            }
+            finally
+            {
+                GC.Collect();
+            }
+        }
 
         private void InitializeComponent()
         {
@@ -1264,6 +1225,11 @@
         }
 
         private void dgvDoanhThu_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void frmdoanhthuu_Load(object sender, EventArgs e)
         {
 
         }

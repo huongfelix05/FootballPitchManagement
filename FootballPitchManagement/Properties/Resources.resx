@@ -121,6 +121,9 @@
   <data name="snow-9996_256" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\snow-9996_256.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="pngtree-green-field-on-the-stadium-with-sky-view-at-evening-time-image_164656731" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pngtree-green-field-on-the-stadium-with-sky-view-at-evening-time-image_16465673.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="icons8-statistic-32 (2)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-statistic-32 (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -141,6 +144,9 @@
   </data>
   <data name="icons8-food-bar-100" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-food-bar-100.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dấu x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dấu x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="calendar" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\calendar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -217,9 +223,6 @@
   <data name="7ef84578-33d5-496f-ba37-d92901052ffe" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\7ef84578-33d5-496f-ba37-d92901052ffe.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="btn_edit" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\btn_edit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="icons8-home-40" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-home-40.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -241,9 +244,6 @@
   <data name="ảnh sân 5" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ảnh sân 5.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icons8-bill-50" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8-bill-50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="6d209b84-ea13-48d4-ad28-85d889ae277c" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\6d209b84-ea13-48d4-ad28-85d889ae277c.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -259,8 +259,11 @@
   <data name="Ảnh chụp màn hình 2025-12-22 153310" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Ảnh chụp màn hình 2025-12-22 153310.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="6d444db096de763b4f84dfee0ace1663" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\6d444db096de763b4f84dfee0ace1663.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ảnh sân 5 người" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ảnh sân 5 người.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icons8-eye-80" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-eye-80.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Ảnh chụp màn hình 2026-01-13 221715" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Ảnh chụp màn hình 2026-01-13 221715.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -283,9 +286,6 @@
   <data name="icons8-fast-food-50" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-fast-food-50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="90e6eb89-de97-49e6-8110-f31832cd4608" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\90e6eb89-de97-49e6-8110-f31832cd4608.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="bbb" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bbb.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -301,20 +301,23 @@
   <data name="icons8-home-50" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-home-50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icons8-home-50 (1)1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8-home-50 (1)1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ảnh sân 5 người" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ảnh sân 5 người.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="90e6eb89-de97-49e6-8110-f31832cd4608" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\90e6eb89-de97-49e6-8110-f31832cd4608.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icons8-booking-80" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-booking-80.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="nút thoát" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\nút thoát.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icons8-home-50 (1)1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-home-50 (1)1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icons8-calendar-48 (2)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-calendar-48 (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="6d444db096de763b4f84dfee0ace1663" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\6d444db096de763b4f84dfee0ace1663.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="nút thoát" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\nút thoát.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icons8-account-management-53" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-account-management-53.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -334,8 +337,8 @@
   <data name="90e6eb89-de97-49e6-8110-f31832cd46082" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\90e6eb89-de97-49e6-8110-f31832cd46082.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icons8-eye-80" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8-eye-80.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="btn_edit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\btn_edit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icons8-homepage-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-homepage-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -364,7 +367,7 @@
   <data name="icons8-add1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-add1.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="dấu x" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\dấu x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="pngtree-green-field-on-the-stadium-with-sky-view-at-evening-time-image_164656732" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pngtree-green-field-on-the-stadium-with-sky-view-at-evening-time-image_16465673.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
