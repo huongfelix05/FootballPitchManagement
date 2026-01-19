@@ -403,7 +403,7 @@ namespace FootballPitchManagement
 
         private void btnDoanhThu_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new frmdoanhthuu()); 
+            //OpenChildForm(new frmdoanhthuu()); 
         }
 
         private void btnBaoCao_Click(object sender, EventArgs e)
