@@ -400,3 +400,26 @@ FOREIGN KEY (MaNhomHang) REFERENCES NhomHang(MaNhom);
 ALTER TABLE San 
 ADD CONSTRAINT FK_San_TinhTrangSan 
 FOREIGN KEY (MaTinhTrang) REFERENCES TinhTrangSan(MaTinhTrang);
+
+
+-- chạy từng tự từ trên xuống bản nhân viên add sao 
+CREATE TABLE NhanVien (
+    MaNV INT PRIMARY KEY IDENTITY(1,1),
+    HoTen NVARCHAR(100) NOT NULL,
+    DienThoai VARCHAR(15),
+    Email VARCHAR(100),
+    DiaChi NVARCHAR(200),
+    NgayVaoLam DATE DEFAULT GETDATE(),
+    TrangThai BIT DEFAULT 1, -- 1: Đang làm, 0: Đã nghỉ
+    MaChiNhanh INT NULL,    -- Có thể để NULL nếu là nhân viên quản lý tổng
+    CONSTRAINT FK_NhanVien_ChiNhanh FOREIGN KEY (MaChiNhanh) REFERENCES ChiNhanh(MaChiNhanh)
+);
+
+-- Thêm cột MaNV vào bảng TaiKhoan để liên kết hồ sơ nhân sự
+ALTER TABLE TaiKhoan ADD MaNV INT NULL;
+GO
+
+-- Tạo ràng buộc khóa ngoại
+ALTER TABLE TaiKhoan 
+ADD CONSTRAINT FK_TaiKhoan_NhanVien FOREIGN KEY (MaNV) REFERENCES NhanVien(MaNV);
+GO

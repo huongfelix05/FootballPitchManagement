@@ -67,36 +67,86 @@ namespace FootballPitchManagement.Forms.Admin
 
 
         // 2. SỰ KIỆN KHI FORM VỪA MỞ LÊN (LOAD)
+        // 2. SỰ KIỆN KHI FORM VỪA MỞ LÊN (LOAD)
         private void frmDoanhThu_Load(object sender, EventArgs e)
         {
             try
             {
-                LoadComboBoxChiNhanh(); // Tải danh sách chi nhánh vào ComboBox
-
-                // Mặc định chọn ngày: Từ đầu tháng đến hiện tại
+                // Bước 1: Cài đặt ngày mặc định (Từ ngày 1 đến cuối tháng hiện tại)
                 DateTime now = DateTime.Now;
                 dtpTuNgay.Value = new DateTime(now.Year, now.Month, 1);
-                dtpDenNgay.Value = now;
+                dtpDenNgay.Value = new DateTime(now.Year, now.Month, 1).AddMonths(1).AddDays(-1);
 
-                // Tải dữ liệu báo cáo lần đầu
+                // Bước 2: Nạp danh sách Chi nhánh vào ComboBox (QUAN TRỌNG)
+                // Nếu không chạy dòng này, ComboBox sẽ rỗng và bộ lọc sẽ bị lỗi
+                LoadComboBoxChiNhanh();
+
+                // Chọn mặc định là "Tất cả chi nhánh"
+                if (cboChiNhanh.Items.Count > 0)
+                
+                    cboChiNhanh.SelectedIndex = 0;
+                
+
+                // Bước 3: Đồng bộ dữ liệu Doanh Thu mới nhất từ Hóa Đơn
+                //RefreshRevenueData();
+
+                // Bước 4: Hiển thị dữ liệu lên màn hình
                 LoadDashboardCards();
                 LoadMainReport();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi khi tải form: " + ex.Message);
+                MessageBox.Show("Lỗi khi tải dữ liệu: " + ex.Message);
+            }
+        }
+        // Hàm hỗ trợ chạy lệnh cập nhật doanh thu (Đã sửa logic lấy Ngày Đặt)
+        private void RefreshRevenueData()
+        {
+            using (SqlConnection conn = new SqlConnection(strConnect))
+            {
+                conn.Open();
+                string sqlUpdate = @"
+            -- 1. Xóa sạch dữ liệu cũ để tính lại
+            TRUNCATE TABLE DoanhThu;
+
+            -- 2. CẬP NHẬT TIỀN SÂN: LẤY THEO NGÀY ĐẶT (LichDatSan.NgayDat)
+            -- Logic: Join bảng HoaDon với LichDatSan để lấy đúng ngày khách chơi bóng
+            INSERT INTO DoanhThu (MaChiNhanh, Ngay, LoaiDoanhThu, SoTien, GhiChu)
+            SELECT 
+                HD.MaChiNhanh, 
+                CAST(LDS.NgayDat AS DATE), -- <--- QUAN TRỌNG: Lấy cột NgayDat của bảng Lịch
+                'SAN', 
+                SUM(HD.ThanhTien),
+                N'Thu tiền sân đơn #' + CAST(MIN(HD.MaDatSan) AS NVARCHAR)
+            FROM HoaDon HD
+            JOIN LichDatSan LDS ON HD.MaDatSan = LDS.MaDatSan -- Kết nối 2 bảng
+            WHERE HD.TrangThaiThanhToan = 'DA_THANH_TOAN' 
+            GROUP BY HD.MaChiNhanh, CAST(LDS.NgayDat AS DATE);
+
+            -- 3. CẬP NHẬT TIỀN ĐỒ ĂN (Giữ nguyên theo ngày bán)
+            INSERT INTO DoanhThu (MaChiNhanh, Ngay, LoaiDoanhThu, SoTien, GhiChu)
+            SELECT 
+                MaChiNhanh, 
+                CAST(NgayLap AS DATE), 
+                'DO_AN', 
+                SUM(TongTien),
+                N'Bán đồ ăn'
+            FROM HoaDonDoAn 
+            WHERE TrangThai = 'DA_THANH_TOAN' 
+            GROUP BY MaChiNhanh, CAST(NgayLap AS DATE);";
+
+                SqlCommand cmd = new SqlCommand(sqlUpdate, conn);
+                cmd.ExecuteNonQuery();
             }
         }
 
-
-
-        // 3. SỰ KIỆN KHI BẤM NÚT "LỌC DỮ LIỆU"
+        // Gọi hàm này khi bấm nút Lọc
         private void btnThongKe_Click(object sender, EventArgs e)
         {
-            LoadDashboardCards(); // Tính lại 4 thẻ trên cùng
-            LoadMainReport();     // Vẽ lại biểu đồ và bảng
+            RefreshRevenueData(); // <--- Thêm dòng này để cập nhật dữ liệu mới nhất
+            LoadDashboardCards();
+            LoadMainReport();
         }
-
 
 
 
@@ -127,57 +177,49 @@ namespace FootballPitchManagement.Forms.Admin
             }
         }
         // Hàm phụ trợ: Tính tổng tiền trong khoảng thời gian và chi nhánh cụ thể
-private decimal GetRevenue(DateTime from, DateTime to, int? maCN)
-{
-    decimal total = 0;
-    using (SqlConnection conn = new SqlConnection(strConnect))
-    {
-        try
+        // Hàm mới: Chỉ lấy dữ liệu từ bảng DoanhThu
+        private decimal GetRevenueFromTable(DateTime from, DateTime to, int? maCN)
         {
-            conn.Open();
-            // SQL tính tổng: (Tổng tiền Hóa Đơn Sân) + (Tổng tiền Hóa Đơn Đồ Ăn)
-            string sql = @"
-                SELECT (
-                    ISNULL((SELECT SUM(ThanhTien) FROM HoaDon 
-                            WHERE NgayLap BETWEEN @F AND @T 
-                            AND TrangThaiThanhToan='DA_THANH_TOAN' 
-                            AND (@M IS NULL OR MaChiNhanh=@M)),0) 
-                    + 
-                    ISNULL((SELECT SUM(TongTien) FROM HoaDonDoAn 
-                            WHERE NgayLap BETWEEN @F AND @T 
-                            AND TrangThai='DA_THANH_TOAN' 
-                            AND (@M IS NULL OR MaChiNhanh=@M)),0)
-                )";
-
-            SqlCommand cmd = new SqlCommand(sql, conn);
-            
-            // Thêm tham số an toàn
-            cmd.Parameters.AddWithValue("@F", from.Date);
-            // Lấy đến giây cuối cùng của ngày kết thúc (23:59:59)
-            cmd.Parameters.AddWithValue("@T", to.Date.AddDays(1).AddSeconds(-1)); 
-            
-            // Xử lý tham số Chi nhánh (Nếu null thì truyền DBNull)
-            if (maCN.HasValue)
-                cmd.Parameters.AddWithValue("@M", maCN.Value);
-            else
-                cmd.Parameters.AddWithValue("@M", DBNull.Value);
-
-            // Thực thi và lấy kết quả
-            object result = cmd.ExecuteScalar();
-            if (result != null && result != DBNull.Value)
+            decimal total = 0;
+            using (SqlConnection conn = new SqlConnection(strConnect))
             {
-                total = Convert.ToDecimal(result);
+                try
+                {
+                    conn.Open();
+                    // Câu lệnh SQL cực gọn: Chỉ cần SUM cột SoTien
+                    string sql = @"
+                SELECT SUM(SoTien) 
+                FROM DoanhThu 
+                WHERE Ngay >= @F AND Ngay <= @T 
+                AND (@M IS NULL OR MaChiNhanh = @M)";
+
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+
+                    // Tham số ngày (Vì cột Ngay trong SQL là kiểu DATE nên chỉ cần truyền Date)
+                    cmd.Parameters.AddWithValue("@F", from.Date);
+                    cmd.Parameters.AddWithValue("@T", to.Date);
+
+                    if (maCN.HasValue)
+                        cmd.Parameters.AddWithValue("@M", maCN.Value);
+                    else
+                        cmd.Parameters.AddWithValue("@M", DBNull.Value);
+
+                    object result = cmd.ExecuteScalar();
+                    if (result != null && result != DBNull.Value)
+                    {
+                        total = Convert.ToDecimal(result);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    total = 0; // Nếu lỗi trả về 0
+                }
             }
+            return total;
         }
-        catch (Exception ex)
-        {
-                    System.Diagnostics.Debug.WriteLine("Lỗi tính doanh thu: " + ex.Message);
-                    // Nếu lỗi thì trả về 0 (để không crash chương trình)
-                    total = 0;
-        }
-    }
-    return total;
-}
+
+
+
         // Hàm 2: Tính toán tiền cho 4 thẻ Card (Hôm nay, Tuần này, Tháng này, Tổng)
         private void LoadDashboardCards()
         {
@@ -190,84 +232,35 @@ private decimal GetRevenue(DateTime from, DateTime to, int? maCN)
 
             DateTime now = DateTime.Now;
 
-            // =============================================================
-            // 1. TÍNH DOANH THU HÔM NAY (00:00:00 -> 23:59:59)
-            // =============================================================
-            DateTime startToday = now.Date;
-            DateTime endToday = now.Date.AddDays(1).AddSeconds(-1);
-            lblSoTienHomNay.Text = GetRevenue(startToday, endToday, maCN).ToString("N0") + " đ";
+            // --- Ô 1: HÔM NAY ---
+            lblSoTienHomNay.Text = GetRevenueFromTable(now, now, maCN).ToString("N0") + " đ";
 
-            // =============================================================
-            // 2. TÍNH DOANH THU TUẦN NÀY (THỨ 2 -> CHỦ NHẬT)
-            // =============================================================
-            // Xác định ngày Thứ 2 đầu tuần
-            // (Nếu hôm nay là Chủ Nhật (0) thì coi là thứ 7 để lùi về 6 ngày)
+            // --- Ô 2: TUẦN NÀY ---
             int dayOfWeek = (int)now.DayOfWeek;
             if (dayOfWeek == 0) dayOfWeek = 7;
+            DateTime startWeek = now.AddDays(-(dayOfWeek - 1));
+            DateTime endWeek = startWeek.AddDays(6);
+            lblSoTienTuanNay.Text = GetRevenueFromTable(startWeek, endWeek, maCN).ToString("N0") + " đ";
 
-            DateTime startOfWeek = now.AddDays(-(dayOfWeek - 1)).Date; // Về 00:00 sáng Thứ 2
-            DateTime endOfWeek = startOfWeek.AddDays(7).AddSeconds(-1); // Đến 23:59 tối Chủ Nhật
+            // --- Ô 3: THÁNG NÀY ---
+            DateTime startMonth = new DateTime(now.Year, now.Month, 1);
+            DateTime endMonth = startMonth.AddMonths(1).AddDays(-1);
+            lblSoTienThangNay.Text = GetRevenueFromTable(startMonth, endMonth, maCN).ToString("N0") + " đ";
 
-            lblSoTienTuanNay.Text = GetRevenue(startOfWeek, endOfWeek, maCN).ToString("N0") + " đ";
+            // ========================================================================
+            // --- Ô 4: TỔNG DOANH THU (SỬA LẠI: TRỌN ĐỜI / TOÀN THỜI GIAN) ---
+            // ========================================================================
 
-            // Mẹo: Hiển thị Tooltip để biết đang tính từ ngày nào
-            // toolTip1.SetToolTip(lblSoTienTuanNay, $"Tuần: {startOfWeek:dd/MM} - {endOfWeek:dd/MM}");
+            // Thay vì lấy từ dtpTuNgay, ta lấy mốc thời gian cực rộng (từ năm 2000 đến năm 3000)
+            // Để đảm bảo nó cộng hết tất cả tiền từ trước đến nay của Chi Nhánh đó
+            DateTime allTimeStart = new DateTime(2000, 1, 1);
+            DateTime allTimeEnd = new DateTime(3000, 1, 1);
 
-            // =============================================================
-            // 3. TÍNH DOANH THU THÁNG NÀY (NGÀY 1 -> NGÀY CUỐI THÁNG)
-            // =============================================================
-            DateTime startOfMonth = new DateTime(now.Year, now.Month, 1);
-            DateTime endOfMonth = startOfMonth.AddMonths(1).AddSeconds(-1); // Ngày cuối cùng của tháng
+            lblTongDoanhThu.Text = GetRevenueFromTable(allTimeStart, allTimeEnd, maCN).ToString("N0") + " đ";
 
-            lblSoTienThangNay.Text = GetRevenue(startOfMonth, endOfMonth, maCN).ToString("N0") + " đ";
-
-            // =============================================================
-            // 4. TỔNG DOANH THU (THEO BỘ LỌC NGƯỜI DÙNG CHỌN)
-            // =============================================================
-            // Phần này giữ nguyên theo lịch chọn
-            DateTime fromFilter = dtpTuNgay.Value.Date;
-            DateTime toFilter = dtpDenNgay.Value.Date.AddDays(1).AddSeconds(-1);
-
-            lblTongDoanhThu.Text = GetRevenue(fromFilter, toFilter, maCN).ToString("N0") + " đ";
-        }
-
-        // Hàm 3: Hàm phụ trợ để chạy SQL tính tổng tiền trong khoảng thời gian
-        private decimal GetRevenueByDateRange(DateTime fromDate, DateTime toDate, int? maChiNhanh)
-        {
-            decimal totalRevenue = 0;
-            using (SqlConnection conn = new SqlConnection(strConnect))
-            {
-                conn.Open();
-                // SQL: Cộng tổng tiền Sân (HoaDon) + Tiền Đồ Ăn (HoaDonDoAn)
-                string sql = @"
-                    SELECT 
-                        (
-                            ISNULL((SELECT SUM(ThanhTien) FROM HoaDon 
-                                    WHERE CAST(NgayLap AS DATE) BETWEEN @From AND @To 
-                                    AND (@MaCN IS NULL OR MaChiNhanh = @MaCN)
-                                    AND TrangThaiThanhToan = 'DA_THANH_TOAN'), 0) 
-                            +
-                            ISNULL((SELECT SUM(TongTien) FROM HoaDonDoAn 
-                                    WHERE CAST(NgayLap AS DATE) BETWEEN @From AND @To 
-                                    AND (@MaCN IS NULL OR MaChiNhanh = @MaCN)
-                                    AND TrangThai = 'DA_THANH_TOAN'), 0)
-                        )";
-
-                using (SqlCommand cmd = new SqlCommand(sql, conn))
-                {
-                    cmd.Parameters.AddWithValue("@From", fromDate.Date);
-                    cmd.Parameters.AddWithValue("@To", toDate.Date);
-                    if (maChiNhanh.HasValue)
-                        cmd.Parameters.AddWithValue("@MaCN", maChiNhanh.Value);
-                    else
-                        cmd.Parameters.AddWithValue("@MaCN", DBNull.Value);
-
-                    object result = cmd.ExecuteScalar();
-                    if (result != DBNull.Value) totalRevenue = Convert.ToDecimal(result);
-                }
-            }
-            return totalRevenue;
-
+            // Đổi tên tiêu đề GroupBox để người dùng hiểu đây là tổng trọn đời
+            // (groupBox5 là cái khung chứa ô Tổng doanh thu trong code của bạn)
+            groupBox5.Text = "Tổng Doanh Thu ";
         }
 
         // Hàm 4: Lấy dữ liệu chi tiết để vẽ Biểu đồ và Bảng
@@ -277,71 +270,65 @@ private decimal GetRevenue(DateTime from, DateTime to, int? maCN)
             {
                 conn.Open();
 
-                // LẤY NGÀY TỪ BỘ LỌC (QUAN TRỌNG)
-                DateTime fromDate = dtpTuNgay.Value.Date;
-                DateTime toDate = dtpDenNgay.Value.Date.AddDays(1).AddSeconds(-1); // Lấy hết ngày cuối
-                object maCN = (cboChiNhanh.SelectedValue != null && (int)cboChiNhanh.SelectedValue != -1) ? cboChiNhanh.SelectedValue : DBNull.Value;
+                // Lấy tham số từ bộ lọc
+                DateTime from = dtpTuNgay.Value.Date;
+                DateTime to = dtpDenNgay.Value.Date;
+                object maCN = (cboChiNhanh.SelectedValue != null && (int)cboChiNhanh.SelectedValue != -1)
+                              ? cboChiNhanh.SelectedValue : DBNull.Value;
 
-                // =========================================================
-                // PHẦN A: BẢNG DỮ LIỆU (GRID) - ĐÃ HOẠT ĐỘNG TỐT
-                // =========================================================
-                string sqlGrid = @"SELECT CN.TenChiNhanh, 
-                            SUM(ISNULL(T.S,0)) AS TongTienSan, 
-                            SUM(ISNULL(T.D,0)) AS TongTienDoAn,
-                            SUM(ISNULL(T.S,0)+ISNULL(T.D,0)) as TongCong 
-                       FROM ChiNhanh CN LEFT JOIN (
-                           SELECT MaChiNhanh, ThanhTien S, 0 D FROM HoaDon 
-                           WHERE NgayLap BETWEEN @F AND @T AND TrangThaiThanhToan='DA_THANH_TOAN'
-                           UNION ALL 
-                           SELECT MaChiNhanh, 0, TongTien FROM HoaDonDoAn 
-                           WHERE NgayLap BETWEEN @F AND @T AND TrangThai='DA_THANH_TOAN'
-                       ) T ON CN.MaChiNhanh = T.MaChiNhanh 
-                       WHERE (@M IS NULL OR CN.MaChiNhanh=@M) 
-                       GROUP BY CN.TenChiNhanh";
+                // ---------------------------------------------------------
+                // 1. LẤY DỮ LIỆU CHO BẢNG GRID (Từ bảng DoanhThu)
+                // ---------------------------------------------------------
+                string sqlGrid = @"
+            SELECT 
+                CN.TenChiNhanh,
+                SUM(CASE WHEN DT.LoaiDoanhThu = 'SAN' THEN DT.SoTien ELSE 0 END) AS TongTienSan,
+                SUM(CASE WHEN DT.LoaiDoanhThu = 'DO_AN' THEN DT.SoTien ELSE 0 END) AS TongTienDoAn,
+                SUM(ISNULL(DT.SoTien, 0)) AS TongCong
+            FROM ChiNhanh CN
+            LEFT JOIN DoanhThu DT ON CN.MaChiNhanh = DT.MaChiNhanh 
+                 AND DT.Ngay BETWEEN @F AND @T
+            WHERE (@M IS NULL OR CN.MaChiNhanh = @M)
+            GROUP BY CN.TenChiNhanh";
 
-                SqlCommand cmdGrid = new SqlCommand(sqlGrid, conn);
-                cmdGrid.Parameters.AddWithValue("@F", fromDate);
-                cmdGrid.Parameters.AddWithValue("@T", toDate);
-                cmdGrid.Parameters.AddWithValue("@M", maCN);
+                SqlCommand cmd = new SqlCommand(sqlGrid, conn);
+                cmd.Parameters.AddWithValue("@F", from);
+                cmd.Parameters.AddWithValue("@T", to);
+                cmd.Parameters.AddWithValue("@M", maCN);
 
                 DataTable dtGrid = new DataTable();
-                new SqlDataAdapter(cmdGrid).Fill(dtGrid);
+                new SqlDataAdapter(cmd).Fill(dtGrid);
+
                 dgvDoanhThu.DataSource = dtGrid;
                 SetupDataGridView();
                 dgvDoanhThu.ClearSelection();
 
-                // =========================================================
-                // PHẦN B: BIỂU ĐỒ CỘT (SỬA LẠI ĐỂ DÙNG THAM SỐ @F, @T)
-                // =========================================================
+                // ---------------------------------------------------------
+                // 2. VẼ BIỂU ĐỒ CỘT (DOANH THU NĂM)
+                // ---------------------------------------------------------
                 string sqlChart = @"
             SELECT 
-                MONTH(NgayLap) as Thang, 
-                YEAR(NgayLap) as Nam,
-                SUM(ThanhTien) as TongTien
-            FROM (
-                SELECT NgayLap, ThanhTien FROM HoaDon 
-                WHERE NgayLap BETWEEN @F AND @T AND TrangThaiThanhToan='DA_THANH_TOAN'
-                AND (@M IS NULL OR MaChiNhanh=@M)
-                UNION ALL
-                SELECT NgayLap, TongTien FROM HoaDonDoAn 
-                WHERE NgayLap BETWEEN @F AND @T AND TrangThai='DA_THANH_TOAN'
-                AND (@M IS NULL OR MaChiNhanh=@M)
-            ) AS Temp
-            GROUP BY MONTH(NgayLap), YEAR(NgayLap)
+                MONTH(Ngay) AS Thang, 
+                YEAR(Ngay) AS Nam, 
+                SUM(SoTien) AS TongTien
+            FROM DoanhThu
+            WHERE Ngay BETWEEN @F AND @T
+              AND (@M IS NULL OR MaChiNhanh = @M)
+            GROUP BY MONTH(Ngay), YEAR(Ngay)
             ORDER BY Nam, Thang";
 
                 SqlCommand cmdChart = new SqlCommand(sqlChart, conn);
-                cmdChart.Parameters.AddWithValue("@F", fromDate); // Ép dùng ngày bắt đầu
-                cmdChart.Parameters.AddWithValue("@T", toDate);   // Ép dùng ngày kết thúc
+                cmdChart.Parameters.AddWithValue("@F", from);
+                cmdChart.Parameters.AddWithValue("@T", to);
                 cmdChart.Parameters.AddWithValue("@M", maCN);
 
                 DataTable dtChart = new DataTable();
                 new SqlDataAdapter(cmdChart).Fill(dtChart);
 
-                // Vẽ lại Chart Cột
+                // -- Vẽ Chart --
                 chartDoanhThuNam.Series.Clear();
                 chartDoanhThuNam.Titles.Clear();
-                chartDoanhThuNam.Titles.Add($"Biểu Đồ ({fromDate:dd/MM} - {toDate:dd/MM})"); // Đổi tiêu đề cho dễ thấy
+                chartDoanhThuNam.Titles.Add($"Biểu Đồ ({from:dd/MM} - {to:dd/MM})");
 
                 Series sCol = new Series("Doanh Thu");
                 sCol.ChartType = SeriesChartType.Column;
@@ -349,27 +336,22 @@ private decimal GetRevenue(DateTime from, DateTime to, int? maCN)
 
                 foreach (DataRow r in dtChart.Rows)
                 {
-                    // Label: T1/2026
-                    string label = "T" + r["Thang"].ToString() + "/" + r["Nam"].ToString();
-                    sCol.Points.AddXY(label, r["TongTien"]);
+                    sCol.Points.AddXY("T" + r["Thang"], r["TongTien"]);
                 }
                 chartDoanhThuNam.Series.Add(sCol);
 
-                // =========================================================
-                // PHẦN C: BIỂU ĐỒ TRÒN (LẤY DỮ LIỆU TỪ GRID ĐÃ LỌC)
-                // =========================================================
-                // Cách này đảm bảo 100% biểu đồ tròn khớp với bảng số liệu
-                decimal totalSan = 0;
-                decimal totalDoAn = 0;
-
+                // ---------------------------------------------------------
+                // 3. VẼ BIỂU ĐỒ TRÒN (TỪ dtGrid)
+                // ---------------------------------------------------------
+                decimal totalSan = 0, totalDoAn = 0;
                 foreach (DataRow r in dtGrid.Rows)
                 {
-                    totalSan += Convert.ToDecimal(r["TongTienSan"]);
-                    totalDoAn += Convert.ToDecimal(r["TongTienDoAn"]);
+                    totalSan += r["TongTienSan"] != DBNull.Value ? Convert.ToDecimal(r["TongTienSan"]) : 0;
+                    totalDoAn += r["TongTienDoAn"] != DBNull.Value ? Convert.ToDecimal(r["TongTienDoAn"]) : 0;
                 }
 
                 chartTyTrong.Series.Clear();
-                Series sPie = new Series("DichVu");
+                Series sPie = new Series("TyTrong");
                 sPie.ChartType = SeriesChartType.Doughnut;
 
                 if (totalSan + totalDoAn > 0)
@@ -494,6 +476,39 @@ private decimal GetRevenue(DateTime from, DateTime to, int? maCN)
         private void btnXuatBaoCao_Click(object sender, EventArgs e)
         {
 
+            if (dgvDoanhThu.Rows.Count == 0)
+            {
+                MessageBox.Show("Không có dữ liệu để xuất!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.InitialDirectory = "C:\\";
+            sfd.Title = "Lưu file báo cáo doanh thu";
+            sfd.FileName = "BaoCaoDoanhThu_" + DateTime.Now.ToString("ddMMyyyy_HHmm");
+            sfd.Filter = "Excel Files|*.xlsx;*.xls";
+
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    // --- KIỂM TRA XEM CÓ ĐANG CHỌN "TẤT CẢ" KHÔNG ---
+                    bool isTongHop = false;
+                    if (cboChiNhanh.SelectedValue != null && (int)cboChiNhanh.SelectedValue == -1)
+                    {
+                        isTongHop = true;
+                    }
+
+                    // Truyền biến isTongHop vào hàm xuất
+                    ExportToExcel(dgvDoanhThu, sfd.FileName, "Báo Cáo Doanh Thu", isTongHop);
+
+                    MessageBox.Show("Xuất file Excel thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi khi xuất file: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         // HÀM XỬ LÝ CHÍNH: GHI DỮ LIỆU TỪ GRID RA EXCEL
@@ -632,15 +647,6 @@ private decimal GetRevenue(DateTime from, DateTime to, int? maCN)
             }
         }
 
-
-
-
-
-
-
-
-
-
         private void InitializeComponent()
         {
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
@@ -734,7 +740,7 @@ private decimal GetRevenue(DateTime from, DateTime to, int? maCN)
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 71.75141F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 141F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 183F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1254, 663);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1234, 654);
             this.tableLayoutPanel2.TabIndex = 10;
             // 
             // groupBox6
@@ -745,7 +751,7 @@ private decimal GetRevenue(DateTime from, DateTime to, int? maCN)
             this.groupBox6.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox6.Location = new System.Drawing.Point(3, 3);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(1248, 89);
+            this.groupBox6.Size = new System.Drawing.Size(1228, 87);
             this.groupBox6.TabIndex = 8;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "DOANH THU";
@@ -767,7 +773,7 @@ private decimal GetRevenue(DateTime from, DateTime to, int? maCN)
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1242, 52);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1222, 50);
             this.tableLayoutPanel1.TabIndex = 5;
             // 
             // groupBox2
@@ -778,7 +784,7 @@ private decimal GetRevenue(DateTime from, DateTime to, int? maCN)
             this.groupBox2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(3, 3);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(304, 46);
+            this.groupBox2.Size = new System.Drawing.Size(299, 44);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "DoanhThu Hôm Nay";
@@ -791,7 +797,7 @@ private decimal GetRevenue(DateTime from, DateTime to, int? maCN)
             this.pnlHomNay.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlHomNay.Location = new System.Drawing.Point(3, 26);
             this.pnlHomNay.Name = "pnlHomNay";
-            this.pnlHomNay.Size = new System.Drawing.Size(298, 17);
+            this.pnlHomNay.Size = new System.Drawing.Size(293, 15);
             this.pnlHomNay.TabIndex = 0;
             // 
             // lblSoTienHomNay
@@ -811,9 +817,9 @@ private decimal GetRevenue(DateTime from, DateTime to, int? maCN)
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox3.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.groupBox3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(313, 3);
+            this.groupBox3.Location = new System.Drawing.Point(308, 3);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(304, 46);
+            this.groupBox3.Size = new System.Drawing.Size(299, 44);
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Doanh Thu Tuần Này";
@@ -826,7 +832,7 @@ private decimal GetRevenue(DateTime from, DateTime to, int? maCN)
             this.pnlTuanNay.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlTuanNay.Location = new System.Drawing.Point(3, 26);
             this.pnlTuanNay.Name = "pnlTuanNay";
-            this.pnlTuanNay.Size = new System.Drawing.Size(298, 17);
+            this.pnlTuanNay.Size = new System.Drawing.Size(293, 15);
             this.pnlTuanNay.TabIndex = 2;
             // 
             // lblSoTienTuanNay
@@ -845,9 +851,9 @@ private decimal GetRevenue(DateTime from, DateTime to, int? maCN)
             this.groupBox4.Controls.Add(this.pnlThangNay);
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox4.Location = new System.Drawing.Point(623, 3);
+            this.groupBox4.Location = new System.Drawing.Point(613, 3);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(304, 46);
+            this.groupBox4.Size = new System.Drawing.Size(299, 44);
             this.groupBox4.TabIndex = 2;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Doanh Thu Tháng Này";
@@ -860,7 +866,7 @@ private decimal GetRevenue(DateTime from, DateTime to, int? maCN)
             this.pnlThangNay.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlThangNay.Location = new System.Drawing.Point(3, 26);
             this.pnlThangNay.Name = "pnlThangNay";
-            this.pnlThangNay.Size = new System.Drawing.Size(298, 17);
+            this.pnlThangNay.Size = new System.Drawing.Size(293, 15);
             this.pnlThangNay.TabIndex = 0;
             // 
             // lblSoTienThangNay
@@ -879,9 +885,9 @@ private decimal GetRevenue(DateTime from, DateTime to, int? maCN)
             this.groupBox5.Controls.Add(this.pnlTongDoanhThu);
             this.groupBox5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox5.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox5.Location = new System.Drawing.Point(933, 3);
+            this.groupBox5.Location = new System.Drawing.Point(918, 3);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(306, 46);
+            this.groupBox5.Size = new System.Drawing.Size(301, 44);
             this.groupBox5.TabIndex = 3;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Tổng Doanh Thu";
@@ -894,7 +900,7 @@ private decimal GetRevenue(DateTime from, DateTime to, int? maCN)
             this.pnlTongDoanhThu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlTongDoanhThu.Location = new System.Drawing.Point(3, 26);
             this.pnlTongDoanhThu.Name = "pnlTongDoanhThu";
-            this.pnlTongDoanhThu.Size = new System.Drawing.Size(300, 17);
+            this.pnlTongDoanhThu.Size = new System.Drawing.Size(295, 15);
             this.pnlTongDoanhThu.TabIndex = 0;
             // 
             // lblTongDoanhThu
@@ -915,12 +921,12 @@ private decimal GetRevenue(DateTime from, DateTime to, int? maCN)
             this.DoanhThu.Controls.Add(this.groupBox7, 0, 0);
             this.DoanhThu.Controls.Add(this.groupBox8, 1, 0);
             this.DoanhThu.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DoanhThu.Location = new System.Drawing.Point(3, 98);
+            this.DoanhThu.Location = new System.Drawing.Point(3, 96);
             this.DoanhThu.Name = "DoanhThu";
             this.DoanhThu.RowCount = 1;
             this.DoanhThu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.DoanhThu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 248F));
-            this.DoanhThu.Size = new System.Drawing.Size(1248, 237);
+            this.DoanhThu.Size = new System.Drawing.Size(1228, 230);
             this.DoanhThu.TabIndex = 6;
             // 
             // groupBox7
@@ -931,13 +937,14 @@ private decimal GetRevenue(DateTime from, DateTime to, int? maCN)
             this.groupBox7.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox7.Location = new System.Drawing.Point(3, 3);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(867, 231);
+            this.groupBox7.Size = new System.Drawing.Size(853, 224);
             this.groupBox7.TabIndex = 2;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "BIỂU ĐỒ DOANH THU NĂM";
             // 
             // chartDoanhThuNam
             // 
+            this.chartDoanhThuNam.BackColor = System.Drawing.SystemColors.Control;
             chartArea1.Name = "ChartArea1";
             this.chartDoanhThuNam.ChartAreas.Add(chartArea1);
             this.chartDoanhThuNam.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -949,7 +956,7 @@ private decimal GetRevenue(DateTime from, DateTime to, int? maCN)
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chartDoanhThuNam.Series.Add(series1);
-            this.chartDoanhThuNam.Size = new System.Drawing.Size(861, 202);
+            this.chartDoanhThuNam.Size = new System.Drawing.Size(847, 195);
             this.chartDoanhThuNam.TabIndex = 2;
             this.chartDoanhThuNam.Text = "chart1";
             // 
@@ -959,15 +966,16 @@ private decimal GetRevenue(DateTime from, DateTime to, int? maCN)
             this.groupBox8.Controls.Add(this.chartTyTrong);
             this.groupBox8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox8.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox8.Location = new System.Drawing.Point(876, 3);
+            this.groupBox8.Location = new System.Drawing.Point(862, 3);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(369, 231);
+            this.groupBox8.Size = new System.Drawing.Size(363, 224);
             this.groupBox8.TabIndex = 3;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "DOANH THU THEO DỊCH VỤ";
             // 
             // chartTyTrong
             // 
+            this.chartTyTrong.BackColor = System.Drawing.SystemColors.Control;
             chartArea2.Name = "ChartArea1";
             this.chartTyTrong.ChartAreas.Add(chartArea2);
             this.chartTyTrong.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -979,7 +987,7 @@ private decimal GetRevenue(DateTime from, DateTime to, int? maCN)
             series2.Legend = "Doanh Thu Đồ Ăn";
             series2.Name = "Series1";
             this.chartTyTrong.Series.Add(series2);
-            this.chartTyTrong.Size = new System.Drawing.Size(363, 202);
+            this.chartTyTrong.Size = new System.Drawing.Size(357, 195);
             this.chartTyTrong.TabIndex = 1;
             this.chartTyTrong.Text = "chart1";
             // 
@@ -989,9 +997,9 @@ private decimal GetRevenue(DateTime from, DateTime to, int? maCN)
             this.groupBox1.Controls.Add(this.tableLayoutPanel3);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(3, 341);
+            this.groupBox1.Location = new System.Drawing.Point(3, 332);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1248, 135);
+            this.groupBox1.Size = new System.Drawing.Size(1228, 135);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "BỘ LỌC DỮ LIỆU";
@@ -1011,7 +1019,7 @@ private decimal GetRevenue(DateTime from, DateTime to, int? maCN)
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 106F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(1242, 106);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(1222, 106);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
             // panel3
@@ -1019,9 +1027,9 @@ private decimal GetRevenue(DateTime from, DateTime to, int? maCN)
             this.panel3.BackColor = System.Drawing.Color.Cornsilk;
             this.panel3.Controls.Add(this.groupBox12);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(927, 3);
+            this.panel3.Location = new System.Drawing.Point(912, 3);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(312, 100);
+            this.panel3.Size = new System.Drawing.Size(307, 100);
             this.panel3.TabIndex = 2;
             // 
             // groupBox12
@@ -1031,7 +1039,7 @@ private decimal GetRevenue(DateTime from, DateTime to, int? maCN)
             this.groupBox12.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox12.Location = new System.Drawing.Point(0, 0);
             this.groupBox12.Name = "groupBox12";
-            this.groupBox12.Size = new System.Drawing.Size(312, 100);
+            this.groupBox12.Size = new System.Drawing.Size(307, 100);
             this.groupBox12.TabIndex = 0;
             this.groupBox12.TabStop = false;
             this.groupBox12.Text = "Xuất Doanh Thu";
@@ -1043,7 +1051,7 @@ private decimal GetRevenue(DateTime from, DateTime to, int? maCN)
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(3, 26);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(306, 71);
+            this.panel4.Size = new System.Drawing.Size(301, 71);
             this.panel4.TabIndex = 0;
             // 
             // btnXuatBaoCao
@@ -1057,15 +1065,16 @@ private decimal GetRevenue(DateTime from, DateTime to, int? maCN)
             this.btnXuatBaoCao.TabIndex = 7;
             this.btnXuatBaoCao.Text = "Xuất Excel";
             this.btnXuatBaoCao.UseVisualStyleBackColor = false;
+            this.btnXuatBaoCao.Click += new System.EventHandler(this.btnXuatBaoCao_Click);
             // 
             // groupBox9
             // 
             this.groupBox9.BackColor = System.Drawing.SystemColors.Window;
             this.groupBox9.Controls.Add(this.panel2);
             this.groupBox9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox9.Location = new System.Drawing.Point(416, 3);
+            this.groupBox9.Location = new System.Drawing.Point(410, 3);
             this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(505, 100);
+            this.groupBox9.Size = new System.Drawing.Size(496, 100);
             this.groupBox9.TabIndex = 3;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "Chi Nhánh";
@@ -1080,7 +1089,7 @@ private decimal GetRevenue(DateTime from, DateTime to, int? maCN)
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(3, 26);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(499, 71);
+            this.panel2.Size = new System.Drawing.Size(490, 71);
             this.panel2.TabIndex = 0;
             // 
             // label4
@@ -1129,7 +1138,7 @@ private decimal GetRevenue(DateTime from, DateTime to, int? maCN)
             this.groupBox10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox10.Location = new System.Drawing.Point(3, 3);
             this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(407, 100);
+            this.groupBox10.Size = new System.Drawing.Size(401, 100);
             this.groupBox10.TabIndex = 4;
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "Ngày";
@@ -1144,7 +1153,7 @@ private decimal GetRevenue(DateTime from, DateTime to, int? maCN)
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 26);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(401, 71);
+            this.panel1.Size = new System.Drawing.Size(395, 71);
             this.panel1.TabIndex = 0;
             // 
             // dtpTuNgay
@@ -1188,9 +1197,9 @@ private decimal GetRevenue(DateTime from, DateTime to, int? maCN)
             this.groupBox11.Controls.Add(this.dgvDoanhThu);
             this.groupBox11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox11.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox11.Location = new System.Drawing.Point(3, 482);
+            this.groupBox11.Location = new System.Drawing.Point(3, 473);
             this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Size = new System.Drawing.Size(1248, 178);
+            this.groupBox11.Size = new System.Drawing.Size(1228, 178);
             this.groupBox11.TabIndex = 9;
             this.groupBox11.TabStop = false;
             this.groupBox11.Text = "DOANH THU THEO CHI NHÁNH";
@@ -1207,14 +1216,17 @@ private decimal GetRevenue(DateTime from, DateTime to, int? maCN)
             this.dgvDoanhThu.RowHeadersWidth = 51;
             this.dgvDoanhThu.RowTemplate.Height = 24;
             this.dgvDoanhThu.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDoanhThu.Size = new System.Drawing.Size(1242, 149);
+            this.dgvDoanhThu.Size = new System.Drawing.Size(1222, 149);
             this.dgvDoanhThu.TabIndex = 7;
+            this.dgvDoanhThu.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDoanhThu_CellContentClick);
+            this.dgvDoanhThu.Click += new System.EventHandler(this.frmDoanhThu_Load);
             // 
             // frmdoanhthuu
             // 
-            this.ClientSize = new System.Drawing.Size(1254, 663);
+            this.ClientSize = new System.Drawing.Size(1234, 654);
             this.Controls.Add(this.tableLayoutPanel2);
             this.Name = "frmdoanhthuu";
+            this.Load += new System.EventHandler(this.frmDoanhThu_Load);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -1249,6 +1261,11 @@ private decimal GetRevenue(DateTime from, DateTime to, int? maCN)
             this.groupBox11.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDoanhThu)).EndInit();
             this.ResumeLayout(false);
+
+        }
+
+        private void dgvDoanhThu_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
 
         }
     }

@@ -589,6 +589,14 @@ namespace FootballPitchManagement
                     cmdTT.Parameters.AddWithValue("@PT", phuongThuc);
                     cmdTT.ExecuteNonQuery();
 
+                    string sqlDoanhThu = @"INSERT INTO DoanhThu (MaChiNhanh, Ngay, LoaiDoanhThu, SoTien, GhiChu)
+                                   VALUES (@MaChiNhanh, CAST(GETDATE() AS DATE), N'SAN', @SoTien, N'Thu tiền sân đơn #' + CAST(@MaDatSan AS NVARCHAR))";
+                    SqlCommand cmdDT = new SqlCommand(sqlDoanhThu, conn, transaction);
+                    cmdDT.Parameters.AddWithValue("@MaChiNhanh", maChiNhanh);
+                    cmdDT.Parameters.AddWithValue("@SoTien", tongTien);
+                    cmdDT.Parameters.AddWithValue("@MaDatSan", maDatSan);
+                    cmdDT.ExecuteNonQuery();
+
                     string sqlUpdate = "UPDATE LichDatSan SET TrangThai = 'HOAN_THANH' WHERE MaDatSan = @MaDatSan";
                     SqlCommand cmdUpd = new SqlCommand(sqlUpdate, conn, transaction);
                     cmdUpd.Parameters.AddWithValue("@MaDatSan", maDatSan);
@@ -717,18 +725,21 @@ namespace FootballPitchManagement
 
         // --- HÀM 2: GỌI API CASSO ---
         // --- HÀM KIỂM TRA TIỀN (PHIÊN BẢN THÔNG MINH - HIỆN LÝ DO NẾU KHÔNG KHỚP) ---
+        // --- HÀM KIỂM TRA TIỀN (ĐÃ NÂNG CẤP CHỐNG CACHE & TĂNG TỐC) ---
         private async Task<bool> KiemTraTienVeQuaCasso(string noiDungCanTim, decimal soTienCanTim)
         {
             try
             {
-                // 1. Cài đặt bảo mật (Bắt buộc)
+                // 1. Cấu hình bảo mật (Bắt buộc)
                 System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
 
                 using (HttpClient client = new HttpClient())
                 {
                     client.DefaultRequestHeaders.Add("Authorization", "Apikey " + CASSO_API_KEY);
-                    // Lấy 10 giao dịch gần nhất cho chắc ăn
-                    string url = "https://oauth.casso.vn/v2/transactions?pageSize=10";
+
+                    // 2. MẸO QUAN TRỌNG: Thêm tham số ngẫu nhiên &t=... để ép máy tính không được dùng bộ nhớ tạm (Cache)
+                    // Tăng pageSize lên 20 để quét sâu hơn
+                    string url = $"https://oauth.casso.vn/v2/transactions?pageSize=20&t={DateTime.Now.Ticks}";
 
                     HttpResponseMessage response = await client.GetAsync(url);
                     if (response.IsSuccessStatusCode)
@@ -736,42 +747,28 @@ namespace FootballPitchManagement
                         string jsonResponse = await response.Content.ReadAsStringAsync();
                         JObject data = JObject.Parse(jsonResponse);
 
-                        // 2. Bỏ qua nếu không có lỗi (error = 0 hoặc null đều OK)
+                        // Check lỗi API
                         if (data["error"] != null && data["error"].ToString() != "0")
                         {
+                            // Nếu lỗi thì âm thầm bỏ qua để Timer chạy tiếp lần sau
                             return false;
                         }
 
                         var transactions = data["data"]["records"];
 
-                        // 3. DUYỆT QUA CÁC GIAO DỊCH ĐỂ TÌM
+                        // 3. DUYỆT TÌM GIAO DỊCH
                         foreach (var trans in transactions)
                         {
-                            string description = trans["description"].ToString().ToUpper(); // Đổi hết sang chữ HOA
+                            string description = trans["description"].ToString().ToUpper(); // Chuyển chữ hoa hết
                             decimal amount = decimal.Parse(trans["amount"].ToString());
                             string noiDungCanTimHoa = noiDungCanTim.ToUpper();
 
-                            // --- LOGIC KIỂM TRA ---
-
-                            // TRƯỜNG HỢP 1: ĐÚNG TIỀN + ĐÚNG NỘI DUNG -> THÀNH CÔNG 100%
+                            // LOGIC SO SÁNH:
+                            // - Nội dung chứa mã đơn (VD: DS11)
+                            // - Số tiền phải LỚN HƠN HOẶC BẰNG số tiền yêu cầu (để tránh lỗi làm tròn)
                             if (description.Contains(noiDungCanTimHoa) && amount >= soTienCanTim)
                             {
-                                return true;
-                            }
-
-                            // TRƯỜNG HỢP 2 (HỖ TRỢ DEBUG): ĐÚNG TIỀN NHƯNG SAI NỘI DUNG
-                            // Chỉ hiện thông báo này 1 lần để bạn biết mình sai ở đâu
-                            if (amount >= soTienCanTim && !description.Contains(noiDungCanTimHoa))
-                            {
-                                // Kiểm tra xem đây có phải là giao dịch mới không (tránh báo giao dịch cũ rích)
-                                // Chỉ báo nếu giao dịch này chưa từng được báo
-                                System.Diagnostics.Debug.WriteLine($"⚠️ TÌM THẤY TIỀN NHƯNG SAI NỘI DUNG!");
-                                System.Diagnostics.Debug.WriteLine($"App cần tìm: '{noiDungCanTimHoa}'");
-                                System.Diagnostics.Debug.WriteLine($"Ngân hàng báo: '{description}'");
-
-                                // Mẹo: Nếu bạn muốn "du di" cho qua luôn kể cả khi sai nội dung (chỉ cần đúng tiền)
-                                // Thì bỏ comment dòng dưới đây (Nguy hiểm nếu nhiều người ck cùng lúc):
-                                // return true; 
+                                return true; // TÌM THẤY! -> Báo về để tắt form
                             }
                         }
                     }
@@ -779,9 +776,10 @@ namespace FootballPitchManagement
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine("Lỗi: " + ex.Message);
+                // Ghi lỗi vào Output để debug nếu cần, không hiện MessageBox làm phiền người dùng lúc đang chờ
+                System.Diagnostics.Debug.WriteLine("Lỗi Check Casso: " + ex.Message);
             }
-            return false;
+            return false; // Chưa thấy tiền
         }
 
 
