@@ -19,7 +19,7 @@ namespace FootballPitchManagement.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "18.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -223,16 +223,6 @@ namespace FootballPitchManagement.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap btn_delete {
-            get {
-                object obj = ResourceManager.GetObject("btn_delete", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap btn_edit {
             get {
                 object obj = ResourceManager.GetObject("btn_edit", resourceCulture);
@@ -253,19 +243,9 @@ namespace FootballPitchManagement.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap dc79e0dd_8352_4bdf_b116_84db34d30e8e {
+        internal static System.Drawing.Bitmap dấu_x {
             get {
-                object obj = ResourceManager.GetObject("dc79e0dd-8352-4bdf-b116-84db34d30e8e", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap eb50e9b2_9a62_4f90_8fc8_38c0308f978a {
-            get {
-                object obj = ResourceManager.GetObject("eb50e9b2-9a62-4f90-8fc8-38c0308f978a", resourceCulture);
+                object obj = ResourceManager.GetObject("dấu x", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -363,16 +343,6 @@ namespace FootballPitchManagement.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icons8_bill_481 {
-            get {
-                object obj = ResourceManager.GetObject("icons8-bill-481", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap icons8_bill_50 {
             get {
                 object obj = ResourceManager.GetObject("icons8-bill-50", resourceCulture);
@@ -436,16 +406,6 @@ namespace FootballPitchManagement.Properties {
         internal static System.Drawing.Bitmap icons8_calendar_64 {
             get {
                 object obj = ResourceManager.GetObject("icons8-calendar-64", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap icons8_calendar_64__1_ {
-            get {
-                object obj = ResourceManager.GetObject("icons8-calendar-64 (1)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -556,36 +516,6 @@ namespace FootballPitchManagement.Properties {
         internal static System.Drawing.Bitmap icons8_food_bar_100 {
             get {
                 object obj = ResourceManager.GetObject("icons8-food-bar-100", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap icons8_food_bar_1001 {
-            get {
-                object obj = ResourceManager.GetObject("icons8-food-bar-1001", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap icons8_food_bar_48 {
-            get {
-                object obj = ResourceManager.GetObject("icons8-food-bar-48", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap icons8_food_bar_48__1_ {
-            get {
-                object obj = ResourceManager.GetObject("icons8-food-bar-48 (1)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -843,16 +773,6 @@ namespace FootballPitchManagement.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Lovepik_com_400166909_football_field {
-            get {
-                object obj = ResourceManager.GetObject("Lovepik_com-400166909-football-field", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap Lovepik_com_400166909_football_field1 {
             get {
                 object obj = ResourceManager.GetObject("Lovepik_com-400166909-football-field1", resourceCulture);
@@ -897,6 +817,26 @@ namespace FootballPitchManagement.Properties {
         internal static System.Drawing.Bitmap pngtree_green_field_on_the_stadium_with_sky_view_at_evening_time_image_16465673 {
             get {
                 object obj = ResourceManager.GetObject("pngtree-green-field-on-the-stadium-with-sky-view-at-evening-time-image_16465673", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pngtree_green_field_on_the_stadium_with_sky_view_at_evening_time_image_164656731 {
+            get {
+                object obj = ResourceManager.GetObject("pngtree-green-field-on-the-stadium-with-sky-view-at-evening-time-image_164656731", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pngtree_green_field_on_the_stadium_with_sky_view_at_evening_time_image_164656732 {
+            get {
+                object obj = ResourceManager.GetObject("pngtree-green-field-on-the-stadium-with-sky-view-at-evening-time-image_164656732", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

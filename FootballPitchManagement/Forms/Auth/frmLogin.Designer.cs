@@ -79,7 +79,7 @@
             // 
             // picTilte
             // 
-            this.picTilte.Image = global::FootballPitchManagement.Properties.Resources.wind_21844_256;
+//            this.picTilte.Image = global::FootballPitchManagement.Properties.Resources.wind_21844_256;
             this.picTilte.Location = new System.Drawing.Point(75, 63);
             this.picTilte.Name = "picTilte";
             this.picTilte.Size = new System.Drawing.Size(230, 102);
@@ -127,7 +127,7 @@
             // 
             // picHide
             // 
-            this.picHide.BackgroundImage = global::FootballPitchManagement.Properties.Resources.icons8_eye_80;
+//            this.picHide.BackgroundImage = global::FootballPitchManagement.Properties.Resources.icons8_eye_80;
             this.picHide.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.picHide.Location = new System.Drawing.Point(290, 290);
             this.picHide.Name = "picHide";
@@ -139,7 +139,7 @@
             // picShow
             // 
             this.picShow.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picShow.Image = global::FootballPitchManagement.Properties.Resources.icons8_eye_64;
+//            this.picShow.Image = global::FootballPitchManagement.Properties.Resources.icons8_eye_64;
             this.picShow.Location = new System.Drawing.Point(290, 290);
             this.picShow.Name = "picShow";
             this.picShow.Size = new System.Drawing.Size(46, 32);
@@ -227,7 +227,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.BackgroundImage = global::FootballPitchManagement.Properties.Resources.z7323897720284_a54d07854b792a7723b12d3787f07cb2;
+//            this.BackgroundImage = global::FootballPitchManagement.Properties.Resources.z7323897720284_a54d07854b792a7723b12d3787f07cb2;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(901, 546);
             this.Controls.Add(this.panelLogin);

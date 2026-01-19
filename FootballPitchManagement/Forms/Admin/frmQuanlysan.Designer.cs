@@ -275,7 +275,7 @@
             // picThemSan
             // 
             this.picThemSan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.picThemSan.Image = global::FootballPitchManagement.Properties.Resources.icons8_add_481;
+//            this.picThemSan.Image = global::FootballPitchManagement.Properties.Resources.icons8_add_481;
             this.picThemSan.Location = new System.Drawing.Point(84, 13);
             this.picThemSan.Name = "picThemSan";
             this.picThemSan.Size = new System.Drawing.Size(55, 45);

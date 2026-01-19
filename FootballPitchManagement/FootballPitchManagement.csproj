@@ -124,6 +124,12 @@
     <Compile Include="Forms\Admin\frmThemSuaSan.Designer.cs">
       <DependentUpon>frmThemSuaSan.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Auth\frmQuanLyTaiKhoan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Auth\frmQuanLyTaiKhoan.Designer.cs">
+      <DependentUpon>frmQuanLyTaiKhoan.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Customer\frmBaocao.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -219,8 +225,8 @@
     <EmbeddedResource Include="Forms\Admin\frmdoanhthuu.resx">
       <DependentUpon>frmdoanhthuu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Admin\frmQuanLyDoAn.resx">
-      <DependentUpon>frmQuanLyDoAn.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Admin\frmNhanVien.resx">
+      <DependentUpon>frmNhanVien.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Admin\frmQuanlysan.resx">
       <DependentUpon>frmQuanlysan.cs</DependentUpon>
@@ -233,6 +239,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Admin\frmThemSuaSan.resx">
       <DependentUpon>frmThemSuaSan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Auth\frmQuanLyTaiKhoan.resx">
+      <DependentUpon>frmQuanLyTaiKhoan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Customer\frmBaocao.resx">
       <DependentUpon>frmBaocao.cs</DependentUpon>
@@ -372,10 +381,7 @@
     <None Include="Resources\icons8-food-bar-100.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\btn_edit.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\btn_delete.png" />
+    <None Include="Resources\dấu x.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\btn_delete1.png" />

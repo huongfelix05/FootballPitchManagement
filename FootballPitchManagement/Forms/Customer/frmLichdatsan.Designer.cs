@@ -468,7 +468,6 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BackgroundImage = global::FootballPitchManagement.Properties.Resources._29001677_3d_growth_bar_graph_vector_business_concept1;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.Location = new System.Drawing.Point(36, 20);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -639,7 +638,6 @@
             // 
             this.flpDanhSachSan.AutoScroll = true;
             this.flpDanhSachSan.BackColor = System.Drawing.SystemColors.Control;
-            this.flpDanhSachSan.BackgroundImage = global::FootballPitchManagement.Properties.Resources.pngtree_green_field_on_the_stadium_with_sky_view_at_evening_time_image_16465673;
             this.flpDanhSachSan.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.flpDanhSachSan.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flpDanhSachSan.Location = new System.Drawing.Point(407, 2);
@@ -647,6 +645,7 @@
             this.flpDanhSachSan.Name = "flpDanhSachSan";
             this.flpDanhSachSan.Size = new System.Drawing.Size(800, 662);
             this.flpDanhSachSan.TabIndex = 4;
+            this.flpDanhSachSan.Paint += new System.Windows.Forms.PaintEventHandler(this.flpDanhSachSan_Paint);
             // 
             // frmLichdatsan
             // 

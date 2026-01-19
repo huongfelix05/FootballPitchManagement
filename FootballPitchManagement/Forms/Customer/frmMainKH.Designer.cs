@@ -316,7 +316,7 @@
             // 
             // pictureBox8
             // 
-            this.pictureBox8.BackgroundImage = global::FootballPitchManagement.Properties.Resources.grass_structure_plant_field_lawn_green_976043_pxhere_com;
+//            this.pictureBox8.BackgroundImage = global::FootballPitchManagement.Properties.Resources.grass_structure_plant_field_lawn_green_976043_pxhere_com;
             this.pictureBox8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox8.Dock = System.Windows.Forms.DockStyle.Top;
             this.pictureBox8.Location = new System.Drawing.Point(0, 0);
@@ -660,7 +660,7 @@
             // 
             // pictureBox9
             // 
-            this.pictureBox9.Image = global::FootballPitchManagement.Properties.Resources.eb50e9b2_9a62_4f90_8fc8_38c0308f978a;
+//            this.pictureBox9.Image = global::FootballPitchManagement.Properties.Resources.eb50e9b2_9a62_4f90_8fc8_38c0308f978a;
             this.pictureBox9.Location = new System.Drawing.Point(12, 13);
             this.pictureBox9.Name = "pictureBox9";
             this.pictureBox9.Size = new System.Drawing.Size(90, 66);

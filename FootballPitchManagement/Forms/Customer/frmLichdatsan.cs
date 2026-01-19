@@ -899,6 +899,179 @@ namespace FootballPitchManagement.Forms.Customer
             return frmQR.ShowDialog() == DialogResult.OK;
         }
 
+                    string sqlHoaDon = @"INSERT INTO HoaDon (MaDatSan, MaKH, MaChiNhanh, NgayLap, TongTienSan, ThanhTien, TrangThaiThanhToan, PhuongThucTT, NguoiLap)
+                                         VALUES (@MaDatSan, @MaKH, @MaChiNhanh, @NgayLap, @TongTien, @TongTien, N'DA_THANH_TOAN', @PT, 1);
+                                         SELECT SCOPE_IDENTITY();";
+                    SqlCommand cmdHoaDon = new SqlCommand(sqlHoaDon, conn, transaction);
+                    cmdHoaDon.Parameters.AddWithValue("@MaDatSan", maDatSan);
+                    cmdHoaDon.Parameters.AddWithValue("@MaKH", maKH);
+                    cmdHoaDon.Parameters.AddWithValue("@MaChiNhanh", maChiNhanh);
+                    cmdHoaDon.Parameters.AddWithValue("@NgayLap", ngayDat);
+                    cmdHoaDon.Parameters.AddWithValue("@TongTien", tongTien);
+                    cmdHoaDon.Parameters.AddWithValue("@PT", phuongThuc);
+                    int maHoaDon = Convert.ToInt32(cmdHoaDon.ExecuteScalar());
+
+                    string sqlChiTiet = @"INSERT INTO ChiTietHoaDonSan (MaHoaDon, MaDatSan, DonGia, SoGio, ThanhTien)
+                                          VALUES (@MaHoaDon, @MaDatSan, @DonGia, @SoGio, @ThanhTien)";
+                    SqlCommand cmdChiTiet = new SqlCommand(sqlChiTiet, conn, transaction);
+                    cmdChiTiet.Parameters.AddWithValue("@MaHoaDon", maHoaDon);
+                    cmdChiTiet.Parameters.AddWithValue("@MaDatSan", maDatSan);
+                    decimal donGia = (soGio > 0) ? (tongTien / (decimal)soGio) : tongTien;
+                    cmdChiTiet.Parameters.AddWithValue("@DonGia", donGia);
+                    cmdChiTiet.Parameters.AddWithValue("@SoGio", soGio);
+                    cmdChiTiet.Parameters.AddWithValue("@ThanhTien", tongTien);
+                    cmdChiTiet.ExecuteNonQuery();
+
+                    string sqlThanhToan = @"INSERT INTO ThanhToan (MaHoaDon, MaKH, SoTien, PhuongThuc, TrangThai, NgayThanhToan, NguoiThucHien)
+                                            VALUES (@MaHoaDon, @MaKH, @SoTien, @PT, N'THANH_CONG', GETDATE(), 1)";
+                    SqlCommand cmdTT = new SqlCommand(sqlThanhToan, conn, transaction);
+                    cmdTT.Parameters.AddWithValue("@MaHoaDon", maHoaDon);
+                    cmdTT.Parameters.AddWithValue("@MaKH", maKH);
+                    cmdTT.Parameters.AddWithValue("@SoTien", tongTien);
+                    cmdTT.Parameters.AddWithValue("@PT", phuongThuc);
+                    cmdTT.ExecuteNonQuery();
+
+                    string sqlDoanhThu = @"INSERT INTO DoanhThu (MaChiNhanh, Ngay, LoaiDoanhThu, SoTien, GhiChu)
+                                   VALUES (@MaChiNhanh, CAST(GETDATE() AS DATE), N'SAN', @SoTien, N'Thu tiền sân đơn #' + CAST(@MaDatSan AS NVARCHAR))";
+                    SqlCommand cmdDT = new SqlCommand(sqlDoanhThu, conn, transaction);
+                    cmdDT.Parameters.AddWithValue("@MaChiNhanh", maChiNhanh);
+                    cmdDT.Parameters.AddWithValue("@SoTien", tongTien);
+                    cmdDT.Parameters.AddWithValue("@MaDatSan", maDatSan);
+                    cmdDT.ExecuteNonQuery();
+
+                    string sqlUpdate = "UPDATE LichDatSan SET TrangThai = 'HOAN_THANH' WHERE MaDatSan = @MaDatSan";
+                    SqlCommand cmdUpd = new SqlCommand(sqlUpdate, conn, transaction);
+                    cmdUpd.Parameters.AddWithValue("@MaDatSan", maDatSan);
+                    cmdUpd.ExecuteNonQuery();
+
+                    transaction.Commit();
+                    string msg = (phuongThuc == "CHUYEN_KHOAN") ? "✅ Đã xác nhận chuyển khoản thành công!" : "✅ Đã thu tiền mặt thành công!";
+                    MessageBox.Show(msg, "Thành Công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+private void flpDanhSachSan_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+    }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    MessageBox.Show($"Lỗi thanh toán: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void ThucHienHuyDon(int maDatSan)
+        {
+            using (SqlConnection conn = DatabaseConnection.GetConnection())
+            {
+                try
+                {
+                    conn.Open();
+                    string sql = "UPDATE LichDatSan SET TrangThai = 'DA_HUY' WHERE MaDatSan = @Ma";
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@Ma", maDatSan);
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Đã hủy đơn thành công.", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex) { MessageBox.Show($"Lỗi khi hủy đơn:\n{ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+            }
+        }
+
+        private bool KiemTraTrungLich(int maSan, DateTime ngayDat, TimeSpan gioBD, TimeSpan gioKT)
+        {
+            bool ketQua = false;
+            if (maSan == 0) return false;
+            using (SqlConnection conn = DatabaseConnection.GetConnection())
+            {
+                try
+                {
+                    conn.Open();
+                    string sql = @"SELECT COUNT(*) FROM LichDatSan 
+                                   WHERE MaSan = @MaSan AND NgayDat = @NgayDat AND TrangThai != 'DA_HUY'
+                                   AND (@GioBD < GioKetThuc AND @GioKT > GioBatDau)";
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@MaSan", maSan);
+                    cmd.Parameters.AddWithValue("@NgayDat", ngayDat);
+                    cmd.Parameters.AddWithValue("@GioBD", gioBD);
+                    cmd.Parameters.AddWithValue("@GioKT", gioKT);
+                    int count = (int)cmd.ExecuteScalar();
+                    if (count > 0) ketQua = true;
+                }
+                catch { }
+            }
+            return ketQua;
+        }
+
+        // --- HÀM 1: HIỂN THỊ MÃ QR VÀ TỰ ĐỘNG CHECK TIỀN (REAL-TIME) ---
+        private bool HienThiFormQR(int maDon, decimal soTien, string tenKhach)
+        {
+            string noiDungCK = $"DS{maDon}";
+            string linkQR = $"https://img.vietqr.io/image/{BANK_ID}-{ACCOUNT_NO}-compact2.jpg?amount={soTien}&addInfo={noiDungCK}&accountName={ACCOUNT_NAME}";
+
+            Form frmQR = new Form();
+            frmQR.Size = new Size(500, 680);
+            frmQR.StartPosition = FormStartPosition.CenterScreen;
+            frmQR.Text = "THANH TOÁN TỰ ĐỘNG (AUTO BANKING)";
+            frmQR.BackColor = Color.White;
+            frmQR.FormBorderStyle = FormBorderStyle.FixedDialog;
+            frmQR.ControlBox = false;
+
+            Label lblTitle = new Label() { Text = "QUÉT MÃ ĐỂ THANH TOÁN", Font = new Font("Segoe UI", 16, FontStyle.Bold), ForeColor = Color.Navy, Dock = DockStyle.Top, Height = 50, TextAlign = ContentAlignment.MiddleCenter };
+            frmQR.Controls.Add(lblTitle);
+
+            PictureBox picQR = new PictureBox() { ImageLocation = linkQR, SizeMode = PictureBoxSizeMode.Zoom, Dock = DockStyle.Top, Height = 350 };
+            frmQR.Controls.Add(picQR);
+
+            Label lblMoney = new Label() { Text = $"{soTien:N0} VNĐ", Font = new Font("Segoe UI", 22, FontStyle.Bold), ForeColor = Color.Red, Dock = DockStyle.Top, Height = 60, TextAlign = ContentAlignment.MiddleCenter };
+            frmQR.Controls.Add(lblMoney);
+
+            Label lblGuide = new Label() { Text = $"⚠️ Vui lòng giữ nguyên nội dung: {noiDungCK}", Font = new Font("Segoe UI", 10, FontStyle.Italic), ForeColor = Color.Red, Dock = DockStyle.Top, Height = 30, TextAlign = ContentAlignment.MiddleCenter };
+            frmQR.Controls.Add(lblGuide);
+
+            Label lblStatus = new Label() { Text = "Đang chờ tiền về tài khoản...", Font = new Font("Segoe UI", 12, FontStyle.Bold), ForeColor = Color.Blue, Dock = DockStyle.Top, Height = 50, TextAlign = ContentAlignment.MiddleCenter };
+            frmQR.Controls.Add(lblStatus);
+
+            Button btnHuy = new Button() { Text = "Hủy bỏ / Quay lại", Dock = DockStyle.Bottom, Height = 45, BackColor = Color.LightGray, DialogResult = DialogResult.Cancel };
+            frmQR.Controls.Add(btnHuy);
+
+            // --- TIMER CHECK TIỀN TỰ ĐỘNG ---
+            System.Windows.Forms.Timer timerCheck = new System.Windows.Forms.Timer();
+            timerCheck.Interval = 3000; // 3 giây
+            int countCheck = 0;
+
+            timerCheck.Tick += async (s, e) =>
+            {
+                countCheck++;
+                lblStatus.Text = $"Đang kiểm tra giao dịch... ({countCheck})";
+
+                bool daNhanTien = await KiemTraTienVeQuaCasso(noiDungCK, soTien);
+
+                if (daNhanTien)
+                {
+                    timerCheck.Stop();
+                    lblStatus.Text = "✅ GIAO DỊCH THÀNH CÔNG!";
+                    lblStatus.ForeColor = Color.Green;
+                    MessageBox.Show("Hệ thống đã nhận được tiền!\nĐang xuất hóa đơn...", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    frmQR.DialogResult = DialogResult.OK;
+                    frmQR.Close();
+                }
+
+                if (countCheck > 100)
+                {
+                    timerCheck.Stop();
+                    lblStatus.Text = "Hết thời gian chờ.";
+                    lblStatus.ForeColor = Color.Red;
+                    MessageBox.Show("Hết thời gian chờ thanh toán!", "Timeout", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            };
+
+            timerCheck.Start();
+            return frmQR.ShowDialog() == DialogResult.OK;
+        }
+
+        // --- HÀM 2: GỌI API CASSO ---
+        // --- HÀM KIỂM TRA TIỀN (PHIÊN BẢN THÔNG MINH - HIỆN LÝ DO NẾU KHÔNG KHỚP) ---
+        // --- HÀM KIỂM TRA TIỀN (ĐÃ NÂNG CẤP CHỐNG CACHE & TĂNG TỐC) ---
         private async Task<bool> KiemTraTienVeQuaCasso(string noiDungCanTim, decimal soTienCanTim)
         {
             try
@@ -968,14 +1141,14 @@ namespace FootballPitchManagement.Forms.Customer
                 {
                     conn.Open();
                     string sql = @"
-        SELECT l.MaDatSan, l.NgayDat, k.HoTen, s.TenSan, l.GioBatDau, l.GioKetThuc, l.TongTienSan, l.TrangThai
-        FROM LichDatSan l
-        JOIN KhachHang k ON l.MaKH = k.MaKH
-        JOIN San s ON l.MaSan = s.MaSan
-        WHERE l.MaSan = @MaSan 
-          AND l.NgayDat = @NgayDat 
-          AND l.TrangThai != 'DA_HUY'
-        ORDER BY l.GioBatDau ASC";
+                SELECT l.MaDatSan, l.NgayDat, k.HoTen, s.TenSan, l.GioBatDau, l.GioKetThuc, l.TongTienSan, l.TrangThai
+                FROM LichDatSan l
+                JOIN KhachHang k ON l.MaKH = k.MaKH
+                JOIN San s ON l.MaSan = s.MaSan
+                WHERE l.MaSan = @MaSan 
+                  AND l.NgayDat = @NgayDat 
+                  AND l.TrangThai != 'DA_HUY'
+                ORDER BY l.GioBatDau ASC";
 
                     SqlCommand cmd = new SqlCommand(sql, conn);
                     cmd.Parameters.AddWithValue("@MaSan", maSan);

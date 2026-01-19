@@ -259,7 +259,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::FootballPitchManagement.Properties.Resources.pngtree_soccer_ball_lying_on_vibrant_green_grass_field_image_16734728;
+//            this.BackgroundImage = global::FootballPitchManagement.Properties.Resources.pngtree_soccer_ball_lying_on_vibrant_green_grass_field_image_16734728;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1231, 753);
             this.Controls.Add(this.guna2ShadowPanel1);
