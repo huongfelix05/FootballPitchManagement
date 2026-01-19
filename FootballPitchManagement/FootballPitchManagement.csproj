@@ -36,10 +36,6 @@
     <Reference Include="Guna.UI2, Version=2.0.4.7, Culture=neutral, PublicKeyToken=8b9d14aa5142e261, processorArchitecture=MSIL">
       <HintPath>..\packages\Guna.UI2.WinForms.2.0.4.7\lib\net472\Guna.UI2.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Office.Interop.Excel, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Office.Interop.Excel.16.0.18925.20022\lib\net40\Microsoft.Office.Interop.Excel.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -70,11 +66,15 @@
     <Compile Include="Forms\Admin\frmAdmin.Designer.cs">
       <DependentUpon>frmAdmin.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Admin\frmDoanhThu.cs">
+    <Compile Include="Forms\Admin\frmdoanhthuu.cs" />
+    <Compile Include="Forms\Admin\frmdoanhthuu.Designer.cs">
+      <DependentUpon>frmdoanhthuu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Admin\frmQuanLyDoAn.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Admin\frmDoanhThu.Designer.cs">
-      <DependentUpon>frmDoanhThu.cs</DependentUpon>
+    <Compile Include="Forms\Admin\frmQuanLyDoAn.Designer.cs">
+      <DependentUpon>frmQuanLyDoAn.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Admin\frmdoanhthuu.cs">
       <SubType>Form</SubType>
@@ -90,6 +90,18 @@
     </Compile>
     <Compile Include="Forms\Admin\frmQuanlysan.Designer.cs">
       <DependentUpon>frmQuanlysan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Admin\frmQuanLyDatSan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Admin\frmQuanLyDatSan.Designer.cs">
+      <DependentUpon>frmQuanLyDatSan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Admin\frmThemSanPham.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Admin\frmThemSanPham.Designer.cs">
+      <DependentUpon>frmThemSanPham.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Admin\frmThemSuaSan.cs">
       <SubType>Form</SubType>
@@ -109,8 +121,11 @@
     <Compile Include="Forms\Customer\frmBaocao.Designer.cs">
       <DependentUpon>frmBaocao.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Customer\frmDanhGia.Designer.cs">
-      <DependentUpon>frmDanhGia.cs</DependentUpon>
+    <Compile Include="Forms\Customer\frmDanhGia1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Customer\frmDanhGia1.Designer.cs">
+      <DependentUpon>frmDanhGia1.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Customer\frmHoSo.cs">
       <SubType>Form</SubType>
@@ -201,6 +216,12 @@
     <EmbeddedResource Include="Forms\Admin\frmQuanlysan.resx">
       <DependentUpon>frmQuanlysan.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Admin\frmQuanLyDatSan.resx">
+      <DependentUpon>frmQuanLyDatSan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Admin\frmThemSanPham.resx">
+      <DependentUpon>frmThemSanPham.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Admin\frmThemSuaSan.resx">
       <DependentUpon>frmThemSuaSan.cs</DependentUpon>
     </EmbeddedResource>
@@ -209,6 +230,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Customer\frmBaocao.resx">
       <DependentUpon>frmBaocao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Customer\frmDanhGia1.resx">
+      <DependentUpon>frmDanhGia1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Customer\frmHoaDon1.resx">
       <DependentUpon>frmHoaDon1.cs</DependentUpon>

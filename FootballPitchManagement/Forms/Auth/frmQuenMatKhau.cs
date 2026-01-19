@@ -324,12 +324,14 @@ namespace FootballPitchManagement
 
                 if (result == DialogResult.No)
                 {
-                    e.Cancel = true; // Giữ nguyên form, không cho tắt
+                   // e.Cancel = true; // Giữ nguyên form, không cho tắt
+                    //this.Close();
                 }
                 else
                 {
-                    frmLogin Login = new frmLogin();
-                    Login.Show();
+                    //frmLogin Login = new frmLogin();
+                    //Login.Show();
+
                 }
             }
         }
