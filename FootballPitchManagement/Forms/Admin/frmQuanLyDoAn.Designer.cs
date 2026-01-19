@@ -47,6 +47,8 @@
             this.panel6 = new System.Windows.Forms.Panel();
             this.label16 = new System.Windows.Forms.Label();
             this.pnlHead = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cboChiNhanh = new System.Windows.Forms.ComboBox();
             this.lblQuanLyDoAn = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -69,8 +71,6 @@
             this.guna2DataGridView1 = new Guna.UI2.WinForms.Guna2DataGridView();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.cboChiNhanh = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.txtID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colAnhSP = new System.Windows.Forms.DataGridViewImageColumn();
             this.txtSanPham = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -275,6 +275,27 @@
             this.pnlHead.Name = "pnlHead";
             this.pnlHead.Size = new System.Drawing.Size(1503, 120);
             this.pnlHead.TabIndex = 36;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(1108, 38);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(124, 20);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Chọn chi nhánh:";
+            // 
+            // cboChiNhanh
+            // 
+            this.cboChiNhanh.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.cboChiNhanh.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboChiNhanh.FormattingEnabled = true;
+            this.cboChiNhanh.Location = new System.Drawing.Point(1238, 35);
+            this.cboChiNhanh.Name = "cboChiNhanh";
+            this.cboChiNhanh.Size = new System.Drawing.Size(228, 28);
+            this.cboChiNhanh.TabIndex = 1;
+            this.cboChiNhanh.SelectedIndexChanged += new System.EventHandler(this.cboChiNhanh_SelectedIndexChanged);
             // 
             // lblQuanLyDoAn
             // 
@@ -600,33 +621,11 @@
             dataGridViewCellStyle7.NullValue = "FootballPitchManagement.Properties.Resources.btn_delete";
             this.dataGridViewImageColumn2.DefaultCellStyle = dataGridViewCellStyle7;
             this.dataGridViewImageColumn2.HeaderText = "Xoá";
-//            this.dataGridViewImageColumn2.Image = global::FootballPitchManagement.Properties.Resources.btn_delete;
             this.dataGridViewImageColumn2.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.dataGridViewImageColumn2.MinimumWidth = 8;
             this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
             this.dataGridViewImageColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewImageColumn2.Width = 115;
-            // 
-            // cboChiNhanh
-            // 
-            this.cboChiNhanh.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.cboChiNhanh.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboChiNhanh.FormattingEnabled = true;
-            this.cboChiNhanh.Location = new System.Drawing.Point(1238, 35);
-            this.cboChiNhanh.Name = "cboChiNhanh";
-            this.cboChiNhanh.Size = new System.Drawing.Size(228, 28);
-            this.cboChiNhanh.TabIndex = 1;
-            this.cboChiNhanh.SelectedIndexChanged += new System.EventHandler(this.cboChiNhanh_SelectedIndexChanged);
-            // 
-            // label1
-            // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(1108, 38);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(124, 20);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Chọn chi nhánh:";
             // 
             // txtID
             // 

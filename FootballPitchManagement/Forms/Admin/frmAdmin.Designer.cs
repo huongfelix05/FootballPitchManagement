@@ -403,6 +403,7 @@
             this.btnCaiDat.Text = "Cài Đặt\r\n";
             this.btnCaiDat.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCaiDat.UseVisualStyleBackColor = false;
+            this.btnCaiDat.Click += new System.EventHandler(this.btnCaiDat_Click);
             // 
             // btnBaoCao
             // 

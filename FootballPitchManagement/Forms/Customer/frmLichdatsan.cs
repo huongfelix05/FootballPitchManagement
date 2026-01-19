@@ -95,7 +95,7 @@ namespace FootballPitchManagement.Forms.Customer
             }
         }
 
-        // ✅ HÀM HIỂN THỊ THÔNG TIN CHI NHÁNH (ĐỊA CHỈ + SĐT)
+        // ✅ HÀM HIỂN THỊ THÔNG TIN CHI NHÁNH (ĐÃ TẮT THÔNG BÁO)
         private void HienThiThongTinChiNhanh(int maChiNhanh)
         {
             using (SqlConnection conn = DatabaseConnection.GetConnection())
@@ -119,18 +119,10 @@ namespace FootballPitchManagement.Forms.Customer
                                 string diaChi = reader["DiaChi"].ToString();
                                 string dienThoai = reader["DienThoai"]?.ToString() ?? "";
 
-                                // ✅ COMMENT OUT OR REMOVE THIS MessageBox.Show() LINE
-                                /*
-                                string thongBao = $"✅ Đã chọn chi nhánh: {tenChiNhanh}\n" +
-                                                 $"📍 Địa chỉ: {diaChi}\n" +
-                                                 $"📞 Điện thoại: {dienThoai}";
+                                // ✅ ĐÃ TẮT THÔNG BÁO POPUP
+                                // MessageBox.Show() đã bị comment out để không hiển thị popup
 
-                                MessageBox.Show(thongBao, "Thông tin chi nhánh", 
-                                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                */
-                               
-
-                                // ✅ CẬP NHẬT LABEL HIỂN THỊ THÔNG TIN CHI NHÁNH (NẾU CÓ)
+                                // ✅ CẬP NHẬT UI THAY THẾ
                                 UpdateChiNhanhDisplay(tenChiNhanh, diaChi, dienThoai);
                             }
                         }
@@ -144,7 +136,7 @@ namespace FootballPitchManagement.Forms.Customer
             }
         }
 
-        // ✅ HÀM CẬP NHẬT HIỂN THỊ THÔNG TIN CHI NHÁNH TRÊN FORM (NẾU CÓ LABEL)
+        // ✅ HÀM CẬP NHẬT HIỂN THỊ THÔNG TIN CHI NHÁNH TRÊN FORM
         private void UpdateChiNhanhDisplay(string tenChiNhanh, string diaChi, string dienThoai)
         {
             try
@@ -271,7 +263,7 @@ namespace FootballPitchManagement.Forms.Customer
             }
         }
 
-        // ✅ SỰ KIỆN THAY ĐỔI CHI NHÁNH - HIỂN THỊ THÔNG TIN
+        // ✅ SỰ KIỆN THAY ĐỔI CHI NHÁNH
         private void CboChiNhanh_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cboChiNhanh.SelectedValue != null)
@@ -293,7 +285,6 @@ namespace FootballPitchManagement.Forms.Customer
 
         private void LoadDanhSachSan()
         {
-            // Implementation giữ nguyên như cũ...
             LoadSanBong(
                 cboChiNhanh.SelectedValue != null ? Convert.ToInt32(cboChiNhanh.SelectedValue) : 0,
                 cboLoaiSan.SelectedValue != null ? Convert.ToInt32(cboLoaiSan.SelectedValue) : 0,
@@ -501,6 +492,7 @@ namespace FootballPitchManagement.Forms.Customer
             }
         }
 
+        // ✅ METHOD DUY NHẤT btnDatSan_Click (ĐÃ XÓA BẢN TRÙNG LẶP)
         private void btnDatSan_Click(object sender, EventArgs e)
         {
             if (_maSanDangChon == 0) 
@@ -589,6 +581,321 @@ namespace FootballPitchManagement.Forms.Customer
             {
                 ResetFormDatSan();
             }
+        }
+
+        #endregion
+
+        #region === 4. QUẢN LÝ ĐƠN & THANH TOÁN ===
+
+        private void LoadDanhSachDonHangCuaKhach(int maKH)
+        {
+            if (flpDanhSachDonHang == null) return;
+            flpDanhSachDonHang.Controls.Clear();
+            if (maKH == 0) return;
+
+            if (grpThongTinDon != null) grpThongTinDon.Enabled = true;
+
+            using (SqlConnection conn = DatabaseConnection.GetConnection())
+            {
+                try
+                {
+                    conn.Open();
+                    string sql = @"
+                        SELECT l.MaDatSan, l.NgayDat, k.HoTen, s.TenSan, l.GioBatDau, l.GioKetThuc, l.TongTienSan, l.TrangThai
+                        FROM LichDatSan l
+                        JOIN KhachHang k ON l.MaKH = k.MaKH
+                        JOIN San s ON l.MaSan = s.MaSan
+                        WHERE l.NgayDat = @NgayDat AND l.MaKH = @MaKH AND l.TrangThai != 'DA_HUY'
+                        ORDER BY l.MaDatSan DESC";
+
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@NgayDat", dtpNgayXem.Value.Date);
+                    cmd.Parameters.AddWithValue("@MaKH", maKH);
+                    SqlDataReader r = cmd.ExecuteReader();
+
+                    while (r.Read())
+                    {
+                        ucDonDatItem item = new ucDonDatItem();
+                        int maDon = Convert.ToInt32(r["MaDatSan"]);
+                        string tenKhach = r["HoTen"].ToString();
+                        string tenSan = r["TenSan"].ToString();
+                        DateTime ngay = Convert.ToDateTime(r["NgayDat"]);
+                        string gioBD = TimeSpan.Parse(r["GioBatDau"].ToString()).ToString(@"hh\:mm");
+                        string gioKT = TimeSpan.Parse(r["GioKetThuc"].ToString()).ToString(@"hh\:mm");
+                        string thoiGian = $"{gioBD} - {gioKT}";
+                        decimal tien = Convert.ToDecimal(r["TongTienSan"]);
+                        string tt = r["TrangThai"].ToString();
+
+                        item.HienThiThongTin(maDon, tenKhach, tenSan, ngay, thoiGian, tien, tt);
+                        item.OnThanhToanClick += Item_OnThanhToanClick;
+                        item.OnHuyClick += Item_OnHuyClick;
+
+                        flpDanhSachDonHang.Controls.Add(item);
+                    }
+                }
+                catch (Exception ex) { MessageBox.Show($"Lỗi tải danh sách đơn:\n{ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+            }
+        }
+
+        private void Item_OnThanhToanClick(object sender, EventArgs e)
+        {
+            try
+            {
+                ucDonDatItem item = sender as ucDonDatItem;
+                if (item == null) return;
+
+                DialogResult result = MessageBox.Show(
+                    $"Thanh toán đơn hàng #{item.MaDatSan} - {item.lblGia.Text}?\n\n" +
+                    "Chọn [YES] để quét mã QR (Chuyển khoản).\n" +
+                    "Chọn [NO] để thanh toán Tiền mặt.",
+                    "Chọn phương thức thanh toán",
+                    MessageBoxButtons.YesNoCancel,
+                    MessageBoxIcon.Question);
+
+                if (result == DialogResult.Cancel) return;
+
+                if (result == DialogResult.No) // TIỀN MẶT
+                {
+                    ThucHienThanhToan(item.MaDatSan, "TIEN_MAT");
+                }
+                else if (result == DialogResult.Yes) // QR CODE
+                {
+                    // Lọc lấy số tiền sạch (chỉ lấy số)
+                    string strTien = item.lblGia.Text;
+                    string strTienSach = new string(strTien.Where(c => char.IsDigit(c)).ToArray());
+
+                    decimal soTien = 0;
+                    if (!decimal.TryParse(strTienSach, out soTien) || soTien == 0)
+                    {
+                        MessageBox.Show("Lỗi: Không đọc được số tiền hợp lệ.", "Lỗi Xử Lý", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    // Gọi Form QR
+                    bool daQuetXong = HienThiFormQR(item.MaDatSan, soTien, item.lblTenKhach.Text);
+
+                    if (daQuetXong)
+                    {
+                        ThucHienThanhToan(item.MaDatSan, "CHUYEN_KHOAN");
+                    }
+                }
+
+                if (int.TryParse(lblMaKH.Text, out int maKH)) LoadDanhSachDonHangCuaKhach(maKH);
+                Filter_Changed(null, null);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"ĐÃ CÓ LỖI XẢY RA:\n{ex.Message}", "Lỗi Hệ Thống", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void Item_OnHuyClick(object sender, EventArgs e)
+        {
+            ucDonDatItem item = sender as ucDonDatItem;
+            if (item == null) return;
+
+            if (MessageBox.Show($"Bạn có chắc chắn muốn HỦY đơn #{item.MaDatSan} không?", "Xác Nhận Hủy", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                ThucHienHuyDon(item.MaDatSan);
+                if (int.TryParse(lblMaKH.Text, out int maKH)) LoadDanhSachDonHangCuaKhach(maKH);
+                Filter_Changed(null, null);
+            }
+        }
+
+        private void ThucHienThanhToan(int maDatSan, string phuongThuc)
+        {
+            using (SqlConnection conn = DatabaseConnection.GetConnection())
+            {
+                conn.Open();
+                SqlTransaction transaction = conn.BeginTransaction();
+                try
+                {
+                    string sqlGetInfo = @"SELECT l.MaKH, s.MaChiNhanh, l.TongTienSan, l.SoGio, l.MaSan, l.NgayDat
+                                          FROM LichDatSan l JOIN San s ON l.MaSan = s.MaSan WHERE l.MaDatSan = @MaDatSan";
+                    SqlCommand cmdGet = new SqlCommand(sqlGetInfo, conn, transaction);
+                    cmdGet.Parameters.AddWithValue("@MaDatSan", maDatSan);
+
+                    int maKH = 0, maChiNhanh = 0;
+                    decimal tongTien = 0;
+                    double soGio = 0;
+                    DateTime ngayDat = DateTime.Now;
+
+                    using (SqlDataReader r = cmdGet.ExecuteReader())
+                    {
+                        if (r.Read())
+                        {
+                            maKH = Convert.ToInt32(r["MaKH"]);
+                            maChiNhanh = Convert.ToInt32(r["MaChiNhanh"]);
+                            tongTien = Convert.ToDecimal(r["TongTienSan"]);
+                            soGio = Convert.ToDouble(r["SoGio"]);
+                            ngayDat = Convert.ToDateTime(r["NgayDat"]);
+                        }
+                        else throw new Exception("Không tìm thấy đơn!");
+                    }
+
+                    string sqlHoaDon = @"INSERT INTO HoaDon (MaDatSan, MaKH, MaChiNhanh, NgayLap, TongTienSan, ThanhTien, TrangThaiThanhToan, PhuongThucTT, NguoiLap)
+                                         VALUES (@MaDatSan, @MaKH, @MaChiNhanh, @NgayLap, @TongTien, @TongTien, N'DA_THANH_TOAN', @PT, 1);
+                                         SELECT SCOPE_IDENTITY();";
+                    SqlCommand cmdHoaDon = new SqlCommand(sqlHoaDon, conn, transaction);
+                    cmdHoaDon.Parameters.AddWithValue("@MaDatSan", maDatSan);
+                    cmdHoaDon.Parameters.AddWithValue("@MaKH", maKH);
+                    cmdHoaDon.Parameters.AddWithValue("@MaChiNhanh", maChiNhanh);
+                    cmdHoaDon.Parameters.AddWithValue("@NgayLap", ngayDat);
+                    cmdHoaDon.Parameters.AddWithValue("@TongTien", tongTien);
+                    cmdHoaDon.Parameters.AddWithValue("@PT", phuongThuc);
+                    int maHoaDon = Convert.ToInt32(cmdHoaDon.ExecuteScalar());
+
+                    string sqlChiTiet = @"INSERT INTO ChiTietHoaDonSan (MaHoaDon, MaDatSan, DonGia, SoGio, ThanhTien)
+                                          VALUES (@MaHoaDon, @MaDatSan, @DonGia, @SoGio, @ThanhTien)";
+                    SqlCommand cmdChiTiet = new SqlCommand(sqlChiTiet, conn, transaction);
+                    cmdChiTiet.Parameters.AddWithValue("@MaHoaDon", maHoaDon);
+                    cmdChiTiet.Parameters.AddWithValue("@MaDatSan", maDatSan);
+                    decimal donGia = (soGio > 0) ? (tongTien / (decimal)soGio) : tongTien;
+                    cmdChiTiet.Parameters.AddWithValue("@DonGia", donGia);
+                    cmdChiTiet.Parameters.AddWithValue("@SoGio", soGio);
+                    cmdChiTiet.Parameters.AddWithValue("@ThanhTien", tongTien);
+                    cmdChiTiet.ExecuteNonQuery();
+
+                    string sqlThanhToan = @"INSERT INTO ThanhToan (MaHoaDon, MaKH, SoTien, PhuongThuc, TrangThai, NgayThanhToan, NguoiThucHien)
+                                            VALUES (@MaHoaDon, @MaKH, @SoTien, @PT, N'THANH_CONG', GETDATE(), 1)";
+                    SqlCommand cmdTT = new SqlCommand(sqlThanhToan, conn, transaction);
+                    cmdTT.Parameters.AddWithValue("@MaHoaDon", maHoaDon);
+                    cmdTT.Parameters.AddWithValue("@MaKH", maKH);
+                    cmdTT.Parameters.AddWithValue("@SoTien", tongTien);
+                    cmdTT.Parameters.AddWithValue("@PT", phuongThuc);
+                    cmdTT.ExecuteNonQuery();
+
+                    string sqlDoanhThu = @"INSERT INTO DoanhThu (MaChiNhanh, Ngay, LoaiDoanhThu, SoTien, GhiChu)
+                                   VALUES (@MaChiNhanh, CAST(GETDATE() AS DATE), N'SAN', @SoTien, N'Thu tiền sân đơn #' + CAST(@MaDatSan AS NVARCHAR))";
+                    SqlCommand cmdDT = new SqlCommand(sqlDoanhThu, conn, transaction);
+                    cmdDT.Parameters.AddWithValue("@MaChiNhanh", maChiNhanh);
+                    cmdDT.Parameters.AddWithValue("@SoTien", tongTien);
+                    cmdDT.Parameters.AddWithValue("@MaDatSan", maDatSan);
+                    cmdDT.ExecuteNonQuery();
+
+                    string sqlUpdate = "UPDATE LichDatSan SET TrangThai = 'HOAN_THANH' WHERE MaDatSan = @MaDatSan";
+                    SqlCommand cmdUpd = new SqlCommand(sqlUpdate, conn, transaction);
+                    cmdUpd.Parameters.AddWithValue("@MaDatSan", maDatSan);
+                    cmdUpd.ExecuteNonQuery();
+
+                    transaction.Commit();
+                    string msg = (phuongThuc == "CHUYEN_KHOAN") ? "✅ Đã xác nhận chuyển khoản thành công!" : "✅ Đã thu tiền mặt thành công!";
+                    MessageBox.Show(msg, "Thành Công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    MessageBox.Show($"Lỗi thanh toán: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void ThucHienHuyDon(int maDatSan)
+        {
+            using (SqlConnection conn = DatabaseConnection.GetConnection())
+            {
+                try
+                {
+                    conn.Open();
+                    string sql = "UPDATE LichDatSan SET TrangThai = 'DA_HUY' WHERE MaDatSan = @Ma";
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@Ma", maDatSan);
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Đã hủy đơn thành công.", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex) { MessageBox.Show($"Lỗi khi hủy đơn:\n{ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+            }
+        }
+
+        private bool KiemTraTrungLich(int maSan, DateTime ngayDat, TimeSpan gioBD, TimeSpan gioKT)
+        {
+            bool ketQua = false;
+            if (maSan == 0) return false;
+            using (SqlConnection conn = DatabaseConnection.GetConnection())
+            {
+                try
+                {
+                    conn.Open();
+                    string sql = @"SELECT COUNT(*) FROM LichDatSan 
+                           WHERE MaSan = @MaSan AND NgayDat = @NgayDat AND TrangThai != 'DA_HUY'
+                           AND (@GioBD < GioKetThuc AND @GioKT > GioBatDau)";
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@MaSan", maSan);
+                    cmd.Parameters.AddWithValue("@NgayDat", ngayDat);
+                    cmd.Parameters.AddWithValue("@GioBD", gioBD);
+                    cmd.Parameters.AddWithValue("@GioKT", gioKT);
+                    int count = (int)cmd.ExecuteScalar();
+                    if (count > 0) ketQua = true;
+                }
+                catch { }
+            }
+            return ketQua;
+        }
+
+        private bool HienThiFormQR(int maDon, decimal soTien, string tenKhach)
+        {
+            string noiDungCK = $"DS{maDon}";
+            string linkQR = $"https://img.vietqr.io/image/{BANK_ID}-{ACCOUNT_NO}-compact2.jpg?amount={soTien}&addInfo={noiDungCK}&accountName={ACCOUNT_NAME}";
+
+            Form frmQR = new Form();
+            frmQR.Size = new Size(500, 680);
+            frmQR.StartPosition = FormStartPosition.CenterScreen;
+            frmQR.Text = "THANH TOÁN TỰ ĐỘNG (AUTO BANKING)";
+            frmQR.BackColor = Color.White;
+            frmQR.FormBorderStyle = FormBorderStyle.FixedDialog;
+            frmQR.ControlBox = false;
+
+            Label lblTitle = new Label() { Text = "QUÉT MÃ ĐỂ THANH TOÁN", Font = new Font("Segoe UI", 16, FontStyle.Bold), ForeColor = Color.Navy, Dock = DockStyle.Top, Height = 50, TextAlign = ContentAlignment.MiddleCenter };
+            frmQR.Controls.Add(lblTitle);
+
+            PictureBox picQR = new PictureBox() { ImageLocation = linkQR, SizeMode = PictureBoxSizeMode.Zoom, Dock = DockStyle.Top, Height = 350 };
+            frmQR.Controls.Add(picQR);
+
+            Label lblMoney = new Label() { Text = $"{soTien:N0} VNĐ", Font = new Font("Segoe UI", 22, FontStyle.Bold), ForeColor = Color.Red, Dock = DockStyle.Top, Height = 60, TextAlign = ContentAlignment.MiddleCenter };
+            frmQR.Controls.Add(lblMoney);
+
+            Label lblGuide = new Label() { Text = $"⚠️ Vui lòng giữ nguyên nội dung: {noiDungCK}", Font = new Font("Segoe UI", 10, FontStyle.Italic), ForeColor = Color.Red, Dock = DockStyle.Top, Height = 30, TextAlign = ContentAlignment.MiddleCenter };
+            frmQR.Controls.Add(lblGuide);
+
+            Label lblStatus = new Label() { Text = "Đang chờ tiền về tài khoản...", Font = new Font("Segoe UI", 12, FontStyle.Bold), ForeColor = Color.Blue, Dock = DockStyle.Top, Height = 50, TextAlign = ContentAlignment.MiddleCenter };
+            frmQR.Controls.Add(lblStatus);
+
+            Button btnHuy = new Button() { Text = "Hủy bỏ / Quay lại", Dock = DockStyle.Bottom, Height = 45, BackColor = Color.LightGray, DialogResult = DialogResult.Cancel };
+            frmQR.Controls.Add(btnHuy);
+
+            // --- TIMER CHECK TIỀN TỰ ĐỘNG ---
+            System.Windows.Forms.Timer timerCheck = new System.Windows.Forms.Timer();
+            timerCheck.Interval = 3000; // 3 giây
+            int countCheck = 0;
+
+            timerCheck.Tick += async (s, e) =>
+            {
+                countCheck++;
+                lblStatus.Text = $"Đang kiểm tra giao dịch... ({countCheck})";
+
+                bool daNhanTien = await KiemTraTienVeQuaCasso(noiDungCK, soTien);
+
+                if (daNhanTien)
+                {
+                    timerCheck.Stop();
+                    lblStatus.Text = "✅ GIAO DỊCH THÀNH CÔNG!";
+                    lblStatus.ForeColor = Color.Green;
+                    MessageBox.Show("Hệ thống đã nhận được tiền!\nĐang xuất hóa đơn...", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    frmQR.DialogResult = DialogResult.OK;
+                    frmQR.Close();
+                }
+
+                if (countCheck > 100)
+                {
+                    timerCheck.Stop();
+                    lblStatus.Text = "Hết thời gian chờ.";
+                    lblStatus.ForeColor = Color.Red;
+                    MessageBox.Show("Hết thời gian chờ thanh toán!", "Timeout", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            };
+
+            timerCheck.Start();
+            return frmQR.ShowDialog() == DialogResult.OK;
         }
 
                     string sqlHoaDon = @"INSERT INTO HoaDon (MaDatSan, MaKH, MaChiNhanh, NgayLap, TongTienSan, ThanhTien, TrangThaiThanhToan, PhuongThucTT, NguoiLap)
