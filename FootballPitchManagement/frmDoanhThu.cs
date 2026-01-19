@@ -4,23 +4,17 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace FootballPitchManagement
 {
-    public partial class Nhap1 : Form 
+    public partial class frmDoanhThu : Form
     {
-        public Nhap1()
+        public frmDoanhThu()
         {
             InitializeComponent();
-        }
-
-        private void Nhap1_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

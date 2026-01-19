@@ -253,6 +253,26 @@ namespace FootballPitchManagement.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap dc79e0dd_8352_4bdf_b116_84db34d30e8e {
+            get {
+                object obj = ResourceManager.GetObject("dc79e0dd-8352-4bdf-b116-84db34d30e8e", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap eb50e9b2_9a62_4f90_8fc8_38c0308f978a {
+            get {
+                object obj = ResourceManager.GetObject("eb50e9b2-9a62-4f90-8fc8-38c0308f978a", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap grass_structure_plant_field_lawn_green_976043_pxhere_com {
             get {
                 object obj = ResourceManager.GetObject("grass-structure-plant-field-lawn-green-976043-pxhere.com", resourceCulture);
@@ -333,6 +353,26 @@ namespace FootballPitchManagement.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_bill_48 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-bill-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_bill_481 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-bill-481", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_bill_50 {
             get {
                 object obj = ResourceManager.GetObject("icons8-bill-50", resourceCulture);
@@ -403,6 +443,26 @@ namespace FootballPitchManagement.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_calendar_64__1_ {
+            get {
+                object obj = ResourceManager.GetObject("icons8-calendar-64 (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_calendar_64__1_1 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-calendar-64 (1)1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_calendar_94 {
             get {
                 object obj = ResourceManager.GetObject("icons8-calendar-94", resourceCulture);
@@ -453,6 +513,16 @@ namespace FootballPitchManagement.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_feedback_48 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-feedback-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_feedback_50 {
             get {
                 object obj = ResourceManager.GetObject("icons8-feedback-50", resourceCulture);
@@ -486,6 +556,36 @@ namespace FootballPitchManagement.Properties {
         internal static System.Drawing.Bitmap icons8_food_bar_100 {
             get {
                 object obj = ResourceManager.GetObject("icons8-food-bar-100", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_food_bar_1001 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-food-bar-1001", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_food_bar_48 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-food-bar-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_food_bar_48__1_ {
+            get {
+                object obj = ResourceManager.GetObject("icons8-food-bar-48 (1)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -553,9 +653,39 @@ namespace FootballPitchManagement.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_homepage_64 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-homepage-64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_money_bag_60 {
             get {
                 object obj = ResourceManager.GetObject("icons8-money-bag-60", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_paid_bill_48 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-paid-bill-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_profile_48 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-profile-48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -1,27 +1,33 @@
-﻿--dữ liệu bảng chi nhánh
-INSERT INTO ChiNhanh (TenChiNhanh, DiaChi, DienThoai, Email, NguoiQuanLy)
-VALUES
-(N'Chi nhánh Quận 1', N'123 Nguyễn Huệ', '0901111111', 'q1@san.com', N'Nguyễn Văn A'),
-(N'Chi nhánh Quận 7', N'456 Nguyễn Thị Thập', '0902222222', 'q7@san.com', N'Trần Văn B'),
-(N'Chi nhánh Thủ Đức', N'789 Võ Văn Ngân', '0903333333', 'td@san.com', N'Lê Văn C');
---dữ liệu bảng loại sân
-INSERT INTO LoaiSan (TenLoaiSan, SoNguoiToiDa, MoTa)
-VALUES
-(N'Sân 5', 10, N'Sân mini'),
-(N'Sân 7', 14, N'Sân trung'),
-(N'Sân 11', 22, N'Sân tiêu chuẩn');
----dữ liệu bảng tính trạng sân
-INSERT INTO TinhTrangSan (TenTinhTrang, MoTa)
-VALUES
+﻿
+
+
+-- BẢNG CHI NHÁNH
+INSERT INTO ChiNhanh (TenChiNhanh, DiaChi, DienThoai, Email, NguoiQuanLy) VALUES
+(N'Chi nhánh Quận 1', N'123 Nguyễn Huệ, Q1', '0901111111', 'q1@san.com', N'Nguyễn Văn A'),
+(N'Chi nhánh Quận 7', N'456 Nguyễn Thị Thập, Q7', '0902222222', 'q7@san.com', N'Trần Văn B'),
+(N'Chi nhánh Thủ Đức', N'789 Võ Văn Ngân, TĐ', '0903333333', 'td@san.com', N'Lê Văn C');
+
+
+-- BẢNG LOẠI SÂN
+INSERT INTO LoaiSan (TenLoaiSan, SoNguoiToiDa, MoTa) VALUES
+(N'Sân 5', 10, N'Sân mini cỏ nhân tạo'),
+(N'Sân 7', 14, N'Sân kích thước trung bình'),
+(N'Sân 11', 22, N'Sân thi đấu tiêu chuẩn');
+
+
+-- BẢNG TÌNH TRẠNG SÂN
+INSERT INTO TinhTrangSan (TenTinhTrang, MoTa) VALUES
 (N'Trống', N'Có thể đặt'),
-(N'Đang sử dụng', N'Có người đá'),
-(N'Bảo trì', N'Không sử dụng');
+(N'Đang sử dụng', N'Đang có khách đá'),
+(N'Bảo trì', N'Tạm ngưng hoạt động');
+
+
 ---dữ liệu bảng sân
----INSERT INTO San (TenSan,  MaLoaiSan, MaChiNhanh, MaTinhTrang, GiaMacDinh)------------chưa chạy cái này 
---VALUES
---(N'Sân A1', 1, 1, 1, 300000),
---(N'Sân B1',  2, 1, 2, 500000),
---(N'Sân C1',  3, 2,2, 800000);
+INSERT INTO San (TenSan,  MaLoaiSan, MaChiNhanh, MaTinhTrang, GiaMacDinh)------------chưa chạy cái này 
+VALUES
+(N'Sân A1', 1, 1, 1, 300000),
+(N'Sân B1',  2, 1, 2, 500000),
+(N'Sân C1',  3, 2,2, 800000);
 ---dữ liệu bảng giá sân
 INSERT INTO GiaSan (MaSan, GioBatDau, GioKetThuc, GiaTien)
 VALUES
@@ -34,18 +40,18 @@ VALUES
 (N'Nguyễn Quốc Đạt', '0911111111', 'dat@gmail.com', N'Nam'),
 (N'Trần Thị Lan', '0922222222', 'lan@gmail.com', N'Nữ'),
 (N'Lê Quốc Bảo', '0933333333', 'bao@gmail.com', N'Nam');
----dữ liệu bảng loại tài khoản
+
+-- BẢNG TÀI KHOẢN (Admin, Nhân viên)
 INSERT INTO LoaiTaiKhoan (TenLoaiTK)
-VALUES
-(N'Admin'),
-(N'Nhân viên'),
-(N'Khách hàng');
----Tài khoản
-INSERT INTO TaiKhoan (TenDangNhap, MatKhau, MaKH, MaLoaiTK, MaChiNhanh)
-VALUES
+VALUES (N'Admin'), (N'Nhân viên'), (N'Khách hàng');
+
+INSERT INTO TaiKhoan (TenDangNhap, MatKhau, MaKH, MaLoaiTK, MaChiNhanh) VALUES
 ('admin', '123456', NULL, 1, NULL),
-('dat12', '123', NULL, 2, 1),
-('kh01', '123456', 1, 3, NULL);
+('nhanvienq1', '123', NULL, 2, 1),
+('datkhach', '123', 1, 3, NULL);
+
+
+
 ---lịch đặt sân
 INSERT INTO LichDatSan (MaKH, MaSan, NgayDat, GioBatDau, GioKetThuc, SoGio, TongTienSan)
 VALUES
@@ -145,43 +151,41 @@ GO
 --        Giả định MaLoaiSan: 1=Sân 5, 2=Sân 7, 3=Sân 11
 --        Giả định MaTinhTrang: 1=Trống, 2=Đang dùng, 3=Bảo trì
 
--- --- CHI NHÁNH QUẬN 1 (Thêm 6 sân) ---
-INSERT INTO San (TenSan,  MaLoaiSan, MaChiNhanh, MaTinhTrang, GiaMacDinh, ThuTuHienThi)
-VALUES
-(N'Sân Q1-A1 (Sân 5)',  1, 1, 1, 300000, 1), -- Trống
-(N'Sân Q1-A2 (Sân 5)',  1, 1, 3, 300000, 2), -- BẢO TRÌ
-(N'Sân Q1-A3(Sân 5)',   1, 1, 1, 300000, 3), -- Trống
-(N'Sân Q1-A4 (Sân 5)',  1, 1, 1, 300000, 4), -- Trống
-(N'Sân Q1-A5 (Sân 5)',  1, 1, 1, 300000, 4), -- Trống
-(N'Sân Q1-A6(Sân 7)',   2, 1, 1, 500000, 5), -- Trống
-(N'Sân Q1-A7(Sân 7)',   2, 1, 3, 500000, 6), -- BẢO TRÌ (Sẽ hiện màu xám)
-(N'Sân Đại Q1-A8(Sân 11)', 3, 1, 1, 1200000, 7); -- Trống
 
 
--- --- CHI NHÁNH QUẬN 7 (Thêm 5 sân - Rộng rãi) ---
-INSERT INTO San (TenSan, MaLoaiSan, MaChiNhanh, MaTinhTrang, GiaMacDinh, ThuTuHienThi)
-VALUES
-(N'Sân Q7-B1(Sân 5)',   1, 2, 1, 250000, 1),
-(N'Sân Q7-B2(Sân 5)',   1, 2, 1, 250000, 2),
-(N'Sân Q7-B3(Sân 5)',   1, 2, 1, 250000, 3),
-(N'Sân Q7-B4(Sân 5)',   1, 2, 1, 250000, 4),
-(N'Sân Q7-B5(Sân 5)',   1, 2, 3, 250000, 4),-- BẢO TRÌ
-(N'Sân Q7-B6(Sân 7)',   2, 2, 1, 600000, 5),
-(N'Sân Q7-B7(Sân 7)',   2, 2, 3, 600000, 6), -- BẢO TRÌ
-(N'Sân Đại Q7-B8(Sân 11)', 3, 2, 1, 1500000, 7);
+-- --- CHI NHÁNH QUẬN 1 (Sân 5: 300k, Sân 7: 500k, Sân 11: 1tr2) ---
+INSERT INTO San (TenSan, MaLoaiSan, MaChiNhanh, MaTinhTrang, GiaMacDinh, ThuTuHienThi) VALUES
+(N'Sân Q1-A1 (Sân 5)', 1, 1, 1, 300000, 1), 
+(N'Sân Q1-A2 (Sân 5)', 1, 1, 3, 300000, 2), -- Bảo trì
+(N'Sân Q1-A3 (Sân 5)', 1, 1, 1, 300000, 3),
+(N'Sân Q1-VIP (Sân 7)', 2, 1, 1, 500000, 4), 
+(N'Sân ĐẠI Q1 (Sân 11)', 3, 1, 1, 1200000, 5);
 
--- --- CHI NHÁNH THỦ ĐỨC (Thêm 5 sân - Giá sinh viên) ---
-INSERT INTO San (TenSan, MaLoaiSan, MaChiNhanh, MaTinhTrang, GiaMacDinh, ThuTuHienThi)--chuus ý muốn thêm GhiChu
-VALUES
-(N'Sân TĐ-C1(Sân 5)',  1, 3, 1, 200000, 1),
-(N'Sân TĐ-C2(Sân 5)',  1, 3, 1, 200000, 2),
-(N'Sân TĐ-C3(Sân 5)',  1, 3, 1, 200000, 3),
-(N'Sân TĐ-C4(Sân 5)',  1, 3, 1, 200000, 4),
-(N'Sân TĐ-C5(Sân 7)',  2, 3, 1, 450000, 5),
-(N'Sân TĐ-C6(Sân 7)',  2, 3, 3, 450000, 6),-- BẢO TRÌ
-(N'Sân TĐ-C7(Sân 7)',  2, 3, 1, 450000, 7), 
-(N'Sân TĐ-C8(Sân 11)', 3, 3, 3, 1300000, 8); -- BẢO TRÌ
---(N'Sân TĐ-C1(Sân 5)',  1, 3, 1, 200000, 1,N'sân mới');
+
+
+
+
+
+
+-- --- CHI NHÁNH QUẬN 7 (Sân 5: 250k, Sân 7: 600k, Sân 11: 1tr5) ---
+INSERT INTO San (TenSan, MaLoaiSan, MaChiNhanh, MaTinhTrang, GiaMacDinh, ThuTuHienThi) VALUES
+(N'Sân Q7-B1 (Sân 5)', 1, 2, 1, 250000, 1),
+(N'Sân Q7-B2 (Sân 5)', 1, 2, 1, 250000, 2),
+(N'Sân Q7-PRO (Sân 7)', 2, 2, 1, 600000, 3),
+(N'Sân ĐẠI Q7 (Sân 11)', 3, 2, 1, 1500000, 4);
+
+
+
+
+-- --- CHI NHÁNH THỦ ĐỨC (Sân 5: 200k, Sân 7: 450k, Sân 11: 1tr3) ---
+INSERT INTO San (TenSan, MaLoaiSan, MaChiNhanh, MaTinhTrang, GiaMacDinh, ThuTuHienThi) VALUES
+(N'Sân TĐ-C1 (Sân 5)', 1, 3, 1, 200000, 1),
+(N'Sân TĐ-C2 (Sân 5)', 1, 3, 1, 200000, 2),
+(N'Sân TĐ-C3 (Sân 7)', 2, 3, 1, 450000, 3),
+(N'Sân ĐẠI TĐ (Sân 11)', 3, 3, 3, 1300000, 4); -- Bảo trì
+
+
+
 
 -- =======================================================
 -- 2. CẬP NHẬT BẢNG GIÁ SÂN (GIASAN)

@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FootballPitchManagement.Forms.Customer
+namespace FootballPitchManagement.Forms.Admin
 {
-    public partial class frmDoAn : Form
+    public partial class frmDoanhThu : Form
     {
-        public frmDoAn()
+        public frmDoanhThu()
         {
             InitializeComponent();
         }
